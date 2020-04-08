@@ -55,13 +55,14 @@
 //
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import App from '../app.vue'
+import NewSnippet from '../new-snippet.vue'
+import Home from '../home.vue'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
-    components: { App }
+    components: { Home, NewSnippet }
   })
 })

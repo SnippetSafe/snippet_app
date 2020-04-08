@@ -64,6 +64,7 @@ export default {
       axios.post('/snippets', { snippet: this.snippetParams })
         .then(res => {
           console.log(res)
+          window.location.href = '/'
         })
         .catch(console.error)
     }
@@ -119,7 +120,7 @@ pre {
   background-color: lightgrey;
   overflow: auto;
   padding: 16px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 13px;
 }
 </style>
