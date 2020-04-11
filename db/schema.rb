@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_073359) do
+ActiveRecord::Schema.define(version: 2020_04_11_152814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.string "alias"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "snippets", force: :cascade do |t|
     t.string "description"
@@ -21,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_04_07_073359) do
     t.boolean "public"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "language_id"
+    t.index ["language_id"], name: "index_snippets_on_language_id"
   end
 
 end

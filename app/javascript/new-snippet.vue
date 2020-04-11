@@ -1,10 +1,5 @@
 <template>
   <div class="create-snippet--wrapper">
-    <div style="display: flex;">
-      <div>
-        <h3 style="margin-left: 16px;">Create Snippet</h3>
-      </div>
-    </div>
     <input type="text" placeholder="snippet description" v-model="snippetParams.description">
     <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
       <div class="create-snippet--input-wrapper">
@@ -19,6 +14,9 @@
       <label for="public">public</label>
       <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
       <label for="private">private</label>
+      <select v-model="snippetParams.language_id">
+        <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
+      </select>
       <button @click="createSnippet">
         create snippet
       </button>
@@ -32,11 +30,16 @@ import _ from 'lodash';
 import axios from 'axios'
 
 export default {
+  props: {
+    languages: { type: Array, required: true }
+  },
+
   data: function () {
     return {
       snippetParams: {
         description: '',
         body: '# create a snippet',
+        language_id: null,
         public: true
       }
     }
@@ -58,13 +61,20 @@ export default {
       this.snippetParams.body = e.target.value;
     }, 300),
 
+    updateLanguage(language) {
+      // this.snippetParams.language = event.target.value
+      console.log('sel', language)
+    },
+
     createSnippet() {
       console.log('snippet params', this.snippetParams)
 
       axios.post('/snippets', { snippet: this.snippetParams })
         .then(res => {
           console.log(res)
-          window.location.href = '/'
+          const snippet = res.data.snippet
+
+          this.$parent.$emit('close', snippet)
         })
         .catch(console.error)
     }
@@ -81,9 +91,6 @@ export default {
 .create-snippet--wrapper {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 50%;
-  margin-top: -300px;
   width: 100%;
 }
 
