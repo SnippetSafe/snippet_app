@@ -13,7 +13,7 @@ class Snippet < ApplicationRecord
     Pygments.highlight(
       body,
       lexer: 'rb',
-      options: { encoding: 'utf-8' }
+      options: { encoding: 'utf-8', linenos: true }
     ).html_safe
   end
 end

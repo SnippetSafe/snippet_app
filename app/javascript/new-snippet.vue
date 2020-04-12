@@ -39,7 +39,7 @@ export default {
       snippetParams: {
         description: '',
         body: '# create a snippet',
-        language_id: null,
+        language_id: this.languages[0].id,
         public: true
       }
     }
@@ -123,11 +123,11 @@ textarea:focus {
   margin: 0px 16px 16px 16px;
 }
 
-pre {
+/* pre {
   background-color: lightgrey;
   overflow: auto;
   padding: 16px;
   border-radius: 5px;
   font-size: 13px;
-}
+} */
 </style>

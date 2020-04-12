@@ -15,7 +15,7 @@
         </div>
       </div>
       <p>{{ snippet.description }}</p>
-      <div v-html="snippet.highlighted"></div>
+      <div style="background-color: whitesmoke;" v-html="snippet.highlighted"></div>
     </div>
   </div>
 </template>
