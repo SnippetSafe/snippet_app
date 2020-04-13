@@ -1,7 +1,33 @@
-html, body, #vue-app {
-  max-width: 1080px; 
+html, body {
 	margin: 0 auto !important; 
 	float: none !important; 
   height: 100vh;
   position: relative;
+}
+
+#header {
+  width: 100%;
+  height: 52px;
+  max-height: 52px;
+  background-color: snow;
+  border-bottom: 1px solid lightgrey;
+  position: relative;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+#header-wrapper {
+  max-width: 1080px;
+  margin: 0 auto !important; 
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#app {
+  margin: 0 auto !important; 
+	float: none !important; 
+  max-width: 1080px;
 }

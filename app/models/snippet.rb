@@ -10,7 +10,7 @@ class Snippet < ApplicationRecord
   end
 
   def highlighted
-    language_label = "<span style='position: absolute; top: -13px; right: 25px; border: 1px solid lightgrey; font-family: monospace; padding: 4px 10px; background-color: snow;'>#{ language.name }</span>"
+language_label = "<span style='border-radius: 5px; position: absolute; top: -13px; right: 25px; border: 1px solid lightgrey; font-family: monospace; padding: 4px 28px 4px 10px; background-color: cornsilk;'><i style='position: absolute; right: 7px;' class='devicon-ruby-plain colored'></i>#{ language.name }</span>"
     
     language_label + Pygments.highlight(
       body,

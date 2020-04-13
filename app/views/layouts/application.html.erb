@@ -5,15 +5,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'snippet_app' %>
-    <%= stylesheet_pack_tag 'snippet_app' %> 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'snippet_app' %>
+    <%= stylesheet_pack_tag 'snippet_app' %>
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
   </head>
 
   <body>
-    <div id="vue-app">
-      <%= yield %>
+    <div id="vue-app" v-cloak>
+      <topbar></topbar>
+
+      <div id="app">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

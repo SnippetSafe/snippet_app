@@ -58,12 +58,16 @@ import Vue from 'vue/dist/vue.esm'
 import NewSnippet from '../new-snippet.vue'
 import Home from '../home.vue'
 import Modal from '../modal.vue'
+import Topbar from '../topbar.vue'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#vue-app',
-    components: { Home, NewSnippet, Modal }
+    data: {
+      message: 'gfds'
+    },
+    components: { Home, NewSnippet, Modal, Topbar }
   })
 })
