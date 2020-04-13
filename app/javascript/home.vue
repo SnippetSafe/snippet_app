@@ -10,12 +10,12 @@
       <div style="display: flex;">
         <img style="border-radius: 50%;" src="https://www.rawlinsdavy.com/wp-content/uploads/2018/12/profile-placeholder-300x300.png" height="48" width="48" />
         <div style="margin-left: 12px; margin-top: 8px;">
-          <span style="display: block; font-weight: bold; font-size: 14px;">Lydia Firminger</span>
-          <span style="display: block; font-size: 12px;">Javascript</span>
+          <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">Lydia Firminger</span>
+          <span style="display: block; font-size: 12px; font-family: Helvetica, sans-serif;">Javascript</span>
         </div>
       </div>
-      <p>{{ snippet.description }}</p>
-      <div style="background-color: whitesmoke;" v-html="snippet.highlighted"></div>
+      <p style="font-family: Helvetica, sans-serif; font-size: 14px; color: darkslategrey;">{{ snippet.description }}</p>
+      <div style="border: 1px solid lightgrey; background-color: snow; position: relative;" v-html="snippet.highlighted"></div>
     </div>
   </div>
 </template>
