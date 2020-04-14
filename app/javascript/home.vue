@@ -19,7 +19,7 @@
             </div>
           </div>
           <p style="font-family: Helvetica, sans-serif; font-size: 14px; color: darkslategrey;">{{ snippet.description }}</p>
-          <div style="border: 1px solid lightgrey; background-color: snow; position: relative;" v-html="snippet.highlighted"></div>
+          <div style="border: 1px solid lightgrey; background-color: snow; position: relative;" v-html="snippetHTML(snippet)"></div>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ import Topbar from './topbar'
 import { EventBus } from './event-bus';
 
 export default {
-  components: { Modal, NewSnippet, Topbar },
+  components: { Modal, NewSnippet },
 
   props: {
     snippets: { type: Array, required: true },
@@ -57,6 +57,15 @@ export default {
   methods: {
     compiledMarkdown(markdown) {
       return marked(markdown);
+    },
+
+    snippetHTML(snippet) {
+      return `
+        ${snippet.language_label}
+        <div style="max-height: 258px; overflow: hidden; box-shadow: inset 0px -11px 8px -10px #CCC;">
+          ${snippet.highlighted}
+        </div>
+      `
     },
 
     openNewSnippetModal() {
