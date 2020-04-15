@@ -1,5 +1,6 @@
 <template>
   <div class="create-snippet--wrapper">
+    <input type="text" placeholder="filename including extension" v-model="snippetParams.filename">
     <input type="text" placeholder="snippet description" v-model="snippetParams.description">
     <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
       <div class="create-snippet--input-wrapper">
@@ -14,9 +15,6 @@
       <label for="public">public</label>
       <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
       <label for="private">private</label>
-      <select v-model="snippetParams.language_id">
-        <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
-      </select>
       <button @click="createSnippet">
         create snippet
       </button>
@@ -37,9 +35,9 @@ export default {
   data: function () {
     return {
       snippetParams: {
+        filename: null,
         description: '',
         body: '# create a snippet',
-        language_id: this.languages[0].id,
         public: true
       }
     }

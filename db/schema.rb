@@ -15,14 +15,38 @@ ActiveRecord::Schema.define(version: 2020_04_11_152814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "aliases", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_aliases_on_language_id"
+  end
+
+  create_table "filenames", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_filenames_on_language_id"
+  end
+
   create_table "languages", force: :cascade do |t|
-    t.string "name"
-    t.string "alias"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "mimetypes", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_mimetypes_on_language_id"
+  end
+
   create_table "snippets", force: :cascade do |t|
+    t.string "filename"
     t.string "description"
     t.text "body"
     t.boolean "public"

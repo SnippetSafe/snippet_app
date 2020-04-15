@@ -16,7 +16,7 @@ class Snippet < ApplicationRecord
   def highlighted
     Pygments.highlight(
       body,
-      lexer: 'rb',
+      lexer: language.lexer_alias,
       options: { encoding: 'utf-8', linenos: true }
     ).html_safe
   end

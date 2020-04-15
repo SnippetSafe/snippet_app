@@ -1,6 +1,7 @@
 class CreateSnippets < ActiveRecord::Migration[6.0]
   def change
     create_table :snippets do |t|
+      t.string :filename
       t.string :description
       t.text :body
       t.boolean :public

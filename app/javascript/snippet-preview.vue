@@ -7,6 +7,7 @@
         <span style="display: block; font-size: 12px; font-family: Helvetica, sans-serif;">Javascript</span>
       </div>
     </div>
+    <p class="snippet-preview--description">{{ snippet.filename }}</p>
     <p class="snippet-preview--description">{{ snippet.description }}</p>
     <div class="snippet-preview--content-wrapper" v-html="snippetHTML"></div>
   </div>
