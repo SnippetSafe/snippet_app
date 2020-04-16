@@ -60,6 +60,7 @@ import Home from '../home.vue'
 import Modal from '../modal.vue'
 import Topbar from '../topbar.vue'
 import SnippetPreview from '../snippet-preview.vue'
+import SnippetShow from '../snippet-show.vue'
 
 Vue.use(TurbolinksAdapter)
 
@@ -69,6 +70,6 @@ document.addEventListener('turbolinks:load', () => {
     data: {
       message: 'gfds'
     },
-    components: { Home, NewSnippet, Modal, Topbar, SnippetPreview }
+    components: { Home, NewSnippet, Modal, Topbar, SnippetPreview, SnippetShow }
   })
 })

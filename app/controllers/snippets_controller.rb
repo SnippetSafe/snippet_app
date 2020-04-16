@@ -1,6 +1,6 @@
 class SnippetsController < ApplicationController
   def show
-    @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.find(params[:id]).serialize
   end
 
   def create
