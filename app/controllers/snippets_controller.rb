@@ -1,4 +1,8 @@
 class SnippetsController < ApplicationController
+  def show
+    @snippet = Snippet.find(params[:id])
+  end
+
   def create
     language = Language.find_by_filename(snippet_params[:filename])
   

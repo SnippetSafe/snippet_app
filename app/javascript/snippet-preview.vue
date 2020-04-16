@@ -7,9 +7,9 @@
         <span style="display: block; font-size: 12px; font-family: Helvetica, sans-serif;">Javascript</span>
       </div>
     </div>
-    <p class="snippet-preview--description">{{ snippet.filename }}</p>
+    <a class="snippet-preview--filename" :href="snippetUrl">{{ snippet.filename }}</a>
     <p class="snippet-preview--description">{{ snippet.description }}</p>
-    <div class="snippet-preview--content-wrapper" v-html="snippetHTML"></div>
+    <a class="snippet-preview--content-wrapper" v-html="snippetHTML" :href="snippetUrl"></a>
   </div>
 </template>
 
@@ -27,6 +27,10 @@ export default {
           ${this.snippet.highlighted}
         </div>
       `
+    },
+
+    snippetUrl() {
+      return `/snippets/${this.snippet.id}`
     }
   }
 }
@@ -41,6 +45,14 @@ export default {
 
     &--author-wrapper {
       display: flex;
+    }
+
+    &--filename {
+      font-family: Helvetica, sans-serif;
+      font-size: 14px;
+      text-decoration: none;
+
+      &:hover { text-decoration: underline; }
     }
 
     &--description {
@@ -58,6 +70,11 @@ export default {
         border: 1px solid lightgrey;
         background-color: snow;
         position: relative;
+        display: block;
+        text-decoration: none;
+
+        &:visited { color: inherit; }
+        &:hover { cursor: pointer; }
       }
     }
   }

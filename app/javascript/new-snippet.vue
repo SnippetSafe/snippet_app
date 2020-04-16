@@ -59,15 +59,10 @@ export default {
       this.snippetParams.body = e.target.value;
     }, 300),
 
-    updateLanguage(language) {
-      // this.snippetParams.language = event.target.value
-      console.log('sel', language)
-    },
-
     createSnippet() {
       console.log('snippet params', this.snippetParams)
 
-      axios.post('/snippets', { snippet: this.snippetParams })
+      axios.post('/snippets?ajax=true', { snippet: this.snippetParams })
         .then(res => {
           console.log(res)
           const snippet = res.data.snippet
