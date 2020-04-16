@@ -1,15 +1,15 @@
 <template>
-  <div class="snippet-preview--container">
-    <div class="snippet-preview--author-wrapper">
+  <div class="snippet-show--container">
+    <div class="snippet-show--author-wrapper">
       <img style="border-radius: 50%;" src="https://www.rawlinsdavy.com/wp-content/uploads/2018/12/profile-placeholder-300x300.png" height="48" width="48" />
       <div style="margin-left: 12px; margin-top: 8px;">
         <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">Lydia Firminger</span>
         <span style="display: block; font-size: 12px; font-family: Helvetica, sans-serif;">Javascript</span>
       </div>
     </div>
-    <a class="snippet-preview--filename" :href="snippetUrl">{{ snippet.filename }}</a>
-    <p class="snippet-preview--description">{{ snippet.description }}</p>
-    <a class="snippet-preview--content-wrapper" v-html="snippetHTML" :href="snippetUrl"></a>
+    <p class="snippet-show--filename">{{ snippet.filename }}</p>
+    <p class="snippet-show--description">{{ snippet.description }}</p>
+    <div class="snippet-show--content-wrapper" v-html="snippetHTML"></div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     snippetHTML() {
       return `
         ${this.snippet.language_label}
-        <div class="snippet-preview--content">
+        <div class="snippet-show--content">
           ${this.snippet.highlighted}
         </div>
       `
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .snippet-preview {
+  .snippet-show {
     &--container {
       border-bottom: 1px solid lightgrey; 
       padding: 16px;
@@ -50,9 +50,6 @@ export default {
     &--filename {
       font-family: Helvetica, sans-serif;
       font-size: 14px;
-      text-decoration: none;
-
-      &:hover { text-decoration: underline; }
     }
 
     &--description {
@@ -62,9 +59,9 @@ export default {
     }
 
     &--content {
-      max-height: 258px;
-      overflow: hidden;
-      box-shadow: inset 0px -11px 8px -10px #CCC;
+      // max-height: 258px;
+      // overflow: hidden;
+      // box-shadow: inset 0px -11px 8px -10px #CCC;
 
       &-wrapper {
         border: 1px solid lightgrey;
@@ -72,9 +69,6 @@ export default {
         position: relative;
         display: block;
         text-decoration: none;
-
-        &:visited { color: inherit; }
-        &:hover { cursor: pointer; }
       }
     }
   }

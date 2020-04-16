@@ -2,7 +2,7 @@
   <div id="header">
     <div id="header-wrapper">
       <div style="display: flex; align-items: center;">
-        <span>SNIPPET</span>
+        <a class="button--cta-transparent" href="/">SNIPPET.IO</a>
       </div>
 
       <div style="display: flex; align-items: center;">
