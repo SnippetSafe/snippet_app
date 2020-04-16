@@ -1,0 +1,37 @@
+.button {
+  &--cta {
+    color: snow;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+    margin-left: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-new {
+      @extend .button--cta;
+
+      background-color: #57B65A;
+      border: 1px solid #57B65A;
+    }
+
+    &-blue {
+      @extend .button--cta;
+
+      border: 1px solid #003F63;
+      background-color: #003F63;
+    }
+
+    &-transparent {
+      @extend .button--cta;
+
+      border: 1px solid #003F63;
+      background-color: transparent;
+      color: #003F63;
+    }
+  }
+}
