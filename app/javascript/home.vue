@@ -4,19 +4,11 @@
       <h3 slot="header">New Snippet</h3>
       <new-snippet :languages="languages" slot="body" />
     </modal>
-
-    <div style="display: flex;">
-      <div style="flex: 1">
-        buttons
-      </div>
-      <div style="flex: 3;">
-        <snippet-preview
-          v-for="snippet in snippetz"
-          :key="snippet.id"
-          :snippet="snippet"
-        />
-      </div>
-    </div>
+    <snippet-preview
+      v-for="snippet in snippetz"
+      :key="snippet.id"
+      :snippet="snippet"
+    />
   </div>
 </template>
 
