@@ -55,6 +55,8 @@
 //
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
+
+import ActionIcon from '../action-icon'
 import NewSnippet from '../new-snippet.vue'
 import Home from '../home.vue'
 import Modal from '../modal.vue'
@@ -71,6 +73,6 @@ document.addEventListener('turbolinks:load', () => {
     data: {
       message: 'gfds'
     },
-    components: { Home, NewSnippet, Modal, Topbar, Sidebar, SnippetPreview, SnippetShow }
+    components: { ActionIcon, Home, NewSnippet, Modal, Topbar, Sidebar, SnippetPreview, SnippetShow }
   })
 })

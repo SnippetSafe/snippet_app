@@ -1,18 +1,18 @@
 <template>
-  <i  @click="performAction" :class="[ 'action-button--wrapper', buttonClass]"></i>
+  <div @click="performAction" class="action-button--wrapper">
+    <action-icon :type="type"></action-icon>
+  </div>
 </template>
 
 <script>
+import ActionIcon from './action-icon.vue';
+
 export default {
+  components: { ActionIcon },
+
   props: {
     snippet: { type: Object, required: true },
     type: { required: true, type: String }
-  },
-
-  computed: {
-    buttonClass() {
-      return `fas fa-${this.type}`
-    }
   },
 
   methods: {
