@@ -59,6 +59,7 @@ import NewSnippet from '../new-snippet.vue'
 import Home from '../home.vue'
 import Modal from '../modal.vue'
 import Topbar from '../topbar.vue'
+import Sidebar from '../sidebar.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
 
@@ -70,6 +71,6 @@ document.addEventListener('turbolinks:load', () => {
     data: {
       message: 'gfds'
     },
-    components: { Home, NewSnippet, Modal, Topbar, SnippetPreview, SnippetShow }
+    components: { Home, NewSnippet, Modal, Topbar, Sidebar, SnippetPreview, SnippetShow }
   })
 })

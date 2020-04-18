@@ -11,16 +11,17 @@
     <%= stylesheet_pack_tag 'snippet_app' %>
 
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <script src="https://kit.fontawesome.com/97e1edac97.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <div id="vue-app" v-cloak>
-      <topbar></topbar>
+      <%= render 'shared/topbar' %>
 
       <div id="app">
         <div style="display: flex;">
           <div style="flex: 1">
-            buttons
+            <sidebar></sidebar>
           </div>
           <div style="flex: 3;">
             <%= yield %>
