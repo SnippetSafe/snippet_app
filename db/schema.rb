@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_095900) do
+ActiveRecord::Schema.define(version: 2020_04_19_103639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2020_04_19_095900) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["language_id"], name: "index_aliases_on_language_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "snippet_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["snippet_id"], name: "index_comments_on_snippet_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "filenames", force: :cascade do |t|
@@ -71,4 +81,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_095900) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "snippets"
+  add_foreign_key "comments", "users"
 end

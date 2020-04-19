@@ -10,15 +10,20 @@
       <div class="snippet-show--content" v-html="snippet.highlighted"></div>
       <action-button-bar :snippet="snippet"></action-button-bar>
     </div>
+    <div class="snippet-show--comments-wrapper">
+      <comment v-for="comment in snippet.comments" :comment="comment" :key="comment.id"></comment>
+    </div>
   </div>
 </template>
 
 <script>
-import SnippetHeader from './snippet-header';
+import Comment from './comment';
 import ActionButtonBar from './action-button-bar';
+import SnippetHeader from './snippet-header';
 
 export default {
   components: {
+    Comment,
     ActionButtonBar,
     SnippetHeader
   },
@@ -40,6 +45,10 @@ export default {
     snippetUrl() {
       return `/snippets/${this.snippet.id}`
     }
+  },
+
+  created() {
+    console.log('show snippet', this.snippet)
   }
 }
 </script>

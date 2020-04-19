@@ -1,6 +1,7 @@
 class Snippet < ApplicationRecord
   belongs_to :language, required: true
   belongs_to :user, required: true
+  has_many :comments
 
   def serializable
     SnippetSerializer.new(self)
