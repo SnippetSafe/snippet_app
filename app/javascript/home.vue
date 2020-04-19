@@ -16,7 +16,6 @@
 import marked from 'marked'
 import Modal from './modal'
 import NewSnippet from './new-snippet'
-import Topbar from './topbar'
 import SnippetPreview from './snippet-preview'
 
 import { EventBus } from './event-bus';

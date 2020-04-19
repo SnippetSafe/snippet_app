@@ -1,1 +1,17 @@
-<topbar></topbar>
+<div id="header">
+  <div id="header-wrapper">
+    <div style="display: flex; align-items: center;">
+      <a class="button--cta-transparent" href="/">SNIPPET.IO</a>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      <% if user_signed_in? %>
+        <new-snippet-button></new-snippet-button>
+        <%= link_to('SIGN OUT', destroy_user_session_path, method: :delete, class: "button--cta-blue") %>  
+      <% else %>
+        <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  
+        <%= link_to('SIGN UP', new_user_registration_path, class: "button--cta-transparent") %>  
+      <% end %>
+    </div>
+  </div>
+</div>

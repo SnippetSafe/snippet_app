@@ -3,7 +3,7 @@
     <div class="snippet-preview--author-wrapper">
       <img style="border-radius: 50%;" src="https://www.rawlinsdavy.com/wp-content/uploads/2018/12/profile-placeholder-300x300.png" height="48" width="48" />
       <div style="margin-left: 12px; margin-top: 8px;">
-        <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">Lydia Firminger</span>
+        <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ snippet.user.name }}</span>
       </div>
     </div>
     <p class="snippet-preview--description">{{ snippet.description }}</p>
