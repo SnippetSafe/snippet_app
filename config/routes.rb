@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :snippets, only: %i(new show create)
+  resources :comments, only: :create
 end

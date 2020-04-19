@@ -11,9 +11,9 @@
       <action-button-bar :snippet="snippet"></action-button-bar>
     </div>
     <div class="snippet-show--comments-wrapper">
-      <comment v-for="comment in snippet.comments" :comment="comment" :key="comment.id"></comment>
+      <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
     </div>
-    <!-- <new-comment></new-comment> -->
+    <new-comment @commentCreated="addNewCommentToComments" :snippet="snippet"></new-comment>
   </div>
 </template>
 
@@ -35,6 +35,12 @@ export default {
     snippet: { type: Object, required: true }
   },
 
+  data() {
+    return {
+      comments: this.snippet.comments
+    }
+  },
+
   computed: {
     snippetHTML() {
       return `
@@ -53,6 +59,13 @@ export default {
   created() {
     console.log('user', this.$store.state.currentUser)
     console.log('show snippet', this.snippet)
+  },
+
+  methods: {
+    addNewCommentToComments(newComment) {
+      console.log('new com', newComment)
+      this.comments.push(newComment)
+    }
   }
 }
 </script>
