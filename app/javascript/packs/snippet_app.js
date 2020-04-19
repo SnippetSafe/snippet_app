@@ -56,6 +56,8 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 
+import { store } from '../store.js';
+
 import ActionIcon from '../action-icon'
 import NewSnippet from '../new-snippet.vue'
 import Home from '../home.vue'
@@ -67,12 +69,24 @@ import SnippetShow from '../snippet-show.vue'
 
 Vue.use(TurbolinksAdapter)
 
+
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '#vue-app',
-    data: {
-      message: 'gfds'
-    },
-    components: { ActionIcon, Home, NewSnippet, Modal, NewSnippetButton, Sidebar, SnippetPreview, SnippetShow }
-  })
+
+  (function (appElement) {
+
+    const app = new Vue({
+      el: '#vue-app',
+      store,
+      components: { ActionIcon, Home, NewSnippet, Modal, NewSnippetButton, Sidebar, SnippetPreview, SnippetShow },
+      created() {
+        const currentUser = JSON.parse(appElement.dataset.user);
+
+        if (currentUser) {
+          this.$store.commit('setCurrentUser', currentUser)
+        }
+      }
+    })
+
+  })(document.getElementById('vue-app'));
+
 })

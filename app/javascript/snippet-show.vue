@@ -13,18 +13,21 @@
     <div class="snippet-show--comments-wrapper">
       <comment v-for="comment in snippet.comments" :comment="comment" :key="comment.id"></comment>
     </div>
+    <!-- <new-comment></new-comment> -->
   </div>
 </template>
 
 <script>
-import Comment from './comment';
 import ActionButtonBar from './action-button-bar';
+import Comment from './comment';
+import NewComment from './new-comment';
 import SnippetHeader from './snippet-header';
 
 export default {
   components: {
-    Comment,
     ActionButtonBar,
+    Comment,
+    NewComment,
     SnippetHeader
   },
 
@@ -48,6 +51,7 @@ export default {
   },
 
   created() {
+    console.log('user', this.$store.state.currentUser)
     console.log('show snippet', this.snippet)
   }
 }

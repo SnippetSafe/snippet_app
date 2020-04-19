@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <div id="vue-app" v-cloak>
+    <div id="vue-app" data-user="<%= current_user.to_json %>" v-cloak>
       <%= render 'shared/topbar' %>
 
       <div id="app">
