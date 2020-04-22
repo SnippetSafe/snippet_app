@@ -1,6 +1,6 @@
 class SnippetsController < ApplicationController
   def show
-    @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize
+    @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
   end
 
   def create

@@ -4,20 +4,21 @@ class Snippet < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  def serializable
-    SnippetSerializer.new(self)
+  # TODO: Don't call serializers from model - just instantiate in controller
+  def serializable(current_user)
+    SnippetSerializer.new(self, scope: current_user)
   end
 
-  def serialize
-    serializable.to_h
+  def serialize(current_user)
+    serializable(current_user).to_h
   end
 
-  def simple_serializable
-    SimpleSnippetSerializer.new(self)
+  def simple_serializable(current_user)
+    SimpleSnippetSerializer.new(self, scope: current_user)
   end
 
-  def simple_serialize
-    simple_serializable.to_h
+  def simple_serialize(current_user)
+    simple_serializable(current_user).to_h
   end
 
   def comments_count
@@ -26,6 +27,10 @@ class Snippet < ApplicationRecord
 
   def likes_count
     likes.size
+  end
+
+  def liked_by?(user)
+    likes.find_by_user_id(user.id).present?
   end
 
   def language_label

@@ -2,9 +2,11 @@
   <div class="action-button-bar--wrapper">
     <action-button
       v-for="button in actionButtons"
-      :snippet="snippet"
+      :snippet="snippetDup"
       :type="button.type"
       :count="button.count"
+      :action="button.action"
+      :hasActioned="button.hasActioned"
       :key="button.type">
     </action-button>
   </div>
@@ -12,6 +14,9 @@
 
 <script>
 import ActionButton from './action-button'
+
+import { store } from './store';
+import axios from 'axios'
 
 export default {
   components: {
@@ -24,14 +29,49 @@ export default {
 
   data() {
     return {
-      actionButtons: [
-        { type: 'heart', count: this.snippet.likes_count },
-        { type: 'comment', count: this.snippet.comments_count },
-        { type: 'share' , count: 0 },
-        { type: 'star' , count: 0 }
+      snippetDup: this.snippet
+    }
+  },
+
+  computed: {
+    actionButtons() {
+      return [
+        { type: 'heart', count: this.snippetDup.likes_count, action: this.likeAction(), hasActioned: this.snippetDup.liked_by_current_user },
+        { type: 'comment', count: this.snippetDup.comments_count, action: this.commentAction(), hasActioned: false },
+        { type: 'share' , count: 0, action: () => { console.log('sharing') }, hasActioned: false },
+        { type: 'star' , count: 0, action: () => { console.log('starring') }, hasActioned: false }
       ]
     }
   },
+
+  // TODO: Extract this into a class or module that can be reused accross the application
+  beforeCreate() {
+    this.currentUser = this.$store.state.currentUser;
+  },
+
+  created() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  },
+
+  methods: {
+    likeAction() {
+      return () => {
+        const likeParams = {
+          user_id: this.currentUser.id,
+          snippet_id: this.snippet.id
+        }
+
+        axios.post('/likes?ajax=true', { like: likeParams })
+        .then(res => this.snippetDup = res.data.snippet)
+        .catch(console.error)
+      }
+    },
+
+    commentAction() {
+      return () => window.location.href = `/snippets/${this.snippetDup.id}#new-comment`;
+    }
+  }
 }
 </script>
 

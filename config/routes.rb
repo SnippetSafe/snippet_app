@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :snippets, only: %i(new show create)
   resources :comments, only: :create
+  resources :likes, only: :create
 end

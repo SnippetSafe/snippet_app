@@ -1,6 +1,6 @@
 <template>
   <div @click="performAction" class="action-button--wrapper">
-    <action-icon :type="type"></action-icon>
+    <action-icon :type="type" :actioned="hasActioned"></action-icon>
     <span>{{ count }}</span>
   </div>
 </template>
@@ -15,11 +15,27 @@ export default {
     snippet: { type: Object, required: true },
     type: { required: true, type: String },
     count: { required: true, type: Number },
+    action: { required: true, type: Function },
+    hasActioned: { required: true, type: Boolean },
+  },
+
+  created(){
+    console.log(this.type, this.hasActioned)
   },
 
   methods: {
     performAction() {
       console.log(`performing action for ${this.type} on snippet ${this.snippet.filename}`)
+      this.action()
+        // .then(res => {
+        //   console.log(res)
+        //   const comment = res.data.like
+        //   // console.log(this.snippet)
+        //   this.count += 1
+        //   // this.resetCommentForm()
+        //   // this.$emit('commentCreated', comment)
+        // })
+        // .catch(console.error)
     }
   }
 }

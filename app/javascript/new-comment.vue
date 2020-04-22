@@ -1,5 +1,5 @@
 <template>
-  <div class="comment--container">
+  <div id="new-comment" class="comment--container">
     <div class="comment--header">
       <span>{{ currentUser.name }}</span>
     </div>

@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @snippets = Snippet.includes({ language: :aliases }, :user)
       .order(created_at: :desc)
-      .map(&:simple_serialize)
+      .map { |s| s.simple_serialize(current_user) }
 
     @languages = Language.order(name: :asc)
   end
