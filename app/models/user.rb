@@ -5,5 +5,6 @@ class User < ApplicationRecord
 
   has_many :snippets
   has_many :comments
+  has_many :likes
   has_many :languages, through: :snippets
 end

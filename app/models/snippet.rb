@@ -2,6 +2,7 @@ class Snippet < ApplicationRecord
   belongs_to :language, required: true
   belongs_to :user, required: true
   has_many :comments
+  has_many :likes
 
   def serializable
     SnippetSerializer.new(self)
@@ -9,6 +10,22 @@ class Snippet < ApplicationRecord
 
   def serialize
     serializable.to_h
+  end
+
+  def simple_serializable
+    SimpleSnippetSerializer.new(self)
+  end
+
+  def simple_serialize
+    simple_serializable.to_h
+  end
+
+  def comments_count
+    comments.size
+  end
+
+  def likes_count
+    likes.size
   end
 
   def language_label

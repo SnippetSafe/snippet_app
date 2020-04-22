@@ -4,6 +4,7 @@
       v-for="button in actionButtons"
       :snippet="snippet"
       :type="button.type"
+      :count="button.count"
       :key="button.type">
     </action-button>
   </div>
@@ -24,10 +25,10 @@ export default {
   data() {
     return {
       actionButtons: [
-        { type: 'heart' },
-        { type: 'comment' },
-        { type: 'share' },
-        { type: 'star' }
+        { type: 'heart', count: this.snippet.likes_count },
+        { type: 'comment', count: this.snippet.comments_count },
+        { type: 'share' , count: 0 },
+        { type: 'star' , count: 0 }
       ]
     }
   },

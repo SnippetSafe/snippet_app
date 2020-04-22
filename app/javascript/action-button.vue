@@ -1,6 +1,7 @@
 <template>
   <div @click="performAction" class="action-button--wrapper">
     <action-icon :type="type"></action-icon>
+    <span>{{ count }}</span>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
 
   props: {
     snippet: { type: Object, required: true },
-    type: { required: true, type: String }
+    type: { required: true, type: String },
+    count: { required: true, type: Number },
   },
 
   methods: {
