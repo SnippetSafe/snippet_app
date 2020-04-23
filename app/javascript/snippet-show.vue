@@ -4,11 +4,11 @@
       <img style="border-radius: 50%;" src="https://www.rawlinsdavy.com/wp-content/uploads/2018/12/profile-placeholder-300x300.png" height="48" width="48" />
       <span style="margin-left: 12px; margin-top: 16px; display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ snippet.user.name }}</span>
     </div>
-    <p class="snippet-show--description">{{ snippet.description }}</p>
+    <p class="snippet-show--description">{{ snippetDup.description }}</p>
     <div style="display: flex; flex-direction: column;">
-      <snippet-header :filename="snippet.filename"></snippet-header>
-      <div class="snippet-show--content" v-html="snippet.highlighted"></div>
-      <action-button-bar :snippet="snippet"></action-button-bar>
+      <snippet-header :filename="snippetDup.filename"></snippet-header>
+      <div class="snippet-show--content" v-html="snippetDup.highlighted"></div>
+      <action-button-bar :snippet="snippetDup"></action-button-bar>
     </div>
     <div class="snippet-show--comments-wrapper">
       <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
@@ -37,6 +37,7 @@ export default {
 
   data() {
     return {
+      snippetDup: this.snippet,
       comments: this.snippet.comments
     }
   },
@@ -64,6 +65,7 @@ export default {
   methods: {
     addNewCommentToComments(newComment) {
       console.log('new com', newComment)
+      this.snippetDup.comments_count += 1
       this.comments.push(newComment)
     }
   }

@@ -3,7 +3,8 @@
     <div class="comment--header">
       <span>{{ currentUser.name }}</span>
     </div>
-    <textarea v-model="commentParams.body"></textarea>
+    <textarea v-model="commentParams.body" placeholder="Leave a comment" autofocus></textarea>
+    <!-- TODO: Make sure that the body content can't be empty -->
     <button @click="createComment">Comment</button>
   </div>
 </template>
@@ -27,7 +28,7 @@ export default {
     }
   },
 
-  // TODO: Extract this into a class or module that can be reused accross the application
+  // TODO: Extract this into a class or module that can be reused across the application
   beforeCreate() {
     this.currentUser = this.$store.state.currentUser;
     console.log('u', this.currentUser)

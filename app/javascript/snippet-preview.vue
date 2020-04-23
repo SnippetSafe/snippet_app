@@ -72,7 +72,7 @@ export default {
 
     &--content {
       max-height: 258px;
-      overflow: hidden;
+      overflow-y: scroll;
       box-shadow: inset 0px -11px 8px -10px #CCC;
 
       &-wrapper {
@@ -81,6 +81,11 @@ export default {
         position: relative;
         display: block;
         text-decoration: none;
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent; /* make scrollbar transparent */
+        }
 
         &:visited { color: inherit; }
         &:hover { cursor: pointer; }

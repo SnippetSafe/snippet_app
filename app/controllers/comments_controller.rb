@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
     render json: { comment: comment }
   end
 
+  #TODO: Add abikity to delete comments
+
   private
 
   def comment_params
