@@ -1,4 +1,5 @@
 class Snippet < ApplicationRecord
+  has_and_belongs_to_many :folders
   belongs_to :language, required: true
   belongs_to :user, required: true
   has_many :comments
@@ -41,7 +42,7 @@ class Snippet < ApplicationRecord
     Pygments.highlight(
       body,
       lexer: language.lexer_alias,
-      options: { encoding: 'utf-8', linenos: true }
+      options: { encoding: 'utf-8', linenos: false }
     ).html_safe
   end
 end

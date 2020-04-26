@@ -1,7 +1,7 @@
 <template>
   <div @click="performAction" class="action-button--wrapper">
     <action-icon :type="type" :actioned="hasActioned"></action-icon>
-    <span>{{ count }}</span>
+    <span class="action-button--count">{{ count }}</span>
   </div>
 </template>
 
@@ -55,6 +55,10 @@ export default {
         cursor: pointer;
         color: #003F63;
       }
+    }
+
+    &--count {
+      margin-left: 8px;
     }
   }
 </style>

@@ -4,22 +4,22 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    language = Language.find_by_filename(snippet_params[:filename])
-  
+    # language = Language.find_by_filename(snippet_params[:filename])
+    
     snippet = Snippet.create!(
-      filename: snippet_params[:filename],
+      user: current_user,
       description: snippet_params[:description],
       body: snippet_params[:body],
       public: snippet_params[:public],
-      language: language
+      language_id: snippet_params[:language_id]
     )
 
-    render json: { snippet: snippet.serialize }
+    render json: { snippet: snippet.serialize(current_user) }
   end
 
   private
 
   def snippet_params
-    params.require(:snippet).permit(:description, :body, :public, :filename)
+    params.require(:snippet).permit(:description, :body, :public, :language_id)
   end
 end

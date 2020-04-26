@@ -11,6 +11,7 @@ class SimpleSnippetSerializer < ActiveModel::Serializer
   )
 
   has_one :user
+  has_one :language
 
   def liked_by_current_user
     object.liked_by?(current_user)

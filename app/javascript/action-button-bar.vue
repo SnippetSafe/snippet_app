@@ -79,8 +79,8 @@ export default {
   .action-button-bar {
     &--wrapper {
       display: flex;
-      border: 1px solid lightgrey;
-      border-top: none;
+      // border: 1px solid lightgrey;
+      // border-top: none;
     }
   }
 </style>

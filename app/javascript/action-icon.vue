@@ -32,6 +32,29 @@ export default {
     &--heart {
       &-actioned {
         color: red;
+        font-weight: 900;
+      }
+
+      &-unactioned {
+        font-weight: 100 !important;
+      }
+    }
+
+    &--folder {
+      &-unactioned {
+        font-weight: 100 !important;
+      }
+    }
+
+    &--share {
+      &-unactioned {
+        // font-weight: 100 !important;
+      }
+    }
+
+    &--comment {
+      &-unactioned {
+        font-weight: 100 !important;
       }
     }
   }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_072448) do
+ActiveRecord::Schema.define(version: 2020_04_23_072513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,21 @@ ActiveRecord::Schema.define(version: 2020_04_20_072448) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["language_id"], name: "index_filenames_on_language_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
+  end
+
+  create_table "folders_snippets", id: false, force: :cascade do |t|
+    t.bigint "snippet_id"
+    t.bigint "folder_id"
+    t.index ["folder_id"], name: "index_folders_snippets_on_folder_id"
+    t.index ["snippet_id"], name: "index_folders_snippets_on_snippet_id"
   end
 
   create_table "languages", force: :cascade do |t|
