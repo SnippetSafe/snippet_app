@@ -1,6 +1,7 @@
 class SnippetSerializer < ActiveModel::Serializer
   has_one :user
   has_many :comments
+  has_one :language
 
   attributes(
     :id,

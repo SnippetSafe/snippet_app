@@ -88,7 +88,7 @@ export default {
       overflow-y: scroll;
       // box-shadow: inset 0px -11px 8px -10px #CCC;
       border-radius: 4px;
-      margin: 0px 18px 0px 18px;
+      // margin: 0px 18px 0px 18px;
 
       &-wrapper {
         // border: 1px solid lightgrey;

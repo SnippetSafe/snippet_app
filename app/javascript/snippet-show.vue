@@ -1,14 +1,26 @@
 <template>
-  <div class="snippet-show--container">
-    <div class="snippet-show--author-wrapper">
-      <img style="border-radius: 50%;" src="https://www.rawlinsdavy.com/wp-content/uploads/2018/12/profile-placeholder-300x300.png" height="48" width="48" />
-      <span style="margin-left: 12px; margin-top: 16px; display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ snippet.user.name }}</span>
+  <div>
+    <div class="snippet-show--container">
+      <div class="snippet-preview--author-wrapper">
+      <div style="display: flex;">
+        <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
+        <div style="margin-left: 12px; margin-top: 8px;">
+          <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ snippet.user.name }}</span>
+          <span style="font-size: 12px; color: gray;">23 minutes ago</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 14px;">
+          <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language.name }}</span>
+          <i class="devicon-ruby-plain colored"></i>
+        </div>
+      </div>
     </div>
-    <p class="snippet-show--description">{{ snippetDup.description }}</p>
-    <div style="display: flex; flex-direction: column;">
-      <snippet-header :filename="snippetDup.filename"></snippet-header>
-      <div class="snippet-show--content" v-html="snippetDup.highlighted"></div>
-      <action-button-bar :snippet="snippetDup"></action-button-bar>
+      <p class="snippet-show--description">{{ snippetDup.description }}</p>
+      <div style="display: flex; flex-direction: column;">
+        <div class="snippet-show--content" v-html="snippetDup.highlighted"></div>
+        <action-button-bar :snippet="snippetDup"></action-button-bar>
+      </div>
     </div>
     <div class="snippet-show--comments-wrapper">
       <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
@@ -75,12 +87,16 @@ export default {
 <style lang="scss">
   .snippet-show {
     &--container {
-      // border-bottom: 1px solid lightgrey; 
-      padding: 16px;
+      box-shadow: 0 4px 9px lightgrey;
+      background-color: white;
+      margin: 16px 0px 16px 0px;
+      padding: 16px 16px 0px 16px;
+      border-radius: 4px;
     }
 
     &--author-wrapper {
       display: flex;
+      justify-content: space-between;
     }
 
     &--description {
@@ -90,11 +106,12 @@ export default {
     }
 
     &--content {
-      border: 1px solid lightgrey;
-      background-color: snow;
+      background-color: #282c34;
       position: relative;
       display: block;
       text-decoration: none;
+      border-radius: 4px;
+      // margin: 0px 18px 0px 18px;
     }
   }
 </style>
