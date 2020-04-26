@@ -1,11 +1,19 @@
 <template>
-  <div id="new-comment" class="comment--container">
-    <div class="comment--header">
-      <span>{{ currentUser.name }}</span>
+  <div class="new-comment--wrapper">
+    <div id="new-comment" class="new-comment--container">
+      <div style="display: flex;">
+        <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
+        <div style="margin-left: 12px; margin-top: 8px;">
+          <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ currentUser.name }}</span>
+          <span style="font-size: 12px; color: gray;">New comment</span>
+        </div>
+      </div>
+      <textarea class="new-comment--body" v-model="commentParams.body" placeholder="Leave a comment" autofocus></textarea>
+      <!-- TODO: Make sure that the body content can't be empty -->
+      <div class="new-comment--button-wrapper">
+        <button class="button--cta-new button-right button-margin-top" @click="createComment">Comment</button>
+      </div>
     </div>
-    <textarea v-model="commentParams.body" placeholder="Leave a comment" autofocus></textarea>
-    <!-- TODO: Make sure that the body content can't be empty -->
-    <button @click="createComment">Comment</button>
   </div>
 </template>
 
@@ -62,7 +70,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .comment {
+  .new-comment {
+    &--wrapper {
+      border-top: 2px solid lightgray;
+    }
+
     &--header {
       height: 30px;
       border-bottom: 1px solid lightgray;
@@ -70,9 +82,31 @@ export default {
     }
 
     &--container {
-      // height: 40px;
+      margin: 24px 0px 24px 0px;
+      box-shadow: 0 4px 9px lightgrey;
+      padding: 16px;
+      background-color: white;
+      border-radius: 4px;
+    }
+
+    &--body {
+      margin-top: 16px;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      resize: none;
+      height: 140px;
+      padding: 6px;
+      font-size: 14px;
+      border-radius: 4px;
       border: 1px solid lightgray;
-      margin: 16px 0px 16px 0px;
+    }
+
+    &--button-wrapper {
+      display: flex;
+      margin-top: 16px;
+      flex-direction: column;
+      align-items: flex-end;
     }
   }
 </style>

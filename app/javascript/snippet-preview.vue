@@ -105,7 +105,10 @@ export default {
         }
 
         &:visited { color: inherit; }
-        &:hover { cursor: pointer; }
+        &:hover {
+          cursor: pointer;
+          opacity: 95%;
+        }
       }
     }
   }

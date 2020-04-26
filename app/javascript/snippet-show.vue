@@ -113,5 +113,14 @@ export default {
       border-radius: 4px;
       // margin: 0px 18px 0px 18px;
     }
+
+    &--comments {
+      &-wrapper {
+        // box-shadow: 0 4px 9px lightgrey;
+        // padding: 16px;
+        // background-color: white;
+        // border-radius: 4px;
+      }
+    }
   }
 </style>

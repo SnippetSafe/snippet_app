@@ -77,7 +77,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 .create-snippet--options-wrapper {
   display: flex;
   justify-content: flex-end;
