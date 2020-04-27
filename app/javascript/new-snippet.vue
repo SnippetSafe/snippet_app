@@ -1,26 +1,33 @@
 <template>
   <div class="create-snippet--wrapper">
-    <input type="text" placeholder="snippet description" v-model="snippetParams.description">
-    <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
-      <div class="create-snippet--input-wrapper">
-        <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
-      </div>
-      <div class="create-snippet--markdown-wrapper" >
-        <div class="create-snippet--markdown-container" v-html="compiledMarkdown"></div>
-      </div>
-    </div>
-    <div class="create-snippet--options-wrapper">
-      <input v-model="snippetParams.public" type="radio" id="public" name="public" value="true" checked="checked">
-      <label for="public">public</label>
-      <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
-      <label for="private">private</label>
-      <select v-model="snippetParams.language_id">
-        <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
-      </select>
-      <button @click="createSnippet">
-        create snippet
-      </button>
-    </div>
+    <tabs>
+      <tab name="Write" :selected="true">
+        <input type="text" placeholder="snippet description" v-model="snippetParams.description">
+        <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
+          <div class="create-snippet--input-wrapper">
+            <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
+          </div>
+          <div class="create-snippet--markdown-wrapper" >
+            <div class="create-snippet--markdown-container" v-html="compiledMarkdown"></div>
+          </div>
+        </div>
+        <div class="create-snippet--options-wrapper">
+          <input v-model="snippetParams.public" type="radio" id="public" name="public" value="true" checked="checked">
+          <label for="public">public</label>
+          <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
+          <label for="private">private</label>
+          <select v-model="snippetParams.language_id">
+            <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
+          </select>
+          <button @click="createSnippet">
+            create snippet
+          </button>
+        </div>
+      </tab>
+      <tab name="Preview">
+
+      </tab>
+    </tabs>
   </div>
 </template>
 
@@ -29,7 +36,12 @@ import marked from 'marked';
 import _ from 'lodash';
 import axios from 'axios'
 
+import Tabs from './tabs'
+import Tab from './tab'
+
 export default {
+  components: { Tabs, Tab },
+
   props: {
     languages: { type: Array, required: true }
   },
