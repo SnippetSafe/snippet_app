@@ -11,7 +11,7 @@
       <textarea class="new-comment--body" v-model="commentParams.body" placeholder="Leave a comment" autofocus></textarea>
       <!-- TODO: Make sure that the body content can't be empty -->
       <div class="new-comment--button-wrapper">
-        <button class="button--cta-new button-right button-margin-top" @click="createComment">Comment</button>
+        <button class="button--cta-new" @click="createComment">Comment</button>
       </div>
     </div>
   </div>

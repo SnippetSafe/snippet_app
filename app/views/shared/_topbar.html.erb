@@ -6,7 +6,8 @@
 
     <div style="display: flex; align-items: center;">
       <% if user_signed_in? %>
-        <new-snippet-button></new-snippet-button>
+        <%# <new-snippet-button></new-snippet-button> %>
+        <%= link_to('NEW SNIPPET', new_snippet_path, class: "button--cta-new") %>  
         <%= link_to('SIGN OUT', destroy_user_session_path, method: :delete, class: "button--cta-blue") %>  
       <% else %>
         <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  

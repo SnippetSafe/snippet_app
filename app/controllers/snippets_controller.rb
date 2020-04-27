@@ -3,6 +3,10 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
   end
 
+  def new
+
+  end
+
   def create
     # language = Language.find_by_filename(snippet_params[:filename])
     

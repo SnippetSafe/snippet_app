@@ -2,7 +2,7 @@
   <div class="create-snippet--wrapper">
     <tabs>
       <tab name="Write" :selected="true">
-        <input type="text" placeholder="snippet description" v-model="snippetParams.description">
+        <input class="new-snippet--description" type="text" placeholder="Snippet description..." v-model="snippetParams.description">
         <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
           <div class="create-snippet--input-wrapper">
             <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
@@ -19,8 +19,8 @@
           <select v-model="snippetParams.language_id">
             <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
           </select>
-          <button @click="createSnippet">
-            create snippet
+          <button class="button--cta-new" @click="createSnippet">
+            CREATE
           </button>
         </div>
       </tab>
@@ -91,15 +91,31 @@ export default {
 
 <style lang="scss" scoped>
 
+.new-snippet {
+  &--description {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    margin: 16px 0px;
+    font-size: 14px;
+  }
+}
+
 .create-snippet--options-wrapper {
   display: flex;
   justify-content: flex-end;
+  margin-top: 16px;
 }
 
 .create-snippet--wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: white;
+  margin: 16px 0px;
 }
 
 textarea {
