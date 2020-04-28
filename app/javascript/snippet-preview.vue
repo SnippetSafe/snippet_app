@@ -57,9 +57,10 @@ export default {
 <style lang="scss">
   .snippet-preview {
     &--container {
-      box-shadow: 0 4px 9px lightgrey;
+      // box-shadow: 0 4px 9px lightgrey;
+      border: 1px solid #DEF2F1;
       background-color: white;
-      margin: 16px 0px 16px 0px;
+      margin: 15px 0px 15px 0px;
       padding: 16px 16px 0px 16px;
     }
 

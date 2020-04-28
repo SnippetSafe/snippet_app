@@ -8,25 +8,26 @@
     // margin: 16px;
     position: sticky;
     position: -webkit-sticky;
-    top: 16px;
+    top: 68px;
     display: flex;
     flex-direction: column;
     // background-color: white;
     border-radius: 4px;
     // box-shadow: 0 4px 9px lightgrey;
     // padding: 16px 0px 16px 0px;
-    margin-top: 16px;
-    margin-right: 16px;
+    margin-top: 15px;
+    margin-right: 15px;
   }
 
   &--section {
     &-wrapper {
       background-color: $color-white;
-      box-shadow: 0 4px 9px lightgrey;
+      // box-shadow: 0 4px 9px lightgrey;
       display: flex;
       flex-direction: column;
       align-items: center;
       border-radius: 2px;
+      border: 1px solid $color-light;
     }
   }
 }
