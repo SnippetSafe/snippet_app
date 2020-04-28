@@ -71,7 +71,8 @@ Vue.use(TurbolinksAdapter)
 
 
 document.addEventListener('turbolinks:load', () => {
-
+  
+  //TODO: remove this as it causes to page load slower - use a user component instead!
   (function (appElement) {
 
     const app = new Vue({

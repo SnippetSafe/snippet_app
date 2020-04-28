@@ -16,14 +16,13 @@
 
   <body>
     <div id="vue-app" data-user="<%= current_user.to_json %>" v-cloak>
-      <%= render 'shared/topbar' %>
 
       <div id="app">
         <div style="display: flex;">
           <div style="flex: 1">
             <%= render 'shared/sidebar' %>
           </div>
-          <div style="flex: 3;">
+          <div style="flex: 4;">
             <%= yield %>
           </div>
         </div>
