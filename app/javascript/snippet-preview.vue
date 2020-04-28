@@ -61,7 +61,6 @@ export default {
       background-color: white;
       margin: 16px 0px 16px 0px;
       padding: 16px 16px 0px 16px;
-      border-radius: 4px;
     }
 
     &--author-wrapper {
@@ -87,13 +86,11 @@ export default {
       max-height: 258px;
       overflow-y: scroll;
       // box-shadow: inset 0px -11px 8px -10px #CCC;
-      border-radius: 4px;
       // margin: 0px 18px 0px 18px;
 
       &-wrapper {
         // border: 1px solid lightgrey;
         font-family: Roboto Mono,Menlo,Consolas,monospace;
-        border-radius: 4px;
         background-color: #282c34;
         position: relative;
         display: block;
