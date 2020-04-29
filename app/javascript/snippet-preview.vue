@@ -18,7 +18,8 @@
     <p class="snippet-preview--description">{{ snippet.description }}</p>
     <div style="display: flex; flex-direction: column;">
       <!-- <snippet-header :filename="snippet.filename" :href="snippetUrl"></snippet-header> -->
-      <a class="snippet-preview--content-wrapper" v-html="snippetHTML" :href="snippetUrl"></a>
+      <!-- <a class="snippet-preview--content-wrapper" v-html="snippet.highlighted_body" :href="snippetUrl"></a> -->
+      <pre><code v-html="snippet.highlighted_body"></code></pre>
       <action-button-bar :snippet="snippet"></action-button-bar>
     </div>
   </div>
@@ -27,6 +28,7 @@
 <script>
 import SnippetHeader from './snippet-header'
 import ActionButtonBar from './action-button-bar'
+import CodeHighlight from './code-highlight'
 
 export default {
   components: {

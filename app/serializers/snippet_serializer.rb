@@ -1,14 +1,13 @@
 class SnippetSerializer < ActiveModel::Serializer
   has_one :user
   has_many :comments
-  has_one :language
 
   attributes(
     :id,
     :description,
-    :highlighted,
-    :language_label,
-    :filename,
+    :body,
+    :highlighted_body,
+    :language,
     :comments_count,
     :likes_count,
     :liked_by_current_user

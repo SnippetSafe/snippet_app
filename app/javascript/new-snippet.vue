@@ -7,60 +7,74 @@
           <div class="create-snippet--input-wrapper">
             <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
           </div>
-          <div class="create-snippet--markdown-wrapper" >
-            <div class="create-snippet--markdown-container" v-html="compiledMarkdown"></div>
-          </div>
-        </div>
-        <div class="create-snippet--options-wrapper">
-          <input v-model="snippetParams.public" type="radio" id="public" name="public" value="true" checked="checked">
-          <label for="public">public</label>
-          <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
-          <label for="private">private</label>
-          <select v-model="snippetParams.language_id">
-            <option v-for="language in languages" :key="language.id" :value="language.id">{{ language.name }}</option>
-          </select>
-          <button class="button--cta-new" @click="createSnippet">
-            CREATE
-          </button>
         </div>
       </tab>
       <tab name="Preview">
-
+        <code-highlight
+          ref="codeHighlight"
+          :code="snippetParams.body"
+          :language="snippetParams.language">
+        </code-highlight>
       </tab>
+      <div class="create-snippet--options-wrapper">
+        <input v-model="snippetParams.public" type="radio" id="public" name="public" value="true" checked="checked">
+        <label for="public">public</label>
+        <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
+        <label for="private">private</label>
+        <select v-model="snippetParams.language">
+          <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>
+        </select>
+        <button class="button--cta-new" @click="createSnippet">
+          CREATE
+        </button>
+      </div>
     </tabs>
   </div>
 </template>
 
 <script>
+// import * as whatever from './highlight.pack.js';
 import marked from 'marked';
 import _ from 'lodash';
 import axios from 'axios'
 
 import Tabs from './tabs'
 import Tab from './tab'
+import CodeHighlight from './code-highlight'
 
 export default {
-  components: { Tabs, Tab },
-
-  props: {
-    languages: { type: Array, required: true }
-  },
+  components: { Tabs, Tab, CodeHighlight },
 
   data: function () {
+    console.log(this.$refs.codeHighlight)
     return {
       snippetParams: {
         description: '',
-        body: '# create a snippet',
-        language_id: this.languages[0].id,
+        body: 'create a snippet',
+        highlighted_body: 'create a snippet',
+        language: 'ruby',
         public: true
-      }
+      },
+      languages: hljs.listLanguages()
     }
   },
 
   computed: {
     compiledMarkdown() {
       return marked(this.snippetParams.body)
+    },
+
+    highlightedBody() {
+      if (this.$refs.codeHighlight) {
+        return this.$refs.codeHighlight.highlightedCode
+      } else {
+        return 'create a snippet'
+      }
     }
+  },
+
+  mounted() {
+    this.$watch(() => this.$refs.codeHighlight.highlightedCode, (value) => { this.snippetParams.highlighted_body = value;})
   },
 
   created() {

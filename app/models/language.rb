@@ -1,9 +1,4 @@
 class Language < ApplicationRecord
-  has_many :snippets
-  has_many :aliases
-  has_many :filenames
-  has_many :mimetypes
-
   def self.find_by_filename(filename)
     # change this to an sql query
     matched_fn = Filename.all.find do |fn|

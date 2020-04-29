@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_072513) do
+ActiveRecord::Schema.define(version: 2020_04_29_074052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "aliases", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "language_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["language_id"], name: "index_aliases_on_language_id"
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -31,14 +23,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_072513) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["snippet_id"], name: "index_comments_on_snippet_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "filenames", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "language_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["language_id"], name: "index_filenames_on_language_id"
   end
 
   create_table "folders", force: :cascade do |t|
@@ -56,12 +40,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_072513) do
     t.index ["snippet_id"], name: "index_folders_snippets_on_snippet_id"
   end
 
-  create_table "languages", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "likes", force: :cascade do |t|
     t.bigint "snippet_id", null: false
     t.bigint "user_id", null: false
@@ -71,14 +49,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_072513) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "mimetypes", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "language_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["language_id"], name: "index_mimetypes_on_language_id"
-  end
-
   create_table "snippets", force: :cascade do |t|
     t.string "filename"
     t.string "description"
@@ -86,11 +56,11 @@ ActiveRecord::Schema.define(version: 2020_04_23_072513) do
     t.boolean "public"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "language_id"
     t.bigint "user_id"
     t.integer "likes_count", default: 0
     t.integer "comments_count", default: 0
-    t.index ["language_id"], name: "index_snippets_on_language_id"
+    t.string "language", default: "plaintext"
+    t.string "highlighted_body"
     t.index ["user_id"], name: "index_snippets_on_user_id"
   end
 

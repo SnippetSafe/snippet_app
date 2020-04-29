@@ -2,7 +2,7 @@
   <div>
     <modal v-if="showModal" @close="closeModal">
       <h3 slot="header">New Snippet</h3>
-      <new-snippet :languages="languages" slot="body" />
+      <new-snippet :languages="[]" slot="body" />
     </modal>
     <snippet-preview
       v-for="snippet in snippetz"
@@ -25,7 +25,6 @@ export default {
 
   props: {
     snippets: { type: Array, required: true },
-    languages: { type: Array, required: true }
   },
 
   data() {

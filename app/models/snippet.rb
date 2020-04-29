@@ -1,9 +1,8 @@
 class Snippet < ApplicationRecord
   has_and_belongs_to_many :folders
-  belongs_to :language, required: true
   belongs_to :user, required: true
-  has_many :comments
-  has_many :likes
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   # TODO: Don't call serializers from model - just instantiate in controller
   def serializable(current_user)
