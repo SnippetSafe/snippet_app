@@ -1,5 +1,5 @@
 <template>
-  <div @click="performAction" class="action-button--wrapper">
+  <div @click.prevent="performAction" class="action-button--wrapper">
     <action-icon :type="type" :actioned="hasActioned"></action-icon>
     <span class="action-button--count">{{ count }}</span>
   </div>

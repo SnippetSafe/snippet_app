@@ -12,7 +12,7 @@
       <tab name="Preview">
         <code-highlight
           ref="codeHighlight"
-          :code="snippetParams.body"
+          :raw-code="snippetParams.body"
           :language="snippetParams.language">
         </code-highlight>
       </tab>

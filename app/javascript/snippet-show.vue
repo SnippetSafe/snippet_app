@@ -11,14 +11,13 @@
       </div>
       <div>
         <div style="font-size: 14px;">
-          <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language.name }}</span>
-          <i class="devicon-ruby-plain colored"></i>
+          <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>
         </div>
       </div>
     </div>
       <p class="snippet-show--description">{{ snippetDup.description }}</p>
       <div style="display: flex; flex-direction: column;">
-        <div class="snippet-show--content" v-html="snippetDup.highlighted"></div>
+        <code-highlight :highlighted-code="snippet.highlighted_body"></code-highlight>
         <action-button-bar :snippet="snippetDup"></action-button-bar>
       </div>
     </div>
@@ -34,13 +33,15 @@ import ActionButtonBar from './action-button-bar';
 import Comment from './comment';
 import NewComment from './new-comment';
 import SnippetHeader from './snippet-header';
+import CodeHighlight from './code-highlight'
 
 export default {
   components: {
     ActionButtonBar,
     Comment,
     NewComment,
-    SnippetHeader
+    SnippetHeader,
+    CodeHighlight
   },
 
   props: {

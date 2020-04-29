@@ -1,18 +1,39 @@
 <template>
-  <pre><code v-html="highlightedCode"></code></pre>
+  <pre class="code-highlight"><code v-html="highlighted"></code></pre>
 </template>
 
 <script>
 export default {
   props: {
-    code: { required: true, type: String },
-    language: { required: true, type: String}
+    rawCode: { required: false, type: String },
+    highlightedCode: { required: false, type: String },
+    language: { required: false, type: String }
   },
 
   computed: {
-    highlightedCode() {
-      return hljs.highlight(this.language, this.code).value
+    highlighted() {
+      if (this.highlightedCode) {
+        return this.highlightedCode
+      } else {
+        return hljs.highlight(this.language, this.rawCode).value
+      }
     }
   }
 }
 </script>
+
+<style lang="scss">
+  pre {
+    background-color: #FDF6E3;
+    padding: 16px;
+    margin: 0px;
+    font-size: 16px;
+    border: 1px solid #DEF2F1;
+    border-radius: 2px;
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+    }
+  }
+</style>

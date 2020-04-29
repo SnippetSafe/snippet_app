@@ -1,5 +1,5 @@
 <template>
-  <div class="snippet-preview--container">
+  <a class="snippet-preview--container" :href="snippetUrl">
     <div class="snippet-preview--author-wrapper">
       <div style="display: flex;">
         <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
@@ -10,8 +10,7 @@
       </div>
       <div>
         <div style="font-size: 14px;">
-          <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language.name }}</span>
-          <i class="devicon-ruby-plain colored"></i>
+          <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>
         </div>
       </div>
     </div>
@@ -19,10 +18,10 @@
     <div style="display: flex; flex-direction: column;">
       <!-- <snippet-header :filename="snippet.filename" :href="snippetUrl"></snippet-header> -->
       <!-- <a class="snippet-preview--content-wrapper" v-html="snippet.highlighted_body" :href="snippetUrl"></a> -->
-      <pre><code v-html="snippet.highlighted_body"></code></pre>
+      <code-highlight class="snippet-preview--content" :highlighted-code="snippet.highlighted_body"></code-highlight>
       <action-button-bar :snippet="snippet"></action-button-bar>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -33,7 +32,8 @@ import CodeHighlight from './code-highlight'
 export default {
   components: {
     ActionButtonBar,
-    SnippetHeader
+    SnippetHeader,
+    CodeHighlight
   },
 
   props: {
@@ -64,6 +64,14 @@ export default {
       background-color: white;
       margin: 15px 0px 15px 0px;
       padding: 16px 16px 0px 16px;
+      border-radius: 2px;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &--author-wrapper {
@@ -88,28 +96,6 @@ export default {
     &--content {
       max-height: 258px;
       overflow-y: scroll;
-      // box-shadow: inset 0px -11px 8px -10px #CCC;
-      // margin: 0px 18px 0px 18px;
-
-      &-wrapper {
-        // border: 1px solid lightgrey;
-        font-family: Roboto Mono,Menlo,Consolas,monospace;
-        background-color: #282c34;
-        position: relative;
-        display: block;
-        text-decoration: none;
-
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent; /* make scrollbar transparent */
-        }
-
-        &:visited { color: inherit; }
-        &:hover {
-          cursor: pointer;
-          opacity: 95%;
-        }
-      }
     }
   }
 </style>
