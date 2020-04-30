@@ -1,21 +1,23 @@
 <template>
   <div class="create-snippet--wrapper">
-    <tabs>
-      <tab name="Write" :selected="true">
-        <input class="new-snippet--description" type="text" placeholder="Snippet description..." v-model="snippetParams.description">
-        <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
-          <div class="create-snippet--input-wrapper">
-            <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
+    <tabs title="New Snippet">
+      <div>
+        <tab name="Write" :selected="true">
+          <input class="new-snippet--description" type="text" placeholder="Snippet description..." v-model="snippetParams.description">
+          <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
+            <div class="create-snippet--input-wrapper">
+              <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
+            </div>
           </div>
-        </div>
-      </tab>
-      <tab name="Preview">
-        <code-highlight
-          ref="codeHighlight"
-          :raw-code="snippetParams.body"
-          :language="snippetParams.language">
-        </code-highlight>
-      </tab>
+        </tab>
+        <tab name="Preview">
+          <code-highlight
+            ref="codeHighlight"
+            :raw-code="snippetParams.body"
+            :language="snippetParams.language">
+          </code-highlight>
+        </tab>
+      </div>
       <div class="create-snippet--options-wrapper">
         <input v-model="snippetParams.public" type="radio" id="public" name="public" value="true" checked="checked">
         <label for="public">public</label>

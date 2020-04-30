@@ -1,8 +1,13 @@
 <template>
   <div>
-    <div class="tabs--headers">
-      <div v-for="tab in tabs" @click="selectTab(tab)" :class="['tabs--header', { 'tabs--header-active': tab.isActive }]" :key="tab.name">
-          <span>{{ tab.name }}</span>
+    <div class="tabs--headers-container">
+      <div>
+        <h2 class="margin-top no-margin-bottom" v-if="title">{{ title }}</h2>
+      </div>
+      <div class="tabs--headers-wrapper">
+        <div v-for="tab in tabs" @click="selectTab(tab)" :class="['tabs--header', { 'tabs--header-active': tab.isActive }]" :key="tab.name">
+            <span>{{ tab.name }}</span>
+        </div>
       </div>
     </div>
 
@@ -14,6 +19,10 @@
 
 <script>
 export default {
+  props: {
+    title: { type: String, required: false }
+  },
+
   data() {
     return {tabs: [] };
   },
@@ -21,6 +30,7 @@ export default {
   created() {
     this.tabs = this.$children;
   },
+
   methods: {
     selectTab(selectedTab) {
       this.tabs.forEach(tab => {
@@ -34,9 +44,16 @@ export default {
 <style lang="scss" scoped>
   .tabs {
     &--headers{
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
+      &-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      &-wrapper {
+        display: flex;
+        flex-direction: row;
+      }
     }
 
     &--header {
