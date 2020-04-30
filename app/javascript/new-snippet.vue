@@ -2,7 +2,7 @@
   <div class="create-snippet--wrapper">
     <tabs title="New Snippet">
       <div>
-        <ul v-if="errors" style="border: 1px solid #f99595; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb;">
+        <ul v-if="errors" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
           <li v-for="error in errors" :key="error">{{ error }}</li>
         </ul>
         <tab name="Write" :selected="true">
@@ -116,6 +116,7 @@ export default {
     margin: 16px 0px;
     font-size: 14px;
     display: block;
+    font-weight: 100;
   }
 
   &--body {
@@ -129,6 +130,7 @@ export default {
     resize: vertical;
     font-size: 14px;
     font-family: Roboto Mono,Menlo,Consolas,monospace;
+    font-weight: 100;
   }
 }
 
