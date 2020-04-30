@@ -58,16 +58,18 @@ export default {
 
     &--header {
       padding: 16px;
-      border-bottom: 1px solid grey;
+      border-radius: 2px;
 
       &:hover {
         cursor: pointer;
+        background-color: #DEF2F1;
       }
 
       &-active {
         @extend .tabs--header;
 
-        border-bottom: 1px solid #57B65A;
+        text-decoration: underline;
+        text-decoration-color: #3AAFA9;
       }
     }
   }

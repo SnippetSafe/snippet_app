@@ -3,6 +3,8 @@ class Snippet < ApplicationRecord
   belongs_to :user, required: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  validates_presence_of :body
+  validates_presence_of :description
 
   # TODO: Don't call serializers from model - just instantiate in controller
   def serializable(current_user)

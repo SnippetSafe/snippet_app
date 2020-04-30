@@ -2,16 +2,16 @@
   <div class="create-snippet--wrapper">
     <tabs title="New Snippet">
       <div>
+        <ul v-if="errors" style="border: 1px solid #f99595; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb;">
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
         <tab name="Write" :selected="true">
           <input class="new-snippet--description" type="text" placeholder="Snippet description..." v-model="snippetParams.description">
-          <div style="display: flex; border: 1px solid lightgray; border-radius: 10px; height: 400px;">
-            <div class="create-snippet--input-wrapper">
-              <textarea :value="snippetParams.body" @input="updateMarkdown"></textarea>
-            </div>
-          </div>
+          <textarea class="new-snippet--body" :value="snippetParams.body" @input="updateBody" placeholder="Snippet body..."></textarea>
         </tab>
         <tab name="Preview">
           <code-highlight
+            class="margin-top"
             ref="codeHighlight"
             :raw-code="snippetParams.body"
             :language="snippetParams.language">
@@ -48,16 +48,16 @@ export default {
   components: { Tabs, Tab, CodeHighlight },
 
   data: function () {
-    console.log(this.$refs.codeHighlight)
     return {
       snippetParams: {
         description: '',
-        body: 'create a snippet',
-        highlighted_body: 'create a snippet',
+        body: '',
+        highlighted_body: '???',
         language: 'ruby',
         public: true
       },
-      languages: hljs.listLanguages()
+      languages: hljs.listLanguages(),
+      errors: null
     }
   },
 
@@ -65,18 +65,12 @@ export default {
     compiledMarkdown() {
       return marked(this.snippetParams.body)
     },
-
-    highlightedBody() {
-      if (this.$refs.codeHighlight) {
-        return this.$refs.codeHighlight.highlightedCode
-      } else {
-        return 'create a snippet'
-      }
-    }
   },
 
   mounted() {
-    this.$watch(() => this.$refs.codeHighlight.highlightedCode, (value) => { this.snippetParams.highlighted_body = value;})
+    this.$watch(() => this.$refs.codeHighlight.highlighted, (value) => {
+      this.snippetParams.highlighted_body = value;
+    })
   },
 
   created() {
@@ -85,7 +79,7 @@ export default {
   },
 
   methods: {
-    updateMarkdown: _.debounce(function(e) {
+    updateBody: _.debounce(function(e) {
       this.snippetParams.body = e.target.value;
     }, 300),
 
@@ -97,9 +91,14 @@ export default {
           console.log(res)
           const snippet = res.data.snippet
 
-          this.$parent.$emit('close', snippet)
+          // this.$parent.$emit('close', snippet)
+          window.location.href = '/';
         })
-        .catch(console.error)
+        .catch(error => {
+          console.error(error)
+
+          this.errors = error.response.data.errors
+        })
     }
   }
 }
@@ -112,10 +111,24 @@ export default {
     width: 100%;
     box-sizing: border-box;
     padding: 6px;
-    border-radius: 4px;
+    border-radius: 2px;
     border: 1px solid lightgrey;
     margin: 16px 0px;
     font-size: 14px;
+    display: block;
+  }
+
+  &--body {
+    display: flex;
+    padding: 6px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    height: 400px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 14px;
+    font-family: Roboto Mono,Menlo,Consolas,monospace;
   }
 }
 
@@ -126,28 +139,25 @@ export default {
 }
 
 .create-snippet--wrapper {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: white;
   margin: 16px 0px;
 }
 
-textarea {
-  display: inline-block;
-  font-family: "Monaco", courier, monospace;
-  color: #333;
-  resize: none;
-  padding: 0;
-  border: none;
-  width: 100%;
-  height: 100%;
-}
+// textarea {
+//   display: inline-block;
+//   font-family: "Monaco", courier, monospace;
+//   color: #333;
+//   padding: 0;
+//   height: 100%;
+// }
 
-textarea:focus {
-  outline: 0;
-}
+// textarea:focus {
+//   outline: 0;
+// }
 
 .create-snippet--input-wrapper {
   flex: 1;

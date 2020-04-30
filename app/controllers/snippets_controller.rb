@@ -8,7 +8,7 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    snippet = Snippet.create!(
+    snippet = Snippet.new(
       user: current_user,
       description: snippet_params[:description],
       body: snippet_params[:body],
@@ -17,7 +17,11 @@ class SnippetsController < ApplicationController
       language: snippet_params[:language]
     )
 
-    render json: { snippet: snippet.serialize(current_user) }
+    if snippet.save
+      render json: { snippet: snippet.serialize(current_user) }
+    else
+      render json: { errors: snippet.errors.full_messages }, status: 400
+    end
   end
 
   private
