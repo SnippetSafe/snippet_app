@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create!(comment_params)
+    comment = Comment.new(comment_params)
 
-    render json: { comment: comment }
+    if comment.save
+      render json: { comment: comment }
+    else
+      render json: { errors: comment.errors.full_messages }, status: 400
+    end
   end
 
   #TODO: Add abikity to delete comments

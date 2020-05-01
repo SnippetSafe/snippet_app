@@ -8,16 +8,16 @@
         <img src="/icons/home.svg" width="28">
         <span style="display: block;  margin-top: 8px;">Home</span>
       <% end %>
+      <%= link_to new_snippet_path, class: request.fullpath == new_snippet_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+        <img src="/icons/edit.svg" width="28">
+        <span style="display: block; margin-top: 8px;">New Snippet</span>
+      <% end %>
+    </div>
+    <div class="menu-button--wrapper">
       <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
         <img src="/icons/folder-1.svg" width="28">
         <span style="display: block; margin-top: 8px;">Folders</span>
       <% end %>
-    </div>
-    <div class="menu-button--wrapper">
-      <div class="menu-button--item">
-        <img src="/icons/envelope.svg" width="28">
-        <span style="display: block; margin-top: 8px;">Messages</span>
-      </div>
       <%= link_to edit_user_registration_path, class: request.fullpath == edit_user_registration_path ? 'menu-button--item-active' : 'menu-button--item' do %>
         <img src="/icons/settings.svg" width="28">
         <span style="display: block; margin-top: 8px;">Settings</span>
@@ -25,6 +25,6 @@
     </div>
   </card>
   <card style="text-align: center;">
-    <span>SEARCH</span>
+     <%= link_to('NEW SNIPPET', new_snippet_path, class: "button--cta-new") %>  
   </card>
 </div>

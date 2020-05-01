@@ -8,6 +8,9 @@
           <span style="font-size: 12px; color: gray;">New comment</span>
         </div>
       </div>
+      <ul v-if="errors" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
       <textarea class="new-comment--body" v-model="commentParams.body" placeholder="Leave a comment" autofocus></textarea>
       <!-- TODO: Make sure that the body content can't be empty -->
       <div class="new-comment--button-wrapper">
@@ -36,7 +39,8 @@ export default {
         snippet_id: this.snippet.id,
         user_id: this.currentUser.id,
         body: ''
-      }
+      },
+      errors: null
     }
   },
 
@@ -63,11 +67,12 @@ export default {
           this.resetCommentForm()
           this.$emit('commentCreated', comment)
         })
-        .catch(console.error)
+        .catch(error => this.errors = error.response.data.errors)
     },
 
     resetCommentForm() {
       this.commentParams.body = ''
+      this.errors = null;
     }
   }
 }

@@ -96,8 +96,6 @@ export default {
           window.location.href = '/';
         })
         .catch(error => {
-          console.error(error)
-
           this.errors = error.response.data.errors
         })
     }
