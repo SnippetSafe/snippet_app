@@ -1,7 +1,9 @@
+@import './variables.scss';
+
 .button {
   &--cta {
-    color: snow;
-    border-radius: 5px;
+    color: $color-primary;
+    border-radius: 2px;
     padding: 6px 10px;
     font-size: 12px;
     font-family: Helvetica, sans-serif;
@@ -15,8 +17,11 @@
     &-new {
       @extend .button--cta;
 
-      background-color: #57B65A;
-      border: 1px solid #57B65A;
+      border: 1px solid $color-primary;
+
+      &:hover {
+        background-color: $color-light;
+      }
     }
 
     &-blue {
