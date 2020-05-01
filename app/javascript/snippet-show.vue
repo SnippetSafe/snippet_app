@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="snippet-show--container">
+    <card>
       <div class="snippet-preview--author-wrapper">
       <div style="display: flex;">
         <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
@@ -20,7 +20,7 @@
         <code-highlight :highlighted-code="snippet.highlighted_body"></code-highlight>
         <action-button-bar :snippet="snippetDup"></action-button-bar>
       </div>
-    </div>
+    </card>
     <div class="snippet-show--comments-wrapper">
       <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
     </div>
@@ -30,18 +30,20 @@
 
 <script>
 import ActionButtonBar from './action-button-bar';
+import Card from './card';
+import CodeHighlight from './code-highlight'
 import Comment from './comment';
 import NewComment from './new-comment';
 import SnippetHeader from './snippet-header';
-import CodeHighlight from './code-highlight'
 
 export default {
   components: {
     ActionButtonBar,
+    Card,
     Comment,
+    CodeHighlight,
     NewComment,
     SnippetHeader,
-    CodeHighlight
   },
 
   props: {
@@ -87,13 +89,13 @@ export default {
 
 <style lang="scss">
   .snippet-show {
-    &--container {
-      box-shadow: 0 4px 9px lightgrey;
-      background-color: white;
-      margin: 16px 0px 16px 0px;
-      padding: 16px 16px 0px 16px;
-      border-radius: 4px;
-    }
+    // &--container {
+    //   box-shadow: 0 4px 9px lightgrey;
+    //   background-color: white;
+    //   margin: 16px 0px 16px 0px;
+    //   padding: 16px 16px 0px 16px;
+    //   border-radius: 4px;
+    // }
 
     &--author-wrapper {
       display: flex;

@@ -59,9 +59,10 @@ import Vue from 'vue/dist/vue.esm'
 import { store } from '../store.js';
 
 import ActionIcon from '../action-icon'
-import NewSnippet from '../new-snippet.vue'
+import Card from '../card';
 import Home from '../home.vue'
 import Modal from '../modal.vue'
+import NewSnippet from '../new-snippet.vue'
 import NewSnippetButton from '../new-snippet-button.vue'
 import Sidebar from '../sidebar.vue'
 import SnippetPreview from '../snippet-preview.vue'
@@ -78,7 +79,17 @@ document.addEventListener('turbolinks:load', () => {
     const app = new Vue({
       el: '#vue-app',
       store,
-      components: { ActionIcon, Home, NewSnippet, Modal, NewSnippetButton, Sidebar, SnippetPreview, SnippetShow },
+      components: {
+        ActionIcon,
+        Card,
+        Home,
+        Modal,
+        NewSnippet,
+        NewSnippetButton,
+        Sidebar,
+        SnippetPreview,
+        SnippetShow
+      },
       created() {
         const currentUser = JSON.parse(appElement.dataset.user);
 

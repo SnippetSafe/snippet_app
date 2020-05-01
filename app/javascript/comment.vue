@@ -1,5 +1,5 @@
 <template>
-  <div class="comment--container">
+  <card>
     <div style="display: flex;">
         <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQFDEttQjYQSbA/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=V16a0Z3adcm8E22knjzE7dqvUddTkBgJj0g6-6Zstt4" height="48" width="48" />
         <div style="margin-left: 12px; margin-top: 8px;">
@@ -8,11 +8,15 @@
         </div>
       </div>
     <span class="comment--body">{{ comment.body }}</span>
-  </div>
+  </card>
 </template>
 
 <script>
+import Card from './card';
+
 export default {
+  components: { Card },
+
   props: {
     comment: { required: true, type: Object }
   }

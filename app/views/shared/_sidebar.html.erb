@@ -1,5 +1,8 @@
 <div class="sidebar--wrapper">
-  <div class="sidebar--section-wrapper">
+  <card style="text-align: center;">
+    <span>SNIPPET.IO</span>
+  </card>
+  <card>
     <div class="menu-button--wrapper">
       <%= link_to root_path, class: request.fullpath == root_path ? 'menu-button--item-active' : 'menu-button--item' do %>
         <img src="/icons/home.svg" width="28">
@@ -20,15 +23,8 @@
         <span style="display: block; margin-top: 8px;">Settings</span>
       <% end %>
     </div>
-    <%# <div class="menu-button--wrapper">
-      <div class="menu-button--item">
-        <img src="/icons/loupe.svg" width="28">
-        <span style="display: block; margin-top: 8px;">Explore</span>
-      </div>
-      <div class="menu-button--item">
-        <img src="/icons/chat-1.svg" width="28">
-        <span style="display: block; margin-top: 8px;">Comments</span>
-      </div>
-    </div> %>
-  </div>
+  </card>
+  <card style="text-align: center;">
+    <span>SEARCH</span>
+  </card>
 </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="create-snippet--wrapper">
+  <card>
     <tabs title="New Snippet">
       <div>
         <ul v-if="errors" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
@@ -31,7 +31,7 @@
         </button>
       </div>
     </tabs>
-  </div>
+  </card>
 </template>
 
 <script>
@@ -40,12 +40,13 @@ import marked from 'marked';
 import _ from 'lodash';
 import axios from 'axios'
 
-import Tabs from './tabs'
-import Tab from './tab'
-import CodeHighlight from './code-highlight'
+import Card from './card';
+import CodeHighlight from './code-highlight';
+import Tabs from './tabs';
+import Tab from './tab';
 
 export default {
-  components: { Tabs, Tab, CodeHighlight },
+  components: { Card, CodeHighlight, Tabs, Tab },
 
   data: function () {
     return {
