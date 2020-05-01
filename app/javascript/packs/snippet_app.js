@@ -53,7 +53,7 @@
 //
 // Then uncomment the code block below:
 //
-import TurbolinksAdapter from 'vue-turbolinks'
+// import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 
 import { store } from '../store.js';
@@ -68,10 +68,10 @@ import Sidebar from '../sidebar.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
 
-Vue.use(TurbolinksAdapter)
+// Vue.use(TurbolinksAdapter)
 
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   
   //TODO: remove this as it causes to page load slower - use a user component instead!
   (function (appElement) {
