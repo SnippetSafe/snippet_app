@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+.folders {
+  &--list-item {
+    flex: 1 0 25%;
+    text-align: center;
+    padding: 24px 0px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 100;
+    display: block;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: $color-primary;
+    }
+
+    &--title {
+      margin-top: 6px;
+      display: block;
+    }
+  }
+
+  &--options-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+}

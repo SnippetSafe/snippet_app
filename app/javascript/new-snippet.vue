@@ -95,9 +95,7 @@ export default {
           // this.$parent.$emit('close', snippet)
           window.location.href = '/';
         })
-        .catch(error => {
-          this.errors = error.response.data.errors
-        })
+        .catch(error => this.errors = error.response.data.errors)
     }
   }
 }

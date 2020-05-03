@@ -1,6 +1,6 @@
 class FoldersController < ApplicationController
   def index
-    @folders = current_user.folders
+    @folders = current_user.folders.order(name: :asc)
   end
 
   def show
