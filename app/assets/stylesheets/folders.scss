@@ -2,18 +2,23 @@
 
 .folders {
   &--list-item {
-    flex: 1 0 25%;
-    text-align: center;
-    padding: 24px 0px;
-    text-decoration: none;
-    color: inherit;
+    flex: 1 0 20%;
+    padding: 24px 8px;
     font-weight: 100;
-    display: block;
+    // display: block;
     position: relative;
+    // background-color: $color-light;
+    // border-right: 1px solid lightgrey;
 
-    &:hover {
-      text-decoration: underline;
-      text-decoration-color: $color-primary;
+    &--link {
+      text-decoration: none;
+      color: inherit;
+      text-align: center;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: $color-primary;
+      }
     }
 
     &--title {
@@ -38,5 +43,33 @@
     border-radius: 50%;
     font-size: 12px;
     color: white;
+  }
+}
+
+.language-tag {
+  font-size: 11px;
+  background-color: $color-primary;
+  padding: 2px 4px;
+  border-radius: 5px;
+  color: white;
+}
+
+.date-tag {
+  font-size: 11px;
+  padding: 2px 0px;
+  color: grey;
+}
+
+.preview-wrapper {
+  // background-color: $color-light;
+  padding: 4px;
+  margin: 8px 0px;
+  height: 67px;
+  overflow-y: hidden;
+
+  &:hover {
+    background-color: $color-light;
+    cursor: pointer;
+    border-radius: 5px;
   }
 }

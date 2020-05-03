@@ -58,7 +58,8 @@ import Vue from 'vue/dist/vue.esm'
 
 import { store } from '../store.js';
 
-import ActionIcon from '../action-icon'
+import ActionIcon from '../action-icon';
+import BackButton from '../back-button';
 import Card from '../card';
 import Home from '../home.vue'
 import Modal from '../modal.vue'
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       store,
       components: {
         ActionIcon,
+        BackButton,
         Card,
         Home,
         Modal,

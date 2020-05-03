@@ -1,0 +1,13 @@
+@import './variables.scss';
+
+.back-button {
+  display: inline-block;
+  padding: 6px;
+  border-radius: 50%;
+  height: 20px;
+
+  &:hover {
+    background-color: $color-light;
+    border-radius: 50%;
+  }
+}

@@ -3,9 +3,13 @@
 .card {
   &--container {
     background-color: $color-white;
-    padding: 16px;
     border-radius: 2px;
     border: 1px solid $color-light;
     margin: 16px 0px;
+    padding: 16px 8px;
+    
+    &-padding {
+      padding: 16px;
+    }
   }
 }
