@@ -1,5 +1,6 @@
 class Snippet < ApplicationRecord
-  has_and_belongs_to_many :folders
+  has_many :snippet_folders, dependent: :destroy
+  has_many :folders, through: :snippet_folders
   belongs_to :user, required: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy

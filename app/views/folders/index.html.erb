@@ -4,6 +4,7 @@
     <div style="display: flex; box-sizing: border-box;">
       <% folders.each do |folder| %>
         <%= link_to folder_path(folder), class: 'folders--list-item' do %>
+          <span class="folders--snippet-count"><%= folder.snippet_count %></span>
           <img style="display: block; margin: 0 auto;" src="/icons/folder-1.svg" width="28">
           <span class="folders--list-item--title"><%= folder.name %></span>
         <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_074052) do
+ActiveRecord::Schema.define(version: 2020_05_03_081734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,14 +30,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_074052) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "snippet_count", default: 0
     t.index ["user_id"], name: "index_folders_on_user_id"
-  end
-
-  create_table "folders_snippets", id: false, force: :cascade do |t|
-    t.bigint "snippet_id"
-    t.bigint "folder_id"
-    t.index ["folder_id"], name: "index_folders_snippets_on_folder_id"
-    t.index ["snippet_id"], name: "index_folders_snippets_on_snippet_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -47,6 +41,13 @@ ActiveRecord::Schema.define(version: 2020_04_29_074052) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["snippet_id"], name: "index_likes_on_snippet_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "snippet_folders", force: :cascade do |t|
+    t.bigint "snippet_id", null: false
+    t.bigint "folder_id", null: false
+    t.index ["folder_id"], name: "index_snippet_folders_on_folder_id"
+    t.index ["snippet_id"], name: "index_snippet_folders_on_snippet_id"
   end
 
   create_table "snippets", force: :cascade do |t|
@@ -81,4 +82,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_074052) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "snippets"
   add_foreign_key "likes", "users"
+  add_foreign_key "snippet_folders", "folders"
+  add_foreign_key "snippet_folders", "snippets"
 end
