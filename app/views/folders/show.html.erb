@@ -1,5 +1,13 @@
 <card>
-  <h2 style="margin-top: 0px;"><%= @folder.name %></h2>
+  <div style="display: flex; justify-content: space-between;">
+    <div style="display: flex;">
+      <img style="display: inline-block; background-color: pink; padding: 6px; border-radius: 50%;" src="/icons/return.svg" width="20">
+      <h2 style="margin: 2px 0px 0px 12px; display: inline-block;"><%= @folder.name %></h2>
+    </div>
+    <div>
+      <span style="margin-top: 6px; background-color: #3AAFA9; padding: 2px 6px; border-radius: 2px; color: white;"><%= @folder.snippet_count %> snippets</span>
+    </div>
+  </div>
   <% @snippets.each_slice(4) do |snippets| %>
     <div style="display: flex; box-sizing: border-box;">
       <% snippets.each do |snippet| %>
@@ -18,6 +26,6 @@
   <% end %>
   <div class="folders--options-wrapper">
     <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
-    <%= link_to 'NEW SNIPPET', new_snippet_path, class: 'button--cta-new' %>
+    <%= link_to 'NEW SNIPPET', new_snippet_path(folder_id: @folder.id, redirect_url: folder_path(@folder.id)), class: 'button--cta-new' %>
   </div>
 </card>

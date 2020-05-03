@@ -67,20 +67,25 @@ export default {
         folder_id: null
       },
       languages: hljs.listLanguages(),
-      errors: null
+      errors: null,
+      params: null
     }
   },
 
   computed: {
     compiledMarkdown() {
       return marked(this.snippetParams.body)
-    },
+    }
   },
 
   mounted() {
     this.$watch(() => this.$refs.codeHighlight.highlighted, (value) => {
       this.snippetParams.highlighted_body = value;
     })
+    this.params =  new URLSearchParams(window.location.search);
+    console.log('fold id', this.params.get("folder_id"))
+    this.snippetParams.folder_id = this.params.get("folder_id") 
+  
   },
 
   created() {
@@ -101,8 +106,13 @@ export default {
           console.log(res)
           const snippet = res.data.snippet
 
+
+          if (this.params.has("redirect_url")) {
+            window.location.href = this.params.get("redirect_url");
+          } else {
+            window.location.href = '/';
+          }
           // this.$parent.$emit('close', snippet)
-          window.location.href = '/';
         })
         .catch(error => this.errors = error.response.data.errors)
     }

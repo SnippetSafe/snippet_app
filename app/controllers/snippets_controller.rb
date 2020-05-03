@@ -6,6 +6,10 @@ class SnippetsController < ApplicationController
   end
 
   def new
+    if params[:folder_id]
+      @folder_id = params[:folder_id]
+      @redirect_url = params[:redirect_url]
+    end
     @folders = current_user.folders.to_json
   end
 
