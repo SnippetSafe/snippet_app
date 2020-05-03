@@ -1,4 +1,6 @@
 class SnippetsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
   end
@@ -17,9 +19,10 @@ class SnippetsController < ApplicationController
       language: snippet_params[:language],
     )
 
-    folder = Folder.find(snippet_params[:folder_id])
-
-    snippet.folders << folder
+    if snippet_params[:folder_id]
+      folder = Folder.find(snippet_params[:folder_id])
+      snippet.folders << folder
+    end
 
     if snippet.save
       render json: { snippet: snippet.serialize(current_user) }

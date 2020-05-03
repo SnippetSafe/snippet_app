@@ -2,29 +2,37 @@
   <card style="text-align: center;">
     <span>SNIPPET.IO</span>
   </card>
-  <card>
-    <div class="menu-button--wrapper">
-      <%= link_to root_path, class: request.fullpath == root_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-        <img src="/icons/home.svg" width="28">
-        <span style="display: block;  margin-top: 8px;">Home</span>
-      <% end %>
-      <%= link_to new_snippet_path, class: request.fullpath == new_snippet_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-        <img src="/icons/edit.svg" width="28">
-        <span style="display: block; margin-top: 8px;">New Snippet</span>
-      <% end %>
-    </div>
-    <div class="menu-button--wrapper">
-      <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-        <img src="/icons/folder-1.svg" width="28">
-        <span style="display: block; margin-top: 8px;">Folders</span>
-      <% end %>
-      <%= link_to edit_user_registration_path, class: request.fullpath == edit_user_registration_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-        <img src="/icons/settings.svg" width="28">
-        <span style="display: block; margin-top: 8px;">Settings</span>
-      <% end %>
-    </div>
-  </card>
-  <card style="text-align: center;">
-     <%= link_to('NEW SNIPPET', new_snippet_path, class: "button--cta-new") %>  
-  </card>
+  <% if user_signed_in? %>
+    <card>
+      <div class="menu-button--wrapper">
+        <%= link_to root_path, class: request.fullpath == root_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+          <img src="/icons/home.svg" width="28">
+          <span style="display: block;  margin-top: 8px;">Home</span>
+        <% end %>
+        <%= link_to new_snippet_path, class: request.fullpath == new_snippet_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+          <img src="/icons/edit.svg" width="28">
+          <span style="display: block; margin-top: 8px;">New Snippet</span>
+        <% end %>
+      </div>
+      <div class="menu-button--wrapper">
+        <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+          <img src="/icons/folder-1.svg" width="28">
+          <span style="display: block; margin-top: 8px;">Folders</span>
+        <% end %>
+        <%= link_to edit_user_registration_path, class: request.fullpath == edit_user_registration_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+          <img src="/icons/settings.svg" width="28">
+          <span style="display: block; margin-top: 8px;">Settings</span>
+        <% end %>
+      </div>
+    </card>
+    <card style="text-align: center;">
+      <%= link_to('NEW SNIPPET', new_snippet_path, class: "button--cta-new") %>  
+    </card>
+  <% else %>
+    <%# temp fix for when user not signed in %>
+    <card style="text-align: center;">
+      <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  
+      <%= link_to('SIGN UP', new_user_registration_path, class: "button--cta-transparent") %>  
+    </card>
+  <% end %>
 </div>
