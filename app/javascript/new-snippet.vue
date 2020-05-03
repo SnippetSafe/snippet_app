@@ -23,6 +23,10 @@
         <label for="public">public</label>
         <input v-model="snippetParams.public" type="radio" id="private" name="public" value="false">
         <label for="private">private</label>
+        <select v-model="snippetParams.folder_id" required>
+          <option :value="null" disabled selected>Select a folder...</option>
+          <option v-for="folder in folders" :key="folder.name" :value="folder.id">{{ folder.name }}</option>
+        </select>
         <select v-model="snippetParams.language">
           <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>
         </select>
@@ -48,6 +52,10 @@ import Tab from './tab';
 export default {
   components: { Card, CodeHighlight, Tabs, Tab },
 
+  props: {
+    folders: { required: true, type: Array }
+  },
+
   data: function () {
     return {
       snippetParams: {
@@ -55,7 +63,8 @@ export default {
         body: '',
         highlighted_body: '???',
         language: 'ruby',
-        public: true
+        public: true,
+        folder_id: null
       },
       languages: hljs.listLanguages(),
       errors: null

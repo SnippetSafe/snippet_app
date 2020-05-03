@@ -4,7 +4,7 @@ class SnippetsController < ApplicationController
   end
 
   def new
-
+    @folders = current_user.folders.to_json
   end
 
   def create
@@ -14,8 +14,12 @@ class SnippetsController < ApplicationController
       body: snippet_params[:body],
       highlighted_body: snippet_params[:highlighted_body],
       public: snippet_params[:public],
-      language: snippet_params[:language]
+      language: snippet_params[:language],
     )
+
+    folder = Folder.find(snippet_params[:folder_id])
+
+    snippet.folders << folder
 
     if snippet.save
       render json: { snippet: snippet.serialize(current_user) }
@@ -27,6 +31,13 @@ class SnippetsController < ApplicationController
   private
 
   def snippet_params
-    params.require(:snippet).permit(:description, :body, :highlighted_body, :public, :language)
+    params.require(:snippet).permit(
+      :description,
+      :body,
+      :highlighted_body,
+      :public,
+      :language,
+      :folder_id
+    )
   end
 end
