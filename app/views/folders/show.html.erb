@@ -1,1 +1,7 @@
-<h1><%= @folder.name %></h1>
+<card>
+  <h2 style="margin-top: 0px;"><%= @folder.name %></h2>
+  <div class="folders--options-wrapper">
+    <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
+    <%= link_to 'NEW SNIPPET', new_snippet_path, class: 'button--cta-new' %>
+  </div>
+</card>
