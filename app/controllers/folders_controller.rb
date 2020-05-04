@@ -1,7 +1,7 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!
   def index
-    @folders = current_user.folders.order(name: :asc)
+    @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
   end
 
   def show

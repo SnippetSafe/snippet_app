@@ -1,14 +1,23 @@
 @import './variables.scss';
 
 .folders {
+  &--row {
+    display: flex;
+    box-sizing: border-box;
+  }
+
   &--list-item {
     flex: 1 0 20%;
     padding: 24px 8px;
     font-weight: 100;
-    // display: block;
+    display: block;
     position: relative;
     // background-color: $color-light;
     // border-right: 1px solid lightgrey;
+    &:hover {
+      background-color: $color-light;
+      border-radius: 5px;
+    }
 
     &--link {
       text-decoration: none;
@@ -44,6 +53,11 @@
     font-size: 12px;
     color: white;
   }
+
+  &--snippet-icon {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 .language-tag {
@@ -66,10 +80,15 @@
   margin: 8px 0px;
   height: 67px;
   overflow-y: hidden;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
-    background-color: $color-light;
+    background-color: $color-white;
     cursor: pointer;
     border-radius: 5px;
+    text-decoration: underline;
+    text-decoration-color: $color-primary;
   }
 }
