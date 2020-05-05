@@ -2,7 +2,7 @@
   <div class="folders--list-item-wrapper">
     <div @mouseenter="loadPreview" @mouseleave="dismissPreview" class="folders--list-item-wrapper-container">
       <div class="folders--list-item">
-        <a :href="folderPath" class="folders--list-item--link" :title="folder.name">
+        <a :href="folderPath" class="folders--list-item--link" :title="folderTitle">
           <span class="folders--snippet-count">{{ folder.snippet_count }}</span>
           <img class="folders--snippet-icon" src="/icons/folder-1.svg" width="28">
           <span class="folders--list-item--title">{{ folder.name }}</span>
@@ -48,6 +48,10 @@ export default {
   computed: {
     folderPath() {
       return `/folders/${this.folder.id}`
+    },
+
+    folderTitle() {
+      return `Open folder - ${this.folder.name}`;
     }
   },
 
