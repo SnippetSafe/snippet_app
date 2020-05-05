@@ -1,7 +1,7 @@
 <card :with-padding=<%= false %> >
   <h2 style="margin-top: 0px;"><%= @folders.size %> Folders</h2>
-  <% @folders.each_slice(4) do |folders| %>
-    <%= render partial: 'shared/folder_row', locals: { folders: folders } %>
+  <% @folders.each_slice(3) do |folders| %>
+    <folder-row :folders="<%= folders.to_json %>"></folder-row>
   <% end %>
   <div class="folders--options-wrapper">
     <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>

@@ -61,6 +61,8 @@ import { store } from '../store.js';
 import ActionIcon from '../action-icon';
 import BackButton from '../back-button';
 import Card from '../card';
+import Folder from '../folder';
+import FolderRow from '../folder-row';
 import Home from '../home.vue'
 import Modal from '../modal.vue'
 import NewSnippet from '../new-snippet.vue'
@@ -84,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ActionIcon,
         BackButton,
         Card,
+        Folder,
+        FolderRow,
         Home,
         Modal,
         NewSnippet,

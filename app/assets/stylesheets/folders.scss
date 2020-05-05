@@ -6,17 +6,23 @@
     box-sizing: border-box;
   }
 
+  &--list-item-wrapper {
+    flex: 1 0 31%;
+    padding: 8px;
+    position:relative;
+  }
+
   &--list-item {
-    flex: 1 0 20%;
     padding: 24px 8px;
     font-weight: 100;
     display: block;
     position: relative;
+    border: 1px solid $color-light;
+    border-radius: 5px;
     // background-color: $color-light;
     // border-right: 1px solid lightgrey;
     &:hover {
       background-color: $color-light;
-      border-radius: 5px;
     }
 
     &--link {
@@ -60,6 +66,18 @@
   }
 }
 
+.preview-popover {
+  position: absolute;
+  width: 244px;
+  background-color: $color-light;
+  border: 1px solid $color-light;
+  z-index: 20;
+  top: 100px;
+  // left: 237px;
+  border-radius: 5px;
+  padding: 0px 8px;
+}
+
 .language-tag {
   font-size: 11px;
   background-color: $color-primary;
@@ -88,7 +106,5 @@
     background-color: $color-white;
     cursor: pointer;
     border-radius: 5px;
-    text-decoration: underline;
-    text-decoration-color: $color-primary;
   }
 }
