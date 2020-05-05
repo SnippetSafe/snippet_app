@@ -10,6 +10,14 @@
     flex: 1 0 31%;
     padding: 8px;
     position:relative;
+
+    &-container {
+      border-radius: 4px;
+
+      &:hover {
+        background-color: $color-light;
+      }
+    }
   }
 
   &--list-item {
@@ -51,7 +59,7 @@
   &--snippet-count {
     position: absolute;
     top: 14px;
-    right: 74px;
+    right: 100px;
     width: 14px;
     height: 14px;
     background-color: $color-primary;
@@ -64,6 +72,12 @@
     display: block;
     margin: 0 auto;
   }
+}
+
+.preview-loader {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
 }
 
 .preview-popover {
