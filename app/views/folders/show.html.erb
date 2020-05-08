@@ -1,31 +1,15 @@
 <card>
   <div style="display: flex; justify-content: space-between;">
-    <div style="display: flex;">
       <back-button></back-button>
       <h2 style="margin: 2px 0px 0px 12px; display: inline-block;"><%= @folder.name %></h2>
-    </div>
-    <div>
-      <span style="margin-top: 6px; background-color: #3AAFA9; padding: 2px 6px; border-radius: 2px; color: white;"><%= @folder.snippet_count %> snippets</span>
-    </div>
   </div>
-  <% @snippets.each_slice(4) do |snippets| %>
-    <div style="display: flex; box-sizing: border-box;">
-      <% snippets.each do |snippet| %>
-        <%= link_to snippet_path(snippet), class: 'folders--list-item' do %>
-          <img style="display: block; margin: 0 auto;" src="/icons/file.svg" width="28">
-          <span class="folders--list-item--title"><%= snippet.description %></span>
-        <% end %>
-      <% end %>
-
-      <% (4 - snippets.length).times do |i| %>
-        <div style="height: 100px; flex: 1 0 25%; text-align: center;">
-          <%# <%= link_to folder.name, folder_path(folder) %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <div style="margin-top: 16px;">
+    
+    <% @snippets.each do |snippet| %>
+      <snipt :snippet="<%= snippet.to_json %>"></snipt>
+    <% end %>
+  </div>
   <div class="folders--options-wrapper">
-    <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
     <%= link_to 'NEW SNIPPET', new_snippet_path(folder_id: @folder.id, redirect_url: folder_path(@folder.id)), class: 'button--cta-new' %>
   </div>
 </card>

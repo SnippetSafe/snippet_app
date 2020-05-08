@@ -1,0 +1,60 @@
+@import './variables.scss';
+
+.snippets {
+  &--list-item {
+    // display: flex;
+    text-decoration: none;
+    // justify-content: space-between;
+    color: inherit;
+    padding: 8px;
+    border: 1px solid $color-light;
+    border-radius: 5px;
+    margin: 16px 0px;
+
+    // &:nth-child(even) { background: #FFF; }
+    // &:nth-child(odd) {background: #F8F8F8; }
+
+    &:hover { background-color: $color-light; }
+
+    &--title-wrapper {
+      display: flex;
+      // flex: 3;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &--social-wrapper {
+      margin: 10px 0px 0px 0px;
+      display: flex;
+      // flex: 3;
+      align-items: center;
+      justify-content: space-between;
+      // margin-top: 20px;
+    }
+
+    &--author-wrapper {
+      display: flex;
+      // flex: 3;
+      align-items: center;
+      justify-content: flex-end;
+      margin: 10px 0px 0px 0px;
+    }
+
+    &--title-link {
+      // font-size: 14px;
+      // margin: 0px 10px;
+      max-width: 550px;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      font-weight: 100;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+        // text-decoration-color: $color-primary;
+      }
+    }
+  }
+}

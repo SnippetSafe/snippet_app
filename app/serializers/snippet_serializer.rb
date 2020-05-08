@@ -1,4 +1,6 @@
 class SnippetSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::DateHelper
+
   has_one :user
   has_many :comments
 
@@ -10,11 +12,21 @@ class SnippetSerializer < ActiveModel::Serializer
     :language,
     :comments_count,
     :likes_count,
-    :liked_by_current_user
+    :liked_by_current_user,
+    :created_at,
+    :updated_at
   )
 
   def liked_by_current_user
     object.liked_by?(current_user)
+  end
+
+  def created_at
+    time_ago_in_words(object.created_at) + ' ago'
+  end
+
+  def updated_at
+    time_ago_in_words(object.updated_at) + ' ago'
   end
 
   private

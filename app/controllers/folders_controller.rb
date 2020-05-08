@@ -7,7 +7,7 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
-    @snippets = @folder.snippets
+    @snippets = @folder.snippets.order(created_at: :desc).map { |s| s.serialize(current_user) }
   end
 
   def new
