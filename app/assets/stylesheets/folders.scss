@@ -85,7 +85,7 @@
   width: 244px;
   background-color: $color-light;
   border: 1px solid $color-light;
-  z-index: 20;
+  z-index: 3;
   top: 100px;
   // left: 237px;
   border-radius: 5px;
@@ -98,6 +98,7 @@
   padding: 2px 6px;
   border-radius: 4px;
   color: white;
+  display: inline-block;
 }
 
 .date-tag {
