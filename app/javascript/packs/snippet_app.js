@@ -62,6 +62,7 @@ import ActionIcon from '../action-icon';
 import BackButton from '../back-button';
 import Card from '../card';
 import Folder from '../folder';
+import FoldersShow from '../folders-show';
 import FolderRow from '../folder-row';
 import Home from '../home.vue'
 import Modal from '../modal.vue'
@@ -89,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         BackButton,
         Card,
         Folder,
+        FoldersShow,
         FolderRow,
         Home,
         Modal,

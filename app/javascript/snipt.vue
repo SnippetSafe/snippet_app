@@ -52,10 +52,6 @@ export default {
     }
   },
 
-  created() {
-    console.log('snippet', this.snippet)
-  },
-
   computed: {
     snippetPath() {
       return `/snippets/${this.snippet.id}`;

@@ -24,7 +24,7 @@ class SnippetsController < ApplicationController
     )
 
     if snippet_params[:folder_id]
-      folder = Folder.find(snippet_params[:folder_id])
+      folder = current_user.folders.find(snippet_params[:folder_id])
       snippet.folders << folder
     end
 
@@ -33,6 +33,16 @@ class SnippetsController < ApplicationController
     else
       render json: { errors: snippet.errors.full_messages }, status: 400
     end
+  end
+
+  #TODO: Make it so that a user can only have a snippet in ONE of their folders
+  def update
+    Snippet.transaction do
+      current_user.snippet_folders.find_by(snippet_id: params[:id]).destroy
+      SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
+    end
+
+    render json: { snippet: 'yay' }
   end
 
   private

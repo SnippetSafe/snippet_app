@@ -1,15 +1,4 @@
-<card>
-  <div style="display: flex; justify-content: space-between;">
-      <back-button></back-button>
-      <h2 style="margin: 2px 0px 0px 12px; display: inline-block;"><%= @folder.name %></h2>
-  </div>
-  <div style="margin-top: 16px;">
-    
-    <% @snippets.each do |snippet| %>
-      <snipt :snippet="<%= snippet.to_json %>"></snipt>
-    <% end %>
-  </div>
-  <div class="folders--options-wrapper">
-    <%= link_to 'NEW SNIPPET', new_snippet_path(folder_id: @folder.id, redirect_url: folder_path(@folder.id)), class: 'button--cta-new' %>
-  </div>
-</card>
+<folders-show
+  :folder="<%= @folder.to_json %>"
+  :snippets="<%= @snippets.to_json %>">
+</folders-show>

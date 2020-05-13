@@ -29,9 +29,14 @@
 
 <script>
 import Card from './card';
+import  { EventBus } from './event-bus';
 
 export default {
-  components: { Card }
+  components: { Card },
+
+  created() {
+    EventBus.$on('closeModal', () => this.$emit('close'))
+  }
 }
 </script>
 

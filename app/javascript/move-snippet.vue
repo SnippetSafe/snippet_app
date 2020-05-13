@@ -4,10 +4,11 @@
     <div class="move-snippet--list">
       <div v-for="folder in folders" :key="folder.name" :class="classForFolder(folder)" @click="setFolder(folder)">
         <span>{{ folder.name }}</span>
+        <img v-if="selectedFolderId === folder.id" src="/icons/checked.svg" width="14">
       </div>
     </div>
     <div class="move-snippet--buttons">
-      <button class="button--cta-new">MOVE SNIPPET</button>
+      <button @click="moveSnippet" class="button--cta-new">MOVE SNIPPET</button>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@
 import axios from 'axios'
 import _ from 'lodash';
 import snippetsMixin from './mixins/snippetsMixin';
+import  { EventBus } from './event-bus';
 
 export default {
   mixins: [snippetsMixin],
@@ -39,14 +41,14 @@ export default {
       })
     },
 
-    selectedFolderName() {
-      if (this.folder) { return this.folder.name; };
+    selectedFolderId() {
+      if (this.folder) { return this.folder.id; };
     }
   },
 
   methods: {
     classForFolder(folder) {
-      if (this.selectedFolderName !== folder.name) {
+      if (this.selectedFolderId !== folder.id) {
         return 'move-snippet--item'
       } else {
         return 'move-snippet--item-selected'
@@ -54,23 +56,27 @@ export default {
     },
 
     setFolder(folder) {
-      if (this.selectedFolderName !== folder.name) {
+      if (this.selectedFolderId !== folder.id) {
         this.folder = folder;
       } else {
         this.folder = null;
       }
+    },
+
+    moveSnippet() {
+      this.updateSnippet(this.snippet.id, { folder_id: this.selectedFolderId })
+        .then(res => {
+          EventBus.$emit('closeModal')
+          EventBus.$emit('changeSnippetFolder', this.snippet)
+        })
+        .catch(console.error)
     }
   },
 
   created() {
-    axios.get('/folders')
+    axios.get('/folders?ajax=true')
       .then(res => {
-        console.log(res)
-
-        console.log('folders', this.folders)
         this.foldersForSelect = res.data.folders
-
-        console.log('folders', this.folders)
       })
       .catch(console.error)
   },
@@ -93,8 +99,7 @@ export default {
     }
 
     &--list {
-      max-height: 200px;
-      min-height: 200px;
+      height: 400px;
       overflow-y: scroll;
       margin: 16px 0px;
       border: 1px solid #DEF2F1;
@@ -104,9 +109,11 @@ export default {
 
     &--item {
       padding: 6px 6px;
+      display: flex;
+      justify-content: space-between;
 
-      &:nth-child(odd) {background: #F2F2F2}
-      &:nth-child(even) {background: white}
+      &:nth-child(odd) {background: white}
+      &:nth-child(even) {background: #F2F2F2}
 
       &:hover {
         cursor: pointer;
@@ -115,12 +122,14 @@ export default {
 
       &-selected {
         padding: 6px 6px;
+        display: flex;
+        justify-content: space-between;
 
-        background-color: pink;
+        background-color: #ffd8dd;
 
         &:hover {
           cursor: pointer;
-          background-color: pink;
+          background-color: #ffd8dd;
         }
       }
     }

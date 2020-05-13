@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :likes
   has_many :folders
   has_many :languages, through: :snippets
+  has_many :snippet_folders, through: :folders
 end

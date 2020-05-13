@@ -9,7 +9,7 @@ export default {
 
   methods: {
     updateSnippet(snippetId, params) {
-      return axios.put(`/snippets/${snippetId}`, params)
+      return axios.put(`/snippets/${snippetId}?ajax=true`, { snippet: params })
     }
   }
 }
