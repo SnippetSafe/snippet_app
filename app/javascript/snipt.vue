@@ -1,8 +1,7 @@
 <template>
   <div class="snippets--list-item--wrapper">
-    <modal v-if="showModal" @close="closeModal">
-      <h3 slot="header">Move Snippet</h3>
-      <move-snippet slot="body" :snippet="snippet"></move-snippet>
+    <modal v-if="showModal" header="Move Snippet" @close="closeModal">
+      <move-snippet slot="body" :snippet="snippet" :current-folder="currentFolder"></move-snippet>
     </modal>
     <a class="snippets--list-item" :href="snippetPath">
       <div class="snippets--list-item--title-wrapper">
@@ -39,7 +38,8 @@ export default {
   components: { MoreButton, MoveSnippet, Modal, Popover },
 
   props: {
-    snippet: { required: true, type: Object }
+    snippet: { required: true, type: Object },
+    currentFolder: { required: true, type: Object },
   },
 
   data() {

@@ -8,7 +8,7 @@ class FoldersController < ApplicationController
       end
 
       format.json do
-        render json: { folders: current_user.folders }
+        render json: { folders: current_user.folders.order(name: :asc) }
       end
     end
   end

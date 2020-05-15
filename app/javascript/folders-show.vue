@@ -6,7 +6,7 @@
     </div>
     <div style="margin-top: 16px;">
       
-      <snipt v-for="snippet in snippetz" :snippet="snippet" :key="snippet.id"></snipt>
+      <snipt v-for="snippet in snippetz" :snippet="snippet" :current-folder="folder" :key="snippet.id"></snipt>
     </div>
     <div class="folders--options-wrapper">
       <a :href="`/snippets/new?folder_id=${folder.id}&redirect_url=/folders/${folder.id}`" class="button--cta-new">NEW SNIPPET</a>
@@ -18,7 +18,7 @@
 import Snipt from './snipt';
 import Card from './card'
 import BackButton from './back-button'
-import  { EventBus } from './event-bus';
+import { EventBus } from './event-bus';
 
 export default {
   components: {

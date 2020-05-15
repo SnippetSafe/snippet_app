@@ -14,6 +14,17 @@
       cursor: pointer;
     }
 
+    &-cancel {
+      @extend .button--cta;
+
+      color: $color-grey;
+      border: 1px solid $color-grey;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+    }
+
     &-new {
       @extend .button--cta;
 
@@ -21,6 +32,18 @@
 
       &:hover {
         background-color: $color-light;
+      }
+    }
+
+    &-disabled {
+      @extend .button--cta;
+
+      outline: none;
+      color: $color-light;
+      border: 1px solid $color-light;
+
+      &:hover {
+        cursor: auto;
       }
     }
 

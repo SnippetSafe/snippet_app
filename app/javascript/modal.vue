@@ -3,9 +3,10 @@
       <div class="modal-wrapper">
         <card class="modal-container">
           <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
+            <h3>{{ header }}</h3>
+            <span>
+              <img class="modal-close" @click="$emit('close')" src="/icons/cancel.svg" width="22">
+            </span>
           </div>
 
           <div class="modal-body">
@@ -34,13 +35,17 @@ import  { EventBus } from './event-bus';
 export default {
   components: { Card },
 
+  props: {
+    header: { required: true, type: String }
+  },
+
   created() {
     EventBus.$on('closeModal', () => this.$emit('close'))
   }
 }
 </script>
 
-<style>
+<style lang="scss">
   .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -69,6 +74,11 @@ export default {
   /* font-family: Helvetica, Arial, sans-serif; */
 }
 
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .modal-header h3 {
   margin-top: 0;
   font-family: Helvetica, sans-serif;
@@ -81,6 +91,14 @@ export default {
 
 .modal-default-button {
   float: right;
+}
+
+.modal-close {
+  &:hover {
+    cursor: pointer;
+    background-color: #DEF2F1;
+    border-radius: 50%;
+  }
 }
 
 /*

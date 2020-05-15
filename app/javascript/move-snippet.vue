@@ -8,7 +8,8 @@
       </div>
     </div>
     <div class="move-snippet--buttons">
-      <button @click="moveSnippet" class="button--cta-new">MOVE SNIPPET</button>
+      <button @click="closeModal" class="button--cta-cancel">CANCEL</button>
+      <button @click="moveSnippet" :class="buttonClass">MOVE SNIPPET</button>
     </div>
   </div>
 </template>
@@ -23,7 +24,8 @@ export default {
   mixins: [snippetsMixin],
 
   props: {
-    snippet: { type: Object, required: true }
+    snippet: { type: Object, required: true },
+    currentFolder : { type: Object, required: true }
   },
 
   data() {
@@ -42,7 +44,19 @@ export default {
     },
 
     selectedFolderId() {
-      if (this.folder) { return this.folder.id; };
+      if (this.folder) {
+        return this.folder.id;
+      } else {
+        return this.currentFolder.id
+      }
+    },
+
+    buttonClass() {
+      if (this.newFolderDifferentToCurrent()) {
+        return "button--cta-new";
+      } else {
+        return "button--cta-disabled"
+      }
     }
   },
 
@@ -63,13 +77,23 @@ export default {
       }
     },
 
+    newFolderDifferentToCurrent() {
+      return this.folder && this.folder.id !== this.currentFolder.id
+    },
+
     moveSnippet() {
-      this.updateSnippet(this.snippet.id, { folder_id: this.selectedFolderId })
-        .then(res => {
-          EventBus.$emit('closeModal')
-          EventBus.$emit('changeSnippetFolder', this.snippet)
-        })
-        .catch(console.error)
+      if (this.newFolderDifferentToCurrent()) {
+        this.updateSnippet(this.snippet.id, { folder_id: this.selectedFolderId })
+          .then(res => {
+            EventBus.$emit('closeModal')
+            EventBus.$emit('changeSnippetFolder', this.snippet)
+          })
+          .catch(console.error)
+      }
+    },
+
+    closeModal() {
+      EventBus.$emit('closeModal')
     }
   },
 
@@ -112,8 +136,8 @@ export default {
       display: flex;
       justify-content: space-between;
 
-      &:nth-child(odd) {background: white}
-      &:nth-child(even) {background: #F2F2F2}
+      // &:nth-child(odd) {background: white}
+      // &:nth-child(even) {background: #F2F2F2}
 
       &:hover {
         cursor: pointer;
