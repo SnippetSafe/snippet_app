@@ -5,20 +5,27 @@
     </div>
     <div v-if="displayPopover" @click.prevent="()=> { }" class="popover--container">
       <!-- <slot></slot> -->
-      <div v-for="opt in options" :key="opt.title" class="popover--item" @click.prevent="performOptFunc(opt.func)"><span>{{ opt.title }}</span></div>
+      <div v-for="opt in options" :key="opt.title" class="popover--item" @click.prevent="performOptFunc(opt)">
+        <span>{{ opt.title }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Modal from './modal';
+
 export default {
+  components: { Modal },
+
   props: {
     options: { type: Array, required: true }
   },
 
   data() {
     return {
-      displayPopover: false
+      displayPopover: false,
+      showModal: false
     }
   },
 
@@ -27,13 +34,17 @@ export default {
       this.displayPopover = !this.displayPopover;
     },
 
-    performOptFunc(func) {
-      func()
+    performOptFunc(opt) {
+      opt.func()
       this.displayPopover = false;
     },
 
     dothing() {
       console.log('think')
+    },
+
+    closeModal() {
+      this.showModal = false;
     }
   }
 }

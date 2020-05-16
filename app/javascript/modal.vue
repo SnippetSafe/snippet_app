@@ -1,11 +1,11 @@
 <template>
-  <div  class="modal-mask">
+  <div @click.prevent="()=> { }" class="modal-mask">
       <div class="modal-wrapper">
         <card class="modal-container">
           <div class="modal-header">
             <h3>{{ header }}</h3>
             <span>
-              <img class="modal-close" @click="$emit('close')" src="/icons/cancel.svg" width="22">
+              <img class="modal-close" @click.prevent="$emit('close')" src="/icons/cancel.svg" width="22">
             </span>
           </div>
 
@@ -56,6 +56,10 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
+}
+
+.modal-mask:hover {
+  cursor: auto;
 }
 
 .modal-wrapper {

@@ -10,6 +10,10 @@ export default {
   methods: {
     updateSnippet(snippetId, params) {
       return axios.put(`/snippets/${snippetId}?ajax=true`, { snippet: params })
+    },
+
+    deleteSnippet(snippetId) {
+      return axios.delete(`/snippets/${snippetId}?ajax=true`)
     }
   }
 }

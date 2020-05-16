@@ -45,6 +45,16 @@ class SnippetsController < ApplicationController
     render json: { snippet: 'yay' }
   end
 
+  def destroy
+    snippet = current_user.snippets.find_by(id: params[:id])
+
+    if snippet && snippet.destroy
+      render json: { message: 'Snippet deleted' }
+    else
+      render json: { message: 'Unable to delete snippet' }
+    end
+  end
+
   private
 
   def snippet_params

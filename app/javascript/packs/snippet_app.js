@@ -59,6 +59,7 @@ import Vue from 'vue/dist/vue.esm'
 import { store } from '../store.js';
 
 import ActionIcon from '../action-icon';
+import Alert from '../alert';
 import BackButton from '../back-button';
 import Card from '../card';
 import Folder from '../folder';
@@ -87,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       store,
       components: {
         ActionIcon,
+        Alert,
         BackButton,
         Card,
         Folder,

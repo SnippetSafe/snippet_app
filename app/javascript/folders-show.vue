@@ -6,7 +6,7 @@
     </div>
     <div style="margin-top: 16px;">
       
-      <snipt v-for="snippet in snippetz" :snippet="snippet" :current-folder="folder" :key="snippet.id"></snipt>
+      <snipt v-for="snippet in snippetz" @deleted="handleSnippetDeletion" :snippet="snippet" :current-folder="folder" :key="snippet.id"></snipt>
     </div>
     <div class="folders--options-wrapper">
       <a :href="`/snippets/new?folder_id=${folder.id}&redirect_url=/folders/${folder.id}`" class="button--cta-new">NEW SNIPPET</a>
@@ -48,6 +48,14 @@ export default {
 
       this.snippetz = this.snippetz.filter(s => {
         return s.id !== snippet.id
+      })
+    },
+
+    handleSnippetDeletion(snippetId) {
+      console.log('deleted')
+
+      this.snippetz = this.snippetz.filter(s => {
+        return s.id !== snippetId
       })
     }
   }
