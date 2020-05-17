@@ -87,6 +87,7 @@ export default {
           .then(res => {
             EventBus.$emit('closeModal')
             EventBus.$emit('changeSnippetFolder', this.snippet)
+            EventBus.$emit('presentToast', res.data.message)
           })
           .catch(console.error)
       }

@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-bottom">
-    <div v-if="isActive" class="toast--container">
-      <span>Snippet deleted!</span>
+    <div v-if="isActive" :class="toastClass">
+      <span v-html="message"></span>
     </div>
   </transition>
 </template>
@@ -11,14 +11,32 @@ import { EventBus } from './event-bus.js';
 
 export default {
 
+  props: {
+    notice: { type: String, required: false },
+    alert: { type: String, required: false }
+  },
+
   data() {
     return {
-      isActive :false
+      isActive :false,
+      toastClass: 'toast--container-notice'
     }
   },
 
   created() {
     EventBus.$on('presentToast', this.present)
+  },
+
+  mounted() {
+    console.log('notice', this.notice)
+
+    if (this.notice) {
+      this.toastClass = 'toast--container-notice';
+      this.present(this.notice)
+    } else if (this.alert) {
+      this.toastClass = 'toast--container-alert'
+      this.present(this.alert)
+    }
   },
 
   methods: {

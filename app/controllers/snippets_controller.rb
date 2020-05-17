@@ -37,19 +37,21 @@ class SnippetsController < ApplicationController
 
   #TODO: Make it so that a user can only have a snippet in ONE of their folders
   def update
+    folder = current_user.folders.find(snippet_params[:folder_id])
+
     Snippet.transaction do
       current_user.snippet_folders.find_by(snippet_id: params[:id]).destroy
       SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
     end
 
-    render json: { snippet: 'yay' }
+    render json: { message: "Snippet moved to folder <strong>#{folder.name}<strong>" }
   end
 
   def destroy
     snippet = current_user.snippets.find_by(id: params[:id])
 
     if snippet && snippet.destroy
-      render json: { message: 'Snippet deleted' }
+      render json: { message: 'Snippet deleted!' }
     else
       render json: { message: 'Unable to delete snippet' }
     end
