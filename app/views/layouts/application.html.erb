@@ -19,7 +19,7 @@
 
   <body>
     <div id="vue-app" data-user="<%= current_user.to_json %>" v-cloak>
-    <alert></alert>
+      <alert></alert>
       <%# <%= render 'shared/topbar'  %>
 
       <div id="app">
@@ -32,6 +32,8 @@
           </div>
         </div>
       </div>
+
+      <toast></toast>
     </div>
   </body>
 </html>

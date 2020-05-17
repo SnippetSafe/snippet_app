@@ -86,9 +86,11 @@ export default {
       this.deleteSnippet(this.snippet.id)
         .then(res => {
           this.$emit('deleted', this.snippet.id)
+          EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {
-          console.log('error', error.response)
+          console.log('error', error)
+          EventBus.$emit('presentToast', res.data.message)
         })
     },
 
