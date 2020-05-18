@@ -19,7 +19,9 @@
 
   <body>
     <div id="vue-app" data-user="<%= current_user.to_json %>" v-cloak>
+      <toast alert="<%= alert %>" notice="<%= notice %>"></toast>
       <alert></alert>
+      <popover></popover>
       <%# <%= render 'shared/topbar'  %>
 
       <div id="app">
@@ -33,7 +35,6 @@
         </div>
       </div>
 
-      <toast alert="<%= alert %>" notice="<%= notice %>"></toast>
     </div>
   </body>
 </html>

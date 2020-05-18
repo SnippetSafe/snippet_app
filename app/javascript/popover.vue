@@ -1,68 +1,77 @@
 <template>
-  <div class="popover--wrapper" tabindex="0" @focusout="displayPopover = false">
-    <div @click.prevent="togglePopover" class="more-button">
-      <img src="/icons/more.svg" width="12">
-    </div>
-    <div v-if="displayPopover" @click.prevent="()=> { }" class="popover--container">
-      <!-- <slot></slot> -->
-      <div v-for="opt in options" :key="opt.title" class="popover--item" @click.prevent="performOptFunc(opt)">
-        <span>{{ opt.title }}</span>
-      </div>
+  <div v-if="presenting" v-on-clickaway="dismiss" :style="styles" class="popover--container">
+    <div v-for="opt in popoverOpts" :key="opt.title" class="popover--item" @click.prevent="performAction(opt)">
+      <span>{{ opt.title }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import { EventBus } from './event-bus.js';
+import { mixin as clickaway } from 'vue-clickaway';
+
 import Modal from './modal';
 
 export default {
   components: { Modal },
 
-  props: {
-    options: { type: Array, required: true }
-  },
+  mixins: [ clickaway ],
 
   data() {
     return {
-      displayPopover: false,
-      showModal: false
+      presenting: false,
+      popoverOpts: [],
+      top: 0,
+      bottom: 0
+    }
+  },
+
+  created() {
+    EventBus.$on('presentPopover', this.present)
+  },
+
+  computed: {
+    styles() {
+      return `top: ${this.top}px; left: ${this.left}px;`
     }
   },
 
   methods: {
+    present(event, popoverOpts) {
+      this.popoverOpts = popoverOpts;
+
+      const rect = event.target.getBoundingClientRect();
+
+      this.top = rect.bottom + 10
+      this.left = rect.left - 126
+
+      this.presenting = true;
+    },
+
+    dismiss() {
+      this.presenting = false;
+    },
+  
     togglePopover() {
-      this.displayPopover = !this.displayPopover;
+      this.presenting = !this.presenting;
     },
 
-    performOptFunc(opt) {
-      opt.func()
-      this.displayPopover = false;
+    performAction(opt) {
+      opt.action()
+      this.presenting = false;
     },
-
-    dothing() {
-      console.log('think')
-    },
-
-    closeModal() {
-      this.showModal = false;
-    }
   }
 }
 </script>
 
 <style lang="scss">
   .popover {
-    &--wrapper {
-      &:focus {
-        outline: none;
-      }
-    }
 
     &--container {
       background-color: white;
       position: absolute;
-      top: 30px;
-      right: 0px;
+      // top: 30px;
+      // right: 0px;
       // border: 1px solid #DEF2F1;
       border-radius: 5px;
       box-shadow: 0 0 6px rgba(0,0,0,.3);
@@ -71,6 +80,10 @@ export default {
       z-index: 5;
       padding: 8px 0px;
       font-size: 14px;
+
+      &:focus {
+        outline: none;
+      }
     }
 
     &--item {
@@ -80,6 +93,7 @@ export default {
 
       &:hover { 
         background-color: #DEF2F1;
+        cursor: pointer;
       }
     }
   }

@@ -2,6 +2,7 @@
   <div class="folders--list-item-wrapper">
     <div @mouseenter="loadPreview" @mouseleave="dismissPreview" class="folders--list-item-wrapper-container">
       <div class="folders--list-item">
+      <!-- <popover :options="folderOpts"></popover> -->
         <a :href="folderPath" class="folders--list-item--link" :title="folderTitle">
           <span class="folders--snippet-count">{{ folder.snippet_count }}</span>
           <img class="folders--snippet-icon" src="/icons/folder-1.svg" width="28">
@@ -31,9 +32,12 @@
 </template>
 
 <script>
+import Popover from './popover';
 import _ from 'lodash';
 
 export default {
+  components: { Popover },
+
   props: {
     folder: { required: true, type: Object }
   },
@@ -42,6 +46,9 @@ export default {
     return {
       viewPreview: false,
       loadingPreview: false,
+      folderOpts: [
+        { title: 'Move to...', func: () => { console.log('y') } },
+      ],
     }
   },
 

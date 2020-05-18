@@ -11,7 +11,9 @@
           <div style="display: flex; align-items: center; position: relative;">
             <span class="language-tag">{{ snippet.language }}</span>
             <!-- TODO: Pass event and make popover global rather than using template like this -->
-            <popover :options="snippetOpts"></popover>
+            <div @click.prevent="displayPopover" class="more-button">
+              <img src="/icons/more.svg" width="12">
+            </div>
           </div>
         </div>
         <div class="snippets--list-item--author-wrapper">
@@ -55,8 +57,8 @@ export default {
   data() {
     return {
       snippetOpts: [
-        { title: 'Move to...', func: this.moveSnippet, confirmable: false },
-        { title: 'Delete snippet', func: this.delete, confirmable: true }
+        { title: 'Move to...', func: this.moveSnippet },
+        { title: 'Delete snippet', func: this.delete }
       ],
       showModal: false,
     }
@@ -74,7 +76,7 @@ export default {
     },
 
     delete() {
-      EventBus.$emit('present', {
+      EventBus.$emit('presentAlert', {
         title: 'Delete Snippet',
         message: 'Are you sure you want to delete this snippet?',
         confirm: 'DELETE',
@@ -96,6 +98,23 @@ export default {
 
     closeModal() {
       this.showModal = false;
+    },
+
+    displayPopover(event) {
+      console.log('e', event)
+      event.stopPropagation()
+
+      const popoverOpts = [
+        {
+          title: 'Move to...',
+          action: this.moveSnippet
+        },
+        {
+          title: 'Delete snippet',
+          action: this.delete
+        }
+      ]
+      EventBus.$emit('presentPopover', event, popoverOpts)
     }
   }
 }

@@ -47,7 +47,7 @@ export default {
   },
 
   created() {
-    EventBus.$on('present', this.present)
+    EventBus.$on('presentAlert', this.present)
   },
 
   methods: {

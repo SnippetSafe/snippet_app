@@ -69,6 +69,7 @@ import Home from '../home.vue'
 import Modal from '../modal.vue'
 import NewSnippet from '../new-snippet.vue'
 import NewSnippetButton from '../new-snippet-button.vue'
+import Popover from '../popover.vue';
 import Sidebar from '../sidebar.vue'
 import SnippetListItem from '../snippet-list-item.vue'
 import Snipt from '../snipt.vue'
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Modal,
         NewSnippet,
         NewSnippetButton,
+        Popover,
         Snipt,
         Sidebar,
         SnippetListItem,
