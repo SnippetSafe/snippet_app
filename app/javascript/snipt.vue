@@ -101,7 +101,6 @@ export default {
     },
 
     displayPopover(event) {
-      console.log('e', event)
       event.stopPropagation()
 
       const popoverOpts = [
@@ -114,6 +113,7 @@ export default {
           action: this.delete
         }
       ]
+
       EventBus.$emit('presentPopover', event, popoverOpts)
     }
   }

@@ -2,7 +2,9 @@
   <div class="folders--list-item-wrapper">
     <div @mouseenter="loadPreview" @mouseleave="dismissPreview" class="folders--list-item-wrapper-container">
       <div class="folders--list-item">
-      <!-- <popover :options="folderOpts"></popover> -->
+        <div @click.prevent="displayPopover" class="more-button" style="position: absolute; top: 4px; right: 4px;">
+          <img src="/icons/more.svg" width="12">
+        </div>
         <a :href="folderPath" class="folders--list-item--link" :title="folderTitle">
           <span class="folders--snippet-count">{{ folder.snippet_count }}</span>
           <img class="folders--snippet-icon" src="/icons/folder-1.svg" width="28">
@@ -34,6 +36,7 @@
 <script>
 import Popover from './popover';
 import _ from 'lodash';
+import { EventBus } from './event-bus.js';
 
 export default {
   components: { Popover },
@@ -45,10 +48,7 @@ export default {
   data() {
     return {
       viewPreview: false,
-      loadingPreview: false,
-      folderOpts: [
-        { title: 'Move to...', func: () => { console.log('y') } },
-      ],
+      loadingPreview: false
     }
   },
 
@@ -85,6 +85,32 @@ export default {
     dismissPreview() {
       this.loadingPreview = false;
       this.viewPreview = false
+    },
+
+    displayPopover(event) {
+      event.stopPropagation()
+
+      const popoverOpts = [
+        {
+          title: 'Delete folder',
+          action: this.triggerDeleteAlert
+        }
+      ]
+
+      EventBus.$emit('presentPopover', event, popoverOpts)
+    },
+
+    triggerDeleteAlert() {
+      EventBus.$emit('presentAlert', {
+        title: 'Delete Folder',
+        message: 'Are you sure you want to delete this folder?',
+        confirm: 'DELETE',
+        onConfirm: this.handleDeleteConfirm
+      })
+    },
+
+    handleDeleteConfirm() {
+      EventBus.$emit('presentToast', 'Folder deleted! (not actually)')
     }
   }
 }
