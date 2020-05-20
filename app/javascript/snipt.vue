@@ -91,7 +91,7 @@ export default {
           EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {
-          console.log('error', error)
+          console.log(error)
           EventBus.$emit('presentToast', res.data.message)
         })
     },

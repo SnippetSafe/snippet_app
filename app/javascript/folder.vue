@@ -37,9 +37,12 @@
 import Popover from './popover';
 import _ from 'lodash';
 import { EventBus } from './event-bus.js';
+import foldersMixin from './mixins/foldersMixin';
 
 export default {
   components: { Popover },
+
+  mixins: [foldersMixin],
 
   props: {
     folder: { required: true, type: Object }
@@ -110,7 +113,17 @@ export default {
     },
 
     handleDeleteConfirm() {
-      EventBus.$emit('presentToast', 'Folder deleted! (not actually)')
+      this.deleteFolder(this.folder.id)
+        .then(res => {
+          this.$emit('deleted', this.folder.id)
+          console.log('res', res)
+          EventBus.$emit('presentToast', res.data.message)
+        })
+        .catch(error => {
+          console.log(error)
+
+          EventBus.$emit('presentToast', error.response.data.message)
+        })
     }
   }
 }

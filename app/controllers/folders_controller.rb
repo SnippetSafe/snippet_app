@@ -28,6 +28,16 @@ class FoldersController < ApplicationController
     redirect_to @folder
   end
 
+  def destroy
+    folder = current_user.folders.find_by(id: params[:id])
+
+    if folder && folder.destroy
+      render json: { message: 'Folder deleted!' }
+    else
+      render json: { message: 'Unable to delete folder' }
+    end
+  end
+
   private
 
   def folder_params
