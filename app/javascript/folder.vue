@@ -124,7 +124,7 @@ export default {
     handleDeleteConfirm() {
       this.deleteFolder(this.folder.id)
         .then(res => {
-          this.$emit('deleted', this.folder.id)
+          EventBus.$emit('folderDeleted', this.folder.id)
           console.log('res', res)
           EventBus.$emit('presentToast', res.data.message)
         })

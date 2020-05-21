@@ -22,7 +22,7 @@ export default {
       presenting: false,
       popoverOpts: [],
       top: 0,
-      bottom: 0
+      left: 0
     }
   },
 
@@ -50,6 +50,8 @@ export default {
 
     dismiss() {
       this.presenting = false;
+      this.top = 0;
+      this.left = 0;
     },
   
     togglePopover() {

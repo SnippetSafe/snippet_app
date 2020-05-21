@@ -62,6 +62,7 @@ import ActionIcon from '../action-icon';
 import Alert from '../alert';
 import BackButton from '../back-button';
 import Card from '../card';
+import Folders from '../folders';
 import Folder from '../folder';
 import FoldersShow from '../folders-show';
 import FolderRow from '../folder-row';
@@ -94,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         BackButton,
         Card,
         Folder,
+        Folders,
         FoldersShow,
         FolderRow,
         Home,
