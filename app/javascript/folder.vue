@@ -93,12 +93,21 @@ export default {
     displayPopover(event) {
       event.stopPropagation()
 
-      const popoverOpts = [
+      let popoverOpts = [
         {
-          title: 'Delete folder',
-          action: this.triggerDeleteAlert
+          title: 'Edit folder',
+          action: () => { console.log('edit folder') }
         }
       ]
+
+      if (this.folder.snippet_count === 0) {
+        popoverOpts.push(
+          {
+            title: 'Delete folder',
+            action: this.triggerDeleteAlert
+          }
+        )
+      }
 
       EventBus.$emit('presentPopover', event, popoverOpts)
     },
