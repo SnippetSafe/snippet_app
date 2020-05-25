@@ -23,10 +23,12 @@
             <span style="font-size: 14px; color: grey;">{{ snippet.user.name }} <span style="margin: 0px 5px;">|</span> {{ snippet.created_at }}</span>
           </div>
           <div style="display: flex; align-items: center;">
-            <img style="margin-left: 12px; margin-bottom: 2px;" src="/icons/heart.svg" width="14">
+            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/heart.svg" width="14">
             <span style="font-size: 12px; margin-left: 4px;">{{ snippet.likes_count }}</span>
-            <img style="margin-left: 12px; margin-bottom: 2px;" src="/icons/star.svg" width="14">
-            <span style="font-size: 12px; margin-left: 4px;">{{ snippet.likes_count }}</span>
+            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/comment.svg" width="14">
+            <span style="font-size: 12px; margin-left: 4px;">{{ snippet.comments_count }}</span>
+            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/star.svg" width="14">
+            <span style="font-size: 12px; margin-left: 4px;">0</span>
           </div>
         </div>
       </a>

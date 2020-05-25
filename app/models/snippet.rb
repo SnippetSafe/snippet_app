@@ -6,6 +6,7 @@ class Snippet < ApplicationRecord
   has_many :likes, dependent: :destroy
   validates_presence_of :body
   validates_presence_of :description
+  validate :owner_folder_presence
 
   # TODO: Don't call serializers from model - just instantiate in controller
   def serializable(current_user)
@@ -46,5 +47,16 @@ class Snippet < ApplicationRecord
       lexer: language.lexer_alias,
       options: { encoding: 'utf-8', linenos: false }
     ).html_safe
+  end
+
+  private
+
+  def owner_folder_presence
+    errors.add(:folder, 'must exist') if owner_folder_removed?
+  end
+
+  #it would be really nice to do this without in memory iteration
+  def owner_folder_removed?
+    folders.none? { |f| f.user_id == user_id }
   end
 end
