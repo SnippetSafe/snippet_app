@@ -25,7 +25,9 @@ class FoldersController < ApplicationController
   def create
     @folder = Folder.create!(folder_params.merge(user: current_user))
 
-    redirect_to @folder
+    flash[:notice] = 'New folder created!'
+
+    redirect_to folders_path
   end
 
   def update
