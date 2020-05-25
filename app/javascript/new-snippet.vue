@@ -49,6 +49,8 @@ import CodeHighlight from './code-highlight';
 import Tabs from './tabs';
 import Tab from './tab';
 
+import { EventBus } from './event-bus.js';
+
 export default {
   components: { Card, CodeHighlight, Tabs, Tab },
 
@@ -83,9 +85,7 @@ export default {
       this.snippetParams.highlighted_body = value;
     })
     this.params =  new URLSearchParams(window.location.search);
-    console.log('fold id', this.params.get("folder_id"))
     this.snippetParams.folder_id = this.params.get("folder_id") 
-  
   },
 
   created() {
@@ -103,16 +103,14 @@ export default {
 
       axios.post('/snippets?ajax=true', { snippet: this.snippetParams })
         .then(res => {
-          console.log(res)
           const snippet = res.data.snippet
 
-
+          EventBus.$emit('presentToast', 'Snippet created!')
           if (this.params.has("redirect_url")) {
             window.location.href = this.params.get("redirect_url");
           } else {
             window.location.href = '/';
           }
-          // this.$parent.$emit('close', snippet)
         })
         .catch(error => this.errors = error.response.data.errors)
     }

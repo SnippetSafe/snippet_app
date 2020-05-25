@@ -2,7 +2,7 @@ class FoldersController < ApplicationController
   before_action :authenticate_user!
   def index
     respond_to do |format|
-      format.html do 
+      format.html do
         @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
           .map { |folder| FolderSerializer.new(folder).to_h }
       end

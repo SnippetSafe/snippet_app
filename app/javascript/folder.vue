@@ -121,6 +121,10 @@ export default {
 
       let popoverOpts = [
         {
+          title: 'Add snippet',
+          action: this.navigateToNewSnippetPage
+        },
+        {
           title: 'Rename folder',
           action: () => { this.showModal = true; }
         }
@@ -178,6 +182,10 @@ export default {
             EventBus.$emit('presentToast', error.response.data.message)
           })
       }
+    },
+
+    navigateToNewSnippetPage() {
+      window.location.href = `/snippets/new?folder_id=${this.folderDup.id}&redirect_url=/folders`
     }
   }
 }
