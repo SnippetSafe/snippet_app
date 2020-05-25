@@ -28,6 +28,16 @@ class FoldersController < ApplicationController
     redirect_to @folder
   end
 
+  def update
+    folder = current_user.folders.find_by(id: params[:id])
+
+    if folder.update(folder_params)
+      render json: { message: 'Folder updated!' }
+    else
+      render json: { message: 'Unable to update folder' }
+    end
+  end
+
   def destroy
     folder = current_user.folders.find_by(id: params[:id])
 

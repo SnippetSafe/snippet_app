@@ -8,6 +8,10 @@ export default {
   },
 
   methods: {
+    updateFolder(folderId, params) {
+      return axios.put(`/folders/${folderId}?ajax=true`, { folder: params })
+    },
+
     deleteFolder(folderId) {
       return axios.delete(`/folders/${folderId}?ajax=true`)
     }

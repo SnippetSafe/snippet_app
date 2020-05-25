@@ -6,7 +6,7 @@
           <li v-for="error in errors" :key="error">{{ error }}</li>
         </ul>
         <tab name="Write" :selected="true">
-          <input class="new-snippet--description" type="text" placeholder="Snippet description..." v-model="snippetParams.description">
+          <input type="text" placeholder="Snippet description..." v-model="snippetParams.description">
           <textarea class="new-snippet--body" :value="snippetParams.body" @input="updateBody" placeholder="Snippet body..."></textarea>
         </tab>
         <tab name="Preview">
@@ -120,20 +120,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .new-snippet {
-  &--description {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 6px;
-    border-radius: 2px;
-    border: 1px solid lightgrey;
-    margin: 16px 0px;
-    font-size: 14px;
-    display: block;
-    font-weight: 100;
-  }
 
   &--body {
     display: flex;

@@ -16,6 +16,18 @@ pre {
 
 h2, span { font-weight: 100; }
 
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+  margin: 16px 0px;
+  font-size: 14px;
+  display: block;
+  font-weight: 100;
+}
+
 #header {
   width: 100%;
   height: 52px;
