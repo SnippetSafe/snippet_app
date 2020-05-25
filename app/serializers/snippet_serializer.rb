@@ -18,7 +18,7 @@ class SnippetSerializer < ActiveModel::Serializer
   )
 
   def liked_by_current_user
-    object.liked_by?(current_user)
+    current_user ? object.liked_by?(current_user) : false
   end
 
   def created_at

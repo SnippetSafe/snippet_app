@@ -24,7 +24,10 @@
     <div class="snippet-show--comments-wrapper">
       <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
     </div>
-    <new-comment @commentCreated="addNewCommentToComments" :snippet="snippet"></new-comment>
+    <new-comment v-if="currentUser" @commentCreated="addNewCommentToComments" :snippet="snippet"></new-comment>
+    <card v-if="!currentUser">
+      <span>Please <a href="/users/sign_in">sign in</a> to leave a comment</span>
+    </card>
   </div>
 </template>
 
@@ -53,7 +56,8 @@ export default {
   data() {
     return {
       snippetDup: this.snippet,
-      comments: this.snippet.comments
+      comments: this.snippet.comments,
+      currentUser: null
     }
   },
 
@@ -73,13 +77,11 @@ export default {
   },
 
   created() {
-    console.log('user', this.$store.state.currentUser)
-    console.log('show snippet', this.snippet)
+    this.currentUser = this.$store.state.currentUser;
   },
 
   methods: {
     addNewCommentToComments(newComment) {
-      console.log('new com', newComment)
       this.snippetDup.comments_count += 1
       this.comments.push(newComment)
     }

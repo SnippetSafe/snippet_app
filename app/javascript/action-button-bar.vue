@@ -57,19 +57,29 @@ export default {
   methods: {
     likeAction() {
       return () => {
-        const likeParams = {
-          user_id: this.currentUser.id,
-          snippet_id: this.snippet.id
+        if (this.currentUser) {
+          const likeParams = {
+            user_id: this.currentUser.id,
+            snippet_id: this.snippet.id
+          }
+  
+          axios.post('/likes?ajax=true', { like: likeParams })
+          .then(res => this.snippetDup = res.data.snippet)
+          .catch(console.error)
+        } else {
+          window.location.href = '/users/sign_up'
         }
-
-        axios.post('/likes?ajax=true', { like: likeParams })
-        .then(res => this.snippetDup = res.data.snippet)
-        .catch(console.error)
       }
     },
 
     commentAction() {
-      return () => window.location.href = `/snippets/${this.snippetDup.id}#new-comment`;
+      return () => {
+        if (this.currentUser) {
+          window.location.href = `/snippets/${this.snippetDup.id}#new-comment`;
+        } else {
+          window.location.href = '/users/sign_up'
+        }
+      }
     }
   }
 }

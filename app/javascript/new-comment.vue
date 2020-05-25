@@ -47,7 +47,6 @@ export default {
   // TODO: Extract this into a class or module that can be reused across the application
   beforeCreate() {
     this.currentUser = this.$store.state.currentUser;
-    console.log('u', this.currentUser)
   },
 
   created() {
@@ -57,11 +56,8 @@ export default {
 
   methods: {
     createComment() {
-      console.log('com params', this.commentParams)
-
       axios.post('/comments?ajax=true', { comment: this.commentParams })
         .then(res => {
-          console.log(res)
           const comment = res.data.comment
 
           this.resetCommentForm()

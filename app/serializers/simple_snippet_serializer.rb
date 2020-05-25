@@ -13,7 +13,7 @@ class SimpleSnippetSerializer < ActiveModel::Serializer
   has_one :user
 
   def liked_by_current_user
-    object.liked_by?(current_user)
+    current_user ? object.liked_by?(current_user) : false
   end
 
   private

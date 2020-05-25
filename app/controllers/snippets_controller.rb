@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   def show
     @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
