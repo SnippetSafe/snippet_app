@@ -1,5 +1,9 @@
 class FoldersController < ApplicationController
+  MINIMUM_FOLDERS = 1.freeze
+
   before_action :authenticate_user!
+  before_action :require_minimum_folders, only: :destroy
+
   def index
     respond_to do |format|
       format.html do
@@ -46,11 +50,17 @@ class FoldersController < ApplicationController
     if folder && folder.destroy
       render json: { message: 'Folder deleted!' }
     else
-      render json: { message: 'Unable to delete folder' }
+      render json: { message: 'Unable to delete folder' }, status: 400
     end
   end
 
   private
+
+  def require_minimum_folders
+    if current_user.folders.size <= MINIMUM_FOLDERS
+      render json: { message: 'Unable to delete your only folder' }, status: 400
+    end
+  end
 
   def folder_params
     params.require(:folder).permit(:name)

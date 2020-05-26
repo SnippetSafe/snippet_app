@@ -30,7 +30,7 @@ export default {
       let rows = [];
       let currentRow = [];
       let n = 1;
-      console.log('folders', this.folderz)
+
       this.folderz.forEach(folder => {
         currentRow.push(folder);
 
@@ -40,22 +40,19 @@ export default {
         }
 
         if (n === this.folderz.length) {
-          console.log('row', currentRow)
           if (currentRow.length > 0) { rows.push(currentRow); };
         } else {
           n++
         }
       })
-      console.log('rows', rows)
+
       return rows;
     }
   },
 
   methods: {
     handleFolderDeletion(folderId) {
-      console.log('id', folderId)
       this.folderz = this.folderz.filter(folder => {
-        console.log(folder.id === folderId)
         return folder.id !== folderId
       })
     }
