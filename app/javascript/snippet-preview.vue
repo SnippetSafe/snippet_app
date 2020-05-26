@@ -68,7 +68,7 @@ export default {
       color: inherit;
 
       &:hover {
-        cursor: pointer;
+        text-decoration: none;
         background-color: #fcfdff;
       }
     }

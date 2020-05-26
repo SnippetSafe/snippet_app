@@ -18,6 +18,7 @@
     justify-content: center;
 
     &:hover {
+      text-decoration: none;
       background-color: $color-light;
     }
   }
