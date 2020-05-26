@@ -14,7 +14,17 @@ pre {
   margin: 16px 18px;
 }
 
-h2, span { font-weight: 100; }
+h2, span, p { font-weight: 100; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: $color-primary;
+  }
+}
 
 input[type=text] {
   width: 100%;
