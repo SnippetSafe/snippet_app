@@ -86,7 +86,7 @@ export default {
     delete() {
       EventBus.$emit('presentAlert', {
         title: 'Delete Snippet',
-        message: 'Are you sure you want to delete this snippet?',
+        message: "Are you sure you want to delete this snippet? You won't be able to undo this.",
         confirm: 'DELETE',
         onConfirm: this.handleDeleteConfirm
       })

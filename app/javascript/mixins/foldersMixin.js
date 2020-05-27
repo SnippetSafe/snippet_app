@@ -11,7 +11,7 @@ export default {
     fileSnippet(folderId, snippetId) {
       const params = { folder_id: folderId, snippet_id: snippetId }
 
-      return axios.put(`folders/file_snippet?ajax=true`, params)
+      return axios.put(`/folders/file_snippet?ajax=true`, params)
     },
     updateFolder(folderId, params) {
       return axios.put(`/folders/${folderId}?ajax=true`, { folder: params })

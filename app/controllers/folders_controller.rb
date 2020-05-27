@@ -63,7 +63,7 @@ class FoldersController < ApplicationController
       
       render json: { message: 'Added snippet to folder' }
     rescue ActiveRecord::RecordInvalid => e
-      render json: { message: "You've already added this snippet to this folder" }, status: 400
+      render json: { message: e.record.errors.full_messages.join(', ') }, status: 400
     end
   end
 
