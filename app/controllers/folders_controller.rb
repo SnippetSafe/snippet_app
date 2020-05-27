@@ -54,6 +54,19 @@ class FoldersController < ApplicationController
     end
   end
 
+  def file_snippet
+    begin
+      folder = current_user.folders.find_by(id: params[:folder_id])
+      snippet = Snippet.find(params[:snippet_id])
+      
+      folder.snippets << snippet
+      
+      render json: { message: 'Added snippet to folder' }
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { message: "You've already added this snippet to this folder" }, status: 400
+    end
+  end
+
   private
 
   def require_minimum_folders

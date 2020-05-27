@@ -9,7 +9,7 @@
     </div>
     <div class="move-snippet--buttons">
       <button @click="closeModal" class="button--cta-cancel">CANCEL</button>
-      <button @click="moveSnippet" :class="buttonClass">MOVE SNIPPET</button>
+      <button @click="confirmAction(folder)" :class="buttonClass">{{ confirmText }}</button>
     </div>
   </div>
 </template>
@@ -25,7 +25,9 @@ export default {
 
   props: {
     snippet: { type: Object, required: true },
-    currentFolder : { type: Object, required: true }
+    currentFolder : { type: Object, required: false },
+    confirmAction: { type: Function, required: true },
+    confirmText: { type: String, required: false, default: 'CONFIRM' }
   },
 
   data() {
@@ -46,18 +48,29 @@ export default {
     selectedFolderId() {
       if (this.folder) {
         return this.folder.id;
-      } else {
+      } else if (this.currentFolder) {
         return this.currentFolder.id
+      } else {
+        undefined
       }
     },
 
     buttonClass() {
-      if (this.newFolderDifferentToCurrent()) {
+      console.log('c', this.newFolderDifferentToCurrent)
+      if (this.newFolderDifferentToCurrent) {
         return "button--cta-new";
       } else {
         return "button--cta-disabled"
       }
-    }
+    },
+
+    newFolderDifferentToCurrent() {
+      if (this.currentFolder) {
+        return this.folder && this.folder.id !== this.currentFolder.id
+      } else {
+        return !!this.folder
+      }
+    },
   },
 
   methods: {
@@ -74,22 +87,6 @@ export default {
         this.folder = folder;
       } else {
         this.folder = null;
-      }
-    },
-
-    newFolderDifferentToCurrent() {
-      return this.folder && this.folder.id !== this.currentFolder.id
-    },
-
-    moveSnippet() {
-      if (this.newFolderDifferentToCurrent()) {
-        this.updateSnippet(this.snippet.id, { folder_id: this.selectedFolderId })
-          .then(res => {
-            EventBus.$emit('closeModal')
-            EventBus.$emit('changeSnippetFolder', this.snippet)
-            EventBus.$emit('presentToast', res.data.message)
-          })
-          .catch(console.error)
       }
     },
 

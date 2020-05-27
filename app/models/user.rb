@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :folders
+  has_many :all_snippets, through: :folders, source: :snippets
   has_many :languages, through: :snippets
   has_many :snippet_folders, through: :folders
 

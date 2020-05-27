@@ -1,7 +1,13 @@
 <template>
   <div>
     <modal v-if="showModal" header="Move Snippet" @close="closeModal">
-      <move-snippet slot="body" :snippet="snippet" :current-folder="currentFolder"></move-snippet>
+      <move-snippet
+        slot="body"
+        :snippet="snippet"
+        :current-folder="currentFolder"
+        :confirm-action="folderConfirm"
+        confirm-text="MOVE SNIPPET">
+      </move-snippet>
     </modal>
 
     <div class="snippets--list-item--wrapper">
@@ -62,7 +68,7 @@ export default {
         { title: 'Move to...', func: this.moveSnippet },
         { title: 'Delete snippet', func: this.delete }
       ],
-      showModal: false,
+      showModal: false
     }
   },
 
@@ -93,7 +99,6 @@ export default {
           EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {
-          console.log(error)
           EventBus.$emit('presentToast', res.data.message)
         })
     },
@@ -117,6 +122,16 @@ export default {
       ]
 
       EventBus.$emit('presentPopover', event, popoverOpts)
+    },
+
+    folderConfirm(folder) {
+      this.updateSnippet(this.snippet.id, { folder_id: folder.id })
+        .then(res => {
+          EventBus.$emit('closeModal')
+          EventBus.$emit('changeSnippetFolder', this.snippet)
+          EventBus.$emit('presentToast', res.data.message)
+        })
+        .catch(console.error)
     }
   }
 }

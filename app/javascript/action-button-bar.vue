@@ -1,5 +1,13 @@
 <template>
   <div class="action-button-bar--wrapper">
+    <modal v-if="showModal" header="File Snippet" @close="closeModal">
+      <move-snippet
+        slot="body"
+        :snippet="snippet"
+        :confirm-action="folderConfirm"
+        confirm-text="FILE SNIPPET">
+      </move-snippet>
+    </modal>
     <action-button
       v-for="button in actionButtons"
       :snippet="snippetDup"
@@ -13,15 +21,22 @@
 </template>
 
 <script>
-import ActionButton from './action-button'
-
+import ActionButton from './action-button';
+import Modal from './modal';
+import MoveSnippet from './move-snippet';
+import foldersMixin from './mixins/foldersMixin';
+import  { EventBus } from './event-bus';
 import { store } from './store';
 import axios from 'axios'
 
 export default {
   components: {
     ActionButton,
+    Modal,
+    MoveSnippet
   },
+
+  mixins: [foldersMixin],
 
   props: {
     snippet: { type: Object, required: true }
@@ -29,7 +44,19 @@ export default {
 
   data() {
     return {
-      snippetDup: this.snippet
+      snippetDup: this.snippet,
+      showModal: false,
+      folderConfirm: (folder) => {
+        this.fileSnippet(folder.id, this.snippet.id)
+          .then(res => {
+            EventBus.$emit('presentToast', res.data.message);
+            this.closeModal();
+          })
+          .catch(error => {
+            EventBus.$emit('presentToast', error.response.data.message);
+            this.closeModal();
+          })
+      }
     }
   },
 
@@ -39,7 +66,7 @@ export default {
         { type: 'heart', count: this.snippetDup.likes_count, action: this.likeAction(), hasActioned: this.snippetDup.liked_by_current_user },
         { type: 'comment', count: this.snippetDup.comments_count, action: this.commentAction(), hasActioned: false },
         { type: 'share' , count: 0, action: () => { console.log('sharing') }, hasActioned: false },
-        { type: 'folder' , count: 0, action: () => { console.log('file') }, hasActioned: false }
+        { type: 'folder' , count: 0, action: this.fileAction, hasActioned: false }
       ]
     }
   },
@@ -55,6 +82,18 @@ export default {
   },
 
   methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+
+    fileAction() {
+      if (this.currentUser) {
+          this.showModal = true
+        } else {
+          window.location.href = '/users/sign_up'
+        }
+    },
+  
     likeAction() {
       return () => {
         if (this.currentUser) {
