@@ -1,13 +1,13 @@
 <template>
   <div>
     <modal v-if="showModal" header="Move Snippet" @close="closeModal">
-      <move-snippet
+      <action-snippet
         slot="body"
         :snippet="snippet"
         :current-folder="currentFolder"
         :confirm-action="folderConfirm"
         confirm-text="MOVE SNIPPET">
-      </move-snippet>
+      </action-snippet>
     </modal>
 
     <div class="snippets--list-item--wrapper">
@@ -46,14 +46,14 @@
 import MoreButton from './more-button';
 import Popover from './popover';
 import Modal from './modal';
-import MoveSnippet from './move-snippet';
+import ActionSnippet from './action-snippet';
 
 import snippetsMixin from './mixins/snippetsMixin';
 
 import { EventBus } from './event-bus.js';
 
 export default {
-  components: { MoreButton, MoveSnippet, Modal, Popover },
+  components: { MoreButton, ActionSnippet, Modal, Popover },
 
   mixins: [snippetsMixin],
 

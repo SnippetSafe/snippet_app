@@ -1,12 +1,12 @@
 <template>
   <div class="action-button-bar--wrapper">
     <modal v-if="showModal" header="File Snippet" @close="closeModal">
-      <move-snippet
+      <action-snippet
         slot="body"
         :snippet="snippet"
         :confirm-action="folderConfirm"
         confirm-text="FILE SNIPPET">
-      </move-snippet>
+      </action-snippet>
     </modal>
     <action-button
       v-for="button in actionButtons"
@@ -23,7 +23,7 @@
 <script>
 import ActionButton from './action-button';
 import Modal from './modal';
-import MoveSnippet from './move-snippet';
+import ActionSnippet from './action-snippet';
 import foldersMixin from './mixins/foldersMixin';
 import  { EventBus } from './event-bus';
 import { store } from './store';
@@ -33,7 +33,7 @@ export default {
   components: {
     ActionButton,
     Modal,
-    MoveSnippet
+    ActionSnippet
   },
 
   mixins: [foldersMixin],
