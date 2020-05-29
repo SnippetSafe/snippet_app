@@ -51,6 +51,7 @@ import ActionSnippet from './action-snippet';
 import snippetsMixin from './mixins/snippetsMixin';
 
 import { EventBus } from './event-bus.js';
+import { store } from './store';
 
 export default {
   components: { MoreButton, ActionSnippet, Modal, Popover },
@@ -70,6 +71,15 @@ export default {
       ],
       showModal: false
     }
+  },
+
+  created() {
+    console.log('nippet', this.snippet)
+  },
+
+  // TODO: Extract this into a class or module that can be reused accross the application
+  beforeCreate() {
+    this.currentUser = this.$store.state.currentUser;
   },
 
   computed: {
@@ -99,7 +109,7 @@ export default {
           EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {
-          EventBus.$emit('presentToast', res.data.message)
+          EventBus.$emit('presentToast', error.response.data.message)
         })
     },
 
@@ -110,16 +120,24 @@ export default {
     displayPopover(event) {
       event.stopPropagation()
 
-      const popoverOpts = [
+      let popoverOpts = [
         {
           title: 'Move to...',
           action: this.moveSnippet
-        },
-        {
-          title: 'Delete snippet',
-          action: this.delete
         }
       ]
+
+      if (this.snippet.user.id === this.currentUser.id) {
+        popoverOpts.push({
+          title: 'Delete snippet',
+          action: this.delete
+        })
+      } else {
+        popoverOpts.push({
+          title: 'Remove from folder',
+          action: () => { console.log('removing from folder') }
+        })
+      }
 
       EventBus.$emit('presentPopover', event, popoverOpts)
     },
