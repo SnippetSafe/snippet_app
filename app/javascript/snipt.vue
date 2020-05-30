@@ -50,6 +50,7 @@ import Modal from './modal';
 import ActionSnippet from './action-snippet';
 
 import snippetsMixin from './mixins/snippetsMixin';
+import foldersMixin from './mixins/foldersMixin';
 
 import { EventBus } from './event-bus.js';
 import { store } from './store';
@@ -57,7 +58,7 @@ import { store } from './store';
 export default {
   components: { MoreButton, ActionSnippet, Modal, Popover },
 
-  mixins: [snippetsMixin],
+  mixins: [snippetsMixin, foldersMixin],
 
   props: {
     snippet: { required: true, type: Object },
@@ -66,10 +67,6 @@ export default {
 
   data() {
     return {
-      snippetOpts: [
-        { title: 'Move to...', func: this.moveSnippet },
-        { title: 'Delete snippet', func: this.delete }
-      ],
       showModal: false
     }
   },
@@ -103,8 +100,28 @@ export default {
       })
     },
 
+    remove() {
+      EventBus.$emit('presentAlert', {
+        title: 'Remove Snippet',
+        message: "Are you sure you want to remove this snippet?",
+        confirm: 'REMOVE',
+        onConfirm: this.handleRemoveConfirm
+      })
+    },
+
     handleDeleteConfirm() {
       this.deleteSnippet(this.snippet.id)
+        .then(res => {
+          this.$emit('deleted', this.snippet.id)
+          EventBus.$emit('presentToast', res.data.message)
+        })
+        .catch(error => {
+          EventBus.$emit('presentToast', error.response.data.message)
+        })
+    },
+
+    handleRemoveConfirm() {
+      this.unfileSnippet(this.currentFolder.id, this.snippet.id)
         .then(res => {
           this.$emit('deleted', this.snippet.id)
           EventBus.$emit('presentToast', res.data.message)
@@ -135,8 +152,8 @@ export default {
         })
       } else {
         popoverOpts.push({
-          title: 'Remove from folder',
-          action: () => { console.log('removing from folder') }
+          title: 'Remove',
+          action: this.remove
         })
       }
 

@@ -54,6 +54,21 @@ class FoldersController < ApplicationController
     end
   end
 
+  # move these to snippets controller
+  def unfile_snippet
+    snippet_folder = SnippetFolder.find_by(
+      folder_id: params[:folder_id],
+      snippet_id: params[:snippet_id]
+    )
+
+    if snippet_folder.destroy
+      render json: { message: 'Snippet removed from folder!' }
+    else
+      render json: { message: 'Failed to remove snippet from folder' }
+    end
+  end
+
+  # move these to snippets controller
   def file_snippet
     begin
       folder = current_user.folders.find_by(id: params[:folder_id])

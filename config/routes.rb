@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :likes, only: :create
   resources :folders, only: %i(index show new create update destroy) do
     put :file_snippet, on: :collection
+    put :unfile_snippet, on: :collection
   end
 end
