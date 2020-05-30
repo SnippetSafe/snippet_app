@@ -8,6 +8,7 @@
     padding: 8px;
 
     &:hover {
+      text-decoration: none;
       background-color: $color-light;
       cursor: pointer;
     }
