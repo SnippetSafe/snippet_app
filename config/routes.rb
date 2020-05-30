@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :snippets, only: %i(new show create update destroy)
   resources :comments, only: :create
+  resources :users, only: :show
   resources :likes, only: :create
   resources :folders, only: %i(index show new create update destroy) do
     put :file_snippet, on: :collection

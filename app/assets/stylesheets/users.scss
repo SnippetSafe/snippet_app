@@ -1,0 +1,15 @@
+@import './variables.scss';
+
+.users {
+  &-show {
+    &--name {
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+    
+    &--description {
+      height: 40px;
+      margin-bottom: 20px;
+    }
+  }
+}

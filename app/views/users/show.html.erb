@@ -1,0 +1,28 @@
+<card>
+  <div>
+    <div class="flex v-center">
+      <div class="flex flex-column">
+        <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="120" width="120" />
+      </div>
+      <div class="margin-left">
+        <div class="flex space-between v-center">
+          <h2 class="users-show--name"><%= @user.name %></h2>
+          <span class="language-tag"><%= @user.snippets.size %> snippets</span>
+        </div>
+        <div style="height: 40px;">
+          <span>Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.</span>
+        </div>
+      </div>
+    </div>
+    <div class="margin-top">
+      <button class="button--cta-follow text-center">FOLLOW</button>
+    </div>
+  </div>
+</card>
+
+<% @user.snippets.order(created_at: :desc).each do |snippet| %>
+  <snippet-preview
+    :key="<%= snippet.id %>"
+    :snippet="<%= snippet.serialize(current_user).to_json %>">
+  </snippet-preview>
+<% end %>

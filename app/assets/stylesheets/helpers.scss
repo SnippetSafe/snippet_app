@@ -1,6 +1,11 @@
 // FLEXBOX
 
 .flex { display: flex }
+.flex-column { flex-direction: column; }
+.v-center { align-items: center; }
+.h-center { justify-content: center; }
+
+.space-between { justify-content: space-between; }
 
 // DISPLAY
 
@@ -11,3 +16,11 @@
 .no-margin { margin: 0px }
 .no-margin-bottom { margin-bottom: 0px; }
 .margin-top { margin-top: 16px }
+.margin-top { margin-top: 16px }
+.margin-left { margin-left: 16px }
+
+.text-center { text-align: center; }
+
+// FONT
+
+.normal { font-weight: normal; }
