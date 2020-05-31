@@ -77,6 +77,7 @@ import Snipt from '../snipt.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
 import Toast from '../toast.vue';
+import UserProfile from '../user-profile.vue'
 
 // Vue.use(TurbolinksAdapter)
 
@@ -108,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
         SnippetListItem,
         SnippetPreview,
         SnippetShow,
-        Toast
+        Toast,
+        UserProfile
       },
       created() {
         const currentUser = JSON.parse(appElement.dataset.user);
