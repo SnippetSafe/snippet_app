@@ -29,6 +29,36 @@ class User < ApplicationRecord
   #TODO: Add tests for this
   after_create :create_default_folder
 
+  def follow(user)
+    Follow.create(followed_user_id: user.id, follower_id: id)
+  end
+
+  def unfollow(user)
+    follow = Follow.find_by(followed_user_id: user.id, follower_id: id)
+
+    raise 'You do not follow this person' unless follow.present?
+
+    follow.destroy!
+  end
+
+  def following?(user)
+    following.find_by(id: user.id).present?
+  end
+
+  # TODO: Use cache counter instead of this
+  def followers_count
+    followers.size
+  end
+
+  # TODO: Use cache counter instead of this
+  def snippets_count
+    snippets.size
+  end
+
+  def serialize
+    UserSerializer.new(self).to_h
+  end
+
   private
 
   def create_default_folder

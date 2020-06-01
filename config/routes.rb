@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :snippets, only: %i(new show create update destroy)
   resources :comments, only: :create
-  resources :users, only: :show
+  resources :users, only: :show do
+    post :follow, on: :member
+    post :unfollow, on: :member
+  end
+
   resources :likes, only: :create
   resources :folders, only: %i(index show new create update destroy) do
     put :file_snippet, on: :collection

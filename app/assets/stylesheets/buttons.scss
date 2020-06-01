@@ -42,8 +42,26 @@
       width: 120px;
       border: 1px solid $color-primary;
 
+      &:focus { outline: 0; }
+
       &:hover {
         background-color: $color-light;
+      }
+    }
+
+    &-unfollow {
+      @extend .button--cta;
+
+      width: 120px;
+      color: $color-white;
+      background-color: $color-primary;
+      border: 1px solid $color-primary;
+
+      &:focus { outline: 0; }
+
+      &:hover {
+        color: $color-primary;
+        background-color: $color-white;
       }
     }
 

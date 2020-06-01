@@ -1,7 +1,7 @@
 <card>
   <user-profile
-    :user="<%= @user.to_json %>"
-    :snippets-count="<%= @user.snippets.size %>"
+    :user="<%= @user.serialize.to_json %>"
+    :is-following="<%= @following %>"
   />
 </card>
 

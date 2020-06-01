@@ -7,7 +7,8 @@
       <div class="margin-left">
         <div class="flex space-between v-center">
           <h2 class="users-show--name">{{ user.name }}</h2>
-          <span class="language-tag">{{ snippetsCount }} snippets</span>
+          <span class="language-tag">{{ user.followers_count }} followers</span>
+          <span class="language-tag">{{ user.snippets_count }} snippets</span>
         </div>
         <div style="height: 40px;">
           <span>Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.</span>
@@ -15,21 +16,75 @@
       </div>
     </div>
     <div class="margin-top">
-      <button @click="followAction" class="button--cta-follow text-center">FOLLOW</button>
+      <button @click="followAction" @mouseenter="isHovering = true" @mouseleave="isHovering = false" :class="[buttonClass, 'text-center']">{{ buttonText }}</button>
     </div>
   </div>
 </template>
 
 <script>
+import usersMixin from './mixins/usersMixin';
+import { EventBus } from './event-bus.js';
+
 export default {
+  mixins: [usersMixin],
+
   props: {
     user: { type: Object, required: true },
-    snippetsCount: { type: Number, required: true }
+    isFollowing: { type: Boolean, required: true }
+  },
+
+  data() {
+    return {
+      isFollowingDup: this.isFollowing,
+      isHovering: false
+    }
+  },
+
+  created() {
+    console.log('user', this.user)
+  },
+
+  computed: {
+    buttonClass() {
+      return this.isFollowingDup ? 'button--cta-unfollow' : 'button--cta-follow'
+    },
+
+    buttonText() {
+      if (this.isFollowingDup && this.isHovering) {
+        return 'UNFOLLOW';
+      } else if (this.isFollowingDup) {
+        return 'FOLLOWING';
+      } else {
+        return 'FOLLOW';
+      }
+    }
   },
 
   methods: {
     followAction() {
-      console.log('follow')
+      if (!this.isFollowingDup) {
+        this.followUser(this.user.id)
+          .then(res => {
+            console.log('yay', res)
+            this.isFollowingDup = true;
+            EventBus.$emit('presentToast', res.data.message)
+          })
+          .catch(error => {
+            console.log(error)
+            EventBus.$emit('presentToast', error.response.data.message)
+          })
+      } else {
+        this.unfollowUser(this.user.id)
+          .then(res => {
+            console.log('yay', res)
+            this.isFollowingDup = false;
+            EventBus.$emit('presentToast', res.data.message)
+          })
+          .catch(error => {
+            console.log(error)
+            EventBus.$emit('presentToast', error.response.data.message)
+          })
+      }
     }
   }
 }
