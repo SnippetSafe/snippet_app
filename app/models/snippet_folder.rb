@@ -8,7 +8,7 @@ class SnippetFolder < ApplicationRecord
   def snippet_filed_already
     user = Folder.find(folder_id).user
 
-    if user.all_snippets.find_by(id: snippet_id).present?
+    if user.filed_snippets.find_by(id: snippet_id).present?
       errors.add(:snippet, 'already filed in a folder')
     end
   end

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
-      @snippets = Snippet.includes(:user)
+      @snippets = current_user.followed_snippets
         .order(created_at: :desc)
         .map { |s| s.simple_serialize(current_user) } #this is currently hitting the db for every liked_by?
     else

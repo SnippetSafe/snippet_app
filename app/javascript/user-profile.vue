@@ -16,7 +16,8 @@
       </div>
     </div>
     <div class="margin-top">
-      <button @click="followAction" @mouseenter="isHovering = true" @mouseleave="isHovering = false" :class="[buttonClass, 'text-center']">{{ buttonText }}</button>
+      <button v-if="isViewingOwnProfile" @click="goToEditProfile" class="button--cta-follow">EDIT PROFILE</button>
+      <button v-else @click="followAction" @mouseenter="isHovering = true" @mouseleave="isHovering = false" :class="[buttonClass, 'text-center']">{{ buttonText }}</button>
     </div>
   </div>
 </template>
@@ -36,15 +37,25 @@ export default {
   data() {
     return {
       isFollowingDup: this.isFollowing,
-      isHovering: false
+      isHovering: false,
+
     }
   },
 
+  beforeCreate() {
+    this.currentUser = this.$store.state.currentUser;
+  },
+
   created() {
-    console.log('user', this.user)
+    console.log('current user', this.currentUser)
+    console.log('viewing user', this.user)
   },
 
   computed: {
+    isViewingOwnProfile() {
+      return this.user.id === this.currentUser.id;
+    },
+
     buttonClass() {
       return this.isFollowingDup ? 'button--cta-unfollow' : 'button--cta-follow'
     },
@@ -61,6 +72,10 @@ export default {
   },
 
   methods: {
+    goToEditProfile() {
+      window.location.href = '/users/edit';
+    },
+
     followAction() {
       if (!this.isFollowingDup) {
         this.followUser(this.user.id)
