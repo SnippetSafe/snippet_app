@@ -5,6 +5,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  has_many :folders
+  has_many :snippet_folders, through: :folders
+
   # Will return an array of follows for the given user instance
   has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow"
   # Will return an array of users who follow the user instance
@@ -16,13 +19,7 @@ class User < ApplicationRecord
 
   has_many :snippets
   has_many :filed_snippets, through: :folders, source: :snippets
-  # This does not currently return the users own snippets
-  # May need to use custom SQL query for this as .or() does not allow joins
-  # See commented snippets_for_feed method
   has_many :followed_snippets, through: :following, source: :snippets
-
-  has_many :folders
-  has_many :snippet_folders, through: :folders
 
   has_many :comments
   has_many :likes
@@ -61,9 +58,11 @@ class User < ApplicationRecord
     UserSerializer.new(self).to_h
   end
 
-  # def snippets_for_feed
-  #   snippets.or(followed_snippets).order(created_at: :desc)
-  # end
+  def snippets_for_feed
+    snippet_ids = followed_snippets.pluck(:id).concat(snippets.pluck(:id))
+
+    Snippet.where(id: snippet_ids).order(created_at: :desc)
+  end
 
   private
 
