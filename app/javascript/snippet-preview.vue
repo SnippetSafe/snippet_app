@@ -2,13 +2,7 @@
   <card>
     <a class="snippet-preview--container" :href="snippetUrl">
       <div class="snippet-preview--author-wrapper">
-        <div style="display: flex;">
-          <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
-          <div style="margin-left: 12px; margin-top: 8px;">
-            <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ snippet.user.name }}</span>
-            <span style="font-size: 12px; color: gray;">23 minutes ago</span>
-          </div>
-        </div>
+        <user-preview :user="snippet.user"/>
         <div>
           <div style="font-size: 14px;">
             <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>
@@ -31,6 +25,7 @@ import ActionButtonBar from './action-button-bar';
 import Card from './card';
 import CodeHighlight from './code-highlight';
 import SnippetHeader from './snippet-header';
+import UserPreview from './user-preview';
 
 export default {
   components: {
@@ -38,6 +33,7 @@ export default {
     Card,
     CodeHighlight,
     SnippetHeader,
+    UserPreview
   },
 
   props: {
