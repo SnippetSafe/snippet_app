@@ -2,7 +2,7 @@
   <card>
     <a class="snippet-preview--container" :href="snippetUrl">
       <div class="snippet-preview--author-wrapper">
-        <user-preview :user="snippet.user"/>
+        <user-preview :user="snippet.user" :snippet="snippet"/>
         <div>
           <div style="font-size: 14px;">
             <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>

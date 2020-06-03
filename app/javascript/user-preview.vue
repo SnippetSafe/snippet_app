@@ -7,7 +7,7 @@
       <a :href="`/users/${user.id}`">
         <span class="user-preview--summary-name">{{ user.name }}</span>
       </a>
-      <span class="user-preview--summary-time-ago">23 minutes ago</span>
+      <span class="user-preview--summary-time-ago">{{ snippet.created_at }}</span>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@
 <script>
 export default {
   props: {
-    user: { type: Object, required: true }
+    user: { type: Object, required: true },
+    snippet: { type: Object, required: true }
   }
 }
 </script>
