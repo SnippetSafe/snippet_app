@@ -50,6 +50,11 @@ class User < ApplicationRecord
   end
 
   # TODO: Use cache counter instead of this
+  def following_count
+    following.size
+  end
+
+  # TODO: Use cache counter instead of this
   def snippets_count
     snippets.size
   end

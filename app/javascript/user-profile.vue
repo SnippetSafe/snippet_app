@@ -7,17 +7,20 @@
       <div class="margin-left">
         <div class="flex space-between v-center">
           <h2 class="users-show--name">{{ user.name }}</h2>
-          <span class="language-tag">{{ user.followers_count }} followers</span>
-          <span class="language-tag">{{ user.snippets_count }} snippets</span>
+          <div class="flex flex-end">
+            <count-tag href="/" identifier="followers" :count="user.followers_count" color="inverse"/>
+            <count-tag href="/" identifier="following" :count="user.following_count" color="inverse"/>
+          </div>
         </div>
         <div style="height: 40px;">
           <span>Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.</span>
         </div>
       </div>
     </div>
-    <div class="margin-top">
+    <div class="margin-top flex space-between">
       <button v-if="isViewingOwnProfile" @click="goToEditProfile" class="button--cta-follow">EDIT PROFILE</button>
       <button v-else @click="followAction" @mouseenter="isHovering = true" @mouseleave="isHovering = false" :class="[buttonClass, 'text-center']">{{ buttonText }}</button>
+      <count-tag identifier="snippets"  :count="user.snippets_count" color="purple"/>
     </div>
   </div>
 </template>
@@ -26,7 +29,11 @@
 import usersMixin from './mixins/usersMixin';
 import { EventBus } from './event-bus.js';
 
+import CountTag from './count-tag';
+
 export default {
+  components: { CountTag },
+
   mixins: [usersMixin],
 
   props: {

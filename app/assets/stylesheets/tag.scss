@@ -1,0 +1,45 @@
+@import './variables.scss';
+
+.tag {
+  font-size: 11px;
+  background-color: $color-primary;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: $color-white;
+  display: inline-block;
+  border: 1px solid $color-primary;
+
+  &--count {
+    @extend .tag;
+
+    margin-left: 8px;
+
+    &-primary {
+      @extend .tag--count;
+    }
+
+    &-purple {
+      @extend .tag--count;
+
+      border: 1px solid $color-purple;
+      background-color: $color-purple;
+    }
+
+    &-inverse {
+      @extend .tag--count;
+
+      background-color: $color-white;
+      color: $color-primary;
+
+      &--active {
+        @extend .tag--count-inverse;
+
+        &:hover {
+          text-decoration: none;
+          background-color: $color-primary;
+          color: $color-white;
+        }
+      }
+    }
+  }
+}
