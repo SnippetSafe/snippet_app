@@ -1,0 +1,7 @@
+<%# extract to partial %>
+<card>
+  <user-profile
+    :user="<%= @user.serialize.to_json %>"
+    :is-following="<%= @following %>"
+  />
+</card>

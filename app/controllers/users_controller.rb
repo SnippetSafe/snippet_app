@@ -4,6 +4,16 @@ class UsersController < ApplicationController
     @following = current_user.following?(@user)
   end
 
+  def followers
+    @user = User.find_by(id: params[:id])
+    @following = current_user.following?(@user)
+  end
+
+  def following
+    @user = User.find_by(id: params[:id])
+    @following = current_user.following?(@user)
+  end
+
   def follow
     @user = User.find_by(id: params[:id])
 

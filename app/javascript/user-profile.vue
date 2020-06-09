@@ -8,8 +8,8 @@
         <div class="flex space-between v-center">
           <h2 class="users-show--name">{{ user.name }}</h2>
           <div class="flex flex-end">
-            <count-tag href="/" identifier="followers" :count="user.followers_count" color="inverse"/>
-            <count-tag href="/" identifier="following" :count="user.following_count" color="inverse"/>
+            <count-tag :href="`/users/${user.id}/followers`" identifier="followers" :count="user.followers_count" :color="colorForTag('followers')"/>
+            <count-tag :href="`/users/${user.id}/following`" identifier="following" :count="user.following_count" :color="colorForTag('following')"/>
           </div>
         </div>
         <div style="height: 40px;">
@@ -45,7 +45,6 @@ export default {
     return {
       isFollowingDup: this.isFollowing,
       isHovering: false,
-
     }
   },
 
@@ -54,8 +53,7 @@ export default {
   },
 
   created() {
-    console.log('current user', this.currentUser)
-    console.log('viewing user', this.user)
+    console.log('h', window.location.href)
   },
 
   computed: {
@@ -79,6 +77,15 @@ export default {
   },
 
   methods: {
+    colorForTag(location) {
+      console.log(window.location.href.includes(location))
+      if (window.location.href.includes(location)) {
+        return 'primary';
+      } else {
+        return 'inverse';
+      }
+    },
+  
     goToEditProfile() {
       window.location.href = '/users/edit';
     },

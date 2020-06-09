@@ -16,6 +16,16 @@
 
     &-primary {
       @extend .tag--count;
+
+      &--active {
+        @extend .tag--count-primary;
+
+        // &:hover {
+        //   text-decoration: none;
+        //   background-color: $color-white;
+        //   color: $color-primary;
+        // }
+      }
     }
 
     &-purple {

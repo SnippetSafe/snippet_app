@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     post :follow, on: :member
     post :unfollow, on: :member
+    get :followers, on: :member
+    get :following, on: :member
   end
 
   resources :likes, only: :create
