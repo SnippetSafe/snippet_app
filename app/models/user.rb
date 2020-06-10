@@ -28,6 +28,10 @@ class User < ApplicationRecord
   #TODO: Add tests for this
   after_create :create_default_folder
 
+  def description
+    'Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.'
+  end
+
   def follow(user)
     Follow.create(followed_user_id: user.id, follower_id: id)
   end

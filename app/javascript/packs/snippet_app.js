@@ -77,6 +77,7 @@ import Snipt from '../snipt.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
 import Toast from '../toast.vue';
+import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
 
 // Vue.use(TurbolinksAdapter)
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         SnippetPreview,
         SnippetShow,
         Toast,
+        UserPreview,
         UserProfile
       },
       created() {
