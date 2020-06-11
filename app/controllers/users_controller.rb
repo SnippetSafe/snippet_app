@@ -1,20 +1,9 @@
 class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
-    @following = current_user.following?(@user)
-  end
-
-  def followers
-    @user = User.find_by(id: params[:id])
     @serialized_user = @user.serialize.to_json
     @is_following = current_user.following?(@user)
     @followers = @user.followers
-  end
-
-  def following
-    @user = User.find_by(id: params[:id])
-    @serialized_user = @user.serialize.to_json
-    @is_following = current_user.following?(@user)
     @following = @user.following
   end
 

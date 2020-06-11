@@ -76,6 +76,8 @@ import SnippetListItem from '../snippet-list-item.vue'
 import Snipt from '../snipt.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
+import Tabs from '../tabs.vue';
+import Tab from '../tab.vue';
 import Toast from '../toast.vue';
 import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
@@ -110,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         SnippetListItem,
         SnippetPreview,
         SnippetShow,
+        Tab,
+        Tabs,
         Toast,
         UserPreview,
         UserProfile

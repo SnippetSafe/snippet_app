@@ -7,6 +7,16 @@
 }
 
 .follow {
+  &--container {
+    display: block;
+    padding: 8px;
+    
+    &:hover {
+      background-color: $color-light;
+      text-decoration: none;
+    }
+  }
+
   &--description {
     display: block;
     margin-top: 8px;
