@@ -4,6 +4,7 @@
       <h3 slot="header">New Snippet</h3>
       <new-snippet :languages="[]" slot="body" />
     </modal>
+
     <snippet-preview
       v-for="snippet in snippetz"
       :key="snippet.id"
@@ -14,6 +15,7 @@
 
 <script>
 import marked from 'marked'
+import Card from './card';
 import Modal from './modal'
 import NewSnippet from './new-snippet'
 import SnippetPreview from './snippet-preview'
@@ -21,7 +23,7 @@ import SnippetPreview from './snippet-preview'
 import { EventBus } from './event-bus';
 
 export default {
-  components: { Modal, NewSnippet, SnippetPreview },
+  components: { Card, Modal, NewSnippet, SnippetPreview },
 
   props: {
     snippets: { type: Array, required: true },

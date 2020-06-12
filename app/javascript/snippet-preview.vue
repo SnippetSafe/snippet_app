@@ -22,16 +22,16 @@
 
 <script>
 import ActionButtonBar from './action-button-bar';
-import Card from './card';
 import CodeHighlight from './code-highlight';
+import Card from './card';
 import SnippetHeader from './snippet-header';
 import UserPreview from './user-preview';
 
 export default {
   components: {
     ActionButtonBar,
-    Card,
     CodeHighlight,
+    Card,
     SnippetHeader,
     UserPreview
   },
