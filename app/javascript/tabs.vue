@@ -59,6 +59,7 @@ export default {
     &--header {
       padding: 16px;
       border-radius: 2px;
+      border-bottom: 1px solid lightgray;
 
       &:hover {
         cursor: pointer;
@@ -68,8 +69,9 @@ export default {
       &-active {
         @extend .tabs--header;
 
-        text-decoration: underline;
-        text-decoration-color: #3AAFA9;
+        // text-decoration: underline;
+        // text-decoration-color: #3AAFA9;
+        border-bottom: 2px solid #3AAFA9;
       }
     }
   }

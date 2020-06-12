@@ -10,7 +10,7 @@
       </action-snippet>
     </modal>
 
-    <div class="snippets--list-item--wrapper">
+    <list-item>
       <a class="snippets--list-item" :href="snippetPath">
         <div class="snippets--list-item--title-wrapper">
           <span class="snippets--list-item--title-link">{{ snippet.description }}</span>
@@ -39,15 +39,16 @@
           </div>
         </div>
       </a>
-    </div>
+    </list-item>
   </div>
 </template>
 
 <script>
+import ActionSnippet from './action-snippet';
+import ListItem from './list-item';
+import Modal from './modal';
 import MoreButton from './more-button';
 import Popover from './popover';
-import Modal from './modal';
-import ActionSnippet from './action-snippet';
 
 import snippetsMixin from './mixins/snippetsMixin';
 import foldersMixin from './mixins/foldersMixin';
@@ -56,7 +57,7 @@ import { EventBus } from './event-bus.js';
 import { store } from './store';
 
 export default {
-  components: { MoreButton, ActionSnippet, Modal, Popover },
+  components: { MoreButton, ListItem, ActionSnippet, Modal, Popover },
 
   mixins: [snippetsMixin, foldersMixin],
 

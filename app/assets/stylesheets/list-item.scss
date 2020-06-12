@@ -1,0 +1,9 @@
+@import './variables.scss';
+
+.list-item {
+  &--wrapper {
+    border: 1px solid $color-light;
+    border-radius: 5px;
+    margin: 16px 0px;
+  }
+}

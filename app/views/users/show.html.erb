@@ -17,24 +17,22 @@
     </tab>
     <tab name="<%= @followers.size %> Followers">
       <% @followers.each_with_index do |follower, index| %>
-        <% if index > 0 %>
-          <div class="horizontal-line"></div>
-        <% end %>
-        <a href="<%= user_path(follower)%>" class="follow--container">
-          <user-preview :user="<%= follower.serialize.to_json %>"></user-preview>
-          <span class="follow--description"><%= follower.description %></span>
-        </a>
+        <list-item>
+          <a href="<%= user_path(follower)%>" class="follow--container">
+            <user-preview :user="<%= follower.serialize.to_json %>"></user-preview>
+            <span class="follow--description"><%= follower.description %></span>
+          </a>
+        </list-item>
       <% end %>
     </tab>
     <tab name="<%= @following.size %> Following">
       <% @following.each_with_index do |following_user, index| %>
-        <% if index > 0 %>
-          <div class="horizontal-line"></div>
-        <% end %>
-        <a href="<%= user_path(following_user)%>" class="follow--container">
-          <user-preview :user="<%= following_user.serialize.to_json %>"></user-preview>
-          <span class="follow--description"><%= following_user.description %></span>
-        </a>
+        <list-item>
+          <a href="<%= user_path(following_user)%>" class="follow--container">
+            <user-preview :user="<%= following_user.serialize.to_json %>"></user-preview>
+            <span class="follow--description"><%= following_user.description %></span>
+          </a>
+        </list-item>
       <% end %>
     </tab>
   </tabs>

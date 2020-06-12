@@ -72,7 +72,7 @@ import NewSnippet from '../new-snippet.vue'
 import NewSnippetButton from '../new-snippet-button.vue'
 import Popover from '../popover.vue';
 import Sidebar from '../sidebar.vue'
-import SnippetListItem from '../snippet-list-item.vue'
+import ListItem from '../list-item.vue'
 import Snipt from '../snipt.vue'
 import SnippetPreview from '../snippet-preview.vue'
 import SnippetShow from '../snippet-show.vue'
@@ -103,13 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
         FoldersShow,
         FolderRow,
         Home,
+        ListItem,
         Modal,
         NewSnippet,
         NewSnippetButton,
         Popover,
         Snipt,
         Sidebar,
-        SnippetListItem,
         SnippetPreview,
         SnippetShow,
         Tab,
