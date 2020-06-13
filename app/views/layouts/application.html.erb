@@ -23,9 +23,11 @@
       <alert></alert>
       <popover></popover>
 
+      <%= render partial: 'shared/topbar' %>
+
       <div id="app">
         <div style="display: flex;">
-          <div style="flex: 1">
+          <div style="flex: 1; margin-right: 16px;">
             <%= render 'shared/sidebar' %>
           </div>
           <div style="flex: 4;">
