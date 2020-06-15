@@ -11,7 +11,7 @@
     </div>
       <p class="snippet-show--description">{{ snippetDup.description }}</p>
       <div style="display: flex; flex-direction: column;">
-        <code-highlight :highlighted-code="snippet.highlighted_body"></code-highlight>
+        <code-highlight style="overflow-x: scroll;" :highlighted-code="snippet.highlighted_body"></code-highlight>
         <action-button-bar :snippet="snippetDup"></action-button-bar>
       </div>
     </card>
