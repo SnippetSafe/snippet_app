@@ -7,7 +7,7 @@
       <a :href="`/users/${user.id}`">
         <span class="user-preview--summary-name">{{ user.name }}</span>
       </a>
-      <span v-if="snippet" class="user-preview--summary-time-ago">{{ snippet.created_at }}</span>
+      <span v-if="date" class="user-preview--summary-time-ago">{{ date }}</span>
       <span v-else class="user-preview--summary-time-ago">@{{ user.name }}</span>
     </div>
   </div>
@@ -17,7 +17,7 @@
 export default {
   props: {
     user: { type: Object, required: true },
-    snippet: { type: Object, required: false }
+    date: { type: String, required: false }
   }
 }
 </script>

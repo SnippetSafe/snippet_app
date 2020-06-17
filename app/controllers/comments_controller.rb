@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
 
     if comment.save
-      render json: { comment: comment }
+      render json: { comment: comment.serialize }
     else
       render json: { errors: comment.errors.full_messages }, status: 400
     end

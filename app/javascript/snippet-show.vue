@@ -2,7 +2,7 @@
   <div>
     <card>
       <div class="snippet-preview--author-wrapper">
-      <user-preview :user="snippet.user" :snippet="snippet"/>
+      <user-preview :user="snippet.user" :date="snippet.created_at"/>
       <div>
         <div style="font-size: 14px;">
           <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>

@@ -4,6 +4,10 @@ class Comment < ApplicationRecord
 
   validates_presence_of :body
 
+  def serialize
+    CommentSerializer.new(self).to_h
+  end
+
   def user_name
     user.name
   end
