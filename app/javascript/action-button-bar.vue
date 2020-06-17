@@ -65,8 +65,7 @@ export default {
       return [
         { type: 'heart', count: this.snippetDup.likes_count, action: this.likeAction(), hasActioned: this.snippetDup.liked_by_current_user },
         { type: 'comment', count: this.snippetDup.comments_count, action: this.commentAction(), hasActioned: false },
-        { type: 'share' , count: 0, action: () => { console.log('sharing') }, hasActioned: false },
-        { type: 'folder' , count: 0, action: this.fileAction, hasActioned: false }
+        { type: 'star' , count: 0, action: this.fileAction, hasActioned: false }
       ]
     }
   },
@@ -128,8 +127,6 @@ export default {
   .action-button-bar {
     &--wrapper {
       display: flex;
-      // border: 1px solid lightgrey;
-      // border-top: none;
     }
   }
 </style>

@@ -29,14 +29,7 @@
             <img style="border-radius: 50%; margin-right: 10px;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="24" width="24" />
             <span style="font-size: 14px; color: grey;">{{ snippet.user.name }} <span style="margin: 0px 5px;">|</span> {{ snippet.created_at }}</span>
           </div>
-          <div style="display: flex; align-items: center;">
-            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/heart.svg" width="14">
-            <span style="font-size: 12px; margin-left: 4px;">{{ snippet.likes_count }}</span>
-            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/comment.svg" width="14">
-            <span style="font-size: 12px; margin-left: 4px;">{{ snippet.comments_count }}</span>
-            <img style="margin-left: 10px; margin-bottom: 2px;" src="/icons/star.svg" width="14">
-            <span style="font-size: 12px; margin-left: 4px;">0</span>
-          </div>
+          <action-button-bar :snippet="snippet"></action-button-bar>
         </div>
       </a>
     </list-item>
@@ -44,6 +37,7 @@
 </template>
 
 <script>
+import ActionButtonBar from './action-button-bar';
 import ActionSnippet from './action-snippet';
 import ListItem from './list-item';
 import Modal from './modal';
@@ -57,7 +51,7 @@ import { EventBus } from './event-bus.js';
 import { store } from './store';
 
 export default {
-  components: { MoreButton, ListItem, ActionSnippet, Modal, Popover },
+  components: { ActionButtonBar, MoreButton, ListItem, ActionSnippet, Modal, Popover },
 
   mixins: [snippetsMixin, foldersMixin],
 

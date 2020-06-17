@@ -4,17 +4,17 @@
       <div class="snippet-preview--author-wrapper">
         <user-preview :user="snippet.user" :date="snippet.created_at"/>
         <div>
-          <div style="font-size: 14px;">
-            <span style="display: inline-block; font-family: Helvetica, sans serif; font-weight: lighter;">{{ snippet.language }}</span>
+          <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+              <span class="language-tag">{{ snippet.language }}</span>
+            </div>
+            <action-button-bar :snippet="snippet"></action-button-bar>
           </div>
         </div>
       </div>
       <p class="snippet-preview--description">{{ snippet.description }}</p>
       <div style="display: flex; flex-direction: column;">
-        <!-- <snippet-header :filename="snippet.filename" :href="snippetUrl"></snippet-header> -->
-        <!-- <a class="snippet-preview--content-wrapper" v-html="snippet.highlighted_body" :href="snippetUrl"></a> -->
         <code-highlight class="snippet-preview--content" :highlighted-code="snippet.highlighted_body"></code-highlight>
-        <action-button-bar :snippet="snippet"></action-button-bar>
       </div>
     </a>
   </card>
