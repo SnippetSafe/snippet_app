@@ -62,6 +62,8 @@ import ActionIcon from '../action-icon';
 import Alert from '../alert';
 import BackButton from '../back-button';
 import Card from '../card';
+import EditAvatar from '../edit-avatar';
+import EditProfile from '../edit-profile';
 import Folders from '../folders';
 import Folder from '../folder';
 import FoldersShow from '../folders-show';
@@ -98,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
         Alert,
         BackButton,
         Card,
+        EditAvatar,
+        EditProfile,
         Folder,
         Folders,
         FoldersShow,
