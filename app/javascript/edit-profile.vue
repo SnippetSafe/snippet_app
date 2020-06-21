@@ -22,6 +22,7 @@ import EditAvatar from './edit-avatar';
 import FormField from './form-field';
 
 import usersMixin from './mixins/usersMixin';
+import { EventBus } from './event-bus.js';
 
 export default {
   components: { EditAvatar, FormField },
@@ -32,8 +33,8 @@ export default {
     return {
       userParams: {
         name: this.currentUser.name,
-        bio: 'Dummy bio',
-        location: 'Cambridge UK'
+        bio: this.currentUser.bio,
+        location: this.currentUser.location
       }
     }
   },
@@ -45,14 +46,13 @@ export default {
 
   methods: {
     saveForm() {
-      console.log('params', this.userParams)
-
       this.updateUser(this.userParams)
         .then(res => {
-          console.log('aya', res)
+          EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {
           console.error(error)
+          EventBus.$emit('presentToast', error.response.data.message)
         })
     }
   }
