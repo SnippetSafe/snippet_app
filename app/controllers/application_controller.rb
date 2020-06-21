@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  respond_to :html, :json
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
 

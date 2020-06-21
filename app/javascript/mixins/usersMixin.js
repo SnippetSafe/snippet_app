@@ -8,6 +8,10 @@ export default {
   },
 
   methods: {
+    updateUser(userParams) {
+      return axios.put(`/users?ajax=true`, { user: userParams })
+    },
+
     followUser(userId) {
       return axios.post(`/users/${userId}/follow?ajax=true`)
     },

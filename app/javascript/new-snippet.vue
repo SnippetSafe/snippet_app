@@ -99,8 +99,6 @@ export default {
     }, 300),
 
     createSnippet() {
-      console.log('snippet params', this.snippetParams)
-
       axios.post('/snippets?ajax=true', { snippet: this.snippetParams })
         .then(res => {
           const snippet = res.data.snippet

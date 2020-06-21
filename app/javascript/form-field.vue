@@ -37,7 +37,7 @@ export default {
 
   methods: {
     emitValueChange() {
-      this.$emit('change', this.valueDup)
+      this.$emit('input', this.valueDup)
     }
   }
 }
