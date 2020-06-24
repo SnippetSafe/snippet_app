@@ -8,8 +8,14 @@ export default {
   },
 
   methods: {
-    updateUser(userParams) {
-      return axios.put(`/users?ajax=true`, { user: userParams })
+    updateUser(userForm) {
+      const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+
+      return axios.put(`/users/modify?ajax=true`, userForm, config)
     },
 
     followUser(userId) {

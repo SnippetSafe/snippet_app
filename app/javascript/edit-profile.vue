@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="edit-profile--wrapper">
-      <edit-avatar />
+      <edit-avatar @change="addAvatarToParams"/>
 
       <div class="edit-profile--fields">
         <form-field label="Name" type="text" v-model="userParams.name" :margin-top="false" />
@@ -34,8 +34,10 @@ export default {
       userParams: {
         name: this.currentUser.name,
         bio: this.currentUser.bio,
-        location: this.currentUser.location
-      }
+        location: this.currentUser.location,
+        avatar: undefined
+      },
+      avatar: null
     }
   },
 
@@ -46,7 +48,17 @@ export default {
 
   methods: {
     saveForm() {
-      this.updateUser(this.userParams)
+      let formData = new FormData()
+
+      Object.keys(this.userParams).forEach(attribute => {
+        const value = this.userParams[attribute];
+
+        if (value) { formData.append(`user[${attribute}]`, value); };
+      })
+
+      
+
+      this.updateUser(formData)
         .then(res => {
           EventBus.$emit('presentToast', res.data.message)
         })
@@ -54,6 +66,10 @@ export default {
           console.error(error)
           EventBus.$emit('presentToast', error.response.data.message)
         })
+    },
+
+    addAvatarToParams(avatarFile) {
+      this.userParams.avatar = avatarFile;
     }
   }
 }

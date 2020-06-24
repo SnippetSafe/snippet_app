@@ -53,7 +53,7 @@
 //
 // Then uncomment the code block below:
 //
-// import TurbolinksAdapter from 'vue-turbolinks'
+import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 
 import { store } from '../store.js';
@@ -84,7 +84,7 @@ import Toast from '../toast.vue';
 import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
 
-// Vue.use(TurbolinksAdapter)
+Vue.use(TurbolinksAdapter)
 
 
 document.addEventListener('DOMContentLoaded', () => {

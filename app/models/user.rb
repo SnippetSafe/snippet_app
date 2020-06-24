@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
+  has_one_attached :avatar
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -27,6 +28,14 @@ class User < ApplicationRecord
 
   #TODO: Add tests for this
   after_create :create_default_folder
+
+  def avatar_url
+    if avatar.attached?
+      url_for(avatar)
+    else
+      '/icons/avatar_placeholder.svg'
+    end
+  end
 
   def description
     'Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.'

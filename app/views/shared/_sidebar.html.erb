@@ -2,7 +2,7 @@
   <% if user_signed_in? %>
     <card>
       <div style="text-align: center;">
-        <img src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" style="border-radius: 50%; display: block; margin: 0 auto;" width=80">
+        <%= image_tag current_user.avatar_url, style: "border-radius: 50%; display: block; margin: 0 auto;", size: 80 %>
         <h3 style="margin: 8px 0px 0px 0px;"><%= current_user.name %></h2>
       </div>
       <div class="horizontal-line"></div>
