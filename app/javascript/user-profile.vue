@@ -5,20 +5,15 @@
         <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="120" width="120" />
       </div>
       <div class="margin-left">
-        <div class="flex space-between v-center">
-          <h2 class="users-show--name">{{ user.name }}</h2>
-          <div class="flex flex-end">
-            <count-tag :href="`/users/${user.id}/followers`" identifier="followers" :count="user.followers_count" :color="colorForTag('followers')"/>
-            <count-tag :href="`/users/${user.id}/following`" identifier="following" :count="user.following_count" :color="colorForTag('following')"/>
-          </div>
-        </div>
+        <h2 class="users-show--name">{{ user.name }}</h2>
         <div style="height: 40px;">
           <span>Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.</span>
         </div>
       </div>
     </div>
     <div class="margin-top flex space-between">
-      <button v-if="isViewingOwnProfile" @click="goToEditProfile" class="button--cta-follow">EDIT PROFILE</button>
+      <button v-if="isLoggedOut" @click="redirectToSignUp" class="button--cta-follow">FOLLOW</button>
+      <button v-else-if="isViewingOwnProfile" @click="goToEditProfile" class="button--cta-follow">EDIT PROFILE</button>
       <button v-else @click="followAction" @mouseenter="isHovering = true" @mouseleave="isHovering = false" :class="[buttonClass, 'text-center']">{{ buttonText }}</button>
       <count-tag identifier="snippets"  :count="user.snippets_count" color="purple"/>
     </div>
@@ -52,13 +47,17 @@ export default {
     this.currentUser = this.$store.state.currentUser;
   },
 
-  created() {
-    console.log('h', window.location.href)
-  },
-
   computed: {
+    isLoggedOut() {
+      return !this.currentUser
+    },
+
     isViewingOwnProfile() {
-      return this.user.id === this.currentUser.id;
+      if (this.currentUser) {
+        return this.user.id === this.currentUser.id;
+      } else {
+        return false
+      }
     },
 
     buttonClass() {
@@ -77,6 +76,10 @@ export default {
   },
 
   methods: {
+    redirectToSignUp() {
+      window.location.href = '/users/sign_up';
+    },
+
     colorForTag(location) {
       console.log(window.location.href.includes(location))
       if (window.location.href.includes(location)) {
@@ -94,7 +97,6 @@ export default {
       if (!this.isFollowingDup) {
         this.followUser(this.user.id)
           .then(res => {
-            console.log('yay', res)
             this.isFollowingDup = true;
             EventBus.$emit('presentToast', res.data.message)
           })
@@ -105,7 +107,6 @@ export default {
       } else {
         this.unfollowUser(this.user.id)
           .then(res => {
-            console.log('yay', res)
             this.isFollowingDup = false;
             EventBus.$emit('presentToast', res.data.message)
           })

@@ -16,7 +16,11 @@
   </head>
 
   <body>
-    <div id="vue-app" data-user="<%= current_user.serialize.to_json %>" v-cloak>
+    <% if user_signed_in? %>
+      <div id="vue-app" data-user="<%= current_user.serialize.to_json %>" v-cloak>
+    <% else %>
+      <div id="vue-app" v-cloak>
+    <% end %>
       <toast alert="<%= alert %>" notice="<%= notice %>"></toast>
       <alert></alert>
       <popover></popover>

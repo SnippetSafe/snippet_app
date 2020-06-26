@@ -122,10 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
         UserPreview,
         UserProfile
       },
-      created() {
-        const currentUser = JSON.parse(appElement.dataset.user);
 
-        if (currentUser) {
+      created() {
+        if (appElement.dataset.user) {
+          const currentUser = JSON.parse(appElement.dataset.user);
+
           this.$store.commit('setCurrentUser', currentUser)
         }
       }
