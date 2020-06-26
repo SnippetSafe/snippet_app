@@ -1,6 +1,6 @@
 <template>
   <div class="edit-avatar--wrapper">
-    <img ref="avatar" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" style="border-radius: 50%;" width="120" height="120">
+    <img ref="avatar" :src="currentUser.avatar_url" width="120" height="120" style="border-radius: 50%;">
     <div class="edit-avatar--edit-button" @click="selectNewAvatar">
       <img src="/icons/edit.svg" width="16">
       <input name="avatar" ref="fileInput" type="file" @change="handleFileSelect" style="visibility: hidden" />
@@ -10,6 +10,12 @@
 
 <script>
 export default {
+  // TODO: Extract this into a class or module that can be reused accross the application
+  beforeCreate() {
+    this.currentUser = this.$store.state.currentUser;
+    console.log('user', this.currentUser)
+  },
+
   methods: {
     selectNewAvatar() {
       this.$refs.fileInput.click()

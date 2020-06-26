@@ -2,7 +2,7 @@
   <div class="new-comment--wrapper">
     <card id="new-comment" class="new-comment--container">
       <div style="display: flex;">
-        <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="48" width="48" />
+        <img style="border-radius: 50%;" :src="currentUser.avatar_url" height="48" width="48" />
         <div style="margin-left: 12px; margin-top: 8px;">
           <span style="display: block; font-weight: bold; font-size: 14px; font-family: Helvetica, sans-serif;">{{ currentUser.name }}</span>
           <span style="font-size: 12px; color: gray;">New comment</span>

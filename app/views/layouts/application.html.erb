@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <div id="vue-app" data-user="<%= current_user.to_json %>" v-cloak>
+    <div id="vue-app" data-user="<%= current_user.serialize.to_json %>" v-cloak>
       <toast alert="<%= alert %>" notice="<%= notice %>"></toast>
       <alert></alert>
       <popover></popover>
