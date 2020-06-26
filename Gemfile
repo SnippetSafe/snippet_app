@@ -23,6 +23,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'byebug'
 
 gem 'devise'
+gem "aws-sdk-s3", require: false
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
