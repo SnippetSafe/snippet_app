@@ -2,8 +2,8 @@
   <% if user_signed_in? %>
     <card>
       <div style="text-align: center;">
-        <user-avatar avatar-url="<%= current_user.avatar_url %>" />
-        <h3 style="margin: 8px 0px 0px 0px;"><%= current_user.name %></h2>
+        <user-avatar avatar-url="<%= current_user.avatar_url %>"></user-avatar>
+        <h3 style="margin: 8px 0px 0px 0px;"><%= current_user.name %></h3>
       </div>
       <div class="horizontal-line"></div>
       <div class="menu-button--wrapper">
