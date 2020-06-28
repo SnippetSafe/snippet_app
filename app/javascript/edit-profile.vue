@@ -60,6 +60,10 @@ export default {
 
       this.updateUser(formData)
         .then(res => {
+          if (this.userParams.avatar) {
+            EventBus.$emit('updateAvatar', res.data.user.avatar_url)
+          }
+
           EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => {

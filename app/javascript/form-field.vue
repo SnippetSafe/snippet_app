@@ -12,7 +12,7 @@ export default {
     marginTop: { type: Boolean, default: true },
     label: { type: String, required: true },
     type: { type: String, required: true },
-    value: { type: String, required: true }
+    value: { type: String, required: true },
   },
 
   data() {

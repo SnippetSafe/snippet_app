@@ -60,6 +60,7 @@ import { store } from '../store.js';
 
 import ActionIcon from '../action-icon';
 import Alert from '../alert';
+import UserAvatar from '../user-avatar';
 import BackButton from '../back-button';
 import Card from '../card';
 import EditAvatar from '../edit-avatar';
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       components: {
         ActionIcon,
         Alert,
+        UserAvatar,
         BackButton,
         Card,
         EditAvatar,

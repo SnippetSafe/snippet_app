@@ -12,15 +12,10 @@ class UsersController < ApplicationController
     current_user.avatar.attach(avatar_param) if avatar_param
 
     if current_user.save
-      render json: { message: "Profile updated" }
+      render json: { message: "Profile updated", user: current_user.serialize }
     else
       render json: { message: "Failed to update profile" }, status: 400
     end
-
-    # current_user.updated_at = Time.now
-    # current_user.avatar.attach(params[:user][:avatar])
-    # current_user.save!
-    # byebug
   end
 
   def follow
