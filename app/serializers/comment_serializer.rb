@@ -6,4 +6,8 @@ class CommentSerializer < ActiveModel::Serializer
   def created_at
     time_ago_in_words(object.created_at) + ' ago'
   end
+
+  def user
+    object.user.serialize
+  end
 end
