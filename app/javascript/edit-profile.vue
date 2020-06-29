@@ -1,18 +1,21 @@
 <template>
-  <div>
+  <div class="margin-top">
     <div class="edit-profile--wrapper">
-      <edit-avatar @change="addAvatarToParams"/>
 
       <div class="edit-profile--fields">
+        <ul v-if="errors" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
         <form-field label="Name" type="text" v-model="userParams.name" :margin-top="false" />
         <form-field label="Description" type="textarea" v-model="userParams.bio" />
         <form-field label="Location" type="text" v-model="userParams.location" />
       </div>
 
+      <edit-avatar @change="addAvatarToParams"/>
     </div>
 
     <div class="folders--options-wrapper">
-      <button @click="saveForm" class="button--cta-blue">SAVE</button>
+      <button @click="saveForm" :class="buttonClass">SAVE</button>
     </div>
   </div>
 </template>
@@ -37,7 +40,7 @@ export default {
         location: this.currentUser.location,
         avatar: undefined
       },
-      avatar: null
+      errors: null
     }
   },
 
@@ -46,34 +49,62 @@ export default {
     this.currentUser = this.$store.state.currentUser;
   },
 
+  computed: {
+    buttonClass() {
+      console.log('bcfe', this.formEdited)
+      if (this.formEdited) {
+        return "button--cta-blue";
+      } else {
+        return "button--cta-disabled"
+      }
+    },
+
+    formEdited() {
+      return this.userParams.avatar !== undefined || (this.userParams.name !== this.currentUser.name) || (this.userParams.bio !== this.currentUser.bio) || (this.userParams.location !== this.currentUser.location)
+    }
+  },
+
   methods: {
     saveForm() {
-      let formData = new FormData()
+      if (this.formEdited) {
+        let formData = new FormData()
 
-      Object.keys(this.userParams).forEach(attribute => {
-        const value = this.userParams[attribute];
+        Object.keys(this.userParams).forEach(attribute => {
+          const value = this.userParams[attribute];
 
-        if (value) { formData.append(`user[${attribute}]`, value); };
-      })
-
-      
-
-      this.updateUser(formData)
-        .then(res => {
-          if (this.userParams.avatar) {
-            EventBus.$emit('updateAvatar', res.data.user.avatar_url)
-          }
-
-          EventBus.$emit('presentToast', res.data.message)
+          if (attribute === 'avatar' && !value) {
+            return;
+          } else {
+            formData.append(`user[${attribute}]`, value);
+          };
         })
-        .catch(error => {
-          console.error(error)
-          EventBus.$emit('presentToast', error.response.data.message)
-        })
+
+        
+
+        this.updateUser(formData)
+          .then(res => {
+            if (this.userParams.avatar) {
+              EventBus.$emit('updateAvatar', res.data.user.avatar_url)
+            }
+            EventBus.$emit('presentToast', res.data.message)
+
+            this.currentUser = res.data.user;
+            this.resetForm();
+
+          })
+          .catch(error => this.errors = error.response.data.errors)
+      }
     },
 
     addAvatarToParams(avatarFile) {
       this.userParams.avatar = avatarFile;
+    },
+
+    resetForm() {
+      // Trigger refresh of formComplete computed property
+      this.userParams = Object.assign({}, this.userParams);
+      this.userParams.avatar = undefined;
+      this.errors = null
     }
   }
 }

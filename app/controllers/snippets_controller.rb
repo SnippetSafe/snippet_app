@@ -54,7 +54,7 @@ class SnippetsController < ApplicationController
       if snippet.destroy
         render json: { message: 'Snippet deleted!' }
       else
-        render json: { message:'Unable to delete snippet' }, status: 401
+        render json: { message: 'Unable to delete snippet' }, status: 401
       end
     else
       render json: { message: "You can't delete a snippet that you didn't create!" }, status: 400

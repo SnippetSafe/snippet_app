@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if current_user.save
       render json: { message: "Profile updated", user: current_user.serialize }
     else
-      render json: { message: "Failed to update profile" }, status: 400
+      render json: { errors: current_user.errors.full_messages }, status: 400
     end
   end
 

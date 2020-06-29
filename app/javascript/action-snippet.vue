@@ -56,7 +56,6 @@ export default {
     },
 
     buttonClass() {
-      console.log('c', this.newFolderDifferentToCurrent)
       if (this.newFolderDifferentToCurrent) {
         return "button--cta-new";
       } else {
