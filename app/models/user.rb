@@ -81,6 +81,7 @@ class User < ApplicationRecord
   end
 
   def snippets_for_feed
+    # TODO: Should be able to do this in one query
     snippet_ids = followed_snippets.pluck(:id).concat(snippets.pluck(:id))
 
     Snippet.where(id: snippet_ids).order(created_at: :desc)
