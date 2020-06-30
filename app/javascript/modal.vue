@@ -48,7 +48,7 @@ export default {
 <style lang="scss">
   .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 4;
   top: 0;
   left: 0;
   width: 100%;
