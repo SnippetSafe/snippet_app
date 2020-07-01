@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 
-  resources :snippets, only: %i(new show create update destroy)
+  resources :snippets, only: %i(index new show create update destroy)
   resources :comments, only: :create
   resources :users, only: :show do
     put :modify, on: :collection

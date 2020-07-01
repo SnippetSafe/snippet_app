@@ -1,6 +1,13 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
+  def index
+    @snippets = current_user.filed_snippets
+      .includes(:user)
+      .order(created_at: :desc)
+      .map { |s| s.simple_serialize(current_user) }
+  end
+
   def show
     @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
   end

@@ -78,6 +78,7 @@ import Sidebar from '../sidebar.vue'
 import ListItem from '../list-item.vue'
 import Snipt from '../snipt.vue'
 import SnippetPreview from '../snippet-preview.vue'
+import SnippetsIndex from '../snippets-index.vue'
 import SnippetShow from '../snippet-show.vue'
 import Tabs from '../tabs.vue';
 import Tab from '../tab.vue';
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Sidebar,
         SnippetPreview,
         SnippetShow,
+        SnippetsIndex,
         Tab,
         Tabs,
         Toast,
