@@ -1,20 +1,18 @@
 <template>
   <div class="edit-avatar--wrapper">
-    <modal v-if="showModal" header="Crop Image" @close="closeModal">
+    <modal v-if="showModal" header="Crop Avatar" @close="closeModal">
       <div slot="body">
         <vue-cropper
           ref="cropper"
           :src="newImage"
           alt="Source Image"
           :aspect-ratio="1 / 1"
-          @ready="ready"
-          @cropstart="ready"
-          @cropmove="ready"
-          @cropend="ready"
-          @crop="ready"
-          @zoom="ready"
         >
         </vue-cropper>
+
+        <div class="folders--options-wrapper">
+          <button @click="emitCroppedImage" class="button--cta-blue">CROP</button>
+        </div>
       </div>
     </modal>
     <img ref="avatar" :src="currentUser.avatar_url" width="120" height="120" style="border-radius: 50%;">
@@ -46,12 +44,22 @@ export default {
   },
 
   methods: {
-    ready() {
-      console.log('ready')
+    emitCroppedImage() {
+      const canvas = this.$refs.cropper.getCroppedCanvas({
+        width: 200,
+        height: 200
+      });
+
+      canvas.toBlob(blob => { this.$emit('change', blob) });
+
+      this.$refs.avatar.setAttribute('src', canvas.toDataURL());
+
+      this.closeModal();
     },
 
     selectNewAvatar() {
-      this.$refs.fileInput.click()
+      this.$refs.fileInput.value = '';
+      this.$refs.fileInput.click();
     },
 
     handleFileSelect(event) {
@@ -62,13 +70,8 @@ export default {
         const reader = new FileReader();
 
         reader.onload = function(e) {
-          self.$refs.avatar.setAttribute('src', e.target.result);
           self.showModal = true;
           self.newImage = e.target.result;
-
-          // self.cropStuff()
-
-          self.$emit('change', input.files[0])
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -77,27 +80,7 @@ export default {
 
     closeModal() {
       this.showModal = false;
-    },
-
-    cropStuff() {
-      setTimeout(() => {
-        const image = document.getElementById('test')
-
-        const cropper = new Cropper(image, {
-          aspectRatio: 1 / 1,
-          minContainerWidth: 860,   //decides the size of image
-          minContainerHeight: 355,
-          crop(event) {
-            console.log(event.detail.x);
-            console.log(event.detail.y);
-            console.log(event.detail.width);
-            console.log(event.detail.height);
-            console.log(event.detail.rotate);
-            console.log(event.detail.scaleX);
-            console.log(event.detail.scaleY);
-          },
-        });
-      }, 1000)
+      this.newImage = undefined;
     }
   }
 }
