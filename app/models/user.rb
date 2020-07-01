@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
+  BIO_MISSING_TEXT = "This user hasn't updated their bio yet."
+
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
@@ -39,10 +41,6 @@ class User < ApplicationRecord
     else
       '/icons/avatar_placeholder.svg'
     end
-  end
-
-  def description
-    'Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.'
   end
 
   def follow(user)

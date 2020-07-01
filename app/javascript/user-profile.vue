@@ -2,12 +2,12 @@
   <div>
     <div class="flex v-center">
       <div class="flex flex-column">
-        <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4E03AQG0MUNjxFvBTw/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=WnnJ_Q6MpQFur5Uev2iqeLAnoX6Rdb1Bv6RoAijK3tA" height="120" width="120" />
+        <img style="border-radius: 50%;" :src="user.avatar_url" height="120" width="120" />
       </div>
       <div class="margin-left">
         <h2 class="users-show--name">{{ user.name }}</h2>
         <div style="height: 40px;">
-          <span>Software developer on the Integrated Biodiversity Assessment Tool and founder of Snippet.io. Can often be found playing tennis or riding a bike.</span>
+          <span>{{ user.bio }}</span>
         </div>
       </div>
     </div>
