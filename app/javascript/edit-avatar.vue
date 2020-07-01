@@ -10,7 +10,7 @@
         >
         </vue-cropper>
 
-        <div class="folders--options-wrapper">
+        <div class="action-buttons">
           <button @click="emitCroppedImage" class="button--cta-blue">CROP</button>
         </div>
       </div>

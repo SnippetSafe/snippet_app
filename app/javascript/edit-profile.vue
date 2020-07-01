@@ -51,7 +51,6 @@ export default {
 
   computed: {
     buttonClass() {
-      console.log('bcfe', this.formEdited)
       if (this.formEdited) {
         return "button--cta-blue";
       } else {
