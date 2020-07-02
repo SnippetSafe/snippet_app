@@ -3,10 +3,12 @@
     <modal v-if="showModal" header="Crop Avatar" @close="closeModal">
       <div slot="body">
         <vue-cropper
+          class="edit-avatar--cropper"
           ref="cropper"
           :src="newImage"
-          alt="Source Image"
+          alt="New Avatar"
           :aspect-ratio="1 / 1"
+          :strict="false"
         >
         </vue-cropper>
 

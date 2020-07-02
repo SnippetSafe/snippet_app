@@ -8,6 +8,10 @@
     height: 120px;
   }
 
+  &--cropper {
+    max-height: 600px;
+  }
+
   &--edit-button {
     position: absolute;
     display: block;
