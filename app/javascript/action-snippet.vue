@@ -126,6 +126,13 @@ export default {
       border: 1px solid #DEF2F1;
       border-radius: 2px;
       font-size: 14px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+      &::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+      }
     }
 
     &--item {

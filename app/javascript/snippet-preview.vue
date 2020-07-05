@@ -91,6 +91,11 @@ export default {
     &--content {
       max-height: 258px;
       overflow-y: scroll;
+
+      &::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+      }
     }
   }
 </style>
