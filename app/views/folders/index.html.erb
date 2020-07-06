@@ -1,5 +1,4 @@
 <card :with-padding=<%= false %> >
-  <h2 style="margin-top: 0px;"><%= @folders.size %> Folders</h2>
   <folders :folders="<%= @folders.to_json %>"></folders>
   <div class="folders--options-wrapper">
     <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
