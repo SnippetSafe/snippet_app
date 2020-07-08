@@ -6,6 +6,9 @@ class SnippetsController < ApplicationController
       .includes(:user)
       .order(created_at: :desc)
       .map { |s| s.simple_serialize(current_user) }
+    
+    @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
+        .map { |folder| FolderSerializer.new(folder).to_h }
   end
 
   def show
