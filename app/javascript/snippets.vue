@@ -14,6 +14,8 @@
 import Snipt from './snipt';
 import axios from 'axios';
 
+import  { EventBus } from './event-bus';
+
 export default {
   components: { Snipt },
   
@@ -21,10 +23,6 @@ export default {
     return {
       hasMoreSnippets: true,
       busy: true,
-      params: {
-        page: 1,
-        per_page: 20
-      },
       snippets: []
     }
   },
@@ -34,21 +32,33 @@ export default {
 		axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
 		axios.defaults.headers.common['Accept'] = 'application/json'
 
+    EventBus.$on('search', this.getSnippets)
     this.getSnippets();
-	},
+  },
+  
+  destroyed() {
+    this.$store.commit('resetSearchParams')
+  },
 
 	methods: {
-		getSnippets() {
+		getSnippets(reset = false) {
+      if (reset) {
+        this.hasMoreSnippets = true;
+        this.snippets = [];
+      }
+
       if (this.hasMoreSnippets) {
         this.busy = true
+        let params = this.$store.state.searchParams
   
-        axios.get('/snippets', { params: this.params })
+        axios.get('/snippets', { params: params })
           .then(res => {
             const returnedSnippets = res.data.snippets
   
             if (returnedSnippets.length > 0) {
               this.snippets = this.snippets.concat(res.data.snippets)
-              this.params.page += 1
+              params.page += 1
+              this.$store.commit('updateSearchParams', params)
             } else {
               this.hasMoreSnippets = false;
             }

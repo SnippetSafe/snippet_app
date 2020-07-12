@@ -4,7 +4,7 @@
       <h2 class="no-margin">{{ header }}</h2>
       <div style="display: flex; align-items: center;">
         <div class="searchbar">
-          <input type="text" v-model="searchTerm" placeholder="Search" @focus="setFocus" @blur="removeFocus"/>
+          <input type="text" v-model="searchTerm" @keyup="updateSearchTerm" placeholder="Search" @focus="setFocus" @blur="removeFocus"/>
           <img v-if="!focus" src="/icons/search.svg">
         </div>
         <p class="margin-left margin-right">in</p>
@@ -28,13 +28,14 @@ import Snippets from './snippets'
 import Snipt from './snipt'
 import SnippetPreview from './snippet-preview'
 
+import _ from 'lodash'
+
 import { EventBus } from './event-bus.js';
 
 export default {
   components: { Card, Folders, Snipt, Snippets, SnippetPreview },
   
   props: {
-    snippets: { type: Array, required: true },
     folders: { type: Array, required: true }
   },
 
@@ -59,9 +60,9 @@ export default {
 
     header() {
       if (this.isSearchingInFolders) {
-        return `${this.filteredResources.length} Folders`
+        return `Folders`
       } else {
-        return `${this.filteredResources.length} Filed Snippets`;
+        return `Filed Snippets`;
       }
     },
 
@@ -72,15 +73,23 @@ export default {
         return this.folderz.filter(folder => {
           return folder.name.toLowerCase().includes(lowerSearchTerm);
         });
-      } else {
-        return this.snippetz.filter(snippet => {
-          return snippet.description.toLowerCase().includes(lowerSearchTerm);
-        });
       }
     },
   },
 
   methods: {
+    updateSearchTerm: _.debounce(function(e) {
+      const params = {
+        search_term: this.searchTerm,
+        page: 1,
+        per_page: 20
+      }
+
+      this.$store.commit('updateSearchParams', params)
+      EventBus.$emit('search', true)
+      console.log('params', this.$store.state.searchParams)
+    }, 400),
+
     setFocus() {
       this.focus = true;
     },
@@ -90,8 +99,6 @@ export default {
     },
 
     handleSnippetDeletion(snippetId) {
-      console.log('deleted')
-
       this.snippetz = this.snippetz.filter(s => {
         return s.id !== snippetId
       })

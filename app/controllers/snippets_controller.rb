@@ -4,19 +4,16 @@ class SnippetsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @snippets = current_user.filed_snippets
-        .includes(:user)
-        .order(created_at: :desc)
-        .map { |s| s.simple_serialize(current_user) }
-      
         @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
           .map { |folder| FolderSerializer.new(folder).to_h }
   
       end
 
       format.json do
+        #TODO Extract to filter class and sanitize params
         snippets = current_user.filed_snippets
           .includes(:user)
+          .where('description ILIKE ?', "%#{search_params[:search_term]}%")
           .order(created_at: :desc)
           .offset(offset)
           .limit(params[:per_page])
@@ -28,7 +25,7 @@ class SnippetsController < ApplicationController
   end
 
   def offset
-    (params[:page].to_i - 1) * params[:per_page].to_i 
+    (search_params[:page].to_i - 1) * search_params[:per_page].to_i 
   end
 
   def show
@@ -102,5 +99,9 @@ class SnippetsController < ApplicationController
       :language,
       :folder_id
     )
+  end
+
+  def search_params
+    params.permit(:search_term, :page, :per_page)
   end
 end
