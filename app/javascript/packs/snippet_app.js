@@ -52,6 +52,9 @@
 // yarn add vue-turbolinks
 //
 // Then uncomment the code block below:
+
+var infiniteScroll =  require('vue-infinite-scroll');
+
 //
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
@@ -87,6 +90,7 @@ import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
 
 Vue.use(TurbolinksAdapter)
+Vue.use(infiniteScroll)
 
 
 document.addEventListener('DOMContentLoaded', () => {

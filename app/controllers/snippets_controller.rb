@@ -2,13 +2,33 @@ class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
   def index
-    @snippets = current_user.filed_snippets
-      .includes(:user)
-      .order(created_at: :desc)
-      .map { |s| s.simple_serialize(current_user) }
-    
-    @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
-        .map { |folder| FolderSerializer.new(folder).to_h }
+    respond_to do |format|
+      format.html do
+        @snippets = current_user.filed_snippets
+        .includes(:user)
+        .order(created_at: :desc)
+        .map { |s| s.simple_serialize(current_user) }
+      
+        @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
+          .map { |folder| FolderSerializer.new(folder).to_h }
+  
+      end
+
+      format.json do
+        snippets = current_user.filed_snippets
+          .includes(:user)
+          .order(created_at: :desc)
+          .offset(offset)
+          .limit(params[:per_page])
+          .map { |s| s.simple_serialize(current_user) }
+
+        render json: { snippets: snippets }
+      end
+    end
+  end
+
+  def offset
+    (params[:page].to_i - 1) * params[:per_page].to_i 
   end
 
   def show

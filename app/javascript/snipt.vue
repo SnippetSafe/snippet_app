@@ -57,7 +57,7 @@ export default {
 
   props: {
     snippet: { required: true, type: Object },
-    currentFolder: { required: true, type: Object },
+    currentFolder: { required: false, type: Object },
   },
 
   data() {

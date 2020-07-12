@@ -17,28 +17,21 @@
       </div>
     </div>
     <folders v-if="isSearchingInFolders" :folders="filteredResources"></folders>
-    <div v-else>
-      <snipt
-        v-for="snippet in filteredResources"
-        @deleted="handleSnippetDeletion"
-        :snippet="snippet"
-        :current-folder="folders[0]"
-        :key="snippet.id">
-      </snipt>
-    </div>
+    <snippets v-else></snippets>
   </card>
 </template>
 
 <script>
 import Card from './card'
 import Folders from './folders'
+import Snippets from './snippets'
 import Snipt from './snipt'
 import SnippetPreview from './snippet-preview'
 
 import { EventBus } from './event-bus.js';
 
 export default {
-  components: { Card, Folders, Snipt, SnippetPreview },
+  components: { Card, Folders, Snipt, Snippets, SnippetPreview },
   
   props: {
     snippets: { type: Array, required: true },
