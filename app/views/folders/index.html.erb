@@ -1,7 +1,1 @@
-<card :with-padding=<%= false %> >
-  <folders :folders="<%= @folders.to_json %>"></folders>
-  <div class="folders--options-wrapper">
-    <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
-    <%= link_to 'NEW SNIPPET', new_snippet_path, class: 'button--cta-new' %>
-  </div>
-</card>
+<snippets-index />

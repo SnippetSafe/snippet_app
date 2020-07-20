@@ -1,14 +1,7 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
-  def index
-    respond_to do |format|
-      format.html do
-        @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
-          .map { |folder| FolderSerializer.new(folder).to_h }
-      end
-    end
-  end
+  def index; end
 
   def search
     snippets = current_user.filed_snippets

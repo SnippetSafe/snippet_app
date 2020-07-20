@@ -6,12 +6,7 @@ class FoldersController < ApplicationController
 
   def index
     respond_to do |format|
-      folders = current_user.folders
-        .includes([:snippets, :snippet_folders])
-        .order(created_at: :asc)
-        .map { |folder| FolderSerializer.new(folder).to_h }
-
-      format.html { @folders = folders }
+      format.html {}
 
       format.json do
         render json: { folders: folders }

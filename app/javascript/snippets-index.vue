@@ -1,7 +1,6 @@
 <template>
   <card>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding: 0px 8px;">
-      <h2 class="no-margin">{{ header }}</h2>
       <div style="display: flex; align-items: center;">
         <div class="searchbar">
           <input type="text" v-model="searchTerm" @keyup="updateSearchTerm" placeholder="Search" @focus="setFocus" @blur="removeFocus"/>
@@ -15,6 +14,7 @@
           </select>
         </div>
       </div>
+      <a :href="buttonLocation" class="button--cta-new">NEW {{ resourceName }}</a>
     </div>
     <folders v-if="isSearchingInFolders" :key="1234"></folders>
     <snippets v-if="!isSearchingInFolders" :key="5678"></snippets>
@@ -34,14 +34,9 @@ import { EventBus } from './event-bus.js';
 
 export default {
   components: { Card, Folders, Snipt, Snippets, SnippetPreview },
-  
-  props: {
-    folders: { type: Array, required: true }
-  },
 
   data() {
     return {
-      folderz: this.folders,
       snippetz: this.snippets,
       searchingIn: 'folders',
       searchTerm: '',
@@ -61,6 +56,22 @@ export default {
         return `Filed Snippets`;
       }
     },
+
+    buttonLocation() {
+      if (this.isSearchingInFolders) {
+        return "/folders/new"
+      } else {
+        return "/snippets/new";
+      }
+    },
+
+    resourceName() {
+      if (this.isSearchingInFolders) {
+        return "FOLDER"
+      } else {
+        return "SNIPPET";
+      }
+    }
   },
 
   methods: {
@@ -73,7 +84,6 @@ export default {
 
       this.$store.commit('updateSearchParams', params)
       EventBus.$emit('search', true)
-      console.log('params', this.$store.state.searchParams)
     }, 400),
 
     setFocus() {
