@@ -66,10 +66,6 @@ export default {
     }
   },
 
-  created() {
-    console.log('nippet', this.snippet)
-  },
-
   // TODO: Extract this into a class or module that can be reused accross the application
   beforeCreate() {
     this.currentUser = this.$store.state.currentUser;

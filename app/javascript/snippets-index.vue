@@ -16,8 +16,8 @@
         </div>
       </div>
     </div>
-    <folders v-if="isSearchingInFolders"></folders>
-    <snippets v-else></snippets>
+    <folders v-if="isSearchingInFolders" :key="1234"></folders>
+    <snippets v-if="!isSearchingInFolders" :key="5678"></snippets>
   </card>
 </template>
 
@@ -47,10 +47,6 @@ export default {
       searchTerm: '',
       focus: false,
     }
-  },
-
-  created() {
-    EventBus.$on('folderDeleted', this.handleFolderDeletion)
   },
 
   computed: {

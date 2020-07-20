@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-import  { EventBus } from './event-bus';
 import searchMixin from './mixins/searchMixin';
 import FolderRow from './folder-row'
 
@@ -45,13 +43,5 @@ export default {
       return rows;
     }
   },
-
-  methods: {
-    handleFolderDeletion(folderId) {
-      this.items = this.items.filter(folder => {
-        return folder.id !== folderId
-      })
-    }
-  }
 }
 </script>

@@ -19,7 +19,7 @@ class SnippetsController < ApplicationController
       .limit(params[:per_page])
       .map { |s| s.simple_serialize(current_user) }
 
-    render json: { snippets: snippets }
+    render json: { items: snippets }
   end
 
   def show
