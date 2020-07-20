@@ -6,36 +6,19 @@
 
 <script>
 import axios from 'axios';
-
 import  { EventBus } from './event-bus';
-
+import searchMixin from './mixins/searchMixin';
 import FolderRow from './folder-row'
 
 export default {
   components: { FolderRow },
 
+  mixins: [searchMixin],
+
   data() {
     return {
-      searchTerm: '',
-      focus: false,
-      hasMoreFolders: true,
-      busy: true,
-      folders: []
+      resourceName: 'folders'
     }
-  },
-
-  created() {
-    const csrfToken = document.querySelector("meta[name=csrf-token]").content
-    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
-    axios.defaults.headers.common['Accept'] = 'application/json'
-
-    EventBus.$on('folderDeleted', this.handleFolderDeletion)
-    EventBus.$on('search', this.getFolders)
-    this.getFolders();
-  },
-  
-  destroyed() {
-    this.$store.commit('resetSearchParams')
   },
 
   computed: {
@@ -44,7 +27,7 @@ export default {
       let currentRow = [];
       let n = 1;
 
-      this.folders.forEach(folder => {
+      this.items.forEach(folder => {
         currentRow.push(folder);
 
         if (n % 3 === 0) {
@@ -52,7 +35,7 @@ export default {
           currentRow = [];
         }
 
-        if (n === this.folders.length) {
+        if (n === this.items.length) {
           if (currentRow.length > 0) { rows.push(currentRow); };
         } else {
           n++
@@ -64,46 +47,10 @@ export default {
   },
 
   methods: {
-    getFolders(reset = false) {
-      if (reset) {
-        this.hasMoreFolders = true;
-        this.folders = [];
-      }
-
-      if (this.hasMoreFolders) {
-        this.busy = true
-        let params = this.$store.state.searchParams
-  
-        axios.get('/folders/search', { params: params })
-          .then(res => {
-            const returnedSnippets = res.data.folders
-  
-            if (returnedSnippets.length > 0) {
-              this.folders = this.folders.concat(returnedSnippets)
-              params.page += 1
-              this.$store.commit('updateSearchParams', params)
-            } else {
-              this.hasMoreFolders = false;
-            }
-            
-            this.busy = false
-          })
-          .catch(console.error)
-      }
-    },
-
     handleFolderDeletion(folderId) {
-      this.folders = this.folders.filter(folder => {
+      this.items = this.items.filter(folder => {
         return folder.id !== folderId
       })
-    },
-
-    setFocus() {
-      this.focus = true;
-    },
-
-    removeFocus() {
-      this.focus = false;
     }
   }
 }

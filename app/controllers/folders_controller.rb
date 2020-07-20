@@ -28,7 +28,7 @@ class FoldersController < ApplicationController
       .limit(params[:per_page])
       .map { |folder| FolderSerializer.new(folder).to_h }
 
-    render json: { folders: folders }
+    render json: { items: folders }
   end
 
   def show
