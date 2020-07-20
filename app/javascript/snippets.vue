@@ -51,12 +51,12 @@ export default {
         this.busy = true
         let params = this.$store.state.searchParams
   
-        axios.get('/snippets', { params: params })
+        axios.get('/snippets/search', { params: params })
           .then(res => {
             const returnedSnippets = res.data.snippets
   
             if (returnedSnippets.length > 0) {
-              this.snippets = this.snippets.concat(res.data.snippets)
+              this.snippets = this.snippets.concat(returnedSnippets)
               params.page += 1
               this.$store.commit('updateSearchParams', params)
             } else {

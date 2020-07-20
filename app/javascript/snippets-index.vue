@@ -9,14 +9,14 @@
         </div>
         <p class="margin-left margin-right">in</p>
         <div>
-          <select v-model="searchingIn" name="filter-resource" id="filter-resource">
+          <select v-model="searchingIn" @change="resetSearchParams" name="filter-resource" id="filter-resource">
             <option value="folders">Folders</option>
             <option value="snippets">Snippets</option>
           </select>
         </div>
       </div>
     </div>
-    <folders v-if="isSearchingInFolders" :folders="filteredResources"></folders>
+    <folders v-if="isSearchingInFolders"></folders>
     <snippets v-else></snippets>
   </card>
 </template>
@@ -65,16 +65,6 @@ export default {
         return `Filed Snippets`;
       }
     },
-
-    filteredResources() {
-      const lowerSearchTerm = this.searchTerm.toLowerCase();
-
-      if (this.isSearchingInFolders) {
-        return this.folderz.filter(folder => {
-          return folder.name.toLowerCase().includes(lowerSearchTerm);
-        });
-      }
-    },
   },
 
   methods: {
@@ -98,17 +88,10 @@ export default {
       this.focus = false;
     },
 
-    handleSnippetDeletion(snippetId) {
-      this.snippetz = this.snippetz.filter(s => {
-        return s.id !== snippetId
-      })
-    },
-
-     handleFolderDeletion(folderId) {
-      this.folderz = this.folderz.filter(folder => {
-        return folder.id !== folderId
-      })
-    },
+    resetSearchParams() {
+      this.searchTerm = '';
+      this.$store.commit('resetSearchParams');
+    }
   }
 }
 </script>

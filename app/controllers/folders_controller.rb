@@ -6,15 +6,29 @@ class FoldersController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html do
-        @folders = current_user.folders.includes([:snippets, :snippet_folders]).order(created_at: :asc)
-          .map { |folder| FolderSerializer.new(folder).to_h }
-      end
+      folders = current_user.folders
+        .includes([:snippets, :snippet_folders])
+        .order(created_at: :asc)
+        .map { |folder| FolderSerializer.new(folder).to_h }
+
+      format.html { @folders = folders }
 
       format.json do
-        render json: { folders: current_user.folders.order(name: :asc) }
+        render json: { folders: folders }
       end
     end
+  end
+
+  def search
+    folders = current_user.folders
+      .includes([:snippets, :snippet_folders])
+      .where('name ILIKE ?', "%#{search_params[:search_term]}%")
+      .order(created_at: :desc)
+      .offset(offset)
+      .limit(params[:per_page])
+      .map { |folder| FolderSerializer.new(folder).to_h }
+
+    render json: { folders: folders }
   end
 
   def show
@@ -92,5 +106,13 @@ class FoldersController < ApplicationController
 
   def folder_params
     params.require(:folder).permit(:name)
+  end
+
+  def search_params
+    params.permit(:search_term, :page, :per_page)
+  end
+
+  def offset
+    (search_params[:page].to_i - 1) * search_params[:per_page].to_i 
   end
 end

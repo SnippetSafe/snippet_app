@@ -5,26 +5,37 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+import  { EventBus } from './event-bus';
+
 import FolderRow from './folder-row'
-import { EventBus } from './event-bus.js';
 
 export default {
   components: { FolderRow },
 
-  props: {
-    folders: { type: Array, required: true }
-  },
-
   data() {
     return {
       searchTerm: '',
-      folderz: this.folders,
       focus: false,
+      hasMoreFolders: true,
+      busy: true,
+      folders: []
     }
   },
 
   created() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+    axios.defaults.headers.common['Accept'] = 'application/json'
+
     EventBus.$on('folderDeleted', this.handleFolderDeletion)
+    EventBus.$on('search', this.getFolders)
+    this.getFolders();
+  },
+  
+  destroyed() {
+    this.$store.commit('resetSearchParams')
   },
 
   computed: {
@@ -53,8 +64,36 @@ export default {
   },
 
   methods: {
+    getFolders(reset = false) {
+      if (reset) {
+        this.hasMoreFolders = true;
+        this.folders = [];
+      }
+
+      if (this.hasMoreFolders) {
+        this.busy = true
+        let params = this.$store.state.searchParams
+  
+        axios.get('/folders/search', { params: params })
+          .then(res => {
+            const returnedSnippets = res.data.folders
+  
+            if (returnedSnippets.length > 0) {
+              this.folders = this.folders.concat(returnedSnippets)
+              params.page += 1
+              this.$store.commit('updateSearchParams', params)
+            } else {
+              this.hasMoreFolders = false;
+            }
+            
+            this.busy = false
+          })
+          .catch(console.error)
+      }
+    },
+
     handleFolderDeletion(folderId) {
-      this.folderz = this.folderz.filter(folder => {
+      this.folders = this.folders.filter(folder => {
         return folder.id !== folderId
       })
     },
