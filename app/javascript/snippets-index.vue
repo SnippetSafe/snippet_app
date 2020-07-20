@@ -35,10 +35,14 @@ import { EventBus } from './event-bus.js';
 export default {
   components: { Card, Folders, Snipt, Snippets, SnippetPreview },
 
+  props: {
+    in: { required: true, type: String }
+  },
+
   data() {
     return {
       snippetz: this.snippets,
-      searchingIn: 'folders',
+      searchingIn: this.in,
       searchTerm: '',
       focus: false,
     }
