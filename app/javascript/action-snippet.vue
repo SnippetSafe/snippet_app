@@ -6,10 +6,11 @@
         <span>{{ folder.name }}</span>
         <img v-if="selectedFolderId === folder.id" src="/icons/checked.svg" width="14">
       </div>
+      <loader v-if="foldersForSelect.length === 0" />
     </div>
     <div class="move-snippet--buttons">
       <button @click="closeModal" class="button--cta-cancel">CANCEL</button>
-      <button @click="confirmAction(folder)" :class="buttonClass">{{ confirmText }}</button>
+      <button @click="confirmAction(folder)" :class="buttonClass" :disabled="!newFolderDifferentToCurrent">{{ confirmText }}</button>
     </div>
   </div>
 </template>
@@ -19,23 +20,36 @@ import axios from 'axios'
 import _ from 'lodash';
 import snippetsMixin from './mixins/snippetsMixin';
 import  { EventBus } from './event-bus';
+import Loader from './loader';
 
 export default {
+  
+  components: { Loader },
+
   mixins: [snippetsMixin],
 
   props: {
     snippet: { type: Object, required: true },
-    currentFolder : { type: Object, required: false },
     confirmAction: { type: Function, required: true },
     confirmText: { type: String, required: false, default: 'CONFIRM' }
   },
 
   data() {
     return {
+      currentFolder: null,
       foldersForSelect: [],
       folder: null,
       filterTerm: ''
     }
+  },
+
+  created() {
+    axios.get(`/snippets/${this.snippet.id}/current_folder?ajax=true`)
+      .then(res => {
+        this.currentFolder = res.data.current_folder
+        this.foldersForSelect = res.data.folders
+      })
+      .catch(console.error)
   },
 
   computed: {
@@ -92,14 +106,6 @@ export default {
     closeModal() {
       EventBus.$emit('closeModal')
     }
-  },
-
-  created() {
-    axios.get('/folders?ajax=true')
-      .then(res => {
-        this.foldersForSelect = res.data.folders
-      })
-      .catch(console.error)
   },
 }
 </script>

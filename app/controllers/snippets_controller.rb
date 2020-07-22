@@ -3,6 +3,18 @@ class SnippetsController < ApplicationController
 
   def index; end
 
+  def current_folder
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+
+    res = { folders: current_user.folders.map { |folder| FolderSerializer.new(folder).to_h } }
+
+    if snippet_folder
+      res.merge!(current_folder: FolderSerializer.new(snippet_folder.folder).to_h)
+    end
+
+    render json: res
+  end
+
   def search
     snippets = current_user.filed_snippets
       .includes(:user)

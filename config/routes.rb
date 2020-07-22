@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :snippets, only: %i(index new show create update destroy) do
     get :search, on: :collection
+    get :current_folder, on: :member
   end
 
   resources :comments, only: :create

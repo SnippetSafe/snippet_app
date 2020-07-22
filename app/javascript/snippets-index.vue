@@ -1,6 +1,6 @@
 <template>
   <card>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding: 0px 8px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
       <div style="display: flex; align-items: center;">
         <div class="searchbar">
           <input type="text" v-model="searchTerm" @keyup="updateSearchTerm" placeholder="Search" @focus="setFocus" @blur="removeFocus"/>
