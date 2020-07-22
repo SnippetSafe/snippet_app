@@ -1,7 +1,10 @@
 import axios from 'axios'
 import  { EventBus } from '../event-bus';
+import Loader from '../loader';
 
 export default {
+
+  components: { Loader },
 
   data() {
     return {

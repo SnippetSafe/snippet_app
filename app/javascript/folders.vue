@@ -1,7 +1,7 @@
 <template>
   <div>
     <folder-row v-for="(row, index) in folderRows" :folders="row" :key="`${index}${Math.random()}`"></folder-row>
-    <img style="display: block; margin: 0 auto;" v-if="isFirstLoad" src="/icons/loader-grey.svg" width="50">
+    <loader v-if="isFirstLoad" />
   </div>
 </template>
 

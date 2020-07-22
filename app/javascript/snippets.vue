@@ -6,7 +6,7 @@
 			:snippet="item"
 			:key="item.id">
 		</snipt>
-    <img style="display: block; margin: 20px auto;" v-if="isFirstLoad" src="/icons/loader-grey.svg" width="50">
+    <loader v-if="isFirstLoad" />
 	</div>
 </template>
 
