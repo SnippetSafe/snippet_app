@@ -4,7 +4,6 @@
       <action-snippet
         slot="body"
         :snippet="snippet"
-        :current-folder="currentFolder"
         :confirm-action="folderConfirm"
         confirm-text="MOVE SNIPPET">
       </action-snippet>
@@ -57,7 +56,6 @@ export default {
 
   props: {
     snippet: { required: true, type: Object },
-    currentFolder: { required: false, type: Object },
   },
 
   data() {
@@ -112,7 +110,7 @@ export default {
     },
 
     handleRemoveConfirm() {
-      this.unfileSnippet(this.currentFolder.id, this.snippet.id)
+      this.unfileSnippet(this.snippet.id)
         .then(res => {
           this.$emit('deleted', this.snippet.id)
           EventBus.$emit('presentToast', res.data.message)

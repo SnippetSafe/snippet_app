@@ -4,15 +4,7 @@ class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_minimum_folders, only: :destroy
 
-  def index
-    respond_to do |format|
-      format.html {}
-
-      format.json do
-        render json: { folders: folders }
-      end
-    end
-  end
+  def index; end
 
   def search
     folders = current_user.folders
@@ -65,12 +57,9 @@ class FoldersController < ApplicationController
 
   # move these to snippets controller
   def unfile_snippet
-    snippet_folder = SnippetFolder.find_by(
-      folder_id: params[:folder_id],
-      snippet_id: params[:snippet_id]
-    )
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:snippet_id])
 
-    if snippet_folder.destroy
+    if snippet_folder && snippet_folder.destroy
       render json: { message: 'Snippet removed from folder!' }
     else
       render json: { message: 'Failed to remove snippet from folder' }
