@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get :current_folder, on: :member
   end
 
-  resources :comments, only: :create
+  resources :comments, only: %i(create destroy)
 
   resources :users, only: :show do
     put :modify, on: :collection

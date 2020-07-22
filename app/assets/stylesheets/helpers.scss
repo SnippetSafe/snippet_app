@@ -12,6 +12,13 @@
 
 .block { display: block; }
 
+// POSITION
+
+.position {
+  &-relative { position: relative; }
+  &-absolute { position: absolute; }
+}
+
 // MARGIN
 
 .no-margin { margin: 0px }

@@ -4,18 +4,49 @@
       <user-preview :user="comment.user" :date="comment.created_at"/>
     </div>
     <span class="comment--body">{{ comment.body }}</span>
+    <more-button :options="popoverOptions" class="position-absolute" />
   </card>
 </template>
 
 <script>
 import Card from './card';
 import UserPreview from './user-preview';
+import MoreButton from './more-button'
+import axios from 'axios'
+import  { EventBus } from './event-bus';
 
 export default {
-  components: { Card, UserPreview },
+  components: { Card, MoreButton, UserPreview },
 
   props: {
     comment: { required: true, type: Object }
+  },
+
+  created() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  },
+
+  computed: {
+    popoverOptions() {
+      return [
+        {
+          title: 'Delete comment',
+          action: this.deleteComment
+        }
+      ]
+    }
+  },
+
+  methods: {
+    deleteComment() {
+      axios.delete(`/comments/${this.comment.id}?ajax=true`)
+        .then(res => {
+          this.$emit('commentDeleted', this.comment)
+          EventBus.$emit('presentToast', res.data.message)
+        })
+        .catch(error => this.errors = error.response.data.errors)
+    },
   }
 }
 </script>

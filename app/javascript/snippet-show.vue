@@ -18,7 +18,7 @@
       </div>
     </card>
     <div class="snippet-show--comments-wrapper">
-      <comment v-for="comment in comments" :comment="comment" :key="comment.id"></comment>
+      <comment v-for="comment in comments" :comment="comment" :key="comment.id" @commentDeleted="removeComment"></comment>
     </div>
     <new-comment v-if="currentUser" @commentCreated="addNewCommentToComments" :snippet="snippet"></new-comment>
     <card v-if="!currentUser">
@@ -82,6 +82,13 @@ export default {
     addNewCommentToComments(newComment) {
       this.snippetDup.comments_count += 1
       this.comments.push(newComment)
+    },
+
+    removeComment(deletedComment) {
+      this.snippetDup.comments_count -= 1;
+      this.comments = this.comments.filter(comment => {
+        return comment.id !== deletedComment.id;
+      })
     }
   }
 }

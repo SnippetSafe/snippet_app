@@ -23,7 +23,7 @@
 <script>
 import { store } from './store';
 import axios from 'axios'
-
+import  { EventBus } from './event-bus';
 import Card from './card';
 
 export default {
@@ -62,6 +62,7 @@ export default {
 
           this.resetCommentForm()
           this.$emit('commentCreated', comment)
+          EventBus.$emit('presentToast', res.data.message)
         })
         .catch(error => this.errors = error.response.data.errors)
     },

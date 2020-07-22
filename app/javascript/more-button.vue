@@ -6,13 +6,18 @@
 
 <script>
 import Popover from './popover';
+import { EventBus } from './event-bus.js';
 
 export default {
   components: { Popover },
 
+  props: {
+    options: { type: Array, required: true }
+  },
+
   methods: {
-    openPopover: () => {
-      console.log('opening popover')
+    openPopover() {
+      EventBus.$emit('presentPopover', event, this.options)
     }
   }
 }
@@ -20,10 +25,9 @@ export default {
 
 <style lang="scss">
   .more-button {
-    margin-left: 4px;
     padding: 3px 4px;
     display: inline-block;
-    position: relative;
+    top: 4px; right: 4px;
 
     &:hover {
       cursor: pointer;
