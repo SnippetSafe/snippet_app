@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+.empty-state-message {
+  text-align: center;
+  margin: 40px;
+
+  a {
+    font-weight: lighter;
+    color: $color-grey;
+  }
+}

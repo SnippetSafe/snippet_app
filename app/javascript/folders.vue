@@ -2,6 +2,7 @@
   <div>
     <folder-row v-for="(row, index) in folderRows" :folders="row" :key="`${index}${Math.random()}`"></folder-row>
     <loader v-if="isFirstLoad" />
+    <empty-state-message v-if="shouldDisplayEmptyState" :text="emptyStateText"/>
   </div>
 </template>
 

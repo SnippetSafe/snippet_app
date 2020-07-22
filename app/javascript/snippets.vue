@@ -1,3 +1,4 @@
+
 <template>
 	<div v-infinite-scroll="getItems" infinite-scroll-disabled="busyOrMaximum" infinite-scroll-distance="200">
 		<snipt
@@ -7,6 +8,11 @@
 			:key="item.id">
 		</snipt>
     <loader v-if="isFirstLoad" />
+    <empty-state-message
+      v-if="shouldDisplayEmptyState"
+      :href="emptyStateHref"
+      :text="emptyStateText"
+    />
 	</div>
 </template>
 

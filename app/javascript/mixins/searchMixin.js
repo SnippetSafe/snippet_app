@@ -1,10 +1,11 @@
 import axios from 'axios'
 import  { EventBus } from '../event-bus';
 import Loader from '../loader';
+import EmptyStateMessage from '../empty-state-message';
 
 export default {
 
-  components: { Loader },
+  components: { EmptyStateMessage, Loader },
 
   data() {
     return {
@@ -38,6 +39,18 @@ export default {
 
     busyOrMaximum() {
       return this.busy || !this.hasMoreItems;
+    },
+
+    shouldDisplayEmptyState() {
+      return (this.items.length === 0) && !this.isFirstLoad;
+    },
+
+    emptyStateText() {
+      return `No ${this.resourceName} to display`;
+    },
+
+    emptyStateHref() {
+      return `/${this.resourceName}/new`;
     }
   },
 
