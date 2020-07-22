@@ -8,7 +8,8 @@ export default {
       hasMoreItems: true,
       busy: false,
       items: [],
-      active: true
+      active: true,
+      isFirstLoad: true
     }
   },
 
@@ -39,10 +40,7 @@ export default {
 
   methods: {
     getItems(reset = false) {
-      if (reset) {
-        this.hasMoreItems = true;
-        this.items = [];
-      }
+      if (reset) { this.hasMoreItems = true; }
 
       if (this.hasMoreItems && !this.busy && this.active) {
         this.busy = true
@@ -50,6 +48,8 @@ export default {
   
         axios.get(this.endpoint, { params: params })
           .then(res => {
+            if (reset) { this.items = []; }
+
             const returnedItems = res.data.items
   
             if ((returnedItems.length > 0) && (returnedItems.length < params.per_page)) {
@@ -63,7 +63,8 @@ export default {
               this.hasMoreItems = false;
             }
             
-            this.busy = false
+            this.busy = false;
+            this.isFirstLoad = false;
           })
           .catch(console.error)
       }
