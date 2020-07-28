@@ -12,7 +12,6 @@ export default {
       hasMoreItems: true,
       busy: false,
       items: [],
-      active: true,
       isFirstLoad: true
     }
   },
@@ -28,8 +27,8 @@ export default {
   },
 
   destroyed() {
-    this.active = false;
     this.$store.commit('resetSearchParams')
+    EventBus.$off('search', this.getItems)
   },
 
   computed: {
@@ -58,7 +57,7 @@ export default {
     getItems(reset = false) {
       if (reset) { this.hasMoreItems = true; }
 
-      if (this.hasMoreItems && !this.busy && this.active) {
+      if (this.hasMoreItems && !this.busy) {
         this.busy = true
         let params = this.$store.state.searchParams
   
