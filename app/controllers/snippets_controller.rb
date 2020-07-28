@@ -1,7 +1,9 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
-  def index; end
+  def index
+    @page_title = 'Snippets'
+  end
 
   def current_folder
     snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
@@ -32,6 +34,8 @@ class SnippetsController < ApplicationController
   end
 
   def new
+    @page_title = 'New Snippet'
+
     if params[:folder_id]
       @folder_id = params[:folder_id]
       @redirect_url = params[:redirect_url]

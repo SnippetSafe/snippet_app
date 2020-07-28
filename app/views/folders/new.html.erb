@@ -1,11 +1,12 @@
-
-<%= form_with scope: :folder, url: folders_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<card>
+  <%= form_with scope: :folder, url: folders_path, local: true do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+  
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</card>

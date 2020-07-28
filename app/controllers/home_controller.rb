@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
+      @page_title = 'Feed'
+
       @snippets = current_user
         .snippets_for_feed
         .includes(:user)

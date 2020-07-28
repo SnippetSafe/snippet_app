@@ -8,6 +8,8 @@
       <% if !user_signed_in? %>
         <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  
         <%= link_to('SIGN UP', new_user_registration_path, class: "button--cta-transparent") %>  
+      <% else %>
+        <h3 class="margin-right"><%= @page_title || '' %></h3>
       <% end %>
     </div>
   </div>

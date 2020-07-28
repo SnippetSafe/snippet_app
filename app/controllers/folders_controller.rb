@@ -4,7 +4,9 @@ class FoldersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_minimum_folders, only: :destroy
 
-  def index; end
+  def index
+    @page_title = 'Folders'
+  end
 
   def search
     folders = current_user.folders
@@ -20,11 +22,12 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
+    @page_title = @folder.name
     @snippets = @folder.snippets.order(created_at: :desc).map { |s| s.serialize(current_user) }
   end
 
   def new
-
+    @page_title = 'New Folder'
   end
 
   def create
