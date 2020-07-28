@@ -4,7 +4,7 @@
       <user-preview :user="comment.user" :date="comment.created_at"/>
     </div>
     <span class="comment--body">{{ comment.body }}</span>
-    <more-button :options="popoverOptions" class="position-absolute" />
+    <more-button v-if="popoverOptions.length > 0" :options="popoverOptions" class="position-absolute" />
   </card>
 </template>
 
@@ -14,12 +14,18 @@ import UserPreview from './user-preview';
 import MoreButton from './more-button'
 import axios from 'axios'
 import  { EventBus } from './event-bus';
+import { store } from './store';
 
 export default {
   components: { Card, MoreButton, UserPreview },
 
   props: {
     comment: { required: true, type: Object }
+  },
+
+  // TODO: Extract this into a class or module that can be reused accross the application
+  beforeCreate() {
+    this.currentUser = this.$store.state.currentUser;
   },
 
   created() {
@@ -29,12 +35,18 @@ export default {
 
   computed: {
     popoverOptions() {
-      return [
-        {
-          title: 'Delete comment',
-          action: this.deleteComment
-        }
-      ]
+      let options = []
+
+      if (this.currentUser.id === this.comment.user.id) {
+        options.push(
+          {
+            title: 'Delete comment',
+            action: this.deleteComment
+          }
+        )
+      }
+
+      return options
     }
   },
 

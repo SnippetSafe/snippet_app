@@ -12,16 +12,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:id])
+    comment = current_user.comments.find(params[:id])
 
-    if comment.destroy
+    if comment && comment.destroy
       render json: { message: 'Comment deleted!' }
     else
       render json: { message: 'Failed to delete comment' }
     end
   end
-
-  #TODO: Add abikity to delete comments
 
   private
 
