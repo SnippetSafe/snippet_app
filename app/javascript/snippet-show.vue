@@ -5,8 +5,9 @@
         <user-preview :user="snippet.user" :date="snippet.created_at"/>
         <div>
           <div style="display: flex; flex-direction: column;">
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 8px;">
               <span class="language-tag">{{ snippet.language }}</span>
+              <more-button v-if="popoverOptions.length > 0" :options="popoverOptions" />
             </div>
             <action-button-bar :snippet="snippet"></action-button-bar>
           </div>
@@ -35,6 +36,9 @@ import Comment from './comment';
 import NewComment from './new-comment';
 import SnippetHeader from './snippet-header';
 import UserPreview from './user-preview';
+import MoreButton from './more-button'
+import snippetsMixin from './mixins/snippetsMixin';
+import { EventBus } from './event-bus.js';
 
 export default {
   components: {
@@ -42,10 +46,13 @@ export default {
     Card,
     Comment,
     CodeHighlight,
+    MoreButton,
     NewComment,
     SnippetHeader,
     UserPreview
   },
+
+  mixins: [snippetsMixin],
 
   props: {
     snippet: { type: Object, required: true }
@@ -71,6 +78,21 @@ export default {
 
     snippetUrl() {
       return `/snippets/${this.snippet.id}`
+    },
+
+    popoverOptions() {
+      let options = [];
+
+      if (this.currentUser.id === this.snippetDup.user.id) {
+        options.push(
+          {
+            title: 'Delete snippet',
+            action: this.triggerSnippetDelete
+          }
+        )
+      }
+
+      return options
     }
   },
 
@@ -79,6 +101,18 @@ export default {
   },
 
   methods: {
+    triggerSnippetDelete() {
+      this.deleteSnippet(this.snippet.id)
+        .then(res => {
+          this.$emit('deleted', this.snippet.id)
+          window.location.href = '/snippets'
+        })
+        .catch(error => {
+          console.log('error', error)
+          EventBus.$emit('presentToast', error.response.data.message)
+        })
+    },
+
     addNewCommentToComments(newComment) {
       this.snippetDup.comments_count += 1
       this.comments.push(newComment)
