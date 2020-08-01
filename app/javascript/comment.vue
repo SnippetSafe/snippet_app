@@ -41,7 +41,7 @@ export default {
         options.push(
           {
             title: 'Delete comment',
-            action: this.deleteComment
+            action: this.delete
           }
         )
       }
@@ -51,7 +51,16 @@ export default {
   },
 
   methods: {
-    deleteComment() {
+    delete() {
+      EventBus.$emit('presentAlert', {
+        title: 'Delete Snippet',
+        message: "Are you sure you want to delete this comment? You won't be able to undo this.",
+        confirm: 'DELETE',
+        onConfirm: this.handleDeleteConfirm
+      })
+    },
+
+    handleDeleteConfirm() {
       axios.delete(`/comments/${this.comment.id}?ajax=true`)
         .then(res => {
           this.$emit('commentDeleted', this.comment)

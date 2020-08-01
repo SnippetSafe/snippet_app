@@ -87,7 +87,7 @@ export default {
         options.push(
           {
             title: 'Delete snippet',
-            action: this.triggerSnippetDelete
+            action: this.delete
           }
         )
       }
@@ -101,7 +101,16 @@ export default {
   },
 
   methods: {
-    triggerSnippetDelete() {
+    delete() {
+      EventBus.$emit('presentAlert', {
+        title: 'Delete Snippet',
+        message: "Are you sure you want to delete this snippet? You won't be able to undo this.",
+        confirm: 'DELETE',
+        onConfirm: this.handleDeleteConfirm
+      })
+    },
+  
+    handleDeleteConfirm() {
       this.deleteSnippet(this.snippet.id)
         .then(res => {
           this.$emit('deleted', this.snippet.id)

@@ -145,7 +145,7 @@ export default {
     triggerDeleteAlert() {
       EventBus.$emit('presentAlert', {
         title: 'Delete Folder',
-        message: 'Are you sure you want to delete this folder?',
+        message: "Are you sure you want to delete this folder? You won't be able to undo this.",
         confirm: 'DELETE',
         onConfirm: this.handleDeleteConfirm
       })
