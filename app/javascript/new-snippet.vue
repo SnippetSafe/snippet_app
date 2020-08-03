@@ -1,6 +1,6 @@
 <template>
   <card>
-    <tabs title="New Snippet">
+    <tabs :title="title">
       <div>
         <ul v-if="errors" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
           <li v-for="error in errors" :key="error">{{ error }}</li>
@@ -30,8 +30,8 @@
         <select v-model="snippetParams.language">
           <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>
         </select>
-        <button class="button--cta-new" @click="createSnippet">
-          CREATE
+        <button class="button--cta-new" @click="actionSnippet">
+          {{ buttonText }}
         </button>
       </div>
     </tabs>
@@ -55,18 +55,19 @@ export default {
   components: { Card, CodeHighlight, Tabs, Tab },
 
   props: {
+    snippet: { required: false, type: Object },
     folders: { required: true, type: Array }
   },
 
   data: function () {
     return {
       snippetParams: {
-        description: '',
-        body: '',
-        highlighted_body: '???',
-        language: 'ruby',
+        description: this.snippet ? this.snippet.description : '',
+        body: this.snippet ? this.snippet.body : '',
+        highlighted_body: this.snippet ? this.snippet.highlighted_body : '???',
+        language: this.snippet ? this.snippet.language : 'ruby',
         public: true,
-        folder_id: null
+        folder_id: this.snippet ? this.snippet.folder_id : null
       },
       languages: hljs.listLanguages(),
       errors: null,
@@ -75,17 +76,29 @@ export default {
   },
 
   computed: {
+    title() {
+      return this.snippet ? 'Edit Snippet' : 'New Snippet'
+    },
+
+    buttonText() {
+      return this.snippet ? 'UPDATE' : 'CREATE';
+    },
+
     compiledMarkdown() {
       return marked(this.snippetParams.body)
-    }
+    },
   },
 
   mounted() {
     this.$watch(() => this.$refs.codeHighlight.highlighted, (value) => {
       this.snippetParams.highlighted_body = value;
     })
+
     this.params =  new URLSearchParams(window.location.search);
-    this.snippetParams.folder_id = this.params.get("folder_id") 
+
+    if (this.params.get("folder_id")) {
+      this.snippetParams.folder_id = this.params.get("folder_id") 
+    }
   },
 
   created() {
@@ -97,6 +110,26 @@ export default {
     updateBody: _.debounce(function(e) {
       this.snippetParams.body = e.target.value;
     }, 300),
+
+    actionSnippet() {
+      this.snippet ? this.updateSnippet() : this.createSnippet();
+    },
+
+    updateSnippet() {
+      axios.put(`/snippets/${this.snippet.id}?ajax=true`, { snippet: this.snippetParams })
+        .then(res => {
+          const snippet = res.data.snippet
+
+          EventBus.$emit('presentToast', 'Snippet updated!')
+
+          if (this.params.has("redirect_url")) {
+            window.location.href = this.params.get("redirect_url");
+          } else {
+            window.location.href = `/snippets/${this.snippet.id}`;
+          }
+        })
+        .catch(error => this.errors = error.response.data.errors)
+    },
 
     createSnippet() {
       axios.post('/snippets?ajax=true', { snippet: this.snippetParams })

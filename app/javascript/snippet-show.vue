@@ -86,6 +86,10 @@ export default {
       if (this.currentUser.id === this.snippetDup.user.id) {
         options.push(
           {
+            title: 'Edit snippet',
+            action: this.edit
+          },
+          {
             title: 'Delete snippet',
             action: this.delete
           }
@@ -101,6 +105,10 @@ export default {
   },
 
   methods: {
+    edit() {
+      window.location.href = `/snippets/${this.snippet.id}/edit`
+    },
+
     delete() {
       EventBus.$emit('presentAlert', {
         title: 'Delete Snippet',

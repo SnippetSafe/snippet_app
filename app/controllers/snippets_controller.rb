@@ -65,16 +65,29 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def edit
+    @snippet = current_user.snippets.find(params[:id]).serialize(current_user).to_json
+    @folders = current_user.folders.to_json
+  end
+
   #TODO: Make it so that a user can only have a snippet in ONE of their folders
   def update
-    folder = current_user.folders.find(snippet_params[:folder_id])
+    snippet = current_user.snippets.find(params[:id])
+    
+    if snippet && snippet.update(snippet_params.except(:folder_id))
 
-    Snippet.transaction do
-      current_user.snippet_folders.find_by(snippet_id: params[:id]).destroy
-      SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
+      folder = current_user.folders.find(snippet_params[:folder_id])
+
+      Snippet.transaction do
+        current_user.snippet_folders.find_by(snippet_id: params[:id]).destroy
+        SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
+      end
+
+      render json: { message: "Snippet moved to folder <strong>#{folder.name}<strong>" }
+
+    else
+      render json: { message: "Failed to update snippet", errors: snippet.errors.full_messages }, status: 400
     end
-
-    render json: { message: "Snippet moved to folder <strong>#{folder.name}<strong>" }
   end
 
   def destroy

@@ -14,7 +14,8 @@ class SnippetSerializer < ActiveModel::Serializer
     :likes_count,
     :liked_by_current_user,
     :created_at,
-    :updated_at
+    :updated_at,
+    :folder_id
   )
 
   def liked_by_current_user
@@ -27,6 +28,10 @@ class SnippetSerializer < ActiveModel::Serializer
 
   def updated_at
     time_ago_in_words(object.updated_at) + ' ago'
+  end
+
+  def folder_id
+    current_user.snippet_folders.find_by(snippet_id: object.id)&.folder_id
   end
 
   private

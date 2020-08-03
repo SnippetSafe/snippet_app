@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 
-  resources :snippets, only: %i(index new show create update destroy) do
+  resources :snippets, only: %i(index new show create edit update destroy) do
     get :search, on: :collection
     get :current_folder, on: :member
   end
