@@ -1,5 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
+  before_action :set_snippet, only: %i(edit update destroy)
 
   def index
     @page_title = 'Snippets'
@@ -66,16 +67,13 @@ class SnippetsController < ApplicationController
   end
 
   def edit
-    @snippet = current_user.snippets.find(params[:id]).serialize(current_user).to_json
+    @snippet = @snippet.serialize(current_user).to_json
     @folders = current_user.folders.to_json
   end
 
   #TODO: Make it so that a user can only have a snippet in ONE of their folders
   def update
-    snippet = current_user.snippets.find(params[:id])
-    
-    if snippet && snippet.update(snippet_params.except(:folder_id))
-
+    if @snippet.update(snippet_params.except(:folder_id))
       folder = current_user.folders.find(snippet_params[:folder_id])
 
       Snippet.transaction do
@@ -86,25 +84,28 @@ class SnippetsController < ApplicationController
       render json: { message: "Snippet moved to folder <strong>#{folder.name}<strong>" }
 
     else
-      render json: { message: "Failed to update snippet", errors: snippet.errors.full_messages }, status: 400
+      render json: { message: "Failed to update snippet", errors: @snippet.errors.full_messages }, status: 400
     end
   end
 
   def destroy
-    snippet = current_user.snippets.find_by(id: params[:id])
-
-    if snippet
-      if snippet.destroy
-        render json: { message: 'Snippet deleted!' }
-      else
-        render json: { message: 'Unable to delete snippet' }, status: 401
-      end
+    if @snippet.destroy
+      render json: { message: 'Snippet deleted!' }
     else
-      render json: { message: "You can't delete a snippet that you didn't create!" }, status: 400
+      render json: { message: 'Unable to delete snippet' }, status: 401
     end
   end
 
   private
+
+  def set_snippet
+    unless @snippet = current_user.snippets.find_by(id: params[:id])
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: UNAUTHORIZED }
+        format.json { render json: { message: UNAUTHORIZED }, status: 401 }
+      end
+    end
+  end
 
   def offset
     (search_params[:page].to_i - 1) * search_params[:per_page].to_i 

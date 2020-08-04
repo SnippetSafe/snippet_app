@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_comment, only: :destroy
 
   def create
     comment = Comment.new(comment_params)
@@ -12,9 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = current_user.comments.find(params[:id])
-
-    if comment && comment.destroy
+    if @comment.destroy
       render json: { message: 'Comment deleted!' }
     else
       render json: { message: 'Failed to delete comment' }
@@ -22,6 +21,15 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def set_comment
+    unless @comment = current_user.comments.find_by(id: params[:id])
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: UNAUTHORIZED }
+        format.json { render json: { message: UNAUTHORIZED }, status: 401 }
+      end
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:snippet_id, :user_id, :body)

@@ -28,8 +28,6 @@ export default {
   },
 
   mounted() {
-    console.log('notice', this.notice)
-
     if (this.notice) {
       this.toastClass = 'toast--container-notice';
       this.present(this.notice)

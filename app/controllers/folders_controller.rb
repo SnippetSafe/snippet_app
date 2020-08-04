@@ -2,6 +2,7 @@ class FoldersController < ApplicationController
   MINIMUM_FOLDERS = 1.freeze
 
   before_action :authenticate_user!
+  before_action :set_folder, only: %i(file_snippet show update destroy)
   before_action :require_minimum_folders, only: :destroy
 
   def index
@@ -21,7 +22,6 @@ class FoldersController < ApplicationController
   end
 
   def show
-    @folder = Folder.find(params[:id])
     @page_title = @folder.name
     @snippets = @folder.snippets.order(created_at: :desc).map { |s| s.serialize(current_user) }
   end
@@ -39,9 +39,7 @@ class FoldersController < ApplicationController
   end
 
   def update
-    folder = current_user.folders.find_by(id: params[:id])
-
-    if folder.update(folder_params)
+    if @folder.update(folder_params)
       render json: { message: 'Folder updated!' }
     else
       render json: { message: 'Unable to update folder' }
@@ -49,9 +47,7 @@ class FoldersController < ApplicationController
   end
 
   def destroy
-    folder = current_user.folders.find_by(id: params[:id])
-
-    if folder && folder.destroy
+    if @folder.destroy
       render json: { message: 'Folder deleted!' }
     else
       render json: { message: 'Unable to delete folder' }, status: 400
@@ -72,10 +68,9 @@ class FoldersController < ApplicationController
   # move these to snippets controller
   def file_snippet
     begin
-      folder = current_user.folders.find_by(id: params[:folder_id])
       snippet = Snippet.find(params[:snippet_id])
       
-      folder.snippets << snippet
+      @folder.snippets << snippet
       
       render json: { message: 'Added snippet to folder' }
     rescue ActiveRecord::RecordInvalid => e
@@ -84,6 +79,15 @@ class FoldersController < ApplicationController
   end
 
   private
+
+  def set_folder
+    unless @folder = current_user.folders.find_by(id: params[:id])
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: UNAUTHORIZED }
+        format.json { render json: { message: UNAUTHORIZED }, status: 401 }
+      end
+    end
+  end
 
   def require_minimum_folders
     if current_user.folders.size <= MINIMUM_FOLDERS
