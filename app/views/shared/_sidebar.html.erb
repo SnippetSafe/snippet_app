@@ -1,10 +1,10 @@
 <div class="sidebar--wrapper">
   <% if user_signed_in? %>
     <div class="card--container card--container-padding">
-      <div style="text-align: center;">
-        <user-avatar avatar-url="<%= current_user.avatar_url %>"></user-avatar>
+      <%= link_to user_path(current_user), style: "text-align: center;" do %>
+        <img src="<%= current_user.avatar_url %>" class="user-avatar" id="user-avatar" width="80" height="80">
         <h3 style="margin: 8px 0px 0px 0px;"><%= current_user.name %></h3>
-      </div>
+      <% end %>
       <div class="horizontal-line"></div>
       <div class="menu-button--wrapper">
         <%= link_to root_path, class: request.fullpath == root_path ? 'menu-button--item-active' : 'menu-button--item' do %>
