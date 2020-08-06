@@ -1,5 +1,5 @@
 <template>
-  <img :src="avatarUrlDup" style="border-radius: 50%; display: block; margin: 0 auto;" width="80" height="80">
+  <img :src="avatarUrlDup" class="user-avatar" width="80" height="80">
 </template>
 
 <script>
