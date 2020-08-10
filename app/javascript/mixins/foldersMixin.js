@@ -8,12 +8,14 @@ export default {
   },
 
   methods: {
+    // TODO: change this to /folders/:id/file_snippet
     fileSnippet(folderId, snippetId) {
       const params = { folder_id: folderId, snippet_id: snippetId }
 
       return axios.put(`/folders/file_snippet?ajax=true`, params)
     },
 
+    // TODO: change this to /folders/:id/unfile_snippet
     unfileSnippet(snippetId) {
       const params = { snippet_id: snippetId }
 

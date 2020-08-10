@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="margin-top">
     <folder-row v-for="(row, index) in folderRows" :folders="row" :key="`${index}${Math.random()}`"></folder-row>
     <loader v-if="isFirstLoad" />
     <empty-state-message v-if="shouldDisplayEmptyState" :text="emptyStateText"/>

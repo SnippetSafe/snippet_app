@@ -2,7 +2,7 @@ class FoldersController < ApplicationController
   MINIMUM_FOLDERS = 1.freeze
 
   before_action :authenticate_user!
-  before_action :set_folder, only: %i(file_snippet show update destroy)
+  before_action :set_folder, only: %i(show update destroy)
   before_action :require_minimum_folders, only: :destroy
 
   def index
@@ -70,6 +70,8 @@ class FoldersController < ApplicationController
     begin
       snippet = Snippet.find(params[:snippet_id])
       
+      @folder = current_user.folders.find_by(id: params[:folder_id])
+
       @folder.snippets << snippet
       
       render json: { message: 'Added snippet to folder' }

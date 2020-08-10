@@ -1,16 +1,16 @@
 @import './variables.scss';
 
-// .card {
-//   &--container {
-//     background-color: $color-white;
-//     border-radius: 2px;
-//     position: relative;
-//     margin: 16px 0px;
-//     padding: 16px 8px;
-//     box-shadow: 0 1px 4px lightgrey;
+.card {
+  &--container {
+    background-color: $color-white;
+    border-radius: 2px;
+    position: relative;
+    margin: 16px 0px;
+    padding: 16px 8px;
+    box-shadow: 0 1px 4px lightgrey;
     
-//     &-padding {
-//       padding: 16px;
-//     }
-//   }
-// }
+    &-padding {
+      padding: 16px;
+    }
+  }
+}

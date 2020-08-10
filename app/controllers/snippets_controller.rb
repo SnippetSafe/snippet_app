@@ -1,6 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
-  before_action :set_snippet, only: %i(edit update destroy)
+  before_action :set_snippet, only: %i(edit destroy)
 
   def index
     @page_title = 'Snippets'
@@ -71,9 +71,11 @@ class SnippetsController < ApplicationController
     @folders = current_user.folders.to_json
   end
 
-  #TODO: Make it so that a user can only have a snippet in ONE of their folders
+  #TODO: Use a different controller action for moving a snippet between folders
   def update
-    if @snippet.update(snippet_params.except(:folder_id))
+    snippet = current_user.filed_snippets.find_by(id: params[:id])
+
+    if snippet.update(snippet_params.except(:folder_id))
       folder = current_user.folders.find(snippet_params[:folder_id])
 
       Snippet.transaction do

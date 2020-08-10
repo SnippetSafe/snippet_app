@@ -1,12 +1,12 @@
 <template>
-  <card>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+  <div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
       <div style="display: flex; align-items: center;">
         <div class="searchbar">
           <input type="text" v-model="searchTerm" @keyup="updateSearchTerm" placeholder="Search" @focus="setFocus" @blur="removeFocus"/>
           <img v-if="!focus" src="/icons/search.svg">
         </div>
-        <p class="margin-left margin-right">in</p>
+        <p class="no-margin-top no-margin-bottom margin-left margin-right">in</p>
         <div>
           <select v-model="searchingIn" @change="resetSearchParams" name="filter-resource" id="filter-resource">
             <option value="folders">Folders</option>
@@ -18,7 +18,7 @@
     </div>
     <folders v-if="isSearchingInFolders" :key="1234"></folders>
     <snippets v-if="!isSearchingInFolders" :key="5678"></snippets>
-  </card>
+  </div>
 </template>
 
 <script>
@@ -110,7 +110,7 @@ export default {
 #filter-resource {
   padding: 6px;
   font-size: 16px;
-  background-color: #E6ECF0;
+  background-color: white;
   border-radius: 5px;
   border: 1px solid #DEF2F1;
   font-family: Helvetica, sans-serif;

@@ -4,11 +4,13 @@
   &--row {
     display: flex;
     box-sizing: border-box;
+    margin: 0px -8px;
+    padding-bottom: 16px;
   }
 
   &--list-item-wrapper {
     flex: 1 0 31%;
-    padding: 8px;
+    padding: 0px 8px;
     position:relative;
 
     &-container {
@@ -25,10 +27,10 @@
     font-weight: 100;
     display: block;
     position: relative;
-    border: 1px solid $color-light;
-    border-radius: 5px;
-    // background-color: $color-light;
-    // border-right: 1px solid lightgrey;
+    border-radius: 2px;
+    background-color: $color-white;
+    box-shadow: 0 1px 4px lightgrey;
+
     &:hover {
       background-color: $color-light;
     }

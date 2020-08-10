@@ -2,9 +2,9 @@
 
 .list-item {
   &--wrapper {
-    border: 1px solid $color-light;
-    border-radius: 5px;
+    border-radius: 2px;
     margin: 16px 0px;
     background-color: #fcfdff;
+    box-shadow: 0 1px 4px lightgrey;
   }
 }

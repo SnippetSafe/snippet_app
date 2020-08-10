@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  props: { 
-    withPadding: { required: false, default: true, type: Boolean }
+  props: {
+    withPadding: { default: true, type: Boolean }
   }
 }
 </script>
