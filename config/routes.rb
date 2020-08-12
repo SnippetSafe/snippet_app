@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     put :modify, on: :collection
     post :follow, on: :member
     post :unfollow, on: :member
+    get :hovercard, on: :member
   end
 
   resources :likes, only: :create

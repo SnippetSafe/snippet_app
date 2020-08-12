@@ -1,5 +1,10 @@
 <template>
-  <div class="user-preview--wrapper">
+  <div
+    class="user-preview--wrapper position-relative"
+    data-controller="hovercard"
+    :data-hovercard-url="userHovercardPath"
+    data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
+  >
     <a :href="`/users/${user.id}`">
       <img class="user-preview--img" :src="user.avatar_url" height="48" width="48" />
     </a>
@@ -18,6 +23,12 @@ export default {
   props: {
     user: { type: Object, required: true },
     date: { type: String, required: false }
+  },
+
+  computed: {
+    userHovercardPath() {
+      return `/users/${this.user.id}/hovercard`
+    }
   }
 }
 </script>

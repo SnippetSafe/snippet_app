@@ -7,6 +7,12 @@ class UsersController < ApplicationController
     @following = @user.following
   end
 
+  def hovercard
+    @user = User.find(params[:id])
+
+    render layout: false
+  end
+
   def modify
     current_user.assign_attributes(user_params)
     current_user.avatar.attach(avatar_param) if avatar_param
