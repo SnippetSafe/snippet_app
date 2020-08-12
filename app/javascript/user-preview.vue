@@ -2,7 +2,7 @@
   <div
     class="user-preview--wrapper position-relative"
     data-controller="hovercard"
-    data-hovercard-url="/users/1/hovercard"
+    :data-hovercard-url="userHovercardPath"
     data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
   >
     <a :href="`/users/${user.id}`">
