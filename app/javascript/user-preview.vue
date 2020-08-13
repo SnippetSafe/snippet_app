@@ -1,17 +1,16 @@
 <template>
-  <div
-    class="user-preview--wrapper position-relative"
-    data-controller="hovercard"
-    :data-hovercard-url="userHovercardPath"
-    data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
-  >
-    <a :href="`/users/${user.id}`">
-      <img class="user-preview--img" :src="user.avatar_url" height="48" width="48" />
-    </a>
-    <div class="user-preview--summary">
+  <div class="user-preview--wrapper">
+    <div data-controller="hovercard" :data-hovercard-url="userHovercardPath" data-action="mouseenter->hovercard#show mouseleave->hovercard#hide" class="position-relative">
       <a :href="`/users/${user.id}`">
-        <span class="user-preview--summary-name">{{ user.name }}</span>
+        <img class="user-preview--img" :src="user.avatar_url" height="48" width="48" />
       </a>
+    </div>
+    <div class="user-preview--summary">
+      <div data-controller="hovercard" :data-hovercard-url="userHovercardPath" data-action="mouseenter->hovercard#show mouseleave->hovercard#hide" class="position-relative">
+        <a :href="`/users/${user.id}`">
+          <span class="user-preview--summary-name">{{ user.name }}</span>
+        </a>
+      </div>
       <span v-if="date" class="user-preview--summary-time-ago">{{ date }}</span>
       <span v-else class="user-preview--summary-time-ago">@{{ user.name }}</span>
     </div>

@@ -4,8 +4,8 @@
   position: absolute;
   background-color: white;
   box-shadow: 0 1px 4px lightgrey;
-  top: 60px;
-  left: -180px;
+  top: calc(100% + 6px);
+  left: -168px;
   z-index: 5;
   padding: 16px;
   width: 360px;
