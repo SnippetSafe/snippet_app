@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.horizontal-line {
+  border-top: 1px solid $color-primary;
+
+  &--large {
+    @extend .horizontal-line;
+
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+
+  &--small {
+    @extend .horizontal-line;
+
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+}

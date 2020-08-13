@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 // FLEXBOX
 
 .flex { display: flex }
@@ -36,3 +38,7 @@
 // FONT
 
 .normal { font-weight: normal; }
+
+// COLOR
+
+.color-primary { color: $color-primary; }

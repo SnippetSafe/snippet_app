@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .hovercard {
   position: absolute;
   background-color: white;
@@ -16,15 +18,25 @@
     margin-right: 16px;
   }
 
-  &--title {
+  &--heading {
     display: block;
     font-weight: 500;
-    margin-bottom: 8px;
+  }
+
+  &--sub-heading {
+    display: block;
+    color: $color-grey;
+    font-size: 12px;
   }
 
   &--content {
     display: block;
     font-size: 16px;
     margin-bottom: 8px;
+  }
+
+  &--footer {
+    display: block;
+    font-size: 14px;
   }
 }

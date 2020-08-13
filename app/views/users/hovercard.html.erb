@@ -1,8 +1,9 @@
 <div class="hovercard" data-target="hovercard.card">
   <%= image_tag @user.avatar_url, class: "hovercard--image" %>
   <div>
-    <span class="hovercard--title"><%= @user.name %></span>
+    <span class="hovercard--heading"><%= @user.name %></span>
+    <div class="horizontal-line--small"></div>
     <span class="hovercard--content"><%= @user.bio %></span>
-    <span><strong><%= @user.snippets_count %></strong> Snippets</span>
+    <span class="hovercard--footer"><strong><%= @user.followers_count %></strong> Followers <span class="color-primary">|</span> <strong><%= @user.following_count %></strong> Following</span>
   </div>
 </div>

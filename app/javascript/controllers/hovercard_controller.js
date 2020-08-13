@@ -20,10 +20,7 @@ export default class extends Controller {
 }
 	
 	hide() {
-		if (this.hasCardTarget) {
-			console.log('gfd', this.cardTarget.classList)
-			this.cardTarget.classList.add("hidden")
-		}
+		if (this.hasCardTarget) { this.cardTarget.classList.add("hidden") }
 	}
 
 	disconnect() {
