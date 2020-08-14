@@ -1,21 +1,31 @@
 @import './variables.scss';
 
-.arrow-up {
+.arrow {
   position: absolute;
-  top: -8px;
   left: calc(50% - 8px);
   width: 0; 
   height: 0; 
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   
-  border-bottom: 8px solid lightgrey;
+  &-above {
+    @extend .arrow;
+    
+    top: -8px;
+    border-bottom: 8px solid lightgrey;
+  }
+  
+  &-below {
+    @extend .arrow;
+    
+    bottom: -8px;
+    border-top: 8px solid lightgrey;
+  }
 }
 
 .hovercard {
   position: absolute;
   background-color: $color-white;
-  top: calc(100% + 10px);
   left: calc(-196px + 50%);
   z-index: 5;
   padding: 16px;
@@ -23,6 +33,18 @@
   display: flex;
   box-shadow: 0 1px 2px lightgrey;
   border: 1px solid lightgrey;
+
+  &-above {
+    @extend .hovercard;
+
+    bottom: calc(100% + 10px);
+  }
+
+  &-below {
+    @extend .hovercard;
+
+    top: calc(100% + 10px);
+  }
 
   &--image {
     width: 64px;
