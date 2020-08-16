@@ -23,7 +23,7 @@
   &-above {
     @extend .hovercard;
 
-    bottom: calc(100% + 12px);
+    bottom: calc(100% + 10px);
 
     .arrow {
       @extend .arrow;
@@ -36,7 +36,7 @@
   &-below {
     @extend .hovercard;
 
-    top: calc(100% + 12px);
+    top: calc(100% + 10px);
 
     .arrow {
       @extend .arrow;
