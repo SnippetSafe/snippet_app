@@ -8,10 +8,11 @@
         <div style="display: flex; flex-direction: column;">
           <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
             <span class="language-tag"><%= serialized[:language] %></span>
-            <!-- TODO: Pass event and make popover global rather than using template like this -->
-            <div class="more-button">
-              <img src="/icons/more.svg" width="12">
-            </div>
+            
+            <% if @display_popover %>
+              <%= render partial: 'popover/popover', locals: { popover_path: popover_snippet_path(snippet) } %>
+            <% end %>
+
           </div>
         </div>
       </div>

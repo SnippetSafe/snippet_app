@@ -6,6 +6,10 @@ class SnippetsController < ApplicationController
     @page_title = 'Snippets'
   end
 
+  def popover
+    render layout: false
+  end
+
   def current_folder
     snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
 

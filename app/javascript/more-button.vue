@@ -22,16 +22,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .more-button {
-    padding: 3px 4px;
-    display: inline-block;
-    top: 4px; right: 4px;
-
-    &:hover {
-      cursor: pointer;
-      background-color: white;
-    }
-  }
-</style>

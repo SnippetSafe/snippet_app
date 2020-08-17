@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @page_title = 'Feed'
-
+      @display_popover = true
       @snippets = current_user
         .snippets_for_feed
         .includes(:user)
