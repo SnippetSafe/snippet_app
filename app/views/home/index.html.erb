@@ -1,4 +1,24 @@
-
-<home
-  :snippets="<%= @snippets.to_json %>"
-/>
+<% @snippets.each do |snippet| %>
+  <% serialized = snippet.simple_serialize(current_user) %>
+  
+  <%= link_to snippet_path(snippet), class: "card--container card--container-padding snippet-preview--container" do %>
+    <div class="snippet-preview--author-wrapper">
+      <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
+      <div>
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
+            <span class="language-tag"><%= serialized[:language] %></span>
+            <!-- TODO: Pass event and make popover global rather than using template like this -->
+            <div class="more-button">
+              <img src="/icons/more.svg" width="12">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="snippet-preview--description"><%= serialized[:description] %></p>
+    <div style="display: flex; flex-direction: column;">
+      <code-highlight class="snippet-preview--content" highlighted-code="<%= serialized[:highlighted_body] %>"></code-highlight>
+    </div>
+  <% end %>
+<% end %>

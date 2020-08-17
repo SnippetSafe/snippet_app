@@ -88,6 +88,7 @@ import Tab from '../tab.vue';
 import Toast from '../toast.vue';
 import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
+import CodeHighlight from '../code-highlight.vue';
 
 Vue.use(TurbolinksAdapter)
 Vue.use(infiniteScroll)
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         BackButton,
         Card,
         EditAvatar,
+        CodeHighlight,
         EditProfile,
         Folder,
         Folders,

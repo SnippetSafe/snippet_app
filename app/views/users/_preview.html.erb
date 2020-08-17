@@ -1,0 +1,21 @@
+<template>
+  <div class="user-preview--wrapper">
+    <div data-controller="hovercard" data-hovercard-url="<%= hovercard_user_path(user) %>" data-action="mouseenter->hovercard#show mouseleave->hovercard#hide" class="position-relative">
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.avatar_url, class: "user-preview--img", height: 48, width: 48 %>
+      <% end %>
+    </div>
+    <div class="user-preview--summary">
+      <div data-controller="hovercard" data-hovercard-url="<%= hovercard_user_path(user) %>" data-action="mouseenter->hovercard#show mouseleave->hovercard#hide" class="position-relative">
+        <%= link_to user_path(user) do %>
+          <span class="user-preview--summary-name"><%= user.name %></span>
+        <% end %>
+      </div>
+      <% if defined?(resource) %>
+        <span class="user-preview--summary-time-ago"><%= time_ago_in_words(resource.created_at) %> ago</span>
+      <% else %>
+        <span class="user-preview--summary-time-ago"><%= user.name %></span>
+      <% end %>
+    </div>
+  </div>
+</template>
