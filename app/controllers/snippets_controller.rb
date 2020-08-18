@@ -14,6 +14,12 @@ class SnippetsController < ApplicationController
     render layout: false
   end
 
+  def delete_alert
+    @snippet = current_user.snippets.find(params[:id])
+
+    render layout: false
+  end
+
   def current_folder
     snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
 
@@ -99,10 +105,25 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
-    if @snippet.destroy
-      render json: { message: 'Snippet deleted!' }
-    else
-      render json: { message: 'Unable to delete snippet' }, status: 401
+    respond_to do |format|
+      format.html do
+        if @snippet.destroy
+          flash[:notice] = 'Snippet deleted!'
+
+          redirect_to root_path
+        else
+          flash[:alert] = 'Unable to delete snippet'
+
+          redirect_to root_path
+        end
+      end
+      format.json do
+        if @snippet.destroy
+          render json: { message: 'Snippet deleted!' }
+        else
+          render json: { message: 'Unable to delete snippet' }, status: 401
+        end
+      end
     end
   end
 

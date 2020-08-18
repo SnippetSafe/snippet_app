@@ -48,7 +48,7 @@ class User < ApplicationRecord
 
     if created?(snippet)
       options << { title: 'Edit snippet', url: edit_snippet_path(snippet) }
-      options << { title: 'Delete snippet', confirm_text: DELETE_CONFIRM_TEXT, method: :delete }
+      options << { title: 'Delete snippet', confirm_text: DELETE_CONFIRM_TEXT, url: delete_alert_snippet_path(snippet) }
     end
 
     options

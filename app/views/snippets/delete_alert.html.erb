@@ -1,0 +1,23 @@
+<div data-controller="alert" data-target="alert.alert" class="alert-mask">
+  <div class="alert-wrapper">
+    <div class="alert-container">
+      <div class="alert-header">
+        <h3 id="alert-title">Delete Snippet</h3>
+        <span data-action="click->alert#close">
+          <img class="alert-close" src="/icons/cancel.svg" width="22">
+        </span>
+      </div>
+
+      <div class="alert-body">
+        <span id="alert-body">Are you sure you want to delete this snippet? You won't be able to undo this.</span>
+      </div>
+
+      <div class="alert-footer">
+        <button data-action="click->alert#close" class="button--cta-cancel">
+          CANCEL
+        </button>
+        <%= link_to 'DELETE', @snippet, method: :delete, class: "button--cta-new" %>
+      </div>
+    </div>
+  </div>
+</div>
