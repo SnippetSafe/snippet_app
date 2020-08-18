@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
   BIO_MISSING_TEXT = "This user hasn't updated their bio yet."
 
@@ -34,6 +36,20 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
+
+  def created?(snippet)
+    snippets.find_by(id: snippet.id).present?
+  end
+
+  def popover_options_for(snippet)
+    options = []
+
+    if created?(snippet)
+      options << { title: 'Edit snippet', url: edit_snippet_path(snippet) }
+    end
+
+    options
+  end
 
   def avatar_url
     if avatar.attached?

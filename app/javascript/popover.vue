@@ -65,38 +65,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .popover {
-
-    &--container {
-      background-color: white;
-      position: absolute;
-      // top: 30px;
-      // right: 0px;
-      // border: 1px solid #DEF2F1;
-      border-radius: 5px;
-      box-shadow: 0 0 6px rgba(0,0,0,.3);
-      // height: 200px;
-      // width: 100px;
-      z-index: 5;
-      padding: 8px 0px;
-      font-size: 14px;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    &--item {
-      font-weight: 100;
-      padding: 4px 12px;
-      min-width: 120px;
-
-      &:hover { 
-        background-color: #DEF2F1;
-        cursor: pointer;
-      }
-    }
-  }
-</style>

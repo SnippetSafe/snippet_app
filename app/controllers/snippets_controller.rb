@@ -7,6 +7,10 @@ class SnippetsController < ApplicationController
   end
 
   def popover
+    @snippet = Snippet.find(params[:id])
+
+    @popover_options = current_user.popover_options_for(@snippet)
+
     render layout: false
   end
 

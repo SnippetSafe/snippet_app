@@ -2,12 +2,10 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-	static targets = ["popover"];
+	static targets = ["more", "popover"];
 
   display(event) {
     event.preventDefault();
-
-    console.log('display popover', this.element)
 
     axios.get(this.url)
       .then(res => {
@@ -15,32 +13,24 @@ export default class extends Controller {
         let popover = document.body.lastElementChild
 
         const rect = event.target.getBoundingClientRect();
-        console.log(rect)
-        const x = rect.left - 126
+        const x = rect.right - popover.offsetWidth
         const y = window.pageYOffset + rect.bottom + 10
 
         popover.style.top = `${y}px`
         popover.style.left = `${x}px`
         popover.focus()
-
-        popover.addEventListener('blur', (e) => { 
-          console.log('hide')
-
-          popover.remove()
-        })
-        console.log('oppoover', popover)
-
       })
       .catch(console.error)
   }
 
-  hide() {
-    console.log('hide')
+  hide(event) {
+    this.element.remove()
   }
 
-	disconnect() {
+  retain_focus(event) {
+    event.preventDefault()
   }
-  
+
   get url() {
 		return this.data.get('url')
 	}

@@ -1,5 +1,7 @@
-<div tabindex="-1" class="popover--container">
-  <div class="popover--item">
-    <span>option</span>
-  </div>
+<div tabindex="-1" class="popover--container" data-controller="popover" data-action="blur->popover#hide" data-target="popover.popover">
+  <% @popover_options.each do |option| %>
+    <%= link_to option[:url], class: "popover--item", data: { controller: "popover", action: "mousedown->popover#retain_focus" } do %>
+      <span><%= option[:title] %></span>
+    <% end %>
+  <% end %>
 </div>
