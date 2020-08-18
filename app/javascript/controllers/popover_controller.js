@@ -2,36 +2,49 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-	static targets = ["more", "popover"];
+	static targets = ["popover"];
 
   display(event) {
     event.preventDefault();
 
-    axios.get(this.url)
-      .then(res => {
-        document.body.insertAdjacentHTML('beforeend', res.data);
-        let popover = document.body.lastElementChild
-
-        const rect = event.target.getBoundingClientRect();
-        const x = rect.right - popover.offsetWidth
-        const y = window.pageYOffset + rect.bottom + 10
-
-        popover.style.top = `${y}px`
-        popover.style.left = `${x}px`
-        popover.focus()
-      })
-      .catch(console.error)
+    if (this.hasPopoverTarget && !this.popoverTarget.classList.contains('hidden')) {
+      this.popoverTarget.classList.add('hidden')
+    } else if (this.hasPopoverTarget && this.popoverTarget.classList.contains('hidden')) {
+      this.popoverTarget.classList.remove('hidden')
+    } else {
+      axios.get(this.url)
+        .then(res => {
+          this.element.insertAdjacentHTML('beforeend', res.data);
+        })
+        .catch(console.error)
+    }
   }
 
   hide(event) {
-    this.element.remove()
+    if(this.hasPopoverTarget && !this.element.contains(event.target)) {
+      this.popoverTarget.classList.add('hidden')
+    }
   }
 
   retain_focus(event) {
     event.preventDefault()
   }
 
+  confirm(event) {
+    event.preventDefault();
+
+    console.log('text', this.confirmText)
+  }
+
+  disconnect() {
+    if (this.hasPopoverTarget) { this.PopoverTarget.remove() }
+}
+
   get url() {
 		return this.data.get('url')
-	}
+  }
+  
+  get confirmText() {
+    return this.data.get('confirm')
+  }
 }

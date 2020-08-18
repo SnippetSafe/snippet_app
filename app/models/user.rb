@@ -37,6 +37,8 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
+  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
+
   def created?(snippet)
     snippets.find_by(id: snippet.id).present?
   end
@@ -46,6 +48,7 @@ class User < ApplicationRecord
 
     if created?(snippet)
       options << { title: 'Edit snippet', url: edit_snippet_path(snippet) }
+      options << { title: 'Delete snippet', confirm_text: DELETE_CONFIRM_TEXT, method: :delete }
     end
 
     options

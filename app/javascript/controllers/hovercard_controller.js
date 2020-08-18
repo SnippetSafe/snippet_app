@@ -10,7 +10,6 @@ export default class extends Controller {
     if (y < 200) { position = 'below' }
 
     if (this.hasCardTarget) {
-  
       this.cardTarget.classList.remove("hovercard-above");
       this.cardTarget.classList.remove("hovercard-below");
       this.cardTarget.classList.add(`hovercard-${position}`);

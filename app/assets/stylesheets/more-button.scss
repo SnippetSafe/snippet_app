@@ -2,8 +2,9 @@
 
 .more-button {
   padding: 3px 4px;
-  display: inline-block;
-  top: 4px; right: 4px;
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
 
   &:hover {
     cursor: pointer;
