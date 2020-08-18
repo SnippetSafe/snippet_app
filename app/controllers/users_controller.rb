@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def hovercard
     @user = User.find(params[:id])
     @hovercard_position = params[:position]
-    @arrow_position = params[:position] == 'above' ? 'below' : 'above'
 
     render layout: false
   end
