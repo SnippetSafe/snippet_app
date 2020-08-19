@@ -18,8 +18,6 @@
       </div>
     </div>
     <p class="snippet-preview--description"><%= serialized[:description] %></p>
-    <div style="display: flex; flex-direction: column;">
-      <code-highlight class="snippet-preview--content" highlighted-code="<%= serialized[:highlighted_body] %>"></code-highlight>
-    </div>
+    <%= render partial: 'shared/code_highlight', locals: { code: serialized[:highlighted_body], classes: "snippet-preview--content" } %>
   <% end %>
 <% end %>
