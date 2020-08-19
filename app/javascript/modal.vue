@@ -1,30 +1,30 @@
 <template>
   <div @click.prevent="()=> { }" class="modal-mask">
-      <div class="modal-wrapper">
-        <card class="modal-container">
-          <div class="modal-header">
-            <h3>{{ header }}</h3>
-            <span>
-              <img class="modal-close" @click.prevent="$emit('close')" src="/icons/cancel.svg" width="22">
-            </span>
-          </div>
+    <div class="modal-wrapper">
+      <card class="modal-container">
+        <div class="modal-header">
+          <h3>{{ header }}</h3>
+          <span>
+            <img class="modal-close" @click.prevent="$emit('close')" src="/icons/cancel.svg" width="22">
+          </span>
+        </div>
 
-          <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
-          </div>
+        <div class="modal-body">
+          <slot name="body">
+            default body
+          </slot>
+        </div>
 
-          <!-- <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                close
-              </button>
-            </slot>
-          </div> -->
-        </card>
-      </div>
+        <!-- <div class="modal-footer">
+          <slot name="footer">
+            default footer
+            <button class="modal-default-button" @click="$emit('close')">
+              close
+            </button>
+          </slot>
+        </div> -->
+      </card>
+    </div>
   </div>
 </template>
 

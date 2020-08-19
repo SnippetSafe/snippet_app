@@ -27,6 +27,13 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def move_modal
+    @current_folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
+    @folders = current_user.folders
+
+    render layout: false
+  end
+
   def delete_alert
     @snippet = current_user.snippets.find(params[:id])
     @title = 'Delete Snippet'

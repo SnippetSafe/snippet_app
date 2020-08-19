@@ -1,13 +1,22 @@
 <div class="popover--container" data-target="popover.popover">
   <% @popover_options.each do |option| %>
-    <% if !option[:confirm_text] %>
+    <% if option[:type] == :link %>
       <%= link_to option[:url], class: "popover--item", data: { controller: "popover", action: "mousedown->popover#retain_focus" } do %>
         <span><%= option[:title] %></span>
       <% end %>
-    <% else %>
+    <% elsif option[:type] == :alert %>
       <div 
         data-controller="snippets"
         data-action="click->snippets#delete_alert"
+        data-snippets-url="<%= option[:url] %>"
+        class="popover--item"
+      >
+        <span><%= option[:title] %></span>
+      </div>
+    <% else %>
+      <div 
+        data-controller="snippets"
+        data-action="click->snippets#move_modal"
         data-snippets-url="<%= option[:url] %>"
         class="popover--item"
       >

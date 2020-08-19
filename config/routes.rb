@@ -14,9 +14,14 @@ Rails.application.routes.draw do
     get :search, on: :collection
     get :current_folder, on: :member
     get :popover, on: :member
+    delete :unfile, on: :member
+    
+    # Alerts
     get :delete_alert, on: :member
     get :unfile_alert, on: :member
-    delete :unfile, on: :member
+
+    # Modals
+    get :move_modal, on: :member
   end
 
   resources :comments, only: %i(create destroy)
