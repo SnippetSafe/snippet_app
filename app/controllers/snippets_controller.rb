@@ -14,8 +14,37 @@ class SnippetsController < ApplicationController
     render layout: false
   end
 
+  # Does this belong on SnippetFoldersController?
+  def unfile
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+
+    if snippet_folder && snippet_folder.destroy
+      flash[:notice] = "Snippet removed from collection!"
+      redirect_to root_path
+    else
+      flash[:alert] = 'Failed to remove snippet from folder'
+      redirect_to root_path
+    end
+  end
+
   def delete_alert
     @snippet = current_user.snippets.find(params[:id])
+    @title = 'Delete Snippet'
+    @message = "Are you sure you want to delete this snippet? You won't be able to undo this."
+    @confirm_word = 'DELETE'
+    @confirm_path = snippet_path(@snippet)
+    @method = :delete
+
+    render layout: false
+  end
+
+  def unfile_alert
+    @snippet = current_user.filed_snippets.find(params[:id])
+    @title = 'Remove Snippet'
+    @message = "Are you sure you want to remove this snippet?"
+    @confirm_word = 'REMOVE'
+    @confirm_path = unfile_snippet_path(@snippet)
+    @method = :delete
 
     render layout: false
   end

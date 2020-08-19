@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get :current_folder, on: :member
     get :popover, on: :member
     get :delete_alert, on: :member
+    get :unfile_alert, on: :member
+    delete :unfile, on: :member
   end
 
   resources :comments, only: %i(create destroy)

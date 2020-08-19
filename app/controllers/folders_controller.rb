@@ -54,7 +54,7 @@ class FoldersController < ApplicationController
     end
   end
 
-  # move these to snippets controller
+  # Remove this once all routes no longer use JSON
   def unfile_snippet
     snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:snippet_id])
 
@@ -65,7 +65,7 @@ class FoldersController < ApplicationController
     end
   end
 
-  # move these to snippets controller
+  # Remove this once all routes no longer use JSON
   def file_snippet
     begin
       snippet = Snippet.find(params[:snippet_id])
