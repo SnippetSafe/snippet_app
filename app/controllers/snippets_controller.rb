@@ -29,14 +29,15 @@ class SnippetsController < ApplicationController
 
   # Does this belong on SnippetFoldersController?
   def file
-    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
-
     begin
       Snippet.transaction do
-        snippet_folder.destroy!
+        if snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+          snippet_folder.destroy!
+        end  
+    
         SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
       end
-    rescue ActiveRecord::RecordNotDestroyed => error
+    rescue => error
       flash[:alert] = 'Unable to file snippet, please try again.'
     else
       new_folder = current_user.folders.find(params[:folder_id])
@@ -48,8 +49,8 @@ class SnippetsController < ApplicationController
   end
 
   def move_modal
-    @snippet = current_user.filed_snippets.find(params[:id])
-    @current_folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
+    @snippet = Snippet.find(params[:id])
+    @current_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])&.folder
     @folders = current_user.folders
 
     render layout: false

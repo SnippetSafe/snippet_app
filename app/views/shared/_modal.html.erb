@@ -11,19 +11,19 @@
       <div class="modal-body">
         <div
           data-controller="snippets"
-          data-snippets-selected-folder-id="<%= @current_folder.id %>"
-          data-snippets-original-folder-id="<%= @current_folder.id %>"
+          data-snippets-selected-folder-id="<%= @current_folder&.id %>"
+          data-snippets-original-folder-id="<%= @current_folder&.id %>"
         >
-          <input class="move-snippet--search" type="search" placeholder="Find a folder...">
+          <input data-action="keyup->snippets#modal_search" class="move-snippet--search" type="search" placeholder="Find a folder...">
           <div class="move-snippet--list">
             <% @folders.each do |folder| %>
               <div
                 data-action="click->snippets#select_folder"
                 data-folder-id="<%= folder.id %>"
-                class="<%= folder.id == @current_folder.id ? 'move-snippet--item-selected' : 'move-snippet--item' %>"
+                class="<%= folder.id == @current_folder&.id ? 'move-snippet--item-selected' : 'move-snippet--item' %>"
               >
                 <span><%= folder.name %></span>
-                <% if folder.id == @current_folder.id %>
+                <% if folder.id == @current_folder&.id %>
                   <img id="selected-checkmark" src="/icons/checked.svg" width="14">
                 <% end %>
               </div>
@@ -32,7 +32,7 @@
           <div class="move-snippet--buttons">
             <button data-action="click->modal#close" class="button--cta-cancel">CANCEL</button>
 
-            <%= link_to 'MOVE', file_snippet_path(@snippet), method: :post, class: "button--cta-disabled", data: { target: 'snippets.moveButton' } %>
+            <%= link_to 'FILE', file_snippet_path(@snippet), method: :post, class: "button--cta-disabled", data: { target: 'snippets.moveButton' } %>
           </div>
         </div>
       </div>

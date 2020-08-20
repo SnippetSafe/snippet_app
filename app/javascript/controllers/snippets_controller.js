@@ -36,15 +36,20 @@ export default class extends Controller {
     if (folderId === this.selectedFolderId ) { return }
     
     const previousSelection = this.element.getElementsByClassName('move-snippet--item-selected')[0]
-    previousSelection.classList.remove('move-snippet--item-selected')
-    previousSelection.classList.add('move-snippet--item')
+
+    if (previousSelection) {
+      previousSelection.classList.remove('move-snippet--item-selected')
+      previousSelection.classList.add('move-snippet--item')
+      const checkmark = document.getElementById('selected-checkmark')
+      const checkmarkClone = checkmark.cloneNode(true)
+      
+      checkmark.remove()
+      
+      event.target.insertAdjacentElement("beforeend", checkmarkClone)
+    } else {
+      event.target.insertAdjacentHTML('beforeend', '<img id="selected-checkmark" src="/icons/checked.svg" width="14">')
+    }
     
-    const checkmark = document.getElementById('selected-checkmark')
-    const checkmarkClone = checkmark.cloneNode(true)
-    
-    checkmark.remove()
-    
-    event.target.insertAdjacentElement("beforeend", checkmarkClone)
     event.target.classList.add('move-snippet--item-selected')
     
     this.selectedFolderId = folderId

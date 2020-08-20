@@ -58,7 +58,7 @@ class User < ApplicationRecord
       options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }
       options << { type: :alert, title: 'Remove', confirm_text: REMOVE_CONFIRM_TEXT, url: unfile_alert_snippet_path(snippet) }
     elsif !filed?(snippet)
-      options << { type: :modal, title: 'File' }
+      options << { type: :modal, title: 'File', url: move_modal_snippet_path(snippet) }
     end
 
     options
