@@ -2,7 +2,7 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ["moveButton"];
+  static targets = ["moveButton", "listItem"];
 
   delete_alert(event) {
     event.preventDefault()
@@ -24,10 +24,18 @@ export default class extends Controller {
       .catch(console.error)
   }
 
-  move() {
-    
-    console.log('selected', this.selectedFolderId)
-    console.log('original', this.originalFolderId)
+  modal_search(event) {
+    const searchTerm = event.target.value.toLowerCase();
+
+    this.listItemTargets.forEach(item => {
+      const folderName = item.getAttribute('data-filter-key').toLowerCase()
+
+      if (folderName.includes(searchTerm)) {
+        item.classList.remove('hidden')
+      } else {
+        item.classList.add('hidden')
+      }
+    })
   }
   
   select_folder(event) {
@@ -65,9 +73,6 @@ export default class extends Controller {
       this.moveButtonTarget.classList.remove('button--cta-disabled')
       this.moveButtonTarget.classList.add('button--cta-new')
     }
-
-    console.log('new folder selected?', this.selectedFolderId !== this.originalFolderId)
-    console.log('mb', this.moveButtonTarget)
   }
 
   get url() {

@@ -5,11 +5,13 @@
     data-snippets-original-folder-id="<%= @current_folder_id %>"
   >
     <input data-action="keyup->snippets#modal_search" class="move-snippet--search" type="search" placeholder="Find a folder...">
-    <div class="move-snippet--list">
+    <div class="move-snippet--list" data-target="snippets.list">
       <% @folders.each do |folder| %>
         <div
           data-action="click->snippets#select_folder"
           data-folder-id="<%= folder.id %>"
+          data-target="snippets.listItem"
+          data-filter-key="<%= folder.name %>"
           class="<%= folder.id == @current_folder_id ? 'move-snippet--item-selected' : 'move-snippet--item' %>"
         >
           <span><%= folder.name %></span>
