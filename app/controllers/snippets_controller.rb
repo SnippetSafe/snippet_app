@@ -2,6 +2,9 @@ class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :set_snippet, only: %i(edit destroy)
 
+  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
+  UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
+
   def index
     @page_title = 'Snippets'
   end
@@ -50,7 +53,8 @@ class SnippetsController < ApplicationController
 
   def move_modal
     @snippet = Snippet.find(params[:id])
-    @current_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])&.folder
+    @current_folder_id = current_user.snippet_folders.find_by(snippet_id: params[:id])&.folder&.id
+    @header = @current_folder_id ? 'Move Snippet' : 'File Snippet'
     @folders = current_user.folders
 
     render layout: false
@@ -59,7 +63,7 @@ class SnippetsController < ApplicationController
   def delete_alert
     @snippet = current_user.snippets.find(params[:id])
     @title = 'Delete Snippet'
-    @message = "Are you sure you want to delete this snippet? You won't be able to undo this."
+    @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
     @confirm_path = snippet_path(@snippet)
     @method = :delete
@@ -69,9 +73,9 @@ class SnippetsController < ApplicationController
 
   def unfile_alert
     @snippet = current_user.filed_snippets.find(params[:id])
-    @title = 'Remove Snippet'
-    @message = "Are you sure you want to remove this snippet?"
-    @confirm_word = 'REMOVE'
+    @title = 'Unfile Snippet'
+    @message = UNFILE_CONFIRM_TEXT
+    @confirm_word = 'UNFILE'
     @confirm_path = unfile_snippet_path(@snippet)
     @method = :delete
 

@@ -37,9 +37,6 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
-  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
-  REMOVE_CONFIRM_TEXT = "Are you sure you want to remove this snippet?".freeze
-
   def created?(snippet)
     snippets.find_by(id: snippet.id).present?
   end
@@ -48,15 +45,17 @@ class User < ApplicationRecord
     filed_snippets.find_by(id: snippet.id).present?
   end
 
+  # This should live on Snippet model
   def popover_options_for(snippet)
     options = []
 
     if created?(snippet)
-      options << { type: :link, title: 'Edit snippet', url: edit_snippet_path(snippet) }
-      options << { type: :alert, title: 'Delete snippet', confirm_text: DELETE_CONFIRM_TEXT, url: delete_alert_snippet_path(snippet) }
+      options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }
+      options << { type: :link, title: 'Edit', url: edit_snippet_path(snippet) }
+      options << { type: :alert, title: 'Delete', url: delete_alert_snippet_path(snippet) }
     elsif filed?(snippet)
       options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }
-      options << { type: :alert, title: 'Remove', confirm_text: REMOVE_CONFIRM_TEXT, url: unfile_alert_snippet_path(snippet) }
+      options << { type: :alert, title: 'Unfile', url: unfile_alert_snippet_path(snippet) }
     elsif !filed?(snippet)
       options << { type: :modal, title: 'File', url: move_modal_snippet_path(snippet) }
     end
