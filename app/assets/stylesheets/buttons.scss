@@ -9,6 +9,7 @@
     font-family: Helvetica, sans-serif;
     text-decoration: none;
     background-color: $color-white;
+    margin-left: 6px;
 
     &:hover {
       text-decoration: none;
@@ -72,9 +73,10 @@
       outline: none;
       color: $color-grey;
       border: 1px solid $color-grey;
+      background-color: $color-grey-light;
 
       &:hover {
-        cursor: auto;
+        cursor: default;
       }
     }
 

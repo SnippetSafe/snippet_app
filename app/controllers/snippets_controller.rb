@@ -27,7 +27,28 @@ class SnippetsController < ApplicationController
     end
   end
 
+  # Does this belong on SnippetFoldersController?
+  def file
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+
+    begin
+      Snippet.transaction do
+        snippet_folder.destroy!
+        SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+      end
+    rescue ActiveRecord::RecordNotDestroyed => error
+      flash[:alert] = 'Unable to file snippet, please try again.'
+    else
+      new_folder = current_user.folders.find(params[:folder_id])
+
+      flash[:notice] = "Snipped filed in #{new_folder.name}!"
+    end
+
+    redirect_to root_path
+  end
+
   def move_modal
+    @snippet = current_user.filed_snippets.find(params[:id])
     @current_folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
     @folders = current_user.folders
 

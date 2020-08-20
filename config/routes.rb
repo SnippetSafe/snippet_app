@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get :search, on: :collection
     get :current_folder, on: :member
     get :popover, on: :member
+
+    # Filing Snippets
+    post :file, on: :member
     delete :unfile, on: :member
     
     # Alerts
