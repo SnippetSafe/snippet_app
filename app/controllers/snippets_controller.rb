@@ -45,7 +45,7 @@ class SnippetsController < ApplicationController
     else
       new_folder = current_user.folders.find(params[:folder_id])
 
-      flash[:notice] = "Snipped filed in #{new_folder.name}!"
+      flash[:notice] = "Snippet filed in #{new_folder.name}!"
     end
 
     redirect_to root_path
