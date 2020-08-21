@@ -1,5 +1,5 @@
 <template>
-  <pre class="code-highlight"><code v-html="highlighted"></code></pre>
+  <pre class="code-highlight"><code :class="this.language" v-html="highlighted"></code></pre>
 </template>
 
 <script>
@@ -23,17 +23,17 @@ export default {
 </script>
 
 <style lang="scss">
-  pre {
-    background-color: #FDF6E3;
-    padding: 16px;
-    margin: 0px;
-    font-size: 16px;
-    border: 1px solid #DEF2F1;
-    border-radius: 2px;
+  // pre {
+  //   background-color: #FDF6E3;
+  //   padding: 16px;
+  //   margin: 0px;
+  //   font-size: 16px;
+  //   border: 1px solid #DEF2F1;
+  //   border-radius: 2px;
 
-    ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent; /* make scrollbar transparent */
-    }
-  }
+  //   ::-webkit-scrollbar {
+  //     width: 0px;
+  //     background: transparent; /* make scrollbar transparent */
+  //   }
+  // }
 </style>

@@ -21,7 +21,7 @@
     <%= javascript_pack_tag 'snippet_app' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/solarized-light.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github-gist.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/highlight.min.js"></script>
   </head>
 
@@ -49,5 +49,8 @@
       </div>
 
     </div>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
