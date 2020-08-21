@@ -9,26 +9,31 @@ export default class extends Controller {
     let position = 'above';
     if (y < 200) { position = 'below' }
 
+    console.log('h', typeof event.target.dataset.isHovering)
+    event.target.dataset.isHovering = true
+
     if (this.hasCardTarget) {
       this.cardTarget.classList.remove("hovercard-above");
       this.cardTarget.classList.remove("hovercard-below");
       this.cardTarget.classList.add(`hovercard-${position}`);
       this.cardTarget.classList.remove("hidden");
 		} else {
-
-
       axios.get(this.url, { params: { position } })
         .then(res => {
-          this.element.insertAdjacentHTML('beforeend', res.data);
+          if (event.target.dataset.isHovering === 'true') {
+            this.element.insertAdjacentHTML('beforeend', res.data);
+          }
         })
         .catch(console.error)
     }
 }
 		
 		hide(e) {
-				if (this.hasCardTarget) {
-						this.cardTarget.classList.add("hidden")
-				}
+      event.target.dataset.isHovering = false
+
+      if (this.hasCardTarget) {
+        this.cardTarget.classList.add("hidden")
+      }
 		}
 
 		disconnect() {

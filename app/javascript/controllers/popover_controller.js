@@ -39,7 +39,7 @@ export default class extends Controller {
 
   disconnect() {
     if (this.hasPopoverTarget) { this.PopoverTarget.remove() }
-}
+  }
 
   get url() {
 		return this.data.get('url')
