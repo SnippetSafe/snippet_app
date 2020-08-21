@@ -9,7 +9,6 @@ export default class extends Controller {
     let position = 'above';
     if (y < 200) { position = 'below' }
 
-    console.log('h', typeof event.target.dataset.isHovering)
     event.target.dataset.isHovering = true
 
     if (this.hasCardTarget) {
