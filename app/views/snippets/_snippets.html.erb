@@ -1,5 +1,10 @@
 <% @snippets.each do |snippet| %>
-  <%= link_to snippet_path(snippet), class: "card--container card--container-padding snippet-preview--container" do %>
+  <div
+    data-controller="snippets"
+    data-action="click->snippets#view_snippet"
+    data-snippet-url="<%= snippet_path(snippet) %>"
+    class="card--container card--container-padding snippet-preview--container"
+  >
     <div class="snippet-preview--author-wrapper">
       <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
       <div>
@@ -15,5 +20,5 @@
     </div>
     <p class="snippet-preview--description"><%= snippet.description %></p>
     <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, classes: "snippet-preview--content" } %>
-  <% end %>
+  </div>
 <% end %>

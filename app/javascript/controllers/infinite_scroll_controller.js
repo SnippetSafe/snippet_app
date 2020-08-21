@@ -30,8 +30,9 @@ export default class extends Controller {
   loadMore(url) {
     axios.get(url, { headers: { 'accept': 'application/json' } })
       .then(res => {
-        console.log('r', res.data)
-        this.entriesTarget.insertAdjacentHTML('beforeend', res.data.entries)
+        let entriesString = res.data.entries
+      
+        this.entriesTarget.insertAdjacentHTML('beforeend', entriesString)
         this.paginationTarget.innerHTML = res.data.pagination
       })
       .catch(console.error)

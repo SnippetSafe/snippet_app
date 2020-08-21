@@ -1,8 +1,17 @@
 import { Controller } from 'stimulus';
 import axios from 'axios';
+import Turbolinks from 'turbolinks'
 
 export default class extends Controller {
   static targets = ["moveButton", "listItem"];
+
+  view_snippet(event) {
+    event.stopPropagation()
+    const snippetUrl = event.currentTarget.dataset.snippetUrl
+
+    // Turbolinks.visit(snippetUrl)
+    window.location.href = snippetUrl
+  }
 
   delete_alert(event) {
     event.preventDefault()

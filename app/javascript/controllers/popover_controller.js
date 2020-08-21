@@ -6,6 +6,7 @@ export default class extends Controller {
 
   display(event) {
     event.preventDefault();
+    event.stopPropagation()
 
     if (this.hasPopoverTarget && !this.popoverTarget.classList.contains('hidden')) {
       this.popoverTarget.classList.add('hidden')
