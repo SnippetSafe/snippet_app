@@ -1,23 +1,10 @@
-<% @snippets.each do |snippet| %>
-  <% serialized = snippet.simple_serialize(current_user) %>
-  
-  <%= link_to snippet_path(snippet), class: "card--container card--container-padding snippet-preview--container" do %>
-    <div class="snippet-preview--author-wrapper">
-      <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
-      <div>
-        <div style="display: flex; flex-direction: column;">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
-            <span class="language-tag"><%= serialized[:language] %></span>
-            
-            <% if @display_popover %>
-              <%= render partial: 'popover/popover', locals: { popover_path: popover_snippet_path(snippet) } %>
-            <% end %>
+<div data-controller="infinite-scroll">
+  <div data-target="infinite-scroll.entries" data-action="scroll@window->infinite-scroll#scroll">
+    <%= render 'snippets/snippets' %>
 
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="snippet-preview--description"><%= serialized[:description] %></p>
-    <%= render partial: 'shared/code_highlight', locals: { code: serialized[:highlighted_body], classes: "snippet-preview--content" } %>
-  <% end %>
-<% end %>
+  </div>
+
+  <div data-target="infinite-scroll.pagination" class="hidden">
+    <%= will_paginate @snippets, container: false %>
+  </div>
+</div>
