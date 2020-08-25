@@ -107,7 +107,8 @@ class SnippetsController < ApplicationController
   end
 
   def show
-    @snippet = Snippet.includes(comments: :user).find(params[:id]).serialize(current_user)
+    @snippet = Snippet.includes(comments: :user).find(params[:id])
+    @display_popover = true
   end
 
   def new

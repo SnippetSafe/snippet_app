@@ -71,24 +71,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .comment {
-    &--header {
-      height: 30px;
-    }
-
-    &--container {
-      margin: 24px 0px 24px 0px;
-      box-shadow: 0 4px 9px lightgrey;
-      padding: 16px;
-      background-color: white;
-      border-radius: 4px;
-    }
-
-    &--body {
-      display: block;
-      margin-top: 16px;
-    }
-  }
-</style>

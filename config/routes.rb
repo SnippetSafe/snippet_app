@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     get :move_modal, on: :member
   end
 
-  resources :comments, only: %i(create destroy)
+  resources :comments, only: %i(create destroy) do
+    get :popover, on: :member
+
+    # Alerts
+    get :delete_alert, on: :member
+  end
 
   resources :users, only: :show do
     put :modify, on: :collection

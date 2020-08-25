@@ -6,7 +6,9 @@ export default class extends Controller {
   static targets = ["moveButton", "listItem"];
 
   connect() {
-    this.moveButtonTarget.disabled = true
+    if (this.hasMoveButtonTarget) {
+      this.moveButtonTarget.disabled = true
+    }
   }
 
   view_snippet(event) {
