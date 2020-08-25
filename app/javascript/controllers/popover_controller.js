@@ -9,10 +9,16 @@ export default class extends Controller {
     event.stopPropagation()
 
     if (this.hasPopoverTarget && !this.popoverTarget.classList.contains('hidden')) {
+      this.hideAllPopovers()
+
       this.popoverTarget.classList.add('hidden')
     } else if (this.hasPopoverTarget && this.popoverTarget.classList.contains('hidden')) {
+      this.hideAllPopovers()
+
       this.popoverTarget.classList.remove('hidden')
     } else {
+      this.hideAllPopovers()
+
       axios.get(this.url)
         .then(res => {
           this.element.insertAdjacentHTML('beforeend', res.data);
@@ -39,6 +45,12 @@ export default class extends Controller {
 
   disconnect() {
     if (this.hasPopoverTarget) { this.PopoverTarget.remove() }
+  }
+
+  hideAllPopovers() {
+    Array.from(document.getElementsByClassName('popover--container')).forEach(el => {
+      el.classList.add('hidden')
+    })
   }
 
   get url() {
