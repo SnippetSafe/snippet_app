@@ -24,7 +24,7 @@
     <div class="move-snippet--buttons">
       <button data-action="click->modal#close" class="button--cta-cancel">CANCEL</button>
 
-      <%= link_to @header.upcase, file_snippet_path(@snippet), method: :post, class: "button--cta-disabled", data: { target: 'snippets.moveButton' } %>
+      <%= link_to @header.upcase, file_snippet_path(@snippet), method: :post, disabled: true, class: "button--cta-disabled", data: { target: 'snippets.moveButton' } %>
     </div>
   </div>
 <% end %>
