@@ -109,6 +109,7 @@ class SnippetsController < ApplicationController
   def show
     @snippet = Snippet.includes(comments: :user).find(params[:id])
     @display_popover = true
+    @comment = Comment.new
   end
 
   def new

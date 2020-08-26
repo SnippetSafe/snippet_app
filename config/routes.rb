@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     # Modals
     get :move_modal, on: :member
+
+    resources :comments, only: :create
   end
 
   resources :comments, only: %i(create destroy) do

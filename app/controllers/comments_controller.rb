@@ -5,12 +5,15 @@ class CommentsController < ApplicationController
   DELETE_CONFIRM_TEXT = "Are you sure you want to delete this comment? You won't be able to undo this.".freeze
 
   def create
-    comment = Comment.new(comment_params)
+    @snippet = Snippet.find(params[:snippet_id])
+    @comment = @snippet.comments.new(comment_params)
 
-    if comment.save
-      render json: { comment: comment.serialize, message: 'Comment created!' }
+    if @comment.save
+      flash[:notice] = 'Comment created!'
+      redirect_to snippet_path(@snippet)
     else
-      render json: { errors: comment.errors.full_messages }, status: 400
+      flash[:alert] = 'Comment body can\'t be empty.'
+      redirect_to snippet_path(@snippet, anchor: 'comment_body')
     end
   end
 
@@ -57,6 +60,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:snippet_id, :user_id, :body)
+    params.require(:comment).permit(:body).to_h.merge(user_id: current_user.id)
   end
 end
