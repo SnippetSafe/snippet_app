@@ -21,6 +21,11 @@
 .position {
   &-relative { position: relative; }
   &-absolute { position: absolute; }
+  &-top-right {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
 }
 
 // MARGIN

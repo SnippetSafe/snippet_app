@@ -7,6 +7,8 @@ class FoldersController < ApplicationController
 
   def index
     @page_title = 'Folders'
+
+    @folders = current_user.folders.order(name: :asc)
   end
 
   def search

@@ -12,7 +12,7 @@
           <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
             <span class="language-tag"><%= snippet.language %></span>
             <% if @display_popover %>
-              <%= render partial: 'popover/popover', locals: { popover_path: popover_snippet_path(snippet) } %>
+              <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
             <% end %>
           </div>
         </div>

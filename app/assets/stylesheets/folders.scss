@@ -29,11 +29,8 @@
     position: relative;
     border-radius: 2px;
     background-color: $color-white;
-    box-shadow: 0 1px 4px lightgrey;
-
-    &:hover {
-      background-color: $color-light;
-    }
+    box-shadow: 0 1px 2px lightgrey;
+    border: 1px solid lightgrey;
 
     &--link {
       text-decoration: none;

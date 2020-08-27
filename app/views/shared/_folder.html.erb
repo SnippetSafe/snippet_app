@@ -1,30 +1,10 @@
-<div class="folders--list-item-wrapper">
+<div class="folders--list-item-wrapper">    
   <div class="folders--list-item">
     <%= link_to folder_path(folder), class: "folders--list-item--link", title: folder.name do %>
       <span class="folders--snippet-count"><%= folder.snippet_count %></span>
       <img class="folders--snippet-icon" src="/icons/folder-1.svg" width="28">
       <span class="folders--list-item--title"><%= folder.name %></span>
+      <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(Snippet.first), position: 'top-right' } %>
     <% end %>
-    <div>
-      <% if folder.snippets.any? %>
-        <% folder.snippets.last(3).reverse.each do |snippet| %>
-          <%= link_to snippet_path(snippet), class: 'preview-wrapper', title: snippet.description do %>
-            <div style="display: flex; justify-content: space-between;">
-              <span class="language-tag"><%= snippet.language.capitalize %></span>
-              <span class="date-tag">Just now</span>
-            </div>
-            <%# TODO: Remove the ellipsis for snippets that don't overflow %>
-            <span style="display: block; font-size: 14px; margin-top: 4px;"><%= snippet.description.first(78) %>...</span>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to new_snippet_path(folder_id: folder.id, redirect_url: folders_path), class: "preview-wrapper", style: "display: flex; justify-content: center;" do %>
-          <img src="/icons/edit.svg" width="20">
-          <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
-            <span style="font-size: 14px; display: block;">Add snippet</span>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
   </div>
 </div>

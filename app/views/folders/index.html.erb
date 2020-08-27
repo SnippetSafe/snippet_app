@@ -1,1 +1,6 @@
-<snippets-index in="folders"/>
+<%# <snippets-index in="folders"/> %>
+<div class="margin-top">
+  <% @folders.each_slice(3) do |folders| %>
+    <%= render partial: 'shared/folder_row', locals: { folders: folders } %>
+  <% end %>
+</div>
