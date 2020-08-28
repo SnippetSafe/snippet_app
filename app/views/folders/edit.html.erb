@@ -1,0 +1,7 @@
+<div class="card--container card--container-padding">
+  <h2>Rename Folder</h2>
+  <%= form_with model: @folder, method: :put, local: true do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit 'RENAME', class: 'button--cta-new', method: :post %>
+  <% end %>
+</div>

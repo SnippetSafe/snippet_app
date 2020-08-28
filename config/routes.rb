@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :likes, only: :create
 
-  resources :folders, only: %i(index show new create update destroy) do
+  resources :folders, only: %i(index show new edit create update destroy) do
     # Popover
     get :popover, on: :member
 

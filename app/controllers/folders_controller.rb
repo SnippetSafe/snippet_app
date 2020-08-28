@@ -2,7 +2,7 @@ class FoldersController < ApplicationController
   MINIMUM_FOLDERS = 1.freeze
 
   before_action :authenticate_user!
-  before_action :set_folder, only: %i(show update destroy)
+  before_action :set_folder, only: %i(show edit update destroy)
   before_action :require_minimum_folders, only: :destroy
 
   def popover
@@ -10,7 +10,7 @@ class FoldersController < ApplicationController
     
     @popover_options = @folder.popover_options_for(current_user)
 
-    render layout: false
+    render partial: 'shared/popover', layout: false
   end
 
   def index
@@ -48,12 +48,18 @@ class FoldersController < ApplicationController
     redirect_to folders_path
   end
 
+  def edit
+
+  end
+
   def update
     if @folder.update(folder_params)
-      render json: { message: 'Folder updated!' }
+      flash[:notice] = 'Folder updated!'
     else
-      render json: { message: 'Unable to update folder' }
+      flash[:alert] = 'Unable to update folder'
     end
+
+    redirect_to folders_path
   end
 
   def destroy

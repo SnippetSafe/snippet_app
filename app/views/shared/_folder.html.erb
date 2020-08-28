@@ -4,7 +4,7 @@
       <span class="folders--snippet-count"><%= folder.snippet_count %></span>
       <img class="folders--snippet-icon" src="/icons/folder-1.svg" width="28">
       <span class="folders--list-item--title"><%= folder.name %></span>
-      <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(Snippet.first), position: 'top-right' } %>
+      <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
     <% end %>
   </div>
 </div>

@@ -44,7 +44,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.hasPopoverTarget) { this.PopoverTarget.remove() }
+    if (this.hasPopoverTarget) { this.popoverTarget.remove() }
   }
 
   hideAllPopovers() {
