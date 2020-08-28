@@ -6,18 +6,18 @@
       <% end %>
     <% elsif option[:type] == :alert %>
       <div 
-        data-controller="snippets"
-        data-action="click->snippets#delete_alert"
-        data-snippets-url="<%= option[:url] %>"
+        data-controller="alert"
+        data-action="click->alert#present"
+        data-alert-url="<%= option[:url] %>"
         class="popover--item"
       >
         <span><%= option[:title] %></span>
       </div>
     <% else %>
       <div 
-        data-controller="snippets"
-        data-action="click->snippets#move_modal"
-        data-snippets-url="<%= option[:url] %>"
+        data-controller="modal"
+        data-action="click->modal#present"
+        data-modal-url="<%= option[:url] %>"
         class="popover--item"
       >
         <span><%= option[:title] %></span>

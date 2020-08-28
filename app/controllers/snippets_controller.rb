@@ -14,7 +14,7 @@ class SnippetsController < ApplicationController
 
     @popover_options = current_user.popover_options_for(@snippet)
 
-    render layout: false
+    render partial: 'shared/popover', layout: false
   end
 
   # Does this belong on SnippetFoldersController?

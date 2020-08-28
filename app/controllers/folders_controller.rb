@@ -5,6 +5,14 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: %i(show update destroy)
   before_action :require_minimum_folders, only: :destroy
 
+  def popover
+    @folder = current_user.folders.find(params[:id])
+    
+    @popover_options = @folder.popover_options_for(current_user)
+
+    render layout: false
+  end
+
   def index
     @page_title = 'Folders'
 

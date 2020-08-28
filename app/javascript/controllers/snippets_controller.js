@@ -1,10 +1,12 @@
 import { Controller } from 'stimulus';
-import axios from 'axios';
-import Turbolinks from 'turbolinks'
 
 export default class extends Controller {
   static targets = ["moveButton", "listItem"];
 
+
+  initialize() {
+  }
+  
   connect() {
     if (this.hasMoveButtonTarget) {
       this.moveButtonTarget.disabled = true
@@ -17,26 +19,6 @@ export default class extends Controller {
 
     // Turbolinks.visit(snippetUrl)
     window.location.href = snippetUrl
-  }
-
-  delete_alert(event) {
-    event.preventDefault()
-
-    axios.get(this.url)
-      .then(res => {
-        document.getElementById('vue-app').insertAdjacentHTML('afterbegin', res.data);
-      })
-      .catch(console.error)
-  }
-
-  move_modal() {
-    event.preventDefault()
-
-    axios.get(this.url)
-      .then(res => {
-        document.getElementById('vue-app').insertAdjacentHTML('afterbegin', res.data);
-      })
-      .catch(console.error)
   }
 
   modal_search(event) {

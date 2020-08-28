@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :snippets, only: %i(index new show create edit update destroy) do
     get :search, on: :collection
     get :current_folder, on: :member
+
+    # Popover
     get :popover, on: :member
 
     # Filing Snippets
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: %i(create destroy) do
+    # Popover
     get :popover, on: :member
 
     # Alerts
@@ -46,6 +49,9 @@ Rails.application.routes.draw do
   resources :likes, only: :create
 
   resources :folders, only: %i(index show new create update destroy) do
+    # Popover
+    get :popover, on: :member
+
     get :search, on: :collection
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection

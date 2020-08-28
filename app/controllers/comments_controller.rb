@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
     @popover_options = @comment.popover_options_for(current_user)
 
-    render layout: false
+    render partial: 'shared/popover', layout: false
   end
 
   def delete_alert
