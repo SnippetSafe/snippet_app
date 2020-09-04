@@ -1,12 +1,17 @@
-<%# <snippets-index in="folders"/> %>
-<div style="display: flex; align-items: center;" class="margin-top">
-  <div class="searchbar">
-    <input type="text" placeholder="Search"/>
-    <img src="/icons/search.svg">
+<div data-controller="infinite-scroll">
+  <div style="display: flex; align-items: center;" class="margin-top">
+    <div class="searchbar">
+      <input type="text" placeholder="Search"/>
+      <img src="/icons/search.svg">
+    </div>
   </div>
-</div>
-<div class="margin-top">
-  <% @folders.each_slice(3) do |folders| %>
-    <%= render partial: 'shared/folder_row', locals: { folders: folders } %>
-  <% end %>
-</div>
+  <div class="margin-top"
+    data-target="infinite-scroll.entries"
+    data-action="scroll@window->infinite-scroll#scroll"
+  >
+    <%= render 'folders/folders' %>
+  </div>
+
+  <div data-target="infinite-scroll.pagination" class="hidden">
+    <%= will_paginate @folders, container: false %>
+  </div>

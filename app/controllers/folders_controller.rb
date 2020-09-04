@@ -16,7 +16,19 @@ class FoldersController < ApplicationController
   def index
     @page_title = 'Folders'
 
-    @folders = current_user.folders.order(name: :asc)
+    @folders = current_user.folders
+      .order(name: :asc)
+      .paginate(page: params[:page] || 1, per_page: 24)
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          entries: render_to_string(partial: 'folders/folders', locals: { folders: @folders }, formats: [:html]),
+          pagination: view_context.will_paginate(@folders)
+        }
+      end
+    end
   end
 
   def search

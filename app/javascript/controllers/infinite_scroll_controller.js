@@ -11,7 +11,7 @@ export default class extends Controller {
     this.isLoadingMore = false
   }
 
-  scroll() {    
+  scroll() {
     if (this.shouldLoadMore()) { this.loadMore() }
   }
 
