@@ -1,9 +1,11 @@
 <div data-controller="infinite-scroll">
-  <div style="display: flex; align-items: center;" class="margin-top">
+  <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
     <div class="searchbar">
       <input type="text" placeholder="Search"/>
       <img src="/icons/search.svg">
     </div>
+
+    <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
   </div>
   <div class="margin-top"
     data-target="infinite-scroll.entries"
