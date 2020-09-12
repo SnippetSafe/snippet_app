@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  UNAUTHORIZED = 'You do not have access this page'.freeze
+  UNAUTHORIZED = 'You do not have access to this page'.freeze
 
   protected
 

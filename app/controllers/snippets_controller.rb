@@ -182,7 +182,13 @@ class SnippetsController < ApplicationController
           flash[:alert] = 'Unable to delete snippet'
         end
 
-        redirect_to URI(request.referrer).path
+        redirect_path = if URI(request.referrer).path == snippet_path(@snippet)
+          snippets_path
+        else
+          URI(request.referrer).path
+        end
+
+        redirect_to redirect_path
       end
 
       format.json do
