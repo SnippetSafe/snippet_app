@@ -2,14 +2,39 @@ import { Controller } from 'stimulus'
 import axios from 'axios'
 
 export default class extends Controller {
-  static targets = ['entries', 'pagination']
+  static targets = ['entries', 'pagination', 'input', 'form']
 
   initialize() {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
 
     this.isLoadingMore = false
+
+    if (this.hasInputTarget) { this.inputTarget.focus() };
   }
+
+  search = _.debounce(function(event) {
+    console.log('searching for', event.target.value)
+    console.log('t', this.data.get('baseUrl'))
+
+    this.isLoadingMore = true
+
+    axios.get(this.baseUrl, { params: { search: event.target.value }, headers: { 'accept': 'application/json' } })
+      .then(res => {
+        let entriesString = res.data.entries
+      
+        this.entriesTarget.innerHTML = entriesString
+        this.paginationTarget.innerHTML = res.data.pagination
+
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+
+        this.isLoadingMore = false
+      })
+      .catch(console.error)
+    // this.formTarget.submit()
+  }, 400)
 
   scroll() {
     if (this.shouldLoadMore()) { this.loadMore() }
@@ -52,5 +77,9 @@ export default class extends Controller {
 
   get nextPageUrl() {
     return this.nextPageAnchor.href
+  }
+
+  get baseUrl() {
+    return this.data.get('baseUrl')
   }
 }

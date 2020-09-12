@@ -1,9 +1,15 @@
-<div data-controller="infinite-scroll">
+<div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= folders_path %>">
   <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
-    <div class="searchbar">
-      <input type="text" placeholder="Search"/>
-      <img src="/icons/search.svg">
-    </div>
+
+      <div class="searchbar">
+        <input autofocus
+          type="text"
+          placeholder="Search"
+          data-action="input->infinite-scroll#search"
+          data-target="infinite-scroll.input"
+        />
+        <img src="/icons/search.svg">
+      </div>
 
     <%= link_to 'NEW FOLDER', new_folder_path, class: 'button--cta-new' %>
   </div>
@@ -17,3 +23,4 @@
   <div data-target="infinite-scroll.pagination" class="hidden">
     <%= will_paginate @folders, container: false %>
   </div>
+</div>

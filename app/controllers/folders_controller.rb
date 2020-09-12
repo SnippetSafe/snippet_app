@@ -29,6 +29,10 @@ class FoldersController < ApplicationController
     @page_title = 'Folders'
 
     @folders = current_user.folders
+
+    @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search]
+
+    @folders = @folders
       .order(name: :asc)
       .paginate(page: params[:page] || 1, per_page: 24)
 
