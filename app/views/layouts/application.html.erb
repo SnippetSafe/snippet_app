@@ -31,8 +31,8 @@
     <% else %>
       <div id="vue-app" v-cloak>
     <% end %>
-      <toast alert="<%= alert %>" notice="<%= notice %>"></toast>
-      <%# <alert></alert> %>
+      <%= render partial: 'shared/toast' %>
+
       <popover></popover>
 
       <%= render partial: 'shared/topbar' %>

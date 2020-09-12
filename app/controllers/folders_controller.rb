@@ -20,6 +20,7 @@ class FoldersController < ApplicationController
     @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
     @confirm_path = folder_path(@folder, redirect_url: folders_path)
+    @resource_id = @folder.client_id
     @method = :delete
 
     render layout: false, partial: 'shared/alert'
@@ -96,13 +97,17 @@ class FoldersController < ApplicationController
   end
 
   def destroy
-    if @folder.destroy
-      flash[:notice] = 'Folder deleted!'
-    else
-      flash[:alert] = 'Unable to delete folder'
-    end
+    respond_to do |format|
+      format.html do
+        if @folder.destroy
+          flash[:notice] = 'Folder deleted!'
+        else
+          flash[:alert] = 'Unable to delete folder'
+        end
 
-    redirect_to folders_path
+        redirect_to folders_path
+      end
+    end
   end
 
   # Remove this once all routes no longer use JSON

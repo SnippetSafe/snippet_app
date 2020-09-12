@@ -2,7 +2,7 @@
 
 .toast {
   &--container {
-    position: absolute;
+    position: fixed;
     left: 50%;
     margin-left: -150px;
     width: 300px;

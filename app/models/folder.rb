@@ -15,4 +15,8 @@ class Folder < ApplicationRecord
 
     options
   end
+
+  def client_id
+    "folder_#{id}"
+  end
 end

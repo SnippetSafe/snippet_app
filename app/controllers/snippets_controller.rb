@@ -83,7 +83,7 @@ class SnippetsController < ApplicationController
     @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
     @confirm_path = snippet_path(@snippet)
-    @method = :delete
+    @resource_id = @snippet.client_id
 
     render layout: false
   end

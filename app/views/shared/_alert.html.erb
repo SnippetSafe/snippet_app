@@ -1,4 +1,10 @@
-<div data-controller="alert" data-target="alert.alert" class="alert-mask">
+<div
+  class="alert-mask"
+  data-controller="alert"
+  data-target="alert.alert"
+  data-alert-confirm-path="<%= @confirm_path %>"
+  data-alert-resource-id="<%= @resource_id %>"
+>
   <div class="alert-wrapper">
     <div class="alert-container">
       <div class="alert-header">
@@ -16,7 +22,18 @@
         <button data-action="click->alert#close" class="button--cta-cancel">
           CANCEL
         </button>
-        <%= link_to @confirm_word, @confirm_path, method: @method, class: "button--cta-new" %>
+
+        <% if @method == :delete %>
+          <%= link_to @confirm_word, @confirm_path, method: @method, class: "button--cta-new" %>
+        <% else %>
+          <button
+            class="button--cta-new"
+            data-action="click->alert#confirm"
+          >
+            <%= @confirm_word %>
+          </button>
+        <% end %>
+        
       </div>
     </div>
   </div>

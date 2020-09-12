@@ -49,6 +49,10 @@ class Snippet < ApplicationRecord
     ).html_safe
   end
 
+  def client_id
+    "snippet_#{id}"
+  end
+
   private
 
   def owner_folder_presence
