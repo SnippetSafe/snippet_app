@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     # Popover
     get :popover, on: :member
 
+    # Alerts
+    get :delete_alert, on: :member
+
     get :search, on: :collection
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection

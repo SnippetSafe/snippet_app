@@ -10,7 +10,7 @@ class Folder < ApplicationRecord
     options << { type: :link, title: 'Rename folder', url: edit_folder_path(self) }
 
     if snippets.empty?
-      options << { type: :alert, title: 'Delete', url: delete_alert_comment_path(self) }
+      options << { type: :alert, title: 'Delete', url: delete_alert_folder_path(self) }
     end
 
     options
