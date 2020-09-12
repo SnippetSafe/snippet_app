@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :snippets, only: %i(index new show create edit update destroy) do
-    get :search, on: :collection
     get :current_folder, on: :member
 
     # Popover
@@ -55,7 +54,6 @@ Rails.application.routes.draw do
     # Alerts
     get :delete_alert, on: :member
 
-    get :search, on: :collection
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection
   end

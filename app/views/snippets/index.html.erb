@@ -1,1 +1,27 @@
-<snippets-index in="snippets"/>
+<div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= snippets_path %>">
+  <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+
+      <div class="searchbar">
+        <input autofocus
+          type="text"
+          placeholder="Search"
+          data-action="input->infinite-scroll#search"
+          data-target="infinite-scroll.input"
+        />
+        <img src="/icons/search.svg">
+      </div>
+
+    <%= link_to 'NEW SNIPPET', new_snippet_path, class: 'button--cta-new' %>
+  </div>
+
+  <div class="margin-top"
+    data-target="infinite-scroll.entries"
+    data-action="scroll@window->infinite-scroll#scroll"
+  >
+    <%= render 'snippets/snippets' %>
+  </div>
+
+  <div data-target="infinite-scroll.pagination" class="hidden">
+    <%= will_paginate @snippets, container: false %>
+  </div>
+</div>

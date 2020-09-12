@@ -47,18 +47,6 @@ class FoldersController < ApplicationController
     end
   end
 
-  def search
-    folders = current_user.folders
-      .includes([:snippets, :snippet_folders])
-      .where('name ILIKE ?', "%#{search_params[:search_term]}%")
-      .order(created_at: :desc)
-      .offset(offset)
-      .limit(params[:per_page])
-      .map { |folder| FolderSerializer.new(folder).to_h }
-
-    render json: { items: folders }
-  end
-
   def show
     @page_title = @folder.name
     @snippets = @folder.snippets.order(created_at: :desc).map { |s| s.serialize(current_user) }

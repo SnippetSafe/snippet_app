@@ -6,7 +6,24 @@ class SnippetsController < ApplicationController
   UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
 
   def index
-    @page_title = 'Snippets'
+    @display_popover = true
+    @snippets = current_user.filed_snippets
+
+    @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]
+
+    @snippets = @snippets
+      .order(created_at: :desc)
+      .paginate(page: params[:page] || 1, per_page: 6)
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
+          pagination: view_context.will_paginate(@snippets)
+        }
+      end
+    end
   end
 
   def popover
@@ -92,18 +109,6 @@ class SnippetsController < ApplicationController
     end
 
     render json: res
-  end
-
-  def search
-    snippets = current_user.filed_snippets
-      .includes(:user)
-      .where('description ILIKE ?', "%#{search_params[:search_term]}%")
-      .order(created_at: :desc)
-      .offset(offset)
-      .limit(params[:per_page])
-      .map { |s| s.simple_serialize(current_user) }
-
-    render json: { items: snippets }
   end
 
   def show
