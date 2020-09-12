@@ -6,6 +6,14 @@
   align-items: center;
   margin-left: 4px;
 
+  &--top-right {
+    @extend .more-button;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
   &:hover {
     cursor: pointer;
     background-color: $color-light;
