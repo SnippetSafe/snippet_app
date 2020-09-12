@@ -178,14 +178,13 @@ class SnippetsController < ApplicationController
       format.html do
         if @snippet.destroy
           flash[:notice] = 'Snippet deleted!'
-
-          redirect_to root_path
         else
           flash[:alert] = 'Unable to delete snippet'
-
-          redirect_to root_path
         end
+
+        redirect_to URI(request.referrer).path
       end
+
       format.json do
         if @snippet.destroy
           render json: { message: 'Snippet deleted!' }
@@ -205,10 +204,6 @@ class SnippetsController < ApplicationController
         format.json { render json: { message: UNAUTHORIZED }, status: 401 }
       end
     end
-  end
-
-  def offset
-    (search_params[:page].to_i - 1) * search_params[:per_page].to_i 
   end
 
   def snippet_params

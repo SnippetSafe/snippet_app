@@ -19,7 +19,7 @@ class FoldersController < ApplicationController
     @title = 'Delete Folder'
     @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
-    @confirm_path = folder_path(@folder)
+    @confirm_path = folder_path(@folder, redirect_url: folders_path)
     @method = :delete
 
     render layout: false, partial: 'shared/alert'
@@ -133,13 +133,5 @@ class FoldersController < ApplicationController
 
   def folder_params
     params.require(:folder).permit(:name)
-  end
-
-  def search_params
-    params.permit(:search_term, :page, :per_page)
-  end
-
-  def offset
-    (search_params[:page].to_i - 1) * search_params[:per_page].to_i 
   end
 end
