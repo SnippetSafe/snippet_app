@@ -30,7 +30,7 @@ class FoldersController < ApplicationController
 
     @folders = current_user.folders
 
-    @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search]
+    @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search].present?
 
     @folders = @folders
       .order(name: :asc)
@@ -49,7 +49,24 @@ class FoldersController < ApplicationController
 
   def show
     @page_title = @folder.name
-    @snippets = @folder.snippets.order(created_at: :desc).map { |s| s.serialize(current_user) }
+    @display_popover = true
+    @snippets = @folder.snippets
+
+    @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search].present?
+
+    @snippets = @snippets
+      .order(created_at: :desc)
+      .paginate(page: params[:page] || 1, per_page: 6)
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
+          pagination: view_context.will_paginate(@snippets)
+        }
+      end
+    end
   end
 
   def new
