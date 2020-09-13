@@ -7,8 +7,9 @@ class SnippetsController < ApplicationController
 
   def index
     @display_popover = true
-    @snippets = current_user.filed_snippets
+    @snippets = current_user.filed_snippets.includes(:user)
 
+    # TODO: Extract this logic to model/service
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]
 
     @snippets = @snippets
@@ -16,7 +17,9 @@ class SnippetsController < ApplicationController
       .paginate(page: params[:page] || 1, per_page: 6)
 
     respond_to do |format|
-      format.html
+      format.html do
+        flash[:notice] = params[:notice] if params[:notice]
+      end
       format.json do
         render json: {
           entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),

@@ -25,9 +25,13 @@ export default class extends Controller {
 
     axios.delete(this.confirmPath, { headers: { 'accept': 'application/json' } })
       .then(res => {
-        document.getElementById(this.resourceId).remove()
-        this.alertTarget.remove()
-        this.toast.display('Snippet deleted!')
+        if (this.listItem) {
+          this.listItem.remove()
+          this.alertTarget.remove()
+          this.toast.display('Snippet deleted!')
+        } else {
+          window.location.href = '/snippets?notice=Snippet%20deleted!'
+        }
       })
       .catch(error => {
         console.error(error)
@@ -45,6 +49,10 @@ export default class extends Controller {
 
   get resourceId() {
     return this.data.get('resourceId')
+  }
+
+  get listItem() {
+    return document.getElementById(this.resourceId)
   }
 
   get app() {
