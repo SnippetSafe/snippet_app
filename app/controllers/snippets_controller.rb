@@ -52,23 +52,24 @@ class SnippetsController < ApplicationController
 
   # Does this belong on SnippetFoldersController?
   def file
-    begin
-      Snippet.transaction do
-        if snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
-          snippet_folder.destroy!
-        end  
-    
-        SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+    respond_to do |format|
+      format.json do
+        begin
+          Snippet.transaction do
+            if snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+              snippet_folder.destroy!
+            end  
+        
+            SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+          end
+        rescue => error
+          render json: { message: 'Unable to file snippet, please try again.' }, status: 400
+        else
+          new_folder = current_user.folders.find(params[:folder_id])
+          render json: { message: "Snippet filed in #{new_folder.name}!" }
+        end
       end
-    rescue => error
-      flash[:alert] = 'Unable to file snippet, please try again.'
-    else
-      new_folder = current_user.folders.find(params[:folder_id])
-
-      flash[:notice] = "Snippet filed in #{new_folder.name}!"
     end
-
-    redirect_to root_path
   end
 
   def move_modal

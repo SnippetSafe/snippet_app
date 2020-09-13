@@ -8,6 +8,7 @@ export default class extends Controller {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
   }
+
   present(event) {
     event.preventDefault()
 
@@ -21,8 +22,6 @@ export default class extends Controller {
   }
 
   confirm() {
-    console.log(this.confirmPath)
-
     axios.delete(this.confirmPath, { headers: { 'accept': 'application/json' } })
       .then(res => {
         if (this.listItem) {

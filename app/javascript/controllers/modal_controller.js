@@ -2,7 +2,11 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-	static targets = ["modal"];
+  static targets = ["modal"];
+  
+  connect() {
+    this.element[this.identifier] = this
+  }
 
   present() {
     event.preventDefault()

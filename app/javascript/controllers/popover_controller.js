@@ -8,14 +8,8 @@ export default class extends Controller {
     event.preventDefault();
     event.stopPropagation()
 
-    if (this.hasPopoverTarget && !this.popoverTarget.classList.contains('hidden')) {
-      this.hideAllPopovers()
-
-      this.popoverTarget.classList.add('hidden')
-    } else if (this.hasPopoverTarget && this.popoverTarget.classList.contains('hidden')) {
-      this.hideAllPopovers()
-
-      this.popoverTarget.classList.remove('hidden')
+    if (this.hasPopoverTarget) {
+      this.popoverTarget.remove()
     } else {
       this.hideAllPopovers()
 
@@ -29,7 +23,7 @@ export default class extends Controller {
 
   hide(event) {
     if(this.hasPopoverTarget && !this.element.contains(event.target)) {
-      this.popoverTarget.classList.add('hidden')
+      this.popoverTarget.remove()
     }
   }
 
@@ -39,8 +33,6 @@ export default class extends Controller {
 
   confirm(event) {
     event.preventDefault();
-
-    console.log('text', this.confirmText)
   }
 
   disconnect() {
@@ -49,7 +41,7 @@ export default class extends Controller {
 
   hideAllPopovers() {
     Array.from(document.getElementsByClassName('popover--container')).forEach(el => {
-      el.classList.add('hidden')
+      el.remove()
     })
   }
 

@@ -1,10 +1,13 @@
 import { Controller } from 'stimulus';
+import axios from 'axios';
 
 export default class extends Controller {
   static targets = ["moveButton", "listItem"];
 
 
   initialize() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
   }
   
   connect() {
@@ -59,8 +62,6 @@ export default class extends Controller {
     
     this.selectedFolderId = folderId
 
-
-    this.moveButtonTarget.href = this.moveButtonTarget.href.split('?')[0].concat(`?folder_id=${folderId}`)
     if (this.selectedFolderId === this.originalFolderId) {
       this.moveButtonTarget.disabled = true
       this.moveButtonTarget.classList.remove('button--cta-new')
@@ -70,6 +71,18 @@ export default class extends Controller {
       this.moveButtonTarget.classList.remove('button--cta-disabled')
       this.moveButtonTarget.classList.add('button--cta-new')
     }
+  }
+
+  file() {
+    axios.post(this.confirmPath, { folder_id: this.selectedFolderId }, { headers: { 'accept': 'application/json' } })
+      .then(res => {
+        this.toast.display(res.data.message)
+        this.modal.close()
+      })
+      .catch(error => {
+        console.error(error)
+        this.toast.display('Unable to file snippet')
+      })
   }
 
   get url() {
@@ -82,6 +95,22 @@ export default class extends Controller {
 
   get originalFolderId() {
     return this.data.get('originalFolderId')
+  }
+
+  get modal() {
+    return document.getElementById('modal').modal
+  }
+
+  get toast() {
+    return document.getElementById('toast').toast
+  }
+
+  get confirmPath() {
+    return this.data.get('confirmPath')
+  }
+
+  set confirmPath(newPath) {
+    return this.data.set('confirmPath', newPath)
   }
 
   set selectedFolderId(folderId) {

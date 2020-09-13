@@ -3,6 +3,7 @@
     data-controller="snippets"
     data-snippets-selected-folder-id="<%= @current_folder_id %>"
     data-snippets-original-folder-id="<%= @current_folder_id %>"
+    data-snippets-confirm-path="<%= file_snippet_path(@snippet) %>"
   >
     <input data-action="keyup->snippets#modal_search" class="move-snippet--search" type="search" placeholder="Find a folder...">
     <div class="move-snippet--list" data-target="snippets.list">
@@ -23,8 +24,14 @@
     </div>
     <div class="move-snippet--buttons">
       <button data-action="click->modal#close" class="button--cta-cancel">CANCEL</button>
-
-      <%= link_to @header.upcase, file_snippet_path(@snippet), method: :post, disabled: true, class: "button--cta-disabled", data: { target: 'snippets.moveButton' } %>
+      <button
+        data-action="click->snippets#file"
+        data-target="snippets.moveButton"
+        class="button--cta-disabled"
+        disabled
+      >
+        <%= @header.upcase %>
+      </button>
     </div>
   </div>
 <% end %>
