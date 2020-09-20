@@ -1,5 +1,110 @@
 @import './variables.scss';
 
+.move-snippet {
+  &--search {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 8px;
+    border: 1px solid #DEF2F1;
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+
+    &:focus { outline: none; }
+  }
+
+  &--list {
+    height: 400px;
+    overflow-y: scroll;
+    margin: 16px 0px;
+    border: 1px solid #DEF2F1;
+    border-radius: 2px;
+    font-size: 14px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+    &::-webkit-scrollbar { /* WebKit */
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &--item {
+    padding: 6px 6px;
+    display: flex;
+    justify-content: space-between;
+
+    // &:nth-child(odd) {background: white}
+    // &:nth-child(even) {background: #F2F2F2}
+
+    &:hover {
+      cursor: pointer;
+      background-color: #DEF2F1;
+    }
+
+    &-selected {
+      padding: 6px 6px;
+      display: flex;
+      justify-content: space-between;
+
+      background-color: #ffd8dd;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #ffd8dd;
+      }
+    }
+  }
+
+  &--buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.snippet-preview {
+  &--container {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  &--author-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &--filename {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &--description {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    color: darkslategrey;
+  }
+
+  &--content {
+    max-height: 258px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar { /* WebKit */
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
 .snippets {
   &--list-item {
     text-decoration: none;

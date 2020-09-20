@@ -64,28 +64,16 @@ import { store } from '../store.js';
 import ActionIcon from '../action-icon';
 import Alert from '../alert';
 import UserAvatar from '../user-avatar';
-import BackButton from '../back-button';
 import Card from '../card';
 import EditAvatar from '../edit-avatar';
 import EditProfile from '../edit-profile';
-import Folders from '../folders';
-import Folder from '../folder';
-import FoldersShow from '../folders-show';
-import FolderRow from '../folder-row';
-import Home from '../home.vue'
 import Modal from '../modal.vue'
 import NewSnippet from '../new-snippet.vue'
 import NewSnippetButton from '../new-snippet-button.vue'
 import Popover from '../popover.vue';
 import Sidebar from '../sidebar.vue'
-import ListItem from '../list-item.vue'
-import Snipt from '../snipt.vue'
-import SnippetPreview from '../snippet-preview.vue'
-import SnippetsIndex from '../snippets-index.vue'
-import SnippetShow from '../snippet-show.vue'
 import Tabs from '../tabs.vue';
 import Tab from '../tab.vue';
-import Toast from '../toast.vue';
 import UserPreview from '../user-preview.vue';
 import UserProfile from '../user-profile.vue'
 import CodeHighlight from '../code-highlight.vue';
@@ -106,29 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ActionIcon,
         Alert,
         UserAvatar,
-        BackButton,
         Card,
         EditAvatar,
         CodeHighlight,
         EditProfile,
-        Folder,
-        Folders,
-        FoldersShow,
-        FolderRow,
-        Home,
-        ListItem,
         Modal,
         NewSnippet,
         NewSnippetButton,
         Popover,
-        Snipt,
         Sidebar,
-        SnippetPreview,
-        SnippetShow,
-        SnippetsIndex,
         Tab,
         Tabs,
-        Toast,
         UserPreview,
         UserProfile
       },
