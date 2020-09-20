@@ -5,17 +5,33 @@
   />
 </card>
 
-<%# <card> %>
-  <tabs>
-    <tab name="<%= @user.snippets_count %> Snippets" selected="true">
+<div data-controller="tabs">
+  <div class="tabs--headers-container">
+    <div></div>
+    <div class="tabs--headers-wrapper">
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
+        <span><%= @user.snippets.size %> Snippets</span>
+      </div>
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+        <span><%= @followers.size %> Followers</span>
+      </div>
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+        <span><%= @following.size %> Following</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-details">
+    <div data-target="tabs.panel">
       <% @user.snippets.order(created_at: :desc).each do |snippet| %>
         <snippet-preview
           :key="<%= snippet.id %>"
           :snippet="<%= snippet.serialize(current_user).to_json %>">
         </snippet-preview>
       <% end %>
-    </tab>
-    <tab name="<%= @followers.size %> Followers">
+    </div>
+
+    <div data-target="tabs.panel" class="hidden">
       <% @followers.each_with_index do |follower, index| %>
         <card>
           <a href="<%= user_path(follower)%>" class="follow--container">
@@ -24,8 +40,9 @@
           </a>
         </card>
       <% end %>
-    </tab>
-    <tab name="<%= @following.size %> Following">
+    </div>
+
+    <div data-target="tabs.panel" class="hidden">
       <% @following.each_with_index do |following_user, index| %>
         <card>
           <a href="<%= user_path(following_user)%>" class="follow--container">
@@ -34,6 +51,6 @@
           </a>
         </card>
       <% end %>
-    </tab>
-  </tabs>
-<%# </card> %>
+    </div>
+  </div>
+</div>
