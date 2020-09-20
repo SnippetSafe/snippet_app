@@ -6,8 +6,9 @@ class SnippetsController < ApplicationController
   UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
 
   def index
+    @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
-    @snippets = current_user.filed_snippets.includes(:user)
+    @snippets = @user.filed_snippets.includes(:user)
 
     # TODO: Extract this logic to model/service
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]

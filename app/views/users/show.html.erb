@@ -10,7 +10,7 @@
     <div></div>
     <div class="tabs--headers-wrapper">
       <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
-        <span><%= @user.snippets.size %> Snippets</span>
+        <span><%= @user.filed_snippets.size %> Snippets</span>
       </div>
       <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
         <span><%= @followers.size %> Followers</span>
@@ -23,12 +23,32 @@
 
   <div class="tabs-details">
     <div data-target="tabs.panel">
-      <% @user.snippets.order(created_at: :desc).each do |snippet| %>
-        <snippet-preview
-          :key="<%= snippet.id %>"
-          :snippet="<%= snippet.serialize(current_user).to_json %>">
-        </snippet-preview>
-      <% end %>
+      <div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= user_snippets_path(@user) %>">
+        <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+
+            <div class="searchbar">
+              <input autofocus
+                type="text"
+                placeholder="Search"
+                data-action="input->infinite-scroll#search"
+                data-target="infinite-scroll.input"
+              />
+              <img src="/icons/search.svg">
+            </div>
+
+        </div>
+
+        <div class="margin-top"
+          data-target="infinite-scroll.entries"
+          data-action="scroll@window->infinite-scroll#scroll"
+        >
+          <%= render 'snippets/snippets' %>
+        </div>
+
+        <div data-target="infinite-scroll.pagination" class="hidden">
+          <%= will_paginate @snippets, container: false, params: { controller: "snippets", action: "index" } %>
+        </div>
+      </div>
     </div>
 
     <div data-target="tabs.panel" class="hidden">

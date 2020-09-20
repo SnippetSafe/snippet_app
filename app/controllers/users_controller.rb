@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @is_following = current_user ? current_user.following?(@user) : false
     @followers = @user.followers
     @following = @user.following
+    @display_popover = true
+    @snippets = @user.filed_snippets
+      .order(created_at: :desc)
+      .paginate(page: 1, per_page: 6)
   end
 
   def hovercard

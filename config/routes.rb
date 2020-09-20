@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     post :follow, on: :member
     post :unfollow, on: :member
     get :hovercard, on: :member
+
+    resources :snippets, only: :index
   end
 
   resources :likes, only: :create
