@@ -1,9 +1,30 @@
-<card>
-  <user-profile
-    :user="<%= @serialized_user %>"
-    :is-following="<%= @is_following %>"
-  />
-</card>
+<div class="card--container card--container-padding">
+  <div class="flex v-center">
+    <div class="flex flex-column">
+      <img style="border-radius: 50%;" src="<%= @user.avatar_url %>" height="120" width="120" />
+    </div>
+    <div class="margin-left">
+      <h2 class="users-show--name"><%= @user.name %></h2>
+      <div style="height: 40px;">
+        <span><%= @user.bio %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="margin-top flex space-between">
+    <% if user_signed_in? %>
+      <% if @user == current_user %>
+        <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
+      <% elsif current_user.following?(@user) %>
+        <%= button_to 'FOLLOWING', unfollow_user_path(@user), class: 'button--cta-unfollow' %>
+      <% else %>
+        <%= button_to 'FOLLOW', follow_user_path(@user), class: 'button--cta-follow' %>
+      <% end %>
+    <% else %>
+      <%= button_to 'FOLLOW', new_user_registration_path, method: :get, class: 'button--cta-follow' %>
+    <% end %>
+  </div>
+</div>
 
 <div data-controller="tabs">
   <div class="tabs--headers-container">

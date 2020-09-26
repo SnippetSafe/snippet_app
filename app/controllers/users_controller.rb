@@ -33,20 +33,24 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
     if current_user.follow(@user)
-      render json: { message: "You are now following #{@user.name}." }
+      flash[:notice] = "You are now following #{@user.name}."
     else
-      render json: { message: "You are already following #{@user.name} you nutter!" }, status: 400
+      flash[:alert] = "You are already following #{@user.name} you nutter!"
     end
+
+    redirect_to user_path(@user)
   end
 
   def unfollow
     @user = User.find_by(id: params[:id])
 
     if current_user.unfollow(@user)
-      render json: { message: "You are no longer following #{@user.name}." }
+      flash[:notice] = "You are no longer following #{@user.name}."
     else
-      render json: { message: "You can't unfollow someone you aren't following you nutter!" }, status: 400
+      flash[:alert] = "You can't unfollow someone you aren't following you nutter!"
     end
+
+    redirect_to user_path(@user)
   end
 
   private
