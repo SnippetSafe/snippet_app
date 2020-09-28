@@ -1,3 +1,67 @@
+<div data-controller="tabs" class="card--container card--container-padding">
+  <div class="tabs--headers-container">
+    <div></div>
+    <div class="tabs--headers-wrapper">
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
+        <span>Account</span>
+      </div>
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+        <span>Security</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-details">
+    <div data-target="tabs.panel">
+      <div class="margin-top">
+        <%= form_for current_user, url: modify_users_path, html: { style: "width: 100%;", method: :put } do |f| %>
+          <div class="edit-profile--wrapper">
+            <div class="edit-profile--fields">
+              <div class="form-field">
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+              </div>
+
+              <div class="form-field">
+                <%= f.label :bio %>
+                <%= f.text_area :bio %>
+              </div>
+
+              <div class="form-field">
+                <%= f.label :location %>
+                <%= f.text_field :location %>
+              </div>
+            </div>
+
+            <div id="upload" data-controller="upload" class="edit-avatar--wrapper">
+              <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="120" height="120" style="border-radius: 50%;">
+              <div
+                class="edit-avatar--edit-button"
+                data-action="click->upload#selectNewImage">
+                <img src="/icons/edit.svg" width="16">
+                <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput", action: "change->upload#handleFileSelect" } %>
+                <%# <input data-target="upload.fileInput" data-action="change->upload#handleFileSelect" name="avatar" type="file" style="visibility: hidden" /> %>
+              </div>
+            </div>
+          </div>
+
+          <div class="folders--options-wrapper">
+            <%= f.submit "SAVE", class: 'button--cta-new' %>
+          </div>
+        <% end %>
+
+        <%# <div class="folders--options-wrapper">
+          <button class="button--cta-new">SAVE</button>
+        </div> %>
+      </div>
+    </div>
+
+    <div data-target="tabs.panel" class="hidden">
+      sec
+    </div>
+  </div>
+</div>
+
 <card>
   <tabs title="Edit Profile">
     <tab name="Account" selected="true">

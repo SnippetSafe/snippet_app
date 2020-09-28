@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 .form-field {
-  margin-top: 20px;
+  margin-bottom: 20px;
 
   label {
     display: block;
@@ -16,7 +16,7 @@
     border: 1px solid lightgrey;
     font-size: 14px;
     display: block;
-    font-weight: 100;
+    font-weight: inherit;
   }
 
   textarea {
@@ -27,7 +27,8 @@
     border: 1px solid lightgrey;
     font-size: 14px;
     display: block;
-    font-weight: 100;
+    font-family: Helvetica, sans-serif;
+    font-weight: inherit;
   }
 
   &--no-margin-top {

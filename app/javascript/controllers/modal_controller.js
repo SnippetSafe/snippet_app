@@ -2,24 +2,27 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ["modal"];
+  static targets = ["modal", "header", "body"];
   
   connect() {
     this.element[this.identifier] = this
   }
 
-  present() {
+  present(url, opts = {}) {
     event.preventDefault()
 
-    axios.get(this.url)
+    axios.get(url)
       .then(res => {
-        document.getElementById('vue-app').insertAdjacentHTML('afterbegin', res.data);
+        this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
+        if (opts.callback) { opts.callback() }
+        this.modalTarget.classList.remove('hidden')
       })
       .catch(console.error)
   }
 
   close() {
-    this.modalTarget.remove()
+    this.modalTarget.classList.add('hidden')
+    this.bodyTarget.innerHTML = ''
   }
 
   get url() {

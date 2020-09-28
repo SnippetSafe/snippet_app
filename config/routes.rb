@@ -44,6 +44,9 @@ Rails.application.routes.draw do
     post :unfollow, on: :member
     get :hovercard, on: :member
 
+    # Modals
+    get :edit_avatar_modal, on: :member
+    
     resources :snippets, only: :index
   end
 

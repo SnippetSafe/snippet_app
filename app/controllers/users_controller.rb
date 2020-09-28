@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  def edit_avatar_modal
+    @user = User.find(params[:id])
+
+    render layout: false
+  end
+
   def show
     @user = User.find_by(id: params[:id])
     @serialized_user = @user.serialize.to_json
@@ -23,10 +29,12 @@ class UsersController < ApplicationController
     current_user.avatar.attach(avatar_param) if avatar_param
 
     if current_user.save
-      render json: { message: "Profile updated", user: current_user.serialize }
+      flash[:notice] = "Profile updated"
     else
-      render json: { errors: current_user.errors.full_messages }, status: 400
+      flash[:alert] = "Failed to update profile"
     end
+
+    redirect_to edit_user_registration_path(current_user)
   end
 
   def follow
