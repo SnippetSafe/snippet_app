@@ -22,7 +22,7 @@ export default class extends Controller {
       reader.onload = function(e) {
         self.uploadedFile = e.target.result
 
-        self.modal.present('/users/1/edit_avatar_modal')
+        self.modal.present('/users/edit_avatar_modal')
       }
 
       reader.readAsDataURL(input.files[0]);

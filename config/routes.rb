@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     get :hovercard, on: :member
 
     # Modals
-    get :edit_avatar_modal, on: :member
+    get :edit_avatar_modal, on: :collection
     
     resources :snippets, only: :index
   end

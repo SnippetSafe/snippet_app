@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   def edit_avatar_modal
-    @user = User.find(params[:id])
-
     render layout: false
   end
 
