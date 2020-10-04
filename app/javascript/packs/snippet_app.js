@@ -63,10 +63,7 @@ import { store } from '../store.js';
 
 import ActionIcon from '../action-icon';
 import Alert from '../alert';
-import UserAvatar from '../user-avatar';
 import Card from '../card';
-import EditAvatar from '../edit-avatar';
-import EditProfile from '../edit-profile';
 import Modal from '../modal.vue'
 import NewSnippet from '../new-snippet.vue'
 import NewSnippetButton from '../new-snippet-button.vue'
@@ -93,11 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
       components: {
         ActionIcon,
         Alert,
-        UserAvatar,
         Card,
-        EditAvatar,
         CodeHighlight,
-        EditProfile,
         Modal,
         NewSnippet,
         NewSnippetButton,
