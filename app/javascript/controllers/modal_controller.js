@@ -8,13 +8,10 @@ export default class extends Controller {
     this.element[this.identifier] = this
   }
 
-  present(url, opts = {}) {
-    event.preventDefault()
-
+  present(url) {
     axios.get(url)
       .then(res => {
         this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
-        if (opts.callback) { opts.callback() }
         this.modalTarget.classList.remove('hidden')
       })
       .catch(console.error)
@@ -23,9 +20,5 @@ export default class extends Controller {
   close() {
     this.modalTarget.classList.add('hidden')
     this.bodyTarget.innerHTML = ''
-  }
-
-  get url() {
-    return this.data.get('url')
   }
 }

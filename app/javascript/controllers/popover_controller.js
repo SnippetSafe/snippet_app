@@ -35,6 +35,10 @@ export default class extends Controller {
     event.preventDefault();
   }
 
+  presentModal(event) {
+    this.modal.present(event.currentTarget.dataset.modalUrl)
+  }
+
   disconnect() {
     if (this.hasPopoverTarget) { this.popoverTarget.remove() }
   }
@@ -51,5 +55,9 @@ export default class extends Controller {
   
   get confirmText() {
     return this.data.get('confirm')
+  }
+
+  get modal() {
+    return document.getElementById('modal').modal
   }
 }
