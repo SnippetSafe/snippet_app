@@ -8,6 +8,8 @@ class Snippet < ApplicationRecord
   validates_presence_of :description
   validate :owner_folder_presence
 
+  attr_accessor :folder_id
+
   # TODO: Don't call serializers from model - just instantiate in controller
   def serializable(current_user)
     SnippetSerializer.new(self, scope: current_user)

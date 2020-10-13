@@ -123,13 +123,13 @@ class SnippetsController < ApplicationController
   end
 
   def new
-    @page_title = 'New Snippet'
+    @snippet = Snippet.new
 
     if params[:folder_id]
       @folder_id = params[:folder_id]
       @redirect_url = params[:redirect_url]
     end
-    @folders = current_user.folders.to_json
+    @folders = current_user.folders
   end
 
   def create
@@ -148,9 +148,9 @@ class SnippetsController < ApplicationController
     end
 
     if snippet.save
-      render json: { snippet: snippet.serialize(current_user) }
+      head :ok
     else
-      render json: { errors: snippet.errors.full_messages }, status: 400
+      render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
     end
   end
 

@@ -1,3 +1,43 @@
-<new-snippet
-  :folders="<%= @folders %>"/>
-</new-snippet>
+<div data-controller="tabs" class="card--container-padding card--container">
+  <div class="tabs--headers-container">
+    <div><h1></h1></div>
+    <div class="tabs--headers-wrapper">
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
+        <span>Write</span>
+      </div>
+      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+        <span>Preview</span>
+      </div>
+    </div>
+  </div>
+
+  <div data-controller="highlight snippets">
+    <div data-target="snippets.errors"></div>
+    <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
+      <div class="tabs-details">
+        <div data-target="tabs.panel">
+          <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
+          <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, class: "new-snippet--body", placeholder: "Snippet body..." } %>
+          <%= f.text_area :highlighted_body, { data: { target: "highlight.highlightedBody" }, class: "hidden" } %>
+        </div>
+
+        <div data-target="tabs.panel" class="hidden">
+          <pre class="code-highlight">
+            <code data-target="highlight.code"></code>
+          </pre>
+        </div>
+      </div>
+
+      <div class="create-snippet--options-wrapper">
+        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name) %>
+        <%= f.select :language, [], {}, { data: { target: "highlight.languages" } } %>
+        <%# <select v-model="snippetParams.language">
+          <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>
+        </select> %>
+
+        <%= f.submit 'SAVE', class: "button--cta-new" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ["moveButton", "listItem"];
+  static targets = ["moveButton", "listItem", "errors"];
 
 
   initialize() {
@@ -14,6 +14,17 @@ export default class extends Controller {
     if (this.hasMoveButtonTarget) {
       this.moveButtonTarget.disabled = true
     }
+  }
+
+  onCreateSuccess(event) {
+    console.log('yay')
+    window.location.href = '/'
+  }
+
+  onCreateError(event) {
+    console.log('noo')
+    const [data, status, xhr] = event.detail;
+    this.errorsTarget.innerHTML = xhr.response;
   }
 
   view_snippet(event) {
