@@ -16,7 +16,6 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'snippet_app' %>
 
     <%= javascript_pack_tag 'snippet_app' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -28,29 +27,19 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <div id="vue-app" data-user="<%= current_user.serialize.to_json %>" v-cloak>
-    <% else %>
-      <div id="vue-app" v-cloak>
-    <% end %>
-      <%= render partial: 'shared/toast' %>
-      <%= render partial: 'shared/modal' %>
+    <%= render partial: 'shared/topbar' %>
+    <%= render partial: 'shared/toast' %>
+    <%= render partial: 'shared/modal' %>
 
-      <popover></popover>
-
-      <%= render partial: 'shared/topbar' %>
-
-      <div id="app">
-        <div style="display: flex;">
-          <div style="flex: 1; margin-right: 16px;">
-            <%= render 'shared/sidebar' %>
-          </div>
-          <div style="flex: 4; min-width: 300px;">
-            <%= yield %>
-          </div>
+    <div id="app">
+      <div style="display: flex;">
+        <div style="flex: 1; margin-right: 16px;">
+          <%= render 'shared/sidebar' %>
+        </div>
+        <div style="flex: 4; min-width: 300px;">
+          <%= yield %>
         </div>
       </div>
-
     </div>
     <script>
     hljs.initHighlightingOnLoad();

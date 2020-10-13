@@ -10,15 +10,7 @@
     "lodash": "^4.17.15",
     "marked": "^0.8.2",
     "stimulus": "^1.1.1",
-    "turbolinks": "^5.2.0",
-    "vue": "^2.6.11",
-    "vue-clickaway": "^2.2.2",
-    "vue-cropperjs": "^4.1.0",
-    "vue-infinite-scroll": "^2.0.2",
-    "vue-loader": "^15.9.1",
-    "vue-template-compiler": "^2.6.11",
-    "vue-turbolinks": "^2.1.0",
-    "vuex": "^3.2.0"
+    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
