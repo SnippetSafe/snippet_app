@@ -155,8 +155,7 @@ class SnippetsController < ApplicationController
   end
 
   def edit
-    @snippet = @snippet.serialize(current_user).to_json
-    @folders = current_user.folders.to_json
+    @folders = current_user.folders
   end
 
   #TODO: Use a different controller action for moving a snippet between folders
@@ -171,10 +170,9 @@ class SnippetsController < ApplicationController
         SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
       end
 
-      render json: { message: "Snippet moved to folder <strong>#{folder.name}<strong>" }
-
+      head :ok
     else
-      render json: { message: "Failed to update snippet", errors: @snippet.errors.full_messages }, status: 400
+      render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
     end
   end
 
