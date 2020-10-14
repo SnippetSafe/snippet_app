@@ -1,40 +1,5 @@
-<div
-  class="alert-mask"
-  data-controller="alert"
-  data-target="alert.alert"
-  data-alert-confirm-path="<%= @confirm_path %>"
-  data-alert-resource-id="<%= @resource_id %>"
->
+<div id="alert" class="alert-mask hidden" data-controller="alert" data-target="alert.alert">
   <div class="alert-wrapper">
-    <div class="alert-container">
-      <div class="alert-header">
-        <h3 id="alert-title"><%= @title %></h3>
-        <span data-action="click->alert#close">
-          <img class="alert-close" src="/icons/cancel.svg" width="22">
-        </span>
-      </div>
-
-      <div class="alert-body">
-        <span id="alert-body"><%= @message %></span>
-      </div>
-
-      <div class="alert-footer">
-        <button data-action="click->alert#close" class="button--cta-cancel">
-          CANCEL
-        </button>
-
-        <% if @method == :delete %>
-          <%= link_to @confirm_word, @confirm_path, method: @method, class: "button--cta-new" %>
-        <% else %>
-          <button
-            class="button--cta-new"
-            data-action="click->alert#confirm"
-          >
-            <%= @confirm_word %>
-          </button>
-        <% end %>
-        
-      </div>
-    </div>
+    <div data-target="alert.body" class="alert-container"></div>
   </div>
 </div>

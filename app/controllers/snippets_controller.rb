@@ -181,17 +181,13 @@ class SnippetsController < ApplicationController
       format.html do
         if @snippet.destroy
           flash[:notice] = 'Snippet deleted!'
+          head :ok
         else
+          # Not handling this event in browser
           flash[:alert] = 'Unable to delete snippet'
+          head :bad_request
         end
 
-        redirect_path = if URI(request.referrer).path == snippet_path(@snippet)
-          snippets_path
-        else
-          URI(request.referrer).path
-        end
-
-        redirect_to redirect_path
       end
 
       format.json do

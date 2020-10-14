@@ -39,6 +39,10 @@ export default class extends Controller {
     this.modal.present(event.currentTarget.dataset.modalUrl)
   }
 
+  presentAlert(event) {
+    this.alert.present(event.currentTarget.dataset.alertUrl)
+  }
+
   disconnect() {
     if (this.hasPopoverTarget) { this.popoverTarget.remove() }
   }
@@ -59,5 +63,9 @@ export default class extends Controller {
 
   get modal() {
     return document.getElementById('modal').modal
+  }
+
+  get alert() {
+    return document.getElementById('alert').alert
   }
 }

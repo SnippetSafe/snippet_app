@@ -157,4 +157,81 @@
       }
     }
   }
+
+  .new-snippet {
+    &--description {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px;
+      border-radius: 2px;
+      border: 1px solid lightgrey;
+      margin: 16px 0px;
+      font-size: 14px;
+      display: block;
+      font-weight: 100;
+    }
+  
+    &--body {
+      display: flex;
+      padding: 6px;
+      border: 1px solid lightgray;
+      border-radius: 2px;
+      height: 400px;
+      width: 100%;
+      box-sizing: border-box;
+      resize: vertical;
+      font-size: 14px;
+      font-family: Roboto Mono,Menlo,Consolas,monospace;
+      font-weight: 100;
+    }
+  }
+  
+  .create-snippet--options-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  .create-snippet--wrapper {
+    // display: flex;
+    // flex-direction: column;
+    padding: 16px;
+    border-radius: 2px;
+    background-color: white;
+    margin: 16px 0px;
+  }
+  
+  // textarea {
+  //   display: inline-block;
+  //   font-family: "Monaco", courier, monospace;
+  //   color: #333;
+  //   padding: 0;
+  //   height: 100%;
+  // }
+  
+  // textarea:focus {
+  //   outline: 0;
+  // }
+  
+  .create-snippet--input-wrapper {
+    flex: 1;
+    margin: 16px;
+  }
+  
+  .create-snippet--markdown-wrapper {
+    flex: 1;
+  }
+  
+  .create-snippet--markdown-container {
+    overflow: auto;
+    margin: 0px 16px 16px 16px;
+  }
+  
+  /* pre {
+    background-color: lightgrey;
+    overflow: auto;
+    padding: 16px;
+    border-radius: 5px;
+    font-size: 13px;
+  } */
 }

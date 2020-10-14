@@ -1,1 +1,25 @@
-<%= render partial: 'shared/alert' %>
+<div class="alert-header">
+  <h3 data-target="alert.header" id="alert-title">Delete Snippet</h3>
+  <span data-action="click->alert#close">
+    <img class="alert-close" src="/icons/cancel.svg" width="22">
+  </span>
+</div>
+
+<div class="alert-body">
+  <span data-target="alert.body" id="alert-body">Are you sure you want to delete this snippet? You won't be able to undo this.</span>
+</div>
+
+<div class="alert-footer">
+  <button data-action="click->alert#close" class="button--cta-cancel">
+    CANCEL
+  </button>
+
+  <%= link_to( 
+    'DELETE',
+    @confirm_path,
+    method: :delete,
+    remote: true,
+    data: { toast_message: 'Snippet deleted!', resource_id: @resource_id, action: 'ajax:success->alert#deleteSuccess' },
+    class: "button--cta-new"
+  ) %>
+</div>

@@ -2,60 +2,47 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ["alert", "confirm"];  d
+  static targets = ["alert", "confirm", "body", "header"];
   
-  initialize() {
-    const csrfToken = document.querySelector("meta[name=csrf-token]").content
-    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  // initialize() {
+  //   const csrfToken = document.querySelector("meta[name=csrf-token]").content
+  //   axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  // }
+
+  connect() {
+    this.element[this.identifier] = this
   }
 
-  present(event) {
-    event.preventDefault()
-
-    axios.get(this.url)
-      .then(res => this.app.insertAdjacentHTML('afterbegin', res.data))
+  present(url) {
+    axios.get(url)
+      .then(res => {
+        this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
+        this.alertTarget.classList.remove('hidden')
+      })
       .catch(console.error)
   }
 
-  close(event) {
-    this.alertTarget.remove()
+  close() {
+    this.alertTarget.classList.add('hidden')
+    this.bodyTarget.innerHTML = ''
   }
 
-  confirm() {
-    axios.delete(this.confirmPath, { headers: { 'accept': 'application/json' } })
-      .then(res => {
-        if (this.listItem) {
-          this.listItem.remove()
-          this.alertTarget.remove()
-          this.toast.display('Snippet deleted!')
-        } else {
-          window.location.href = '/snippets?notice=Snippet%20deleted!'
-        }
-      })
-      .catch(error => {
-        console.error(error)
-        this.toast.display('Unable to delete snippet')
-      })
+  deleteSuccess(event) {
+    const resourceId = event.currentTarget.dataset.resourceId
+    const listItem = document.getElementById(resourceId)
+    
+    if (listItem) {
+      listItem.remove()
+      this.toast.display(event.currentTarget.dataset.toastMessage)
+      this.close()
+    } else {
+      Turbolinks.visit('/')
+    }
   }
 
-  get url() {
-    return this.data.get('url')
-  }
-
-  get confirmPath() {
-    return this.data.get('confirmPath')
-  }
-
-  get resourceId() {
-    return this.data.get('resourceId')
-  }
-
-  get listItem() {
-    return document.getElementById(this.resourceId)
-  }
-
-  get app() {
-    return document.getElementById('vue-app')
+  unfileSuccess(event) {
+    this.toast.display(event.currentTarget.dataset.toastMessage)
+    this.close()
   }
 
   get toast() {

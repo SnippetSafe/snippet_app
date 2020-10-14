@@ -7,7 +7,7 @@
     <% elsif option[:type] == :alert %>
       <div 
         data-controller="alert"
-        data-action="click->alert#present"
+        data-action="click->popover#presentAlert"
         data-alert-url="<%= option[:url] %>"
         class="popover--item"
       >
