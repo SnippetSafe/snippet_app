@@ -18,15 +18,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    snippet = @comment.snippet
-
     if @comment.destroy
       flash[:notice] = 'Comment deleted!'
+      head :ok
     else
+      # Not handling this event in browser
       flash[:alert] = 'Failed to delete comment'
+      head :bad_request
     end
-
-    redirect_to snippet_path(snippet)
   end
 
   def popover
@@ -42,10 +41,11 @@ class CommentsController < ApplicationController
     @title = 'Delete Comment'
     @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
+    @toast_message = 'Comment deleted!'
     @confirm_path = comment_path(@comment)
-    @method = :delete
+    @resource_id = @comment.client_id
 
-    render layout: false, partial: 'shared/alert'
+    render 'shared/delete_alert', layout: false
   end
 
   private

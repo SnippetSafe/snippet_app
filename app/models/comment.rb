@@ -23,4 +23,8 @@ class Comment < ApplicationRecord
 
     options
   end
+
+  def client_id
+    "comment_#{id}"
+  end
 end

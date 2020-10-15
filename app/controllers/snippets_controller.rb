@@ -87,10 +87,11 @@ class SnippetsController < ApplicationController
     @title = 'Delete Snippet'
     @message = DELETE_CONFIRM_TEXT
     @confirm_word = 'DELETE'
+    @toast_message = 'Snippet deleted!'
     @confirm_path = snippet_path(@snippet)
     @resource_id = @snippet.client_id
 
-    render layout: false
+    render 'shared/delete_alert', layout: false
   end
 
   def unfile_alert
@@ -187,7 +188,6 @@ class SnippetsController < ApplicationController
           flash[:alert] = 'Unable to delete snippet'
           head :bad_request
         end
-
       end
 
       format.json do
