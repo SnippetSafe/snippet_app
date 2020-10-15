@@ -185,6 +185,10 @@
     font-family: Roboto Mono,Menlo,Consolas,monospace;
     font-weight: 100;
   }
+
+  &--preview {
+    height: 400px;
+  }
 }
 
 .create-snippet--options-wrapper {

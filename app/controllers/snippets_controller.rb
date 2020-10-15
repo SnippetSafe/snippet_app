@@ -73,6 +73,19 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def new_snippet_modal
+    @snippet = Snippet.new
+
+    if params[:folder_id]
+      @folder_id = params[:folder_id]
+      @redirect_url = params[:redirect_url]
+    end
+
+    @folders = current_user.folders
+
+    render 'new', layout: false
+  end
+
   def move_modal
     @snippet = Snippet.find(params[:id])
     @current_folder_id = current_user.snippet_folders.find_by(snippet_id: params[:id])&.folder&.id

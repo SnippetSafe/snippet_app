@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get :unfile_alert, on: :member
 
     # Modals
+    get :new_snippet_modal, on: :collection
     get :move_modal, on: :member
 
     resources :comments, only: :create

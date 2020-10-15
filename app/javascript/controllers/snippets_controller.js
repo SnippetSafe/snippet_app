@@ -27,6 +27,11 @@ export default class extends Controller {
     this.errorsTarget.innerHTML = xhr.response;
   }
 
+  presentModal(event) {
+    event.preventDefault()
+    this.modal.present(event.currentTarget.dataset.modalUrl)
+  }
+
   view_snippet(event) {
     event.stopPropagation()
     const snippetUrl = event.currentTarget.dataset.snippetUrl

@@ -1,6 +1,6 @@
-<div data-controller="tabs" class="card--container-padding card--container">
+<div data-controller="tabs">
   <div class="tabs--headers-container">
-    <div><h1></h1></div>
+    <div><p>New Snippet</p></div>
     <div class="tabs--headers-wrapper">
       <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
         <span>Write</span>
@@ -14,17 +14,17 @@
   <div data-controller="highlight snippets">
     <div data-target="snippets.errors"></div>
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
+      <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
       <div class="tabs-details">
         <div data-target="tabs.panel">
-          <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
           <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, class: "new-snippet--body", placeholder: "Snippet body..." } %>
           <%= f.text_area :highlighted_body, { data: { target: "highlight.highlightedBody" }, class: "hidden" } %>
         </div>
 
         <div data-target="tabs.panel" class="hidden">
-          <pre class="code-highlight">
-            <code data-target="highlight.code"></code>
-          </pre>
+          <div class="new-snippet--preview">
+            <pre class="code-highlight"><code data-target="highlight.code"></code></pre>
+          </div>
         </div>
       </div>
 
