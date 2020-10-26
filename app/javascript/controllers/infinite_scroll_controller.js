@@ -36,6 +36,11 @@ export default class extends Controller {
     // this.formTarget.submit()
   }, 400)
 
+  add(event) {
+    this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail)
+    this.highlightCodeBlocks()
+  }
+
   scroll() {
     if (this.shouldLoadMore()) { this.loadMore() }
   }
@@ -50,9 +55,7 @@ export default class extends Controller {
         this.entriesTarget.insertAdjacentHTML('beforeend', entriesString)
         this.paginationTarget.innerHTML = res.data.pagination
 
-        document.querySelectorAll('pre code').forEach((block) => {
-          hljs.highlightBlock(block);
-        });
+        this.highlightCodeBlocks()
 
         this.isLoadingMore = false
       })
@@ -69,6 +72,12 @@ export default class extends Controller {
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
 
     return (window.pageYOffset >= (height - window.innerHeight - 80))
+  }
+
+  highlightCodeBlocks() {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
   }
 
   get nextPageAnchor() {

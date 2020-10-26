@@ -1,25 +1,3 @@
 <% @snippets.each do |snippet| %>
-  <div
-    id="<%= snippet.client_id %>"
-    data-controller="snippets"
-    data-action="click->snippets#view_snippet"
-    data-snippet-url="<%= snippet_path(snippet) %>"
-    class="card--container card--container-padding snippet-preview--container"
-  >
-    <div class="snippet-preview--author-wrapper">
-      <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
-      <div>
-        <div style="display: flex; flex-direction: column;">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
-            <span class="language-tag"><%= snippet.language %></span>
-            <% if @display_popover %>
-              <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="snippet-preview--description"><%= snippet.description %></p>
-    <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet-preview--content' } %>
-  </div>
+  <%= render partial: 'snippets/snippet', locals: { snippet: snippet } %>
 <% end %>

@@ -17,8 +17,15 @@ export default class extends Controller {
   }
 
   onCreateSuccess(event) {
-    console.log('yay')
-    window.location.href = '/'
+    const [data, status, xhr] = event.detail;
+    console.log(xhr.response)
+    const createEvent = new CustomEvent('snippet-created', { detail: xhr.response })
+    window.dispatchEvent(createEvent)
+
+    this.toast.display('Your snippet was created!')
+    this.modal.close()
+
+    // window.location.href = '/'
   }
 
   onCreateError(event) {
@@ -131,5 +138,9 @@ export default class extends Controller {
 
   set selectedFolderId(folderId) {
     return this.data.set('selectedFolderId', folderId)
+  }
+
+  get modal() {
+    return document.getElementById('modal').modal
   }
 }

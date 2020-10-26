@@ -162,7 +162,7 @@ class SnippetsController < ApplicationController
     end
 
     if snippet.save
-      head :ok
+      render partial: 'snippets/snippet', locals: { snippet: snippet }
     else
       render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
     end
