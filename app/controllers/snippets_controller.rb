@@ -162,6 +162,7 @@ class SnippetsController < ApplicationController
     end
 
     if snippet.save
+      @display_popover = true
       render partial: 'snippets/snippet', locals: { snippet: snippet }
     else
       render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
