@@ -7,6 +7,7 @@ export default class extends Controller {
     this.addLanguagesToSelect()
   }
 
+  //  TODO: Pass in the selected language!!!
   highlight(event) {
     const rawCode = event.currentTarget.value
     const highlightedCode = hljs.highlight('ruby', rawCode).value

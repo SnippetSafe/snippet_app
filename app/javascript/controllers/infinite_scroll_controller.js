@@ -26,19 +26,13 @@ export default class extends Controller {
         this.entriesTarget.innerHTML = entriesString
         this.paginationTarget.innerHTML = res.data.pagination
 
-        document.querySelectorAll('pre code').forEach((block) => {
-          hljs.highlightBlock(block);
-        });
-
         this.isLoadingMore = false
       })
       .catch(console.error)
-    // this.formTarget.submit()
   }, 400)
 
   add(event) {
     this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail)
-    this.highlightCodeBlocks()
   }
 
   scroll() {
@@ -72,12 +66,6 @@ export default class extends Controller {
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
 
     return (window.pageYOffset >= (height - window.innerHeight - 80))
-  }
-
-  highlightCodeBlocks() {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
   }
 
   get nextPageAnchor() {
