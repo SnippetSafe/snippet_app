@@ -23,7 +23,7 @@ class FoldersController < ApplicationController
     @resource_id = @folder.client_id
     @method = :delete
 
-    render layout: false, partial: 'shared/alert'
+    render 'shared/delete_alert', layout: false
   end
 
   def index
