@@ -19,11 +19,9 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      flash[:notice] = 'Comment deleted!'
       head :ok
     else
       # Not handling this event in browser
-      flash[:alert] = 'Failed to delete comment'
       head :bad_request
     end
   end
