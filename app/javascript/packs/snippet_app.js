@@ -52,3 +52,9 @@
 // yarn add vue-turbolinks
 //
 // Then uncomment the code block below:
+
+document.addEventListener('turbolinks:load', () => {
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block)
+  })
+})

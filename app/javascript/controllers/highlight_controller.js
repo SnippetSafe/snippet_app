@@ -9,7 +9,6 @@ export default class extends Controller {
 
     marked.setOptions({
       highlight: function(code, lang) {
-        console.log('lang', lang)
         if (lang && lang !== '') {
           return hljs.highlight(lang, code).value;
         } else {
