@@ -17,13 +17,13 @@
       <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
       <div class="tabs-details">
         <div data-target="tabs.panel">
-          <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, class: "new-snippet--body", placeholder: "Snippet body..." } %>
+          <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, id: "code-text-area", class: "new-snippet--body" } %>
           <%= f.text_area :highlighted_body, { data: { target: "highlight.highlightedBody" }, class: "hidden" } %>
         </div>
 
         <div data-target="tabs.panel" class="hidden">
           <div class="new-snippet--preview">
-            <pre class="code-highlight"><code data-target="highlight.code"></code></pre>
+            <div class="code-highlight" data-target="highlight.code"></div>
           </div>
         </div>
       </div>
