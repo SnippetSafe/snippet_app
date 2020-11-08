@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     # Modals
     get :new_snippet_modal, on: :collection
     get :move_modal, on: :member
+    get :edit_modal, on: :member
 
     resources :comments, only: :create
   end

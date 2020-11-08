@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
     if created?(snippet)
       options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }
-      options << { type: :link, title: 'Edit', url: edit_snippet_path(snippet) }
+      options << { type: :modal, title: 'Edit', url: edit_modal_snippet_path(snippet) }
       options << { type: :alert, title: 'Delete', url: delete_alert_snippet_path(snippet) }
     elsif filed?(snippet)
       options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }

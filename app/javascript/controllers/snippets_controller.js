@@ -34,6 +34,24 @@ export default class extends Controller {
     this.errorsTarget.innerHTML = xhr.response;
   }
 
+  onUpdateSuccess(event) {
+    const [data, status, xhr] = event.detail;
+    console.log(xhr.response)
+    const createEvent = new CustomEvent('snippet-updated', { detail: xhr.response })
+    window.dispatchEvent(createEvent)
+
+    this.toast.display('Your snippet was updated!')
+    this.modal.close()
+
+    // window.location.href = '/'
+  }
+
+  onUpdateError(event) {
+    console.log('noo')
+    const [data, status, xhr] = event.detail;
+    this.errorsTarget.innerHTML = xhr.response;
+  }
+
   presentModal(event) {
     event.preventDefault()
     this.modal.present(event.currentTarget.dataset.modalUrl)

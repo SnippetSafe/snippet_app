@@ -14,9 +14,6 @@ export default class extends Controller {
   }
 
   search = _.debounce(function(event) {
-    console.log('searching for', event.target.value)
-    console.log('t', this.data.get('baseUrl'))
-
     this.isLoadingMore = true
 
     axios.get(this.baseUrl, { params: { search: event.target.value }, headers: { 'accept': 'application/json' } })
@@ -35,7 +32,15 @@ export default class extends Controller {
     this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail)
   }
 
+  update(event) {
+    const id = new DOMParser().parseFromString(event.detail, "text/xml").firstChild.id 
+    const listItem = document.getElementById(id)
+
+    if (listItem) { listItem.outerHTML = event.detail }
+  }
+
   scroll() {
+    console.log('yah')
     if (this.shouldLoadMore()) { this.loadMore() }
   }
 

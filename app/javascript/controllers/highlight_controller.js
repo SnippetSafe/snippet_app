@@ -22,7 +22,6 @@ export default class extends Controller {
   //  TODO: Pass in the selected language!!!
   highlight(event) {
     const rawCode = event.currentTarget.value
-    console.log(marked(rawCode))
     const highlightedCode = marked(rawCode)
 
     this.codeTarget.innerHTML = highlightedCode

@@ -1,6 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
-  before_action :set_snippet, only: %i(edit destroy)
+  before_action :set_snippet, only: %i(edit_modal destroy)
 
   DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
   UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
@@ -95,6 +95,12 @@ class SnippetsController < ApplicationController
     render layout: false
   end
 
+  def edit_modal
+    @folders = current_user.folders
+
+    render 'edit', layout: false
+  end
+
   def delete_alert
     @snippet = current_user.snippets.find(params[:id])
     @title = 'Delete Snippet'
@@ -163,14 +169,17 @@ class SnippetsController < ApplicationController
 
     if snippet.save
       @display_popover = true
-      render partial: 'snippets/snippet', locals: { snippet: snippet }
+
+      partial = if request.referer == snippet_path(snippet)
+        'snippets/snippet'
+      else
+        'snippets/snippet_preview'
+      end
+
+      render partial: partial, locals: { snippet: snippet }
     else
       render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
     end
-  end
-
-  def edit
-    @folders = current_user.folders
   end
 
   #TODO: Use a different controller action for moving a snippet between folders
@@ -185,7 +194,13 @@ class SnippetsController < ApplicationController
         SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
       end
 
-      head :ok
+      partial = if request.referer == snippet_path(snippet)
+        'snippets/snippet'
+      else
+        'snippets/snippet_preview'
+      end
+
+      render partial: partial, locals: { snippet: snippet }
     else
       render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
     end
@@ -196,6 +211,7 @@ class SnippetsController < ApplicationController
       format.html do
         if @snippet.destroy
           flash[:notice] = 'Snippet deleted!'
+
           head :ok
         else
           # Not handling this event in browser
