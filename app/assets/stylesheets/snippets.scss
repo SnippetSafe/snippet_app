@@ -63,15 +63,19 @@
   }
 }
 
-.snippet-preview {
+.snippet {
   &--container {
     display: block;
     text-decoration: none;
     color: inherit;
 
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
+    &-preview {
+      @extend .snippet--container;
+
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
     }
   }
 
@@ -101,60 +105,6 @@
     &::-webkit-scrollbar { /* WebKit */
       width: 0;
       height: 0;
-    }
-  }
-}
-
-.snippets {
-  &--list-item {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    padding: 8px;
-
-    &:hover {
-      text-decoration: none;
-      background-color: $color-light;
-      cursor: pointer;
-    }
-
-    &:hover .snippets--list-item--title-link {
-      text-decoration: underline;
-      text-decoration-color: $color-primary;
-    }
-
-    &--title-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    &--social-wrapper {
-      margin: 10px 0px 0px 0px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    &--author-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin: 10px 0px 0px 0px;
-    }
-
-    &--title-link {
-      max-width: 550px;
-      white-space: nowrap;
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-      font-weight: 100;
-      text-decoration: none;
-      color: inherit;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }

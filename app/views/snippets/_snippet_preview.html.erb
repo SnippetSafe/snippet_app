@@ -1,5 +1,9 @@
 <div
-  class="card--container card--container-padding snippet--container"
+  id="<%= snippet.client_id %>"
+  data-controller="snippets"
+  data-action="click->snippets#view_snippet"
+  data-snippet-url="<%= snippet_path(snippet) %>"
+  class="card--container card--container-padding snippet--container-preview"
 >
   <div class="snippet--author-wrapper">
     <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
@@ -15,6 +19,5 @@
     </div>
   </div>
   <p class="snippet--description"><%= snippet.description %></p>
-
-  <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language  } %>
+  <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet--content' } %>
 </div>
