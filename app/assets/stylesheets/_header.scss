@@ -1,0 +1,26 @@
+@import './variables.scss';
+
+.header-spacer {
+  width: 100%;
+  height: 52px;
+}
+
+#header {
+  width: 100%;
+  height: 52px;
+  max-height: 52px;
+  background-color: $color-white;
+  position: -webkit-sticky; /* Safari */
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 1px 4px lightgrey;
+}
+
+#header-wrapper {
+  max-width: 1080px;
+  margin: 0 auto !important; 
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
