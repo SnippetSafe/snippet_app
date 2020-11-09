@@ -137,7 +137,13 @@ class SnippetsController < ApplicationController
   end
 
   def show
-    @snippet = Snippet.includes(comments: :user).find(params[:id])
+    @snippet = Snippet.includes(comments: :user).find_by(id: params[:id])
+
+    unless @snippet
+      flash[:alert] = "We were unable to find that snippet"
+      redirect_to root_path
+    end
+
     @display_popover = true
     @comment = Comment.new
   end
