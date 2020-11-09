@@ -61,6 +61,9 @@ Rails.application.routes.draw do
     # Alerts
     get :delete_alert, on: :member
 
+    # Modals
+    get :new_folder_modal, on: :collection
+
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection
   end

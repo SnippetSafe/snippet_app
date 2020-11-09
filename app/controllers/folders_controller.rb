@@ -6,6 +6,10 @@ class FoldersController < ApplicationController
   before_action :set_folder, only: %i(show edit update destroy)
   before_action :require_minimum_folders, only: :destroy
 
+  def new_folder_modal
+    render 'new', layout: false
+  end
+
   def popover
     @folder = current_user.folders.find(params[:id])
     
@@ -68,10 +72,6 @@ class FoldersController < ApplicationController
         }
       end
     end
-  end
-
-  def new
-    @page_title = 'New Folder'
   end
 
   def create
