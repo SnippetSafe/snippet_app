@@ -1,5 +1,8 @@
 <div
   id="<%= snippet.client_id %>"
+  data-controller="snippets"
+  data-action="snippet-updated@window->snippets#update"
+  data-redirect-after-delete="true"
   class="card--container card--container-padding snippet--container"
 >
   <div class="snippet--author-wrapper">

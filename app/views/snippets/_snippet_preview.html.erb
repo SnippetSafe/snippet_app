@@ -1,7 +1,7 @@
 <div
   id="<%= snippet.client_id %>"
   data-controller="snippets"
-  data-action="click->snippets#view_snippet"
+  data-action="click->snippets#view_snippet snippet-updated@window->snippets#update"
   data-snippet-url="<%= snippet_path(snippet) %>"
   class="card--container card--container-padding snippet--container-preview"
 >
@@ -19,5 +19,6 @@
     </div>
   </div>
   <p class="snippet--description"><%= snippet.description %></p>
+
   <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet--content' } %>
 </div>

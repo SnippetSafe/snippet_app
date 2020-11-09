@@ -32,15 +32,7 @@ export default class extends Controller {
     this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail)
   }
 
-  update(event) {
-    const id = new DOMParser().parseFromString(event.detail, "text/xml").firstChild.id 
-    const listItem = document.getElementById(id)
-
-    if (listItem) { listItem.outerHTML = event.detail }
-  }
-
   scroll() {
-    console.log('yah')
     if (this.shouldLoadMore()) { this.loadMore() }
   }
 

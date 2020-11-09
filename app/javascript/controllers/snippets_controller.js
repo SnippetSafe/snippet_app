@@ -16,6 +16,15 @@ export default class extends Controller {
     }
   }
 
+  update(event) {
+    console.log('yah')
+
+    const id = new DOMParser().parseFromString(event.detail, "text/xml").firstChild.id 
+    const element = document.getElementById(id)
+
+    if (element) { element.outerHTML = event.detail }
+  }
+
   onCreateSuccess(event) {
     const [data, status, xhr] = event.detail;
     console.log(xhr.response)
@@ -29,14 +38,12 @@ export default class extends Controller {
   }
 
   onCreateError(event) {
-    console.log('noo')
     const [data, status, xhr] = event.detail;
     this.errorsTarget.innerHTML = xhr.response;
   }
 
   onUpdateSuccess(event) {
     const [data, status, xhr] = event.detail;
-    console.log(xhr.response)
     const createEvent = new CustomEvent('snippet-updated', { detail: xhr.response })
     window.dispatchEvent(createEvent)
 
@@ -47,7 +54,6 @@ export default class extends Controller {
   }
 
   onUpdateError(event) {
-    console.log('noo')
     const [data, status, xhr] = event.detail;
     this.errorsTarget.innerHTML = xhr.response;
   }
