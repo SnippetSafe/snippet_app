@@ -97,6 +97,7 @@ class SnippetsController < ApplicationController
 
   def edit_modal
     @folders = current_user.folders
+    @folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
 
     render 'edit', layout: false
   end
