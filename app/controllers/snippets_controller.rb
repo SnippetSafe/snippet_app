@@ -183,9 +183,12 @@ class SnippetsController < ApplicationController
         'snippets/snippet_preview'
       end
 
-      render partial: partial, locals: { snippet: snippet }
+      element = render_to_string partial: partial, locals: { snippet: snippet }
+
+      render json: { client_id: snippet.client_id, element: element }
     else
-      render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
+      element = render_to_string partial: 'shared/errors', locals: { resource: snippet }
+      render json: { element: element }, status: :bad_request
     end
   end
 
@@ -208,9 +211,12 @@ class SnippetsController < ApplicationController
       end
 
       @display_popover = true
-      render partial: partial, locals: { snippet: snippet }
+      element = render_to_string partial: partial, locals: { snippet: snippet }
+
+      render json: { client_id: snippet.client_id, folder_id: snippet_params[:folder_id], element: element }
     else
-      render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
+      element = render_to_string partial: 'shared/errors', locals: { resource: snippet }
+      render json: { element: element }, status: :bad_request
     end
   end
 

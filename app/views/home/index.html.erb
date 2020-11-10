@@ -1,8 +1,8 @@
-<div data-controller="infinite-scroll">
+<div data-controller="infinite-scroll snippets-list">
   <div
     id="infinite-snippets-list"
     data-target="infinite-scroll.entries"
-    data-action="scroll@window->infinite-scroll#scroll snippet-created@window->infinite-scroll#add snippet-updated@window->snippets#update"
+    data-action="scroll@window->infinite-scroll#scroll snippet-created@window->infinite-scroll#add snippet-updated@window->snippets-list#update"
   >
     <%= render 'snippets/snippets' %>
   </div>

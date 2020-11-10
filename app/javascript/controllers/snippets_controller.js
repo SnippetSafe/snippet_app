@@ -17,45 +17,39 @@ export default class extends Controller {
   }
 
   update(event) {
-    console.log('yah')
+    console.log('yah', event)
 
-    const id = new DOMParser().parseFromString(event.detail, "text/xml").firstChild.id 
-    const element = document.getElementById(id)
+    const element = document.getElementById(event.detail.client_id)
 
-    if (element) { element.outerHTML = event.detail }
+    if (element) { element.outerHTML = event.detail.element }
   }
 
   onCreateSuccess(event) {
     const [data, status, xhr] = event.detail;
-    console.log(xhr.response)
-    const createEvent = new CustomEvent('snippet-created', { detail: xhr.response })
+    const createEvent = new CustomEvent('snippet-created', { detail: data })
     window.dispatchEvent(createEvent)
 
     this.toast.display('Your snippet was created!')
     this.modal.close()
-
-    // window.location.href = '/'
   }
 
   onCreateError(event) {
     const [data, status, xhr] = event.detail;
-    this.errorsTarget.innerHTML = xhr.response;
+    this.errorsTarget.innerHTML = data.element;
   }
 
   onUpdateSuccess(event) {
     const [data, status, xhr] = event.detail;
-    const createEvent = new CustomEvent('snippet-updated', { detail: xhr.response })
-    window.dispatchEvent(createEvent)
+    const updateEvent = new CustomEvent('snippet-updated', { detail: data })
+    window.dispatchEvent(updateEvent)
 
     this.toast.display('Your snippet was updated!')
     this.modal.close()
-
-    // window.location.href = '/'
   }
 
   onUpdateError(event) {
     const [data, status, xhr] = event.detail;
-    this.errorsTarget.innerHTML = xhr.response;
+    this.errorsTarget.innerHTML = data.element;
   }
 
   presentModal(event) {
@@ -67,6 +61,7 @@ export default class extends Controller {
     event.stopPropagation()
     const snippetUrl = event.currentTarget.dataset.snippetUrl
 
+    // event is still propagating when using visit
     // Turbolinks.visit(snippetUrl)
     window.location.href = snippetUrl
   }

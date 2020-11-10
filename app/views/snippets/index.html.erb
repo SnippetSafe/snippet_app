@@ -1,4 +1,4 @@
-<div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= snippets_path %>">
+<div data-controller="infinite-scroll snippets-list" data-infinite-scroll-base-url="<%= snippets_path %>">
   <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
 
       <div class="searchbar">
@@ -16,7 +16,7 @@
 
   <div class="margin-top"
     data-target="infinite-scroll.entries"
-    data-action="scroll@window->infinite-scroll#scroll"
+    data-action="scroll@window->infinite-scroll#scroll snippet-updated@window->snippets-list#update"
   >
     <%= render 'snippets/snippets' %>
   </div>
