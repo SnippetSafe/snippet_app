@@ -200,12 +200,13 @@ class SnippetsController < ApplicationController
         SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
       end
 
-      partial = if request.referer == snippet_path(snippet)
+      partial = if URI(request.referer).path == snippet_path(snippet)
         'snippets/snippet'
       else
         'snippets/snippet_preview'
       end
 
+      @display_popover = true
       render partial: partial, locals: { snippet: snippet }
     else
       render partial: 'shared/errors', locals: { resource: snippet }, status: :bad_request
@@ -217,7 +218,7 @@ class SnippetsController < ApplicationController
       format.html do
         if @snippet.destroy
           flash[:notice] = 'Snippet deleted!'
-
+          
           head :ok
         else
           # Not handling this event in browser
