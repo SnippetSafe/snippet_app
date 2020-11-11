@@ -6,6 +6,7 @@ class SnippetsController < ApplicationController
   UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
 
   def index
+    @page_title = "Snippets"
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
     @snippets = @user.filed_snippets.includes(:user)
@@ -138,6 +139,7 @@ class SnippetsController < ApplicationController
   end
 
   def show
+    @page_title = "Snippet"
     @snippet = Snippet.includes(comments: :user).find_by(id: params[:id])
 
     unless @snippet
