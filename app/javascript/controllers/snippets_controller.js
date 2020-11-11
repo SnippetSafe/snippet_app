@@ -17,8 +17,6 @@ export default class extends Controller {
   }
 
   update(event) {
-    console.log('yah', event)
-
     const element = document.getElementById(event.detail.client_id)
 
     if (element) { element.outerHTML = event.detail.element }

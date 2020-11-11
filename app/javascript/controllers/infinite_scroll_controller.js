@@ -29,7 +29,7 @@ export default class extends Controller {
   }, 400)
 
   add(event) {
-    this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail)
+    this.entriesTarget.insertAdjacentHTML('afterbegin', event.detail.element)
   }
 
   scroll() {
