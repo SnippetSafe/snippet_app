@@ -8,6 +8,9 @@ export default class extends Controller {
     const clientId = event.detail.client_id
     const element = document.getElementById(clientId)
 
+    console.log('list id', this.folderId)
+    console.log('folder id', folderId)
+
     if (element) {
       if ((this.folderId && folderId) && (this.folderId !== folderId)) {
         element.remove()
