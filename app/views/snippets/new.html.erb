@@ -30,7 +30,7 @@
       </div>
 
       <div class="create-snippet--options-wrapper">
-        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name) %>
+        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]) %>
         <%= f.select :language, [], {}, { data: { target: "highlight.languages" } } %>
         <%# <select v-model="snippetParams.language">
           <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>

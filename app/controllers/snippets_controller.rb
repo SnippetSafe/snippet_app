@@ -76,12 +76,6 @@ class SnippetsController < ApplicationController
 
   def new_snippet_modal
     @snippet = Snippet.new
-
-    if params[:folder_id]
-      @folder_id = params[:folder_id]
-      @redirect_url = params[:redirect_url]
-    end
-
     @folders = current_user.folders
 
     render 'new', layout: false

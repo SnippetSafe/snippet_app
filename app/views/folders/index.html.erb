@@ -11,9 +11,7 @@
         <img src="/icons/search.svg">
       </div>
 
-    <%= link_to(new_folder_modal_folders_path, data: { controller: 'snippets', action: 'snippets#presentModal', modal_url: new_folder_modal_folders_path }, class: 'button--cta-new') do %>
-        <span>NEW FOLDER</span>
-      <% end %>
+    <%= link_to('NEW FOLDER', new_folder_path, data: { controller: 'snippets', action: 'snippets#presentModal', modal_url: new_folder_modal_folders_path }, class: 'button--cta-new') %>
   </div>
 
   <div class="margin-top"

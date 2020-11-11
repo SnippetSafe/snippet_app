@@ -4,12 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # def edit
-  #   super do
-  #     @page_title = 'Account'
-  #   end
-  # end
-
   def update
     current_user.updated_at = Time.now
     current_user.avatar.attach(params[:user][:avatar])
