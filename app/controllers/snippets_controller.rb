@@ -165,7 +165,7 @@ class SnippetsController < ApplicationController
       language: snippet_params[:language],
     )
 
-    if snippet_params[:folder_id]
+    if snippet_params[:folder_id].present?
       folder = current_user.folders.find(snippet_params[:folder_id])
       snippet.folders << folder
     end
