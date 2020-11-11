@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <p class="snippet--description"><%= snippet.description %></p>
+  <h3 class="snippet--description"><%= snippet.description %></h3>
 
   <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet--content' } %>
 </div>

@@ -2,7 +2,7 @@ import { Controller } from 'stimulus';
 import marked from 'marked';
 
 export default class extends Controller {
-  static targets = ["code", "languages", "highlightedBody"];
+  static targets = ["code", "languages", "highlightedBody", "description"];
 
   connect() {
     this.addLanguagesToSelect()
@@ -17,6 +17,10 @@ export default class extends Controller {
       }
     });
     
+  }
+
+  updateDescription(event) {
+    this.descriptionTarget.innerHTML = event.target.value
   }
 
   //  TODO: Pass in the selected language!!!
