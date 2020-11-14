@@ -9,7 +9,7 @@ class SnippetsController < ApplicationController
     @page_title = "Snippets"
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
-    @snippets = @user.filed_snippets.includes(:user)
+    @snippets = @user.filed_snippets.includes(:user, :folders)
 
     # TODO: Extract this logic to model/service
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]

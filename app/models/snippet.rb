@@ -10,6 +10,10 @@ class Snippet < ApplicationRecord
 
   attr_accessor :folder_id
 
+  def folder_for_user(user)
+    folders.find_by(user_id: user.id)
+  end
+
   # TODO: Don't call serializers from model - just instantiate in controller
   def serializable(current_user)
     SnippetSerializer.new(self, scope: current_user)
