@@ -52,6 +52,14 @@ Rails.application.routes.draw do
     resources :snippets, only: :index
   end
 
+  namespace :users do
+    namespace :modals do
+      get :sign_in_sign_up
+      get :sign_in
+      get :sign_up
+    end
+  end
+
   resources :likes, only: :create
 
   resources :folders, only: %i(index show new edit create update destroy) do

@@ -8,9 +8,10 @@ export default class extends Controller {
     this.element[this.identifier] = this
   }
 
-  present(url) {
+  present(url, header) {
     axios.get(url)
       .then(res => {
+        this.close()
         this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
         this.modalTarget.classList.remove('hidden')
       })

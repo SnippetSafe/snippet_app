@@ -20,4 +20,6 @@
   <% end %>
 </div>
 
-<%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
+<% if user_signed_in? %>
+  <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
+<% end %>

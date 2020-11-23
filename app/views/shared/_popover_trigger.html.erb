@@ -1,11 +1,23 @@
-<%# rename to more ubtton or something %>
-<div
-  data-controller="popover"
-  data-action="click->popover#display click@window->popover#hide"
-  data-popover-url="<%= popover_path %>"
-  class="position-<%= defined?(position) ? position : 'relative' %>"
->
-  <div class="more-button">
-    <%= image_tag "/icons/more.svg", width: 12 %>
+<% if user_signed_in? %>
+  <div
+    data-controller="popover"
+    data-action="click->popover#display click@window->popover#hide"
+    data-popover-url="<%= popover_path %>"
+    class="position-<%= defined?(position) ? position : 'relative' %>"
+  >
+    <div class="more-button">
+      <%= image_tag "/icons/more.svg", width: 12 %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div
+    data-controller="users"
+    data-modal-url="<%= users_modals_sign_in_sign_up_path %>"
+    data-action="click->users#presentModal"
+    class="position-<%= defined?(position) ? position : 'relative' %>"
+  >
+    <div class="more-button">
+      <%= image_tag "/icons/more.svg", width: 12 %>
+    </div>
+  </div>
+<% end %>
