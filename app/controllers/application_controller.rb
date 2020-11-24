@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :json
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_toast_message, if: -> { params[:notice].present? || params[:alert].present? }
 
   UNAUTHORIZED = 'You do not have access to this page'.freeze
 
@@ -11,5 +12,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password)}
 
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :bio, :location, :password, :current_password)}
+  end
+
+  private
+
+  def set_toast_message
+    flash[:notice] = params[:notice] || params[:alert]
   end
 end

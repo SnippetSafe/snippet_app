@@ -8,6 +8,8 @@ class Users::ModalsController < ApplicationController
   end
 
   def sign_up
+    @user = User.new
+
     render layout: false
   end
 end

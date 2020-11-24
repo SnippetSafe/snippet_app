@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
   def index
+    @display_popover = true
+
     if user_signed_in?
       @page_title = 'Feed'
-      @display_popover = true
       @snippets = current_user
         .snippets_for_feed
         .paginate(page: params[:page] || 1, per_page: 6)
@@ -11,7 +12,7 @@ class HomeController < ApplicationController
       @snippets = Snippet
         .includes(:user)
         .order(created_at: :desc)
-        .paginate(page: params[:page] || 1)
+        .paginate(page: params[:page] || 1, per_page: 6)
     end
 
     respond_to do |format|
