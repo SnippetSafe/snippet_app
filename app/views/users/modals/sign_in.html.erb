@@ -1,19 +1,25 @@
-<div data-controller="sessions">
-  <h2 class="text-center">Sign in to your account</h2>
+<div class="form--registration" data-controller="sessions">
+  <h1 class="text-center">Sign in to your account</h1>
+  <p class="text-center">Don't have an account yet? Sign up</p>
 
-  <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" } } do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
+  <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" }, class: "form--registration-form" } do |f| %>
+    <div class="form--field">
+      <%= f.label :email, 'Email Address' %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
+    <div class="form--field">
+      <%= f.label :password %>
       <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
+    <%# <div class="form--field"> %>
+      <%# <%= f.check_box :remember_me %>
+      <%# <%= f.label :remember_me %>
+    <%# </div> %>
+
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit "SIGN IN", class: "form--registration-form--button button--cta-blue" %>
     </div>
   <% end %>
 </div>

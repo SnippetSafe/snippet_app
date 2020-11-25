@@ -1,0 +1,68 @@
+@import './variables.scss';
+
+.form {
+  &--field {
+    margin-bottom: 20px;
+  
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 100;
+    }
+  
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px;
+      border-radius: 2px;
+      border: 1px solid lightgrey;
+      font-size: 14px;
+      display: block;
+      font-weight: inherit;
+    }
+  
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px;
+      border-radius: 2px;
+      border: 1px solid lightgrey;
+      font-size: 14px;
+      display: block;
+      font-family: Helvetica, sans-serif;
+      font-weight: inherit;
+    }
+  
+    &--no-margin-top {
+      @extend .form--field;
+  
+      margin-top: 0px;
+    }
+  }
+
+  &--registration {
+    width: 300px;
+    margin: 0 auto;
+
+    h1 {
+      margin-bottom: 0;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    &-form {
+      background-color: $color-light;
+      padding: 20px;
+      margin-top: 40px;
+      margin-bottom: 90px;
+
+      &--button {
+        width: 100%;
+      }
+    }
+  }
+}

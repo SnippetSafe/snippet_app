@@ -4,6 +4,7 @@ export default class extends Controller {
   onSignUpSuccess(event) {
     const [data, status, xhr] = event.detail;
     const urlWithToast = encodeURI(`${location.toString()}?notice=${data.message}`)
+    Turbolinks.visit(urlWithToast)
   }
 
   onSignUpError(event) {
