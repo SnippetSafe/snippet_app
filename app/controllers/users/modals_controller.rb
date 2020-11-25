@@ -1,15 +1,13 @@
 class Users::ModalsController < ApplicationController
-  def sign_in_sign_up
-    render layout: false
-  end
+  layout false
+
+  def sign_in_sign_up; end
 
   def sign_in
-    render layout: false
+    @user = User.new
   end
 
   def sign_up
     @user = User.new
-
-    render layout: false
   end
 end

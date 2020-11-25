@@ -12,7 +12,6 @@ export default class extends Controller {
   presentModal(event) {
     event.stopPropagation()
     const target = event.currentTarget || event.target
-    console.log('e', target.dataset)
     this.modal.present(target.dataset.modalUrl)
   }
 

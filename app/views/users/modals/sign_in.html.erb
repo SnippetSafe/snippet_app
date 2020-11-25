@@ -1,3 +1,19 @@
-<div >
+<div data-controller="sessions">
   <h2 class="text-center">Sign in to your account</h2>
+
+  <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" } } do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Log in" %>
+    </div>
+  <% end %>
 </div>

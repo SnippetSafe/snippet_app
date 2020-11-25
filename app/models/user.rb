@@ -113,6 +113,11 @@ class User < ApplicationRecord
     Snippet.where(id: snippet_ids).order(created_at: :desc)
   end
 
+  def self.authenticate(params)
+    user = find_for_authentication(email: params[:email])
+    user&.valid_password?(params[:password]) ? user : nil
+  end
+
   private
 
   def create_default_folder

@@ -8,7 +8,7 @@
         <div>
           <div style="display: flex; flex-direction: column;">
             <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
-              <% if comment.created_by?(current_user) %>
+              <% if user_signed_in? && comment.created_by?(current_user) %>
                 <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_comment_path(comment) } %>
               <% end %>
             </div>

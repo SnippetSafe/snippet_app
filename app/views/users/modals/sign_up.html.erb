@@ -1,7 +1,7 @@
 <div data-controller="registrations">
   <h2 class="text-center">Create an Account</h2>
 
-  <%= form_for@user, url: user_registration_path, remote: true, html: { data: { type: "html", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" } } do |f| %>
+  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" } } do |f| %>
     <%# <%= render "devise/shared/error_messages", resource: @user %>
 
     <div class="field">
