@@ -1,6 +1,32 @@
 @import './variables.scss';
 
 .button {
+  &--sign-in {
+    color: $color-white;
+    border: 1px solid $color-dark-blue;
+    background-color: $color-dark-blue;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+
+    &:hover { background-color: $color-light-blue; }
+  }
+
+  &--sign-up {
+    color: $color-white;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+
   &--cta {
     color: $color-primary;
     border-radius: 2px;

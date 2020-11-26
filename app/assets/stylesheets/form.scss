@@ -14,7 +14,7 @@
     input {
       width: 100%;
       box-sizing: border-box;
-      padding: 6px;
+      padding: 8px 12px;
       border-radius: 2px;
       border: 1px solid lightgrey;
       font-size: 14px;
@@ -42,8 +42,17 @@
   }
 
   &--registration {
-    width: 300px;
+    width: 400px;
     margin: 0 auto;
+
+    input[type="checkbox"] {
+      margin: 0;
+    }
+
+    a {
+      font-weight: 500;
+      color: $color-primary;
+    }
 
     h1 {
       margin-bottom: 0;
@@ -58,11 +67,15 @@
       background-color: $color-light;
       padding: 20px;
       margin-top: 40px;
-      margin-bottom: 90px;
+      margin-bottom: 80px;
+    }
 
-      &--button {
-        width: 100%;
-      }
+    &-remember-me {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 100;
+      margin-bottom: 20px;
     }
   }
 }

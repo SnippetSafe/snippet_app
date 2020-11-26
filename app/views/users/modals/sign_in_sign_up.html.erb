@@ -1,11 +1,9 @@
-<div >
-  <h2 class="text-center">You need to sign in to do that</h2>
+<div class="form--registration">
+  <h1 class="text-center">Sign in to continue</h1>
   <p class="text-center">Create an account to stay in the loop!</p>
 
-  <div class="flex h-center">
-    <div style="width: 50%;" data-controller="users">
-      <button data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->users#presentModal" style="width: 100%;" class="button--cta-blue">Log In</button>
-      <button data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->users#presentModal" style="width: 100%;" class="button--cta-transparent margin-top">Sign Up</button>
-    </div>
+  <div class="form--registration-form" data-controller="users">
+    <button data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->users#presentModal" class="button--sign-in">SIGN IN</button>
+    <button data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->users#presentModal" class="margin-top button--sign-up">SIGN UP</button>
   </div>
 </div>

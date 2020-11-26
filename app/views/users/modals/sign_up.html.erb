@@ -1,34 +1,35 @@
-<div data-controller="registrations">
-  <h2 class="text-center">Create an Account</h2>
+<div class="form--registration" data-controller="registrations">
+  <h1 class="text-center">Sign up for an account</h1>
+  <p class="text-center">Already have an account? <a data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->registrations#presentModal">Sign in</a></p>
 
-  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" } } do |f| %>
+  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" }, class: "form--registration-form" } do |f| %>
     <%# <%= render "devise/shared/error_messages", resource: @user %>
 
-    <div class="field">
-      <%= f.label :name %><br />
+    <div class="form--field">
+      <%= f.label :name %>
       <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
     </div>
 
-    <div class="field">
-      <%= f.label :email %><br />
+    <div class="form--field">
+      <%= f.label :email %>
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
 
-    <div class="field">
+    <div class="form--field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+      <% end %>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
+    <div class="form--field">
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "SIGN UP", class: "button--sign-in" %>
     </div>
   <% end %>
 </div>
