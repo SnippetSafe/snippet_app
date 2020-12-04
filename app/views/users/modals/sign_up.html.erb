@@ -7,7 +7,7 @@
 
     <div class="form--field">
       <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      <%= f.text_field :name, autocomplete: "name", data: { target: 'registrations.name' } %>
     </div>
 
     <div class="form--field">
