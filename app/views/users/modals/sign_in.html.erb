@@ -5,7 +5,7 @@
   <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" }, class: "form--registration-form" } do |f| %>
     <div class="form--field">
       <%= f.label :email, 'Email address' %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autocomplete: "email", data: { target: 'sessions.email' } %>
     </div>
 
     <div class="form--field">
