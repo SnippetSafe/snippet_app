@@ -4,10 +4,10 @@
       <img class="logo--topbar" src="/logos/snippet_logo.png">
     </div>
 
-    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center;" data-controller="users">
       <% if !user_signed_in? %>
-        <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  
-        <%= link_to('SIGN UP', new_user_registration_path, class: "button--cta-transparent") %>  
+        <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { modal_url: users_modals_sign_in_path, action: "click->users#presentModal" }) %>  
+        <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { modal_url: users_modals_sign_up_path, action: "click->users#presentModal" }) %>  
       <% else %>
         <h3 class="margin-right"><%= @page_title || '' %></h3>
       <% end %>

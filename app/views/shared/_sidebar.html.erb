@@ -30,11 +30,5 @@
         <span>NEW SNIPPET</span>
       <% end %>
     </div>
-  <% else %>
-    <%# temp fix for when user not signed in %>
-    <div class="card--container card--container-padding" style="text-align: center;">
-      <%= link_to('SIGN IN', new_user_session_path, class: "button--cta-blue") %>  
-      <%= link_to('SIGN UP', new_user_registration_path, class: "button--cta-transparent") %>  
-    </div>
   <% end %>
 </div>

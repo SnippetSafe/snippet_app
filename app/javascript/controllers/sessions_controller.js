@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-
   onSignInSuccess(event) {
     const [data, status, xhr] = event.detail;
     const urlWithToast = encodeURI(`${location.toString()}?notice=${data.message}`)
