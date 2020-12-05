@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   if Rails.env.development?
     Rails.application.routes.default_url_options[:host] = "localhost:3000"
   else
-    Rails.application.routes.default_url_options[:host] = 'cryptic-refuge-00081.herokuapp.com'
+    Rails.application.routes.default_url_options[:host] = 'www.snippetsafe.com'
   end
 
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
