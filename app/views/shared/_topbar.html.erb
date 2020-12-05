@@ -6,7 +6,7 @@
 
     <div style="display: flex; align-items: center;" data-controller="users">
       <% if !user_signed_in? %>
-        <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { modal_url: users_modals_sign_in_path, action: "click->users#presentModal" }) %>  
+        <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { modal_url: users_modals_sign_in_path, action: "click->users#presentModal" }) %>
         <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { modal_url: users_modals_sign_up_path, action: "click->users#presentModal" }) %>  
       <% else %>
         <h3 class="margin-right"><%= @page_title || '' %></h3>

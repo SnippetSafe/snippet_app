@@ -21,7 +21,7 @@
         <%= button_to 'FOLLOW', follow_user_path(@user), class: 'button--cta-follow' %>
       <% end %>
     <% else %>
-      <%= button_to 'FOLLOW', new_user_registration_path, method: :get, class: 'button--cta-follow' %>
+      <%= button_tag('FOLLOW', type: :button, class: 'button--cta-follow', data: { controller: 'users', modal_url: users_modals_sign_in_sign_up_path, action: "click->users#presentModal" }) %>
     <% end %>
   </div>
 </div>
