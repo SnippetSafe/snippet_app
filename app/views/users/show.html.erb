@@ -77,24 +77,14 @@
     </div>
 
     <div data-target="tabs.panel" class="hidden">
-      <% @followers.each_with_index do |follower, index| %>
-        <card>
-          <a href="<%= user_path(follower)%>" class="follow--container">
-            <user-preview :user="<%= follower.serialize.to_json %>"></user-preview>
-            <span class="follow--description"><%= follower.bio %></span>
-          </a>
-        </card>
+      <% @followers.each do |follower| %>
+        <%= render partial: 'follow_preview', locals: { user: follower } %>
       <% end %>
     </div>
 
     <div data-target="tabs.panel" class="hidden">
-      <% @following.each_with_index do |following_user, index| %>
-        <card>
-          <a href="<%= user_path(following_user)%>" class="follow--container">
-            <user-preview :user="<%= following_user.serialize.to_json %>"></user-preview>
-            <span class="follow--description"><%= following_user.bio %></span>
-          </a>
-        </card>
+      <% @following.each do |following| %>
+        <%= render partial: 'follow_preview', locals: { user: following } %>
       <% end %>
     </div>
   </div>
