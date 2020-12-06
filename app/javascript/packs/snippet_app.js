@@ -53,8 +53,8 @@
 //
 // Then uncomment the code block below:
 
-document.addEventListener('turbolinks:load', () => {
-  document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightBlock(block)
-  })
-})
+// document.addEventListener('turbolinks:load', () => {
+//   document.querySelectorAll('pre code').forEach((block) => {
+//     hljs.highlightBlock(block)
+//   })
+// })

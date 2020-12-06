@@ -14,7 +14,8 @@ export default class extends Controller {
         } else {
           return hljs.highlightAuto(code).value;
         }
-      }
+      },
+      langPrefix: 'hljs lang-'
     });
     
   }

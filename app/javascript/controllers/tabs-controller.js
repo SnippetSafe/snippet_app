@@ -20,8 +20,8 @@ export default class extends Controller {
     this.panelTargets.forEach(tab => tab.classList.add('hidden'))
     activePanel.classList.remove('hidden')
 
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block)
-    })
+    // document.querySelectorAll('pre code').forEach((block) => {
+    //   hljs.highlightBlock(block)
+    // })
   }
 }
