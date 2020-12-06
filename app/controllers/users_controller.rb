@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     @snippets = @user.filed_snippets
       .order(created_at: :desc)
       .paginate(page: 1, per_page: 6)
+
+    @tab_id = params[:tab_id] || :snippets
   end
 
   def hovercard

@@ -6,9 +6,10 @@ export default class extends Controller {
   change(event) {
     this.markTabAsActive(event)
     this.displayPanel(event)
+    this.pushTabChangeToHistory(event)
   }
 
-  markTabAsActive() {
+  markTabAsActive(event) {
     this.tabTargets.forEach(tab => tab.classList.remove('tabs--header-active'))
     event.currentTarget.classList.add('tabs--header-active')
   }
@@ -19,9 +20,15 @@ export default class extends Controller {
 
     this.panelTargets.forEach(tab => tab.classList.add('hidden'))
     activePanel.classList.remove('hidden')
+  }
 
-    // document.querySelectorAll('pre code').forEach((block) => {
-    //   hljs.highlightBlock(block)
-    // })
+  pushTabChangeToHistory(event) {
+    const tabId = event.currentTarget.dataset.tabId
+
+    if (tabId) {
+      const url = new URL(window.location);
+      url.searchParams.set('tab_id', event.currentTarget.dataset.tabId);
+      window.history.pushState({}, '', url);
+    }
   }
 }

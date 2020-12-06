@@ -34,20 +34,20 @@
   <div class="tabs--headers-container">
     <div></div>
     <div class="tabs--headers-wrapper">
-      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
+      <div data-target="tabs.tab" data-tab-id="snippets" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:snippets, @tab_id) %>">
         <span><%= @user.filed_snippets.size %> Snippets</span>
       </div>
-      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+      <div data-target="tabs.tab" data-tab-id="followers" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:followers, @tab_id) %>">
         <span><%= @followers.size %> Followers</span>
       </div>
-      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+      <div data-target="tabs.tab" data-tab-id="following" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:following, @tab_id) %>">
         <span><%= @following.size %> Following</span>
       </div>
     </div>
   </div>
 
   <div class="tabs-details">
-    <div data-target="tabs.panel">
+    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:snippets, @tab_id) %>">
       <div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= user_snippets_path(@user) %>">
         <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
 
@@ -76,13 +76,13 @@
       </div>
     </div>
 
-    <div data-target="tabs.panel" class="hidden">
+    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:followers, @tab_id) %>">
       <% @followers.each do |follower| %>
         <%= render partial: 'follow_preview', locals: { user: follower } %>
       <% end %>
     </div>
 
-    <div data-target="tabs.panel" class="hidden">
+    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:following, @tab_id) %>">
       <% @following.each do |following| %>
         <%= render partial: 'follow_preview', locals: { user: following } %>
       <% end %>
