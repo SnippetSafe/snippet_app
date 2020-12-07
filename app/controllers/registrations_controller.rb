@@ -15,6 +15,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    @tab_id = params[:tab_id] || :account
+    super
+  end
+
   def update
     current_user.updated_at = Time.now
     current_user.avatar.attach(params[:user][:avatar])

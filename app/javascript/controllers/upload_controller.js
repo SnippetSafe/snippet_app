@@ -7,7 +7,8 @@ export default class extends Controller {
     this.element[this.identifier] = this
   }
 
-  selectNewImage() {
+  selectNewImage(event) {
+    event.preventDefault()
     this.fileInputTarget.value = ''
     this.fileInputTarget.click()
   }

@@ -2,101 +2,84 @@
   <div class="tabs--headers-container">
     <div></div>
     <div class="tabs--headers-wrapper">
-      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
+      <div data-target="tabs.tab" data-tab-id="account" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:account, @tab_id) %>"">
         <span>Account</span>
       </div>
-      <div data-target="tabs.tab" data-action="click->tabs#change" class="tabs--header">
+      <div data-target="tabs.tab" data-tab-id="security" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:security, @tab_id) %>"">
         <span>Security</span>
       </div>
     </div>
   </div>
 
   <div class="tabs-details">
-    <div data-target="tabs.panel">
-      <div class="margin-top">
-        <%= form_for current_user, url: modify_users_path, html: { style: "width: 100%;", data: { controller: "form" }, method: :put } do |f| %>
-          <div class="edit-profile--wrapper">
-            <div class="edit-profile--fields">
-              <div class="form-field">
-                <%= f.label :name %>
-                <%= f.text_field :name, data: { target: "form.field", action: "input->form#validateInput" } %>
-              </div>
-
-              <div class="form-field">
-                <%= f.label :bio %>
-                <%= f.text_area :bio, data: { target: "form.field", action: "input->form#validateInput" } %>
-              </div>
-
-              <div class="form-field">
-                <%= f.label :location %>
-                <%= f.text_field :location, data: { target: "form.field", action: "input->form#validateInput" } %>
-              </div>
-            </div>
-
-            <div id="upload" data-controller="upload" class="edit-avatar--wrapper">
-              <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="120" height="120" style="border-radius: 50%;">
-              <div
-                class="edit-avatar--edit-button"
-                data-action="click->upload#selectNewImage">
-                <img src="/icons/edit.svg" width="16">
+    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:account, @tab_id) %>">
+      <%= form_for current_user, url: modify_users_path, html: { class: "margin-top", style: "width: 100%;", data: { controller: "form" }, method: :put } do |f| %>
+        <div class="edit-profile--wrapper">
+          <div class="edit-profile--fields form--generic-form-transparent">
+            <div class="form--field">
+              <label>Avatar</label>
+              <div id="upload" data-controller="upload" class="edit-avatar--wrapper flex v-center">
+                <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="60" height="60" style="border-radius: 50%;">
+                <button class="margin-left" data-action="click->upload#selectNewImage">Edit avatar</button>
                 <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput form.field", action: "change->upload#handleFileSelect change->form#validateInput" } %>
               </div>
             </div>
+
+            <div class="form--field">
+              <%= f.label :name %>
+              <%= f.text_field :name, data: { target: "form.field", action: "input->form#validateInput" } %>
+            </div>
+
+            <div class="form--field">
+              <%= f.label :bio %>
+              <%= f.text_area :bio, data: { target: "form.field", action: "input->form#validateInput" } %>
+            </div>
+
+            <div class="form--field">
+              <%= f.label :location %>
+              <%= f.text_field :location, data: { target: "form.field", action: "input->form#validateInput" } %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "UPDATE ACCOUNT", class: 'button--cta-disabled', disabled: true, data: { target: "form.submit" } %>
+            </div>
           </div>
 
-          <div class="folders--options-wrapper">
-            <%= f.submit "SAVE", class: 'button--cta-disabled', disabled: true, data: { target: "form.submit" } %>
-          </div>
-        <% end %>
+        </div>
 
-        <%# <div class="folders--options-wrapper">
-          <button class="button--cta-new">SAVE</button>
-        </div> %>
-      </div>
+      <% end %>
     </div>
 
-    <div data-target="tabs.panel" class="hidden">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:security, @tab_id) %>">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , class: "form--generic-form-transparent margin-top width-400"}) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-          <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> characters minimum</em>
-          <% end %>
+        <div class="form--field">
+          <%= f.label :current_password %>
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+          <span class="block margin-top--tiny color-grey text-14">We need your current password to confirm your changes</span>
         </div>
 
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
+        <div class="form--field">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="form--field">
+          <%= f.label :password_confirmation, 'Confirm password' %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
-        <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
-        </div>
 
         <div class="actions">
-          <%= f.submit "Update" %>
+          <%= f.submit "UPDATE PASSWORD", class: "button--cta-blue" %>
+          <%= link_to('SIGN OUT', destroy_user_session_path, method: :delete, class: "button--cta-blue") %>
         </div>
       <% end %>
-
-      <h3>Cancel my account</h3>
-
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-      <%= link_to "Back", :back %>
-      <%= link_to('SIGN OUT', destroy_user_session_path, method: :delete, class: "button--cta-blue") %>
     </div>
   </div>
 </div>

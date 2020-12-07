@@ -41,7 +41,7 @@
     }
   }
 
-  &--registration {
+  &--generic {
     width: 400px;
     margin: 0 auto;
 
@@ -66,8 +66,25 @@
     &-form {
       background-color: $color-light;
       padding: 20px;
-      margin-top: 40px;
-      margin-bottom: 80px;
+
+      &-sign-in-up {
+        @extend .form--generic-form;
+
+        margin-top: 40px;
+        margin-bottom: 80px;
+      }
+    }
+
+    &-form-transparent {
+      background-color: transparent;
+      padding: 20px;
+
+      &-sign-in-up {
+        @extend .form--generic-form;
+
+        margin-top: 40px;
+        margin-bottom: 80px;
+      }
     }
 
     &-remember-me {

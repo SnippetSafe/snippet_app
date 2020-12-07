@@ -33,7 +33,13 @@
 .no-margin { margin: 0px }
 .no-margin-bottom { margin-bottom: 0px; }
 .no-margin-top { margin-top: 0px; }
-.margin-top { margin-top: 16px }
+.margin-top {
+  margin-top: 16px;
+
+  &--tiny {
+    margin-top: 4px;
+  }
+}
 .margin-bottom { margin-bottom: 16px }
 .margin-left {
   margin-left: 16px;
@@ -47,6 +53,10 @@
 
 .text-center { text-align: center; }
 
+// TEXT
+
+.text-14 { font-size: 14px; }
+
 // FONT
 
 .normal { font-weight: normal; }
@@ -54,3 +64,9 @@
 // COLOR
 
 .color-primary { color: $color-primary; }
+.color-grey { color: $color-grey; }
+
+
+// WIDTH
+
+.width-400 { width: 400px; }

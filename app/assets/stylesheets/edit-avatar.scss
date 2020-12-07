@@ -3,9 +3,7 @@
 .edit-avatar {
   &--wrapper {
     position: relative;
-    display: inline-block;
-    margin-left: 16px;
-    height: 120px;
+    display: block;
   }
 
   &--cropper {
@@ -20,8 +18,8 @@
     background-color: $color-white;
     border: 1px solid $color-primary;
     padding: 10px;
-    width: 16px;
-    height: 16px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
 
     &:hover {
