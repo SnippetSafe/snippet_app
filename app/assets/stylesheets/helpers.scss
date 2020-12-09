@@ -40,7 +40,13 @@
     margin-top: 4px;
   }
 }
-.margin-bottom { margin-bottom: 16px }
+.margin-bottom {
+  margin-bottom: 16px;
+
+  &--tiny {
+    margin-bottom: 4px;
+  }
+}
 .margin-left {
   margin-left: 16px;
 

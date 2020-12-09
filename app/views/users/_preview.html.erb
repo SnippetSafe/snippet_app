@@ -4,7 +4,7 @@
     data-hovercard-url="<%= hovercard_user_path(user) %>"
     data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
     data-is-hovering="false"
-    class="position-relative"
+    class="position-relative flex v-center"
   >
     <%= link_to user_path(user) do %>
       <%= image_tag user.avatar_url, class: "user-preview--img", height: 48, width: 48 %>

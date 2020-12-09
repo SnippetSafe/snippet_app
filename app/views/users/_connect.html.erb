@@ -1,0 +1,8 @@
+<div
+  class="connect--container"
+  data-controller="navigation"
+  data-action="click->navigation#navigate"
+  data-navigation-url-value="<%= user_path(user) %>"
+>
+  <%= render partial: 'users/preview', locals: { user: user } %>
+</div>

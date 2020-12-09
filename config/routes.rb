@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     get :delete_alert, on: :member
   end
 
-  resources :users, only: :show do
+  resources :users, only: %i(index show) do
     put :modify, on: :collection
     post :follow, on: :member
     post :unfollow, on: :member

@@ -3,12 +3,14 @@
 .user-preview {
   &--wrapper {
     display: flex;
+    // align-items: center;
 
     a:hover { opacity: 85%; }
   }
 
   &--img {
     border-radius: 50%;
+    display: block;
   }
 
   &--summary {

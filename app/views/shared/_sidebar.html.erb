@@ -25,10 +25,20 @@
         <% end %>
       </div>
     </div>
+
     <div class="card--container card--container-padding" style="text-align: center;">
       <%= link_to(new_snippet_modal_snippets_path, data: { controller: 'snippets', action: 'snippets#presentModal', modal_url: new_snippet_modal_snippets_path }, class: 'sidebar--new-snippet') do %>
         <span>NEW SNIPPET</span>
       <% end %>
+    </div>
+
+    <div class="card--container card--container-padding-horizontal" data-controller="list" data-list-url-value="<%= users_path(limit: 5) %>">
+      <h3 class="text-center no-margin-top margin-bottom">Connect</h3>
+      <div>
+        <% User.where.not(id: current_user.following.pluck(:id) << current_user.id). limit(3).each do |user| %>
+          <%= render partial: 'users/connect', locals: { user: user } %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

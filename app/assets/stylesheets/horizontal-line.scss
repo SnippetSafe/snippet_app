@@ -8,6 +8,12 @@
 
     padding-top: 16px;
     margin-top: 16px;
+
+    &-no-bottom {
+      @extend .horizontal-line;
+
+      padding-top: 0px;
+    }
   }
 
   &--small {

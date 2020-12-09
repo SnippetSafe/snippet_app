@@ -3,6 +3,12 @@ class UsersController < ApplicationController
     render layout: false
   end
 
+  def index
+    users = User.limit(5)
+
+    render json: { items: users }
+  end
+
   def show
     @user = User.find_by(id: params[:id])
     @page_title = "#{@user.name}"

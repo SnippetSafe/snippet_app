@@ -46,10 +46,6 @@ export default class extends Controller {
         this.entriesTarget.insertAdjacentHTML('beforeend', entriesString)
         this.paginationTarget.innerHTML = res.data.pagination
 
-        // document.querySelectorAll('pre code').forEach((block) => {
-        //   hljs.highlightBlock(block)
-        // })
-
         this.isLoadingMore = false
       })
       .catch(console.error)

@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+.connect {
+  &--container {
+    padding: 8px 16px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-light;
+    }
+  }
+}
