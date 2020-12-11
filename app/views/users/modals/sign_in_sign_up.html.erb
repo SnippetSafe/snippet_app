@@ -1,9 +1,11 @@
-<div class="form--generic">
-  <h1 class="text-center">Sign in to continue</h1>
-  <p class="text-center">Create an account to stay in the loop!</p>
+<%= render 'shared/modal' do %>
+  <div class="form--generic">
+    <h1 class="text-center">Sign in to continue</h1>
+    <p class="text-center">Create an account to stay in the loop!</p>
 
-  <div class="form--generic-form-sign-in-up" data-controller="users">
-    <button data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->users#presentModal" class="button--sign-in">SIGN IN</button>
-    <button data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->users#presentModal" class="margin-top button--sign-up">SIGN UP</button>
+    <div class="form--generic-form-sign-in-up" data-controller="modal">
+      <button data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->modal#present" class="button--sign-in">SIGN IN</button>
+      <button data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->modal#present" class="margin-top button--sign-up">SIGN UP</button>
+    </div>
   </div>
-</div>
+<% end %>

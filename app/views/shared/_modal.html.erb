@@ -1,23 +1,16 @@
-<div id="modal" data-controller="modal" data-target="modal.modal" class="modal-mask hidden">
+<div id="modal" data-controller="modal" data-modal-target="modal" class="modal-mask">
   <div class="modal-wrapper">
     <div class="card--container card--container-padding modal-container">
       <div class="modal-header">
-        <h3 data-target="modal.header"></h3>
+        <h3 data-modal-target="header"><%= @header %></h3>
         <span data-action="click->modal#close">
           <img class="modal-close" src="/icons/cancel.svg" width="22">
         </span>
       </div>
 
-      <div data-target="modal.body" class="modal-body"></div>
-
-      <!-- <div class="modal-footer">
-        <slot name="footer">
-          default footer
-          <button class="modal-default-button" @click="$emit('close')">
-            close
-          </button>
-        </slot>
-      </div> -->
+      <div data-modal-target="body" class="modal-body">
+        <%= yield %>
+      </div>
     </div>
   </div>
 </div>

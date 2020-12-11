@@ -27,7 +27,7 @@
     </div>
 
     <div class="card--container card--container-padding" style="text-align: center;">
-      <%= link_to(new_snippet_modal_snippets_path, data: { controller: 'snippets', action: 'snippets#presentModal', modal_url: new_snippet_modal_snippets_path }, class: 'sidebar--new-snippet') do %>
+      <%= link_to(snippets_modals_new_path, data: { controller: 'modal', action: 'modal#present', modal_url: snippets_modals_new_path }, class: 'sidebar--new-snippet') do %>
         <span>NEW SNIPPET</span>
       <% end %>
     </div>

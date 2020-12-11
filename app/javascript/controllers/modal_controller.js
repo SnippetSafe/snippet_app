@@ -8,18 +8,30 @@ export default class extends Controller {
     this.element[this.identifier] = this
   }
 
-  present(url, header) {
-    axios.get(url)
+  initialize() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  }
+
+  present(event) {
+    console.log('click', event.currentTarget.dataset)
+    event.preventDefault();
+    event.stopPropagation();
+
+    axios.get(event.currentTarget.dataset.modalUrl)
       .then(res => {
-        this.close()
-        this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
-        this.modalTarget.classList.remove('hidden')
+        console.log(res)
+        this.close();
+        document.body.insertAdjacentHTML('afterbegin', res.data);
+        // this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
+        // this.modalTarget.classList.remove('hidden')
       })
       .catch(console.error)
   }
 
   close() {
-    this.modalTarget.classList.add('hidden')
-    this.bodyTarget.innerHTML = ''
+    const modal = document.getElementById('modal')
+
+    if (modal) { modal.remove(); };
   }
 }

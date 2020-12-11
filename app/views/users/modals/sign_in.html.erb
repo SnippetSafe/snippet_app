@@ -1,28 +1,30 @@
-<div class="form--generic" data-controller="sessions">
-  <h1 class="text-center">Sign in to your account</h1>
-  <p class="text-center">Don't have an account yet? <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->sessions#presentModal">Sign up</a></p>
+<%= render 'shared/modal' do %>
+  <div class="form--generic" data-controller="sessions modal">
+    <h1 class="text-center">Sign in to your account</h1>
+    <p class="text-center">Don't have an account yet? <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->modal#present">Sign up</a></p>
 
-  <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" }, class: "form--generic-form-sign-in-up" } do |f| %>
-    <div class="form--field">
-      <%= f.label :email, 'Email address' %>
-      <%= f.email_field :email, autocomplete: "email", data: { target: 'sessions.email' } %>
-    </div>
-
-    <div class="form--field">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-
-    <div class="form--generic-remember-me">
-      <div class="flex v-center" >
-        <%= f.check_box :remember_me, checked: true %>
-        <%= f.label :remember_me, class: "margin-left--tiny" %>
+    <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" }, class: "form--generic-form-sign-in-up" } do |f| %>
+      <div class="form--field">
+        <%= f.label :email, 'Email address' %>
+        <%= f.email_field :email, autocomplete: "email", data: { sessions_target: 'email' } %>
       </div>
-      <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->sessions#presentModal">Forgot your password?</a>
-    </div>
 
-    <div class="actions">
-      <%= f.submit "SIGN IN", class: "button--sign-in" %>
-    </div>
-  <% end %>
-</div>
+      <div class="form--field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <div class="form--generic-remember-me">
+        <div class="flex v-center" >
+          <%= f.check_box :remember_me, checked: true %>
+          <%= f.label :remember_me, class: "margin-left--tiny" %>
+        </div>
+        <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->modal#present">Forgot your password?</a>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "SIGN IN", class: "button--sign-in" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

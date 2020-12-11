@@ -23,6 +23,7 @@ export default class extends Controller {
   }
 
   deleteSuccess(event) {
+    console.log('e', event.currentTarget)
     const resourceId = event.currentTarget.dataset.resourceId
     const listItem = document.getElementById(resourceId)
     

@@ -11,9 +11,9 @@
   </div>
 <% else %>
   <div
-    data-controller="users"
+    data-controller="modal"
     data-modal-url="<%= users_modals_sign_in_sign_up_path %>"
-    data-action="click->users#presentModal"
+    data-action="click->modal#present"
     class="position-<%= defined?(position) ? position : 'relative' %>"
   >
     <div class="more-button">
