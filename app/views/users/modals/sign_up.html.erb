@@ -1,37 +1,35 @@
-<%= render 'shared/modal' do %>
-  <div class="form--generic" data-controller="registrations modal">
-    <h1 class="text-center">Sign up for an account</h1>
-    <p class="text-center">Already have an account? <a data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->modal#present">Sign in</a></p>
+<div class="form--generic" data-controller="registrations modal">
+  <h1 class="text-center">Sign up for an account</h1>
+  <p class="text-center">Already have an account? <a data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->modal#present">Sign in</a></p>
 
-    <%= form_for @user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" }, class: "form--generic-form-sign-in-up" } do |f| %>
-      <%# <%= render "devise/shared/error_messages", resource: @user %>
+  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:success->registrations#onSignUpSuccess ajax:error->registrations#onSignUpError" }, class: "form--generic-form-sign-in-up" } do |f| %>
+    <%# <%= render "devise/shared/error_messages", resource: @user %>
 
-      <div class="form--field">
-        <%= f.label :name %>
-        <%= f.text_field :name, autocomplete: "name", data: { registrations_target: 'name' } %>
-      </div>
+    <div class="form--field">
+      <%= f.label :name %>
+      <%= f.text_field :name, autocomplete: "name", data: { registrations_target: 'name' } %>
+    </div>
 
-      <div class="form--field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autocomplete: "email" %>
-      </div>
+    <div class="form--field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
 
-      <div class="form--field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
+    <div class="form--field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
 
-      <div class="form--field">
-        <%= f.label :password_confirmation, 'Confirm password' %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+    <div class="form--field">
+      <%= f.label :password_confirmation, 'Confirm password' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
 
-      <div class="actions">
-        <%= f.submit "SIGN UP", class: "button--sign-in" %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "SIGN UP", class: "button--sign-in" %>
+    </div>
+  <% end %>
+</div>

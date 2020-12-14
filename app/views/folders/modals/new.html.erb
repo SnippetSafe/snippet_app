@@ -1,12 +1,11 @@
-<%= render 'shared/modal' do %>
-  <%= form_with scope: :folder, url: folders_path, local: true do |form| %>
-    <p>
-      <%= form.label :name %><br>
-      <%= form.text_field :name %>
-    </p>
+<%= form_with scope: :folder, url: folders_path, local: true do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
 
-    <p>
-      <%= form.submit 'SAVE', class: "button--cta-new" %>
-    </p>
-  <% end %>
+  <p>
+    <%= form.submit 'SAVE', class: "button--cta-new" %>
+  </p>
 <% end %>
+

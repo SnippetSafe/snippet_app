@@ -1,3 +1,3 @@
 class ModalsController < ApplicationController
-  layout false
+  layout 'modal'
 end
