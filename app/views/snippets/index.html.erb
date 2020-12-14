@@ -11,7 +11,7 @@
         <img src="/icons/search.svg">
       </div>
 
-    <%= link_to 'NEW SNIPPET', new_snippet_path, class: 'button--cta-new', data: { controller: 'snippets', action: 'snippets#presentModal', modal_url: new_snippet_modal_snippets_path } %>
+    <%= link_to 'NEW SNIPPET', new_modals_snippet_path, class: 'button--cta-new', data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path } %>
   </div>
 
   <div class="margin-top"

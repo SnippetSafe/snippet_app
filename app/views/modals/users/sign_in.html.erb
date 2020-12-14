@@ -1,6 +1,6 @@
-<div class="form--generic" data-controller="sessions modal">
+<div class="form--generic" data-controller="sessions">
   <h1 class="text-center">Sign in to your account</h1>
-  <p class="text-center">Don't have an account yet? <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->modal#present">Sign up</a></p>
+  <p class="text-center">Don't have an account yet? <a data-controller="modal" data-modal-url-value="<%= sign_up_modals_users_path %>" data-action="click->modal#present">Sign up</a></p>
 
   <%= form_for @user, url: user_session_path, remote: true, html: { data: { type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" }, class: "form--generic-form-sign-in-up" } do |f| %>
     <div class="form--field">
@@ -18,7 +18,7 @@
         <%= f.check_box :remember_me, checked: true %>
         <%= f.label :remember_me, class: "margin-left--tiny" %>
       </div>
-      <a data-modal-url="<%= users_modals_sign_up_path %>" data-action="click->modal#present">Forgot your password?</a>
+      <a data-controller="modal" data-modal-url-value="<%= sign_up_modals_users_path %>" data-action="click->modal#present">Forgot your password?</a>
     </div>
 
     <div class="actions">

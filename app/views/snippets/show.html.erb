@@ -24,6 +24,6 @@
   <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
 <% else %>
   <div class="card--container card--container-padding text-center">
-    <span>Please <a class="color-primary normal" data-controller="modal" data-modal-url="<%= users_modals_sign_in_path %>" data-action="click->modal#present">sign in</a> to join the discussion.</span>
+    <span>Please <a class="color-primary normal" data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">sign in</a> to join the discussion.</span>
   </div>
 <% end %>

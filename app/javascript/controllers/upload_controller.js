@@ -23,15 +23,12 @@ export default class extends Controller {
       reader.onload = function(e) {
         self.uploadedFile = e.target.result
 
-        self.modal.present('/users/edit_avatar_modal')
+        const event = new CustomEvent('open-avatar-modal')
+        window.dispatchEvent(event)
       }
 
       reader.readAsDataURL(input.files[0]);
     }
-  }
-
-  get modal() {
-    return document.getElementById('modal').modal
   }
 
   set cropper(cropperObj) {

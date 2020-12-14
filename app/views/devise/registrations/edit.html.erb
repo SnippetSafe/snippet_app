@@ -18,10 +18,10 @@
           <div class="edit-profile--fields form--generic-form-transparent">
             <div class="form--field">
               <label>Avatar</label>
-              <div id="upload" data-controller="upload" class="edit-avatar--wrapper flex v-center">
+              <div id="upload" data-controller="upload modal" data-modal-url-value='/modals/users/edit_avatar' class="edit-avatar--wrapper flex v-center">
                 <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="60" height="60" style="border-radius: 50%;">
                 <button class="margin-left" data-action="click->upload#selectNewImage">Edit avatar</button>
-                <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput form.field", action: "change->upload#handleFileSelect change->form#validateInput" } %>
+                <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput form.field", action: "change->upload#handleFileSelect change->form#validateInput open-avatar-modal@window->modal#present" } %>
               </div>
             </div>
 

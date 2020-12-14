@@ -15,7 +15,7 @@
         <img src="/icons/search.svg">
       </div>
 
-    <%= link_to('NEW FOLDER', folders_modals_new_path, data: { controller: 'modal', action: 'modal#present', modal_url: folders_modals_new_path }, class: 'button--cta-new') %>
+    <%= link_to('NEW FOLDER', new_modals_folder_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_folder_path }, class: 'button--cta-new') %>
   </div>
 
   <div class="margin-top"

@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def edit_avatar_modal
-    render layout: false
-  end
-
   def index
     users = User.limit(5)
 

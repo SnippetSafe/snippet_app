@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default class extends Controller {
   static targets = ["modal", "header", "body"];
+  static values = { url: String }
   
   connect() {
     this.element[this.identifier] = this
@@ -14,11 +15,11 @@ export default class extends Controller {
   }
 
   present(event) {
-    console.log('click', event.currentTarget.dataset)
+    console.log('click', this.urlValue)
     event.preventDefault();
     event.stopPropagation();
 
-    axios.get(event.currentTarget.dataset.modalUrl)
+    axios.get(this.urlValue)
       .then(res => {
         console.log(res)
         this.close();

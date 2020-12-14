@@ -6,7 +6,7 @@ class Folder < ApplicationRecord
   def popover_options_for(user)
     options = []
 
-    options << { type: :modal, title: 'Add snippet', url: new_snippet_modal_snippets_path(folder_id: id) }
+    options << { type: :modal, title: 'Add snippet', url: new_modals_snippet_path(folder_id: id) }
     options << { type: :link, title: 'Rename folder', url: edit_folder_path(self) }
 
     if snippets.empty?

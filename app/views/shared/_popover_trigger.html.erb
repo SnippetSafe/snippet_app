@@ -12,7 +12,7 @@
 <% else %>
   <div
     data-controller="modal"
-    data-modal-url="<%= users_modals_sign_in_sign_up_path %>"
+    data-modal-url-value="<%= sign_in_sign_up_modals_users_path %>"
     data-action="click->modal#present"
     class="position-<%= defined?(position) ? position : 'relative' %>"
   >
