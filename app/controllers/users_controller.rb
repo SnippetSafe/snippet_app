@@ -28,16 +28,26 @@ class UsersController < ApplicationController
   end
 
   def modify
-    current_user.assign_attributes(user_params)
-    current_user.avatar.attach(avatar_param) if avatar_param
+    respond_to do |format|
+      format.html do
+        current_user.assign_attributes(user_params)
+        current_user.avatar.attach(avatar_param) if avatar_param
+        
+        if current_user.save
+          flash[:notice] = "Profile updated"
+        else
+          flash[:alert] = "Failed to update profile"
+        end
+        
+        redirect_to edit_user_registration_path(current_user)
+      end
+      
+      format.json do
+        current_user.avatar.attach(avatar_param)
 
-    if current_user.save
-      flash[:notice] = "Profile updated"
-    else
-      flash[:alert] = "Failed to update profile"
+        render json: { message: 'Avatar updated', avatar_url: current_user.avatar_url }
+      end
     end
-
-    redirect_to edit_user_registration_path(current_user)
   end
 
   def follow
