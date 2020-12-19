@@ -10,6 +10,7 @@ class HomeController < ApplicationController
     else
       # temp fix for when user not signed in
       @snippets = Snippet
+        .public_snippets
         .includes(:user)
         .order(created_at: :desc)
         .paginate(page: params[:page] || 1, per_page: 6)

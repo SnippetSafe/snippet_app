@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_many :snippets
   has_many :filed_snippets, through: :folders, source: :snippets
-  has_many :followed_snippets, through: :following, source: :snippets
+  has_many :followed_snippets, -> { public_snippets }, through: :following, source: :snippets
 
   has_many :comments
   has_many :likes

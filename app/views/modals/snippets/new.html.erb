@@ -34,12 +34,12 @@
           data-controller="checkbox"
           data-action="click->checkbox#toggle"
           data-checkbox-checked-text-value="Public"
-          data-checkbox-checked-icon-value="icons/lock-open.svg"
+          data-checkbox-checked-icon-value="/icons/lock-open.svg"
           data-checkbox-unchecked-text-value="Private"
-          data-checkbox-unchecked-icon-value="icons/lock-closed.svg"
+          data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
         >
           <span data-checkbox-target="text">Public</span>
-          <img data-checkbox-target="icon" src="icons/lock-open.svg" width="20">
+          <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
           <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
         </div>
         <div class="flex">
