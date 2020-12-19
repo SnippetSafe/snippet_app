@@ -17,7 +17,6 @@
 .menu-button {
   &--wrapper {
     display: flex;
-    width: 180px;
   }
 
   &--icon {
@@ -38,6 +37,7 @@
     font-size: 15px;
     padding:8px;
     text-decoration: none;
+    padding-left: 50px;
     
     &:hover {
       cursor: pointer;

@@ -8,19 +8,19 @@
       <div class="horizontal-line--large"></div>
       <div class="menu-button--wrapper">
         <%= link_to root_path, class: request.fullpath == root_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-          <img class="menu-button--icon" src="/icons/icons8-home.svg" width="22">
+          <img src="/icons/icons8-home.svg" width="22">
           <span class="menu-button--name">Home</span>
         <% end %>
       </div>
       <div class="menu-button--wrapper">
         <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-          <img class="menu-button--icon" src="/icons/icons8-folder.svg" width="22">
+          <img src="/icons/icons8-folder.svg" width="22">
           <span class="menu-button--name">Folders</span>
         <% end %>
       </div>
       <div class="menu-button--wrapper">
         <%= link_to snippets_path, class: request.fullpath == snippets_path ? 'menu-button--item-active' : 'menu-button--item' do %>
-          <img class="menu-button--icon" src="/icons/icons8-file.svg" width="22">
+          <img src="/icons/icons8-file.svg" width="22">
           <span class="menu-button--name">Snippets</span>
         <% end %>
       </div>
