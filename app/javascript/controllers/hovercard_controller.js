@@ -27,7 +27,7 @@ export default class extends Controller {
     }
 }
 		
-		hide(e) {
+		hide(event) {
       event.target.dataset.isHovering = false
 
       if (this.hasCardTarget) {

@@ -3,7 +3,7 @@
 .sidebar {
   &--wrapper {
     position: fixed;
-    // top: 52px;
+    z-index: 1;
     margin-right: 15px;
   }
 
