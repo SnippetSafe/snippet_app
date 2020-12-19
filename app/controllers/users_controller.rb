@@ -13,9 +13,17 @@ class UsersController < ApplicationController
     @followers = @user.followers
     @following = @user.following
     @display_popover = true
-    @snippets = @user.filed_snippets
-      .order(created_at: :desc)
-      .paginate(page: 1, per_page: 6)
+
+    # need to change current implementation to hit specific user snippets endpoint so can optionally show private ones
+    if @user == current_user
+      @snippets = @user.filed_snippets
+        .order(created_at: :desc)
+        .paginate(page: 1, per_page: 6)
+    else
+      @snippets = @user.filed_snippets.public_snippets
+        .order(created_at: :desc)
+        .paginate(page: 1, per_page: 6)
+    end
 
     @tab_id = params[:tab_id] || :snippets
   end

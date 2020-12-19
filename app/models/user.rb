@@ -54,10 +54,10 @@ class User < ApplicationRecord
       options << { type: :modal, title: 'Edit', url: edit_modals_snippet_path(snippet) }
       options << { type: :alert, title: 'Delete', url: delete_alert_snippet_path(snippet) }
     elsif filed?(snippet)
-      options << { type: :modal, title: 'Move to...', url: move_modal_snippet_path(snippet) }
+      options << { type: :modal, title: 'Move to...', url: move_modals_snippet_path(snippet) }
       options << { type: :alert, title: 'Unfile', url: unfile_alert_snippet_path(snippet) }
     elsif !filed?(snippet)
-      options << { type: :modal, title: 'File', url: move_modal_snippet_path(snippet) }
+      options << { type: :modal, title: 'File', url: move_modals_snippet_path(snippet) }
     end
 
     options
