@@ -31,12 +31,7 @@
 
       <div class="create-snippet--options-wrapper">
         <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
-        <%= f.select :language, [], {}, { data: { target: "highlight.languages" } } %>
-        <%# <select v-model="snippetParams.language">
-          <option v-for="language in languages" :key="language" :value="language">{{ language }}</option>
-        </select> %>
-
-        <%= f.submit 'SAVE', class: "button--cta-new" %>
+        <%= f.submit 'SAVE', class: "margin-left button--cta-new" %>
       </div>
     <% end %>
 
