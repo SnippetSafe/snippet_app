@@ -1,6 +1,5 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
-  before_action :set_snippet, only: %i(edit_modal destroy)
 
   DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
   UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
@@ -194,6 +193,8 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
+    @snippet = Snippet.find(params[:id])
+
     respond_to do |format|
       format.html do
         if @snippet.destroy
