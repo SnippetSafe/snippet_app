@@ -30,8 +30,22 @@
       </div>
 
       <div class="create-snippet--options-wrapper">
-        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
-        <%= f.submit 'SAVE', class: "margin-left button--cta-new" %>
+        <div class="flex v-center" style="cursor: pointer;"
+          data-controller="checkbox"
+          data-action="click->checkbox#toggle"
+          data-checkbox-checked-text-value="Public"
+          data-checkbox-checked-icon-value="icons/lock-open.svg"
+          data-checkbox-unchecked-text-value="Private"
+          data-checkbox-unchecked-icon-value="icons/lock-closed.svg"
+        >
+          <span data-checkbox-target="text">Public</span>
+          <img data-checkbox-target="icon" src="icons/lock-open.svg" width="20">
+          <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
+        </div>
+        <div class="flex">
+          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
+          <%= f.submit 'SAVE', class: "margin-left button--cta-new" %>
+        </div>
       </div>
     <% end %>
 
