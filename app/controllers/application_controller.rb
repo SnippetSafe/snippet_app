@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @users_for_connect = User.where.not(id: current_user.following.pluck(:id) << current_user.id).limit(5)
     else
-      @users_for_connect = User.limit(5)
+      @users_for_connect = User.order(updated_at: :desc).limit(5)
     end
   end
 

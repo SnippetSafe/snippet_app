@@ -1,0 +1,8 @@
+<%= link_to( 
+  'UNFILE',
+  unfile_snippet_path(@snippet),
+  method: :delete,
+  remote: true,
+  data: { toast_message: 'Snippet removed from collection!', action: 'ajax:success->alert#unfileSuccess' },
+  class: "button--cta-new margin-left--tiny"
+) %>

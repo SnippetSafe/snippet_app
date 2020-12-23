@@ -35,14 +35,6 @@ export default class extends Controller {
     event.preventDefault();
   }
 
-  presentModal(event) {
-    this.modal.present(event.currentTarget.dataset.modalUrl)
-  }
-
-  presentAlert(event) {
-    this.alert.present(event.currentTarget.dataset.alertUrl)
-  }
-
   disconnect() {
     if (this.hasPopoverTarget) { this.popoverTarget.remove() }
   }

@@ -1,0 +1,24 @@
+<div id="alert" class="alert-mask" data-controller="alert" data-target="alert.alert">
+  <div class="alert-wrapper">
+    <div data-target="alert.body" class="alert-container">
+      <div class="alert-header">
+        <h3 data-target="alert.header" id="alert-title"><%= @header %></h3>
+        <span data-action="click->alert#close">
+          <img class="alert-close" src="/icons/cancel.svg" width="22">
+        </span>
+      </div>
+
+      <div class="alert-body">
+        <span data-target="alert.body" id="alert-body"><%= @message %></span>
+      </div>
+
+      <div class="alert-footer">
+        <button data-action="click->alert#close" class="button--cta-cancel">
+          CANCEL
+        </button>
+
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>

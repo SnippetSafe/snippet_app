@@ -3,16 +3,16 @@ import axios from 'axios';
 
 export default class extends Controller {
   static targets = ["alert", "confirm", "body", "header"];
-  
-  connect() {
-    this.element[this.identifier] = this
-  }
+  static values = { url: String };
 
-  present(url) {
-    axios.get(url)
+  present(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(this.urlValue)
+    axios.get(this.urlValue)
       .then(res => {
-        this.bodyTarget.insertAdjacentHTML('afterbegin', res.data);
-        this.alertTarget.classList.remove('hidden')
+        console.log(res)
+        document.body.insertAdjacentHTML('afterbegin', res.data);
       })
       .catch(console.error)
   }

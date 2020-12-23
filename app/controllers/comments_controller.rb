@@ -2,8 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: :destroy
 
-  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this comment? You won't be able to undo this.".freeze
-
   def create
     @snippet = Snippet.find(params[:snippet_id])
     @comment = @snippet.comments.new(comment_params)
@@ -32,18 +30,6 @@ class CommentsController < ApplicationController
     @popover_options = @comment.popover_options_for(current_user)
 
     render partial: 'shared/popover', layout: false
-  end
-
-  def delete_alert
-    @comment = current_user.comments.find(params[:id])
-    @title = 'Delete Comment'
-    @message = DELETE_CONFIRM_TEXT
-    @confirm_word = 'DELETE'
-    @toast_message = 'Comment deleted!'
-    @confirm_path = comment_path(@comment)
-    @resource_id = @comment.client_id
-
-    render 'shared/delete_alert', layout: false
   end
 
   private

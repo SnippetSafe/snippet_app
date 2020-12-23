@@ -25,6 +25,21 @@ Rails.application.routes.draw do
     resources :folders, only: :new
   end
 
+  namespace :alerts do
+    resources :snippets do
+      get :unfile, on: :member
+      get :delete, on: :member
+    end
+
+    resources :folders do
+      get :delete, on: :member
+    end
+
+    resources :comments do
+      get :delete, on: :member
+    end
+  end
+
   resources :snippets, only: %i(index show create edit update destroy) do
     resources :comments, only: :create
 
@@ -32,13 +47,10 @@ Rails.application.routes.draw do
     get :popover, on: :member
     post :file, on: :member
     delete :unfile, on: :member
-    get :delete_alert, on: :member
-    get :unfile_alert, on: :member
   end
 
   resources :comments, only: %i(create destroy) do
     get :popover, on: :member
-    get :delete_alert, on: :member
   end
 
   resources :users, only: %i(index show) do
@@ -54,7 +66,6 @@ Rails.application.routes.draw do
 
   resources :folders, only: %i(index show edit create update destroy) do
     get :popover, on: :member
-    get :delete_alert, on: :member
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection
   end

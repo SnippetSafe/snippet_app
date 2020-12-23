@@ -1,9 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
-  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this snippet? You won't be able to undo this.".freeze
-  UNFILE_CONFIRM_TEXT = "Are you sure you want to unfile this snippet? It will be removed from your collection.".freeze
-
   def index
     @page_title = "Snippets"
     @user = User.find_by(id: params[:user_id]) || current_user
@@ -71,18 +68,6 @@ class SnippetsController < ApplicationController
         end
       end
     end
-  end
-
-  def delete_alert
-    @snippet = current_user.snippets.find(params[:id])
-    @title = 'Delete Snippet'
-    @message = DELETE_CONFIRM_TEXT
-    @confirm_word = 'DELETE'
-    @toast_message = 'Snippet deleted!'
-    @confirm_path = snippet_path(@snippet)
-    @resource_id = @snippet.client_id
-
-    render 'shared/delete_alert', layout: false
   end
 
   def unfile_alert

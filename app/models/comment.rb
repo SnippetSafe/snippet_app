@@ -19,7 +19,7 @@ class Comment < ApplicationRecord
   def popover_options_for(user)
     options = []
 
-    options << { type: :alert, title: 'Delete', url: delete_alert_comment_path(self) }
+    options << { type: :alert, title: 'Delete', url: delete_alerts_comment_path(self) }
 
     options
   end

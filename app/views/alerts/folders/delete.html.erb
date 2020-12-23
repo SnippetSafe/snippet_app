@@ -1,0 +1,8 @@
+<%= link_to( 
+  'DELETE',
+  folder_path(@folder),
+  method: :delete,
+  remote: true,
+  data: { toast_message: 'Folder deleted!', resource_id: @folder.client_id, action: 'ajax:success->alert#deleteSuccess' },
+  class: "button--cta-new margin-left--tiny"
+) %>

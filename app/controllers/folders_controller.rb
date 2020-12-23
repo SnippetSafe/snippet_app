@@ -1,6 +1,5 @@
 class FoldersController < ApplicationController
   MINIMUM_FOLDERS = 1.freeze
-  DELETE_CONFIRM_TEXT = "Are you sure you want to delete this folder? You won't be able to undo this.".freeze
 
   before_action :authenticate_user!
   before_action :set_folder, only: %i(show edit update destroy)
@@ -12,18 +11,6 @@ class FoldersController < ApplicationController
     @popover_options = @folder.popover_options_for(current_user)
 
     render partial: 'shared/popover', layout: false
-  end
-
-  def delete_alert
-    @folder = current_user.folders.find(params[:id])
-    @title = 'Delete Folder'
-    @message = DELETE_CONFIRM_TEXT
-    @confirm_word = 'DELETE'
-    @confirm_path = folder_path(@folder, redirect_url: folders_path)
-    @resource_id = @folder.client_id
-    @method = :delete
-
-    render 'shared/delete_alert', layout: false
   end
 
   def index
