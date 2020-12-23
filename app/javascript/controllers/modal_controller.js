@@ -5,12 +5,11 @@ export default class extends Controller {
   static targets = ["modal", "header", "body"];
   static values = { url: String }
 
-  initialize() {
+  present(event) {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
-  }
+    axios.defaults.headers.common['Accept'] = 'application/xhtml+xml'
 
-  present(event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -24,6 +23,6 @@ export default class extends Controller {
   }
 
   close() {
-    if (this.hasModalTarget) { this.modalTarget.remove() }
+    if (this.hasModalTarget) { this.modalTarget.remove(); };
   }
 }

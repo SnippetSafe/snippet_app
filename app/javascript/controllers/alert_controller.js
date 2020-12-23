@@ -8,22 +8,15 @@ export default class extends Controller {
   present(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.urlValue)
+
     axios.get(this.urlValue)
       .then(res => {
-        console.log(res)
         document.body.insertAdjacentHTML('afterbegin', res.data);
       })
       .catch(console.error)
   }
 
-  close() {
-    this.alertTarget.classList.add('hidden')
-    this.bodyTarget.innerHTML = ''
-  }
-
   deleteSuccess(event) {
-    console.log('e', event.currentTarget)
     const resourceId = event.currentTarget.dataset.resourceId
     const listItem = document.getElementById(resourceId)
     
@@ -39,6 +32,10 @@ export default class extends Controller {
   unfileSuccess(event) {
     this.toast.display(event.currentTarget.dataset.toastMessage)
     this.close()
+  }
+
+  close() {
+    if (this.hasAlertTarget) { this.alertTarget.remove(); };
   }
 
   get toast() {

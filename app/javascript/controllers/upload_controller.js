@@ -1,9 +1,12 @@
 import { Controller } from 'stimulus'
+import { events } from '../mixins/events'
 
 export default class extends Controller {
   static targets = ['fileInput', 'avatar']
 
   connect() {
+    events(this)
+
     this.element[this.identifier] = this
   }
 
@@ -22,9 +25,7 @@ export default class extends Controller {
 
       reader.onload = function(e) {
         self.uploadedFile = e.target.result
-
-        const event = new CustomEvent('open-avatar-modal')
-        window.dispatchEvent(event)
+        self.emitEvent('open-avatar-modal')
       }
 
       reader.readAsDataURL(input.files[0]);

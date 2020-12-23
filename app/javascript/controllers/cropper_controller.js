@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus'
+import { events } from '../mixins/events'
 import axios from 'axios';
 
 export default class extends Controller {
@@ -11,11 +12,12 @@ export default class extends Controller {
   }
 
   connect() {
+    events(this)
+
     this.populateCropper()
   }
   
   populateCropper() {
-    console.log(this.upload)
     this.imageTarget.setAttribute('src', this.upload.uploadedFile)
 
     this.cropper = new Cropper(this.imageTarget, {
@@ -30,8 +32,6 @@ export default class extends Controller {
     });
 
     canvas.toBlob(blob => {
-      console.log('b', blob)
-      
       let formData = new FormData();
 
       formData.append('user[avatar]', blob);
@@ -44,25 +44,20 @@ export default class extends Controller {
         data: formData
         })
         .then(function (response) {
-            const event = new CustomEvent('update-image', { detail: { src: response.data.avatar_url } })
-            window.dispatchEvent(event)
-
-            self.upload.avatarTarget.setAttribute('src', canvas.toDataURL())
-            self.modal.close()
+          self.upload.avatarTarget.setAttribute('src', canvas.toDataURL())
+          
+          self.emitEvent('update-image', { src: response.data.avatar_url })
+          self.emitEvent('close-modal')
         })
         .catch(function (response) {
-            //handle error
-            console.log(response);
-            self.modal.close()
+          //handle error
+          console.log(response);
+          self.emitEvent('close-modal')
         });
     })
   }
 
   get upload() {
     return document.getElementById('upload').upload
-  }
-
-  get modal() {
-    return document.getElementById('modal').modal
   }
 }

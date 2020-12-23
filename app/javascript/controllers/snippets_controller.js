@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import { events } from "../mixins/events";
 import axios from 'axios';
 
 export default class extends Controller {
@@ -11,6 +12,8 @@ export default class extends Controller {
   }
   
   connect() {
+    events(this)
+  
     if (this.hasMoveButtonTarget) {
       this.moveButtonTarget.disabled = true
     }
@@ -24,11 +27,11 @@ export default class extends Controller {
 
   onCreateSuccess(event) {
     const [data, status, xhr] = event.detail;
-    const createEvent = new CustomEvent('snippet-created', { detail: data })
-    window.dispatchEvent(createEvent)
+    
+    this.emitEvent('snippet-created', data)
+    this.emitEvent('close-modal');
 
     this.toast.display('Your snippet was created!')
-    this.emitModalClose();
   }
 
   onCreateError(event) {
@@ -38,11 +41,10 @@ export default class extends Controller {
 
   onUpdateSuccess(event) {
     const [data, status, xhr] = event.detail;
-    const updateEvent = new CustomEvent('snippet-updated', { detail: data })
-    window.dispatchEvent(updateEvent)
 
+    this.emitEvent('snippet-updated', data)
+    this.emitEvent('close-modal');
     this.toast.display('Your snippet was updated!')
-    this.emitModalClose();
   }
 
   onUpdateError(event) {
@@ -112,17 +114,12 @@ export default class extends Controller {
     axios.post(this.confirmPath, { folder_id: this.selectedFolderId }, { headers: { 'accept': 'application/json' } })
       .then(res => {
         this.toast.display(res.data.message)
-        this.emitModalClose();
+        this.emitEvent('close-modal');
       })
       .catch(error => {
         console.error(error)
         this.toast.display('Unable to file snippet')
       })
-  }
-
-  emitModalClose() {
-    const event = new CustomEvent('close-modal')
-    window.dispatchEvent(event)
   }
 
   get url() {
@@ -135,10 +132,6 @@ export default class extends Controller {
 
   get originalFolderId() {
     return this.data.get('originalFolderId')
-  }
-
-  get modal() {
-    return document.getElementById('modal').modal
   }
 
   get toast() {
@@ -155,9 +148,5 @@ export default class extends Controller {
 
   set selectedFolderId(folderId) {
     return this.data.set('selectedFolderId', folderId)
-  }
-
-  get modal() {
-    return document.getElementById('modal').modal
   }
 }
