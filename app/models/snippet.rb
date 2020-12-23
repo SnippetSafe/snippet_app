@@ -61,6 +61,14 @@ class Snippet < ApplicationRecord
     "snippet_#{id}"
   end
 
+  def private?
+    !public?
+  end
+
+  def visible_to?(user)
+    self.user_id == user.try(:id)
+  end
+
   private
 
   def owner_folder_presence

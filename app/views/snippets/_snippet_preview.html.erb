@@ -11,6 +11,9 @@
     <div>
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
+          <% if snippet.private? %>
+            <img class="margin-right--tiny" title="This snippet is only visible to you" data-checkbox-target="icon" src="/icons/lock-closed.svg" width="16">
+          <% end %>
           <% if folder %>
             <div class="folder-tag">
               <img src="/icons/icons8-folder-white.svg" width="12">

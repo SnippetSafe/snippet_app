@@ -55,7 +55,13 @@
     margin-left: 4px;
   }
 }
-.margin-right { margin-right: 16px }
+.margin-right {
+  margin-right: 16px;
+
+  &--tiny {
+    margin-right: 4px;
+  }
+}
 .margin-auto { margin: 0 auto; }
 
 .text-center { text-align: center; }

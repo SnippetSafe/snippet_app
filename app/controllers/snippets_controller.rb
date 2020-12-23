@@ -70,17 +70,6 @@ class SnippetsController < ApplicationController
     end
   end
 
-  def unfile_alert
-    @snippet = current_user.filed_snippets.find(params[:id])
-    @title = 'Unfile Snippet'
-    @message = UNFILE_CONFIRM_TEXT
-    @confirm_word = 'UNFILE'
-    @confirm_path = unfile_snippet_path(@snippet)
-    @method = :delete
-
-    render layout: false
-  end
-
   def current_folder
     snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
 
@@ -97,8 +86,8 @@ class SnippetsController < ApplicationController
     @page_title = "Snippet"
     @snippet = Snippet.includes(comments: :user).find_by(id: params[:id])
 
-    unless @snippet
-      flash[:alert] = "We were unable to find that snippet"
+    unless @snippet && @snippet.visible_to?(current_user)
+      flash[:alert] = "You are not authorized to view that snippet"
       redirect_to root_path
     end
 

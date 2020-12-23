@@ -23,6 +23,8 @@ export default class extends Controller {
   }
 
   close() {
-    if (this.hasModalTarget) { this.modalTarget.remove(); };
+    const modal = document.getElementById('modal');
+
+    if (modal) { modal.remove(); };
   }
 }
