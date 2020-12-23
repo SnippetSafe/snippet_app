@@ -24,8 +24,6 @@ export default class extends Controller {
   }
 
   close() {
-    const modal = document.getElementById('modal')
-
-    if (modal) { modal.remove(); };
+    if (this.hasModalTarget) { this.modalTarget.remove() }
   }
 }

@@ -19,15 +19,7 @@ export default class extends Controller {
     this.toast.display(data.message)
   }
 
-  presentModal(event) {
-    this.modal.present(event.target.dataset.modalUrl)
-  }
-
   get toast() {
     return document.getElementById('toast').toast
-  }
-
-  get modal() {
-    return document.getElementById('modal').modal
   }
 }

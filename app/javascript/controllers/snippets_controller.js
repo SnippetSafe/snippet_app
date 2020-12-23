@@ -28,7 +28,7 @@ export default class extends Controller {
     window.dispatchEvent(createEvent)
 
     this.toast.display('Your snippet was created!')
-    this.modal.close()
+    this.emitModalClose();
   }
 
   onCreateError(event) {
@@ -42,17 +42,12 @@ export default class extends Controller {
     window.dispatchEvent(updateEvent)
 
     this.toast.display('Your snippet was updated!')
-    this.modal.close()
+    this.emitModalClose();
   }
 
   onUpdateError(event) {
     const [data, status, xhr] = event.detail;
     this.errorsTarget.innerHTML = data.element;
-  }
-
-  presentModal(event) {
-    event.preventDefault()
-    this.modal.present(event.currentTarget.dataset.modalUrl)
   }
 
   view_snippet(event) {
@@ -117,12 +112,17 @@ export default class extends Controller {
     axios.post(this.confirmPath, { folder_id: this.selectedFolderId }, { headers: { 'accept': 'application/json' } })
       .then(res => {
         this.toast.display(res.data.message)
-        this.modal.close()
+        this.emitModalClose();
       })
       .catch(error => {
         console.error(error)
         this.toast.display('Unable to file snippet')
       })
+  }
+
+  emitModalClose() {
+    const event = new CustomEvent('close-modal')
+    window.dispatchEvent(event)
   }
 
   get url() {
