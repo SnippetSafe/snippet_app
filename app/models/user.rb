@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
   BIO_MISSING_TEXT = "This user hasn't updated their bio yet."
+  ALPHANUMERIC = /\A[a-zA-Z0-9]*\z/.freeze
 
   has_one_attached :avatar
 
@@ -33,7 +34,7 @@ class User < ApplicationRecord
   #TODO: Add tests for this
   after_create :create_default_folder
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, format: { with: ALPHANUMERIC }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
