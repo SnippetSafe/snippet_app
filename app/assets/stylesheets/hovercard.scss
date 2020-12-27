@@ -46,6 +46,10 @@
     }
   }
 
+  &--details {
+    overflow: hidden;
+  }
+
   &--image {
     width: 64px;
     height: 64px;
@@ -56,6 +60,8 @@
   &--heading {
     display: block;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &--sub-heading {

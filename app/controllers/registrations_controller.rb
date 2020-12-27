@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
       format.html { super }
       format.json do
         user = User.new(user_params)
-    
+
         if user.save
           sign_in(user)
           render json: { message: 'Thanks for signing up, you are now logged in!' }

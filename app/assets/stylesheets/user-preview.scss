@@ -21,11 +21,19 @@
       font-weight: 500;
       font-size: 16px;
       font-family: Helvetica, sans-serif;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 130px;
+      display: block;
     }
 
     &-time-ago {
       font-size: 12px;
       color: $color-grey;
+      text-overflow: ellipsis;
+      max-width: 130px;
+      display: block;
+      overflow: hidden;
     }
   }
 }
