@@ -38,6 +38,13 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
+  # Spend some time working out how to obtain all users the given user is not following
+  scope :not_followed_by, -> (user) { where.not(id: user.following.pluck(:id) << user.id) }
+
+  def not_following
+    self.class.not_followed_by(self)
+  end
+
   def created?(snippet)
     snippets.find_by(id: snippet.id).present?
   end

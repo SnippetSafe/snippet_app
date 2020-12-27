@@ -38,5 +38,8 @@
       <% @users_for_connect.each do |user| %>
         <%= render partial: 'users/connect', locals: { user: user } %>
       <% end %>
+      <div class="flex flex-end">
+        <%= link_to 'More...', connect_path, class: 'padding-right light' %>
+      </div>
     </div>
 </div>

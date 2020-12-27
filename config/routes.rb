@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
+  get '/connect', to: 'home#connect'
 
   namespace :modals do
     resources :users do

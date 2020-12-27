@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: :connect
+
   def index
     @display_popover = true
 
@@ -25,5 +27,25 @@ class HomeController < ApplicationController
         }
       end
     end
+  end
+
+  def connect
+    @page_title = 'Connect'
+    @users = current_user.not_following
+
+    # @users = current_user.not_following
+
+    # @users = @users
+    #   .order(created_at: :desc)
+    #   .paginate(page: params[:page] || 1, per_page: 15)
+
+    # respond_to do |format|
+    #   format.json do
+    #     render json: {
+    #       entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
+    #       pagination: view_context.will_paginate(@users)
+    #     }
+    #   end
+    # end
   end
 end
