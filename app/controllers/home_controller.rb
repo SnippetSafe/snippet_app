@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: :connect
-
   def index
     @display_popover = true
 
@@ -31,7 +29,12 @@ class HomeController < ApplicationController
 
   def connect
     @page_title = 'Connect'
-    @users = current_user.not_following
+
+    @users = if user_signed_in?
+      current_user.not_following
+    else
+      User.order(updated_at: :desc)
+    end
 
     # @users = current_user.not_following
 

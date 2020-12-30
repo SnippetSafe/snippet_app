@@ -16,16 +16,10 @@
   </div>
 
   <div class="margin-top flex space-between">
-    <% if user_signed_in? %>
-      <% if @user == current_user %>
-        <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
-      <% elsif current_user.following?(@user) %>
-        <%= button_to 'FOLLOWING', unfollow_user_path(@user), class: 'button--cta-unfollow' %>
-      <% else %>
-        <%= button_to 'FOLLOW', follow_user_path(@user), class: 'button--cta-follow' %>
-      <% end %>
+    <% if @user == current_user %>
+      <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
     <% else %>
-      <%= button_tag('FOLLOW', type: :button, class: 'button--cta-follow', data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" }) %>
+      <%= render partial: 'users/follow_button', locals: { user: @user } %>
     <% end %>
   </div>
 </div>

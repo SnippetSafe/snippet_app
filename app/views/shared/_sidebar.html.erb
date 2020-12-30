@@ -27,19 +27,11 @@
     </div>
   <% end %>
 
-    <div class="card--container card--container-padding" style="text-align: center;">
-      <%= link_to(@modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'sidebar--new-snippet') do %>
-        <span>NEW SNIPPET</span>
-      <% end %>
-    </div>
+  <div class="card--container card--container-padding" style="text-align: center;">
+    <%= link_to(@modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'sidebar--new-snippet') do %>
+      <span>NEW SNIPPET</span>
+    <% end %>
+  </div>
 
-    <div class="card--container card--container-padding-horizontal" data-controller="list" data-list-url-value="<%= users_path(limit: 5) %>">
-      <h3 class="text-center no-margin-top margin-bottom">Connect</h3>
-      <% @users_for_connect.each do |user| %>
-        <%= render partial: 'users/connect', locals: { user: user } %>
-      <% end %>
-      <div class="flex flex-end">
-        <%= link_to 'More...', connect_path, class: 'padding-right light' %>
-      </div>
-    </div>
+  <%= render partial: 'shared/connect', locals: { users_for_connect: @users_for_connect }%>
 </div>

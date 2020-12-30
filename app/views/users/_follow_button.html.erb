@@ -1,0 +1,13 @@
+<div data-controller="follow" data-follow-target="container" data-follow-id-value="<%= user.id %>">
+  <% if user_signed_in? && current_user == user %>
+    <%# Don't display anything if the current user is the same as the user being viewed %>
+  <% elsif user_signed_in? %>
+    <% if current_user.following?(user) %>
+      <%= button_tag 'FOLLOWING', data: { action: 'click->follow#unfollow' }, class: 'button--cta-unfollow' %>
+    <% else %>
+      <%= button_tag 'FOLLOW', data: { action: 'click->follow#follow' }, class: 'button--cta-follow' %>
+    <% end %>
+  <% else %>
+    <%= button_tag 'FOLLOW', type: :button, class: 'button--cta-follow', data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
+  <% end %>
+</div>

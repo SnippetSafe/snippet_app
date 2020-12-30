@@ -61,25 +61,17 @@ class UsersController < ApplicationController
   def follow
     @user = User.find_by(id: params[:id])
 
-    if current_user.follow(@user)
-      flash[:notice] = "You are now following #{@user.name}."
-    else
-      flash[:alert] = "You are already following #{@user.name} you nutter!"
-    end
-
-    redirect_to user_path(@user)
+    current_user.follow(@user)
+    
+    render partial: 'users/follow_button', locals: { user: @user }
   end
 
   def unfollow
     @user = User.find_by(id: params[:id])
 
-    if current_user.unfollow(@user)
-      flash[:notice] = "You are no longer following #{@user.name}."
-    else
-      flash[:alert] = "You can't unfollow someone you aren't following you nutter!"
-    end
+    current_user.unfollow(@user)
 
-    redirect_to user_path(@user)
+    render partial: 'users/follow_button', locals: { user: @user }
   end
 
   private
