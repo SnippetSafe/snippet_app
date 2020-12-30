@@ -1,0 +1,3 @@
+<% @users.each do |user| %>
+  <%= render partial: 'users/follow_preview', locals: { user: user } %>
+<% end %>

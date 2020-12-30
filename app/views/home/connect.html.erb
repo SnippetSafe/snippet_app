@@ -1,3 +1,25 @@
-<% @users.each do |user| %>
-  <%= render partial: 'users/follow_preview', locals: { user: user } %>
-<% end %>
+<div data-controller="infinite-scroll snippets-list" data-infinite-scroll-base-url="<%= connect_path %>">
+  <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+
+    <div class="searchbar">
+      <input autofocus
+        type="text"
+        placeholder="Search"
+        data-action="input->infinite-scroll#search"
+        data-target="infinite-scroll.input"
+      />
+      <img src="/icons/search.svg">
+    </div>
+  </div>
+
+  <div class="margin-top"
+    data-target="infinite-scroll.entries"
+    data-action="scroll@window->infinite-scroll#scroll"
+  >
+    <%= render 'users/follow_previews' %>
+  </div>
+
+  <div data-target="infinite-scroll.pagination" class="hidden">
+    <%= will_paginate @users, container: false %>
+  </div>
+</div>
