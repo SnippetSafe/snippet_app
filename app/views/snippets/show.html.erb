@@ -4,7 +4,7 @@
   <% @snippet.comments.each do |comment| %>
     <div id="<%= comment.client_id %>" class="card--container card--container-padding">
       <div class="snippet--author-wrapper">
-        <%= render partial: 'users/preview', locals: { user: comment.user, resource: comment } %>
+        <%= render partial: 'users/preview', locals: { user: comment.user, object: comment } %>
         <div>
           <div style="display: flex; flex-direction: column;">
             <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">

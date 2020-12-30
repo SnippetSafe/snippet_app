@@ -7,7 +7,7 @@
   data-snippet-url="<%= snippet_path(snippet) %>"
   class="card--container card--container-padding snippet--container-preview">
   <div class="snippet--author-wrapper">
-    <%= render partial: 'users/preview', locals: { user: snippet.user, resource: snippet } %>
+    <%= render partial: 'users/preview', locals: { user: snippet.user, object: snippet } %>
     <div>
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">

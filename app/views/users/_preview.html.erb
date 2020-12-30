@@ -22,8 +22,8 @@
         <span class="user-preview--summary-name"><%= user.name %></span>
       <% end %>
     </div>
-    <% if defined?(resource) && resource.present? %>
-      <span class="user-preview--summary-time-ago"><%= time_ago_in_words(resource.created_at) %> ago</span>
+    <% if defined?(object) %>
+      <span class="user-preview--summary-time-ago"><%= time_ago_in_words(object.created_at) %> ago</span>
     <% else %>
       <span class="user-preview--summary-time-ago"><%= user.name %></span>
     <% end %>
