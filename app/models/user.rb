@@ -80,6 +80,10 @@ class User < ApplicationRecord
     end
   end
 
+  def mark_notifications_as_read
+    notifications.unread.each { |notification| notification.mark_as_read }
+  end
+
   def follow(user)
     follow = Follow.create(followed_user_id: user.id, follower_id: id)
     follow.notifications.create(user: user)

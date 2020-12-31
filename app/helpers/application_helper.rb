@@ -16,4 +16,11 @@ module ApplicationHelper
       "<span class='menu-button--notification'>#{count_for_display}</span>".html_safe
     end
   end
+
+  def notification_for_display(notification)
+    case notification.notifiable_type
+    when 'Follow'
+      render partial: 'notifications/follow', locals: { notification: notification }
+    end
+  end
 end

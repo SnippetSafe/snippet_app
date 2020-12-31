@@ -54,6 +54,8 @@ Rails.application.routes.draw do
     get :popover, on: :member
   end
 
+  resources :notifications, only: :index
+
   resources :users, only: %i(index show) do
     resources :snippets, only: :index
     

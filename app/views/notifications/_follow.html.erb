@@ -1,0 +1,11 @@
+<% follower = notification.notifiable.follower %>
+
+<div
+  class="card--container card--container-padding"
+  style="cursor: pointer;"
+  data-controller="navigation"
+  data-navigation-url-value="<%= user_path(follower) %>"
+  data-action="click->navigation#navigate"
+>
+  <span><%= follower.name %> followed you</span>
+</div>
