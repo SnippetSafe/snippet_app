@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :confirmable, :validatable
 
+  has_many :notifications
   has_many :folders
   has_many :snippet_folders, through: :folders
 
@@ -80,7 +81,8 @@ class User < ApplicationRecord
   end
 
   def follow(user)
-    Follow.create(followed_user_id: user.id, follower_id: id)
+    follow = Follow.create(followed_user_id: user.id, follower_id: id)
+    follow.notifications.create(user: user)
   end
 
   def unfollow(user)

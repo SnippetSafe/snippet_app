@@ -1,4 +1,5 @@
 class Follow < ApplicationRecord
+  has_many :notifications, as: :notifiable, dependent: :destroy
   # The user being followed
   belongs_to :followed_user, foreign_key: :followed_user_id, class_name: 'User'
 

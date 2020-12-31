@@ -14,6 +14,13 @@
       </div>
       <div class="menu-button--wrapper">
         <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
+          <%= notification_counter(current_user) %>
+          <img src="/icons/icons8-notification-24.png" width="22">
+          <span class="menu-button--name">Notifications</span>
+        <% end %>
+      </div>
+      <div class="menu-button--wrapper">
+        <%= link_to folders_path, class: request.fullpath == folders_path ? 'menu-button--item-active' : 'menu-button--item' do %>
           <img src="/icons/icons8-folder.svg" width="22">
           <span class="menu-button--name">Folders</span>
         <% end %>

@@ -17,6 +17,7 @@
 .menu-button {
   &--wrapper {
     display: flex;
+    position: relative;
   }
 
   &--icon {
@@ -25,6 +26,18 @@
 
   &--name {
     margin-left: 14px;
+  }
+
+  &--notification {
+    position: absolute;
+    top: 18px;
+    left: 55px;
+    width: 14px;
+    height: 14px;
+    background-color: $color-purple;
+    border-radius: 50%;
+    font-size: 12px;
+    color: white;
   }
 
   &--item {
