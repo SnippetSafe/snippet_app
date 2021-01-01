@@ -39,11 +39,10 @@
 
     <div id="app">
       <div style="display: flex;">
-        <div style="width: 22%;">
+        <div id="sidebar">
           <%= render 'shared/sidebar' %>
         </div>
-        <%# <div style="flex: 1; flex-basis: 25%; max-width: 25%;"></div> %>
-        <div style="width: 78%;">
+        <div id="body">
           <%= yield %>
         </div>
       </div>

@@ -41,3 +41,19 @@ strong { font-weight: 500 }
   max-width: 1080px;
   // height: 100vh;
 }
+
+#sidebar {
+  width: 22%;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    display: none;
+  }
+}
+
+#body {
+  width: 78%;
+
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    width: 100%;
+  }
+}
