@@ -7,7 +7,11 @@ class CommentsController < ApplicationController
     @comment = @snippet.comments.new(comment_params)
 
     if @comment.save
-      @comment.notifications.create(user: @snippet.user)
+
+      unless @snippet.user == @comment.user
+        @comment.notifications.create(user: @snippet.user)
+      end
+
       flash[:notice] = 'Comment created!'
       redirect_to snippet_path(@snippet)
     else
