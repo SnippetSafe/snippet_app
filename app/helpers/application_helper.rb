@@ -17,10 +17,12 @@ module ApplicationHelper
     end
   end
 
-  def notification_for_display(notification)
+  def notification_action_text(notification)
     case notification.notifiable_type
     when 'Follow'
-      render partial: 'notifications/follow', locals: { notification: notification }
+      'followed you'
+    when 'Comment'
+      'commented on your snippet'
     end
   end
 end

@@ -66,7 +66,11 @@ class Snippet < ApplicationRecord
   end
 
   def visible_to?(user)
-    self.user_id == user.try(:id)
+    if private?
+      self.user_id == user.try(:id)
+    else
+      true
+    end
   end
 
   private

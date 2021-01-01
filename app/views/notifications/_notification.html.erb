@@ -1,0 +1,9 @@
+<div
+  class="notification--wrapper"
+  data-controller="navigation"
+  data-navigation-url-value="<%= url %>"
+  data-action="click->navigation#navigate"
+>
+  <%= render partial: 'users/notification_preview', locals: { user: user, notification: notification } %>
+  <%= yield %>
+</div>

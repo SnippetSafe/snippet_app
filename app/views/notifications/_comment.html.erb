@@ -1,0 +1,5 @@
+<% commenter = notification.notifiable.user %>
+
+<%= render 'notifications/notification', url: snippet_path(notification.notifiable.snippet), user: commenter, notification: notification do %>
+  <span class="notification--body"><%= notification.notifiable.body.first(150) %></span>
+<% end %>

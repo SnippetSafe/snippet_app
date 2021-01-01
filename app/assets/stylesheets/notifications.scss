@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.notification {
+  &--wrapper {
+    cursor: pointer;
+    border-bottom: 1px solid lightgrey;
+    padding: 16px;
+
+    &:hover {
+      background-color: $color-hover;
+    }
+  }
+
+  &--body {
+    display: block;
+    margin-top: 8px;
+    margin-left: 60px;
+  }
+}

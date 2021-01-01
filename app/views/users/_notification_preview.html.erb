@@ -1,0 +1,26 @@
+<div class="user-preview--wrapper">
+  <div
+    data-controller="hovercard"
+    data-hovercard-url="<%= hovercard_user_path(user) %>"
+    data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
+    data-is-hovering="false"
+    class="position-relative flex v-center"
+  >
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.avatar_url, class: "user-preview--img", height: 48, width: 48 %>
+    <% end %>
+  </div>
+  <div class="user-preview--summary">
+    <div
+      data-controller="hovercard"
+      data-hovercard-url="<%= hovercard_user_path(user) %>"
+      data-action="mouseenter->hovercard#show mouseleave->hovercard#hide"
+      data-is-hovering="false"
+      class="position-relative inline-block"
+    >
+      <%= link_to user.name, user_path(user), class: "user-preview--summary-name" %>
+    </div>
+    <span><%= notification_action_text(notification) %></span>
+    <span class="user-preview--summary-time-ago"><%= time_ago_in_words(notification.created_at) %> ago</span>
+  </div>
+</div>

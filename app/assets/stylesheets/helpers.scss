@@ -15,6 +15,7 @@
 // DISPLAY
 
 .block { display: block; }
+.inline-block { display: inline-block; }
 .hidden { display: none !important; }
 
 // POSITION
@@ -36,6 +37,10 @@
 .no-margin-top { margin-top: 0px; }
 .margin-top {
   margin-top: 16px;
+
+  &--small {
+    margin-top: 8px;
+  }
 
   &--tiny {
     margin-top: 4px;

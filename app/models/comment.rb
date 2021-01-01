@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :snippet, counter_cache: true
   belongs_to :user
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates_presence_of :body
 

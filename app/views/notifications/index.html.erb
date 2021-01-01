@@ -1,3 +1,5 @@
-<% @notifications.each do |notification| %>
-  <%= notification_for_display(notification) %>
-<% end %>
+<div class="card--container">
+  <% @notifications.each do |notification| %>
+    <%= render partial: "notifications/#{notification.notifiable_type.parameterize}", locals: { notification: notification } %>
+  <% end %>
+</div>
