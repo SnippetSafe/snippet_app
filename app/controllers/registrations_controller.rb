@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  layout 'application', only: :edit
+
   def create
     respond_to do |format|
       format.html { super }
