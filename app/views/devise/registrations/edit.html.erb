@@ -52,11 +52,7 @@
 
     <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:security, @tab_id) %>">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , class: "form--generic-form-transparent margin-top width-400"}) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
+        <%= render "shared/errors", resource: resource %>
 
         <div class="form--field">
           <%= f.label :current_password %>
