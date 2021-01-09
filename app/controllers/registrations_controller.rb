@@ -6,8 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
         user = User.new(user_params)
 
         if user.save
-          sign_in(user)
-          render json: { message: 'Thanks for signing up, you are now logged in!' }
+          render json: { message: 'Thanks for signing up, please confirm your email to sign in.' }
         else
           render json: { message: 'There was a problem creating your account.' }, status: 400
         end

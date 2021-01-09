@@ -10,4 +10,6 @@ class Modals::UsersController < ModalsController
   end
 
   def edit_avatar; end
+
+  def email_confirm; end
 end

@@ -1,0 +1,12 @@
+<div class="form--generic" data-controller="registrations">
+  <h1 class="text-center">Confirm your email</h1>
+  <p class="text-center">Before you can log in we need you to confirm your email address by clicking the link in the email we just sent you.</a></p>
+
+  <%= form_for :user, url: user_registration_path, remote: true, html: { data: { type: "json", action: "ajax:error->registrations#onSignUpError" }, class: "form--generic-form-sign-in-up" } do |f| %>
+    <%# <%= render "devise/shared/error_messages", resource: @user %>
+
+    <div class="actions">
+      <%= f.submit "RESEND", class: "button--sign-in" %>
+    </div>
+  <% end %>
+</div>

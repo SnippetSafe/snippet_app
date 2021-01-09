@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :sign_in_sign_up, on: :collection
       get :sign_in, on: :collection
       get :sign_up, on: :collection
+      get :email_confirm, on: :collection
       get :edit_avatar, on: :collection
     end
 
