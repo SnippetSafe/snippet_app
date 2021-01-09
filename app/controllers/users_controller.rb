@@ -39,7 +39,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         current_user.assign_attributes(user_params)
-        current_user.avatar.attach(avatar_param) if avatar_param
         
         if current_user.save
           flash[:notice] = "Profile updated"
