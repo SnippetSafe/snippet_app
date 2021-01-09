@@ -1,4 +1,4 @@
-<% if users_for_connect.any? %>
+<% if users_for_connect && users_for_connect.any? %>
   <div class="card--container card--container-padding-horizontal" data-controller="list" data-list-url-value="<%= users_path(limit: 5) %>">
     <h3 class="text-center no-margin-top margin-bottom">Connect</h3>
     <% users_for_connect.each do |user| %>
