@@ -18,11 +18,13 @@
         <%= f.check_box :remember_me, checked: true %>
         <%= f.label :remember_me, class: "margin-left--tiny" %>
       </div>
-      <a data-controller="modal" data-modal-url-value="<%= sign_up_modals_users_path %>" data-action="click->modal#present">Forgot your password?</a>
+      <%= link_to "Forgot your password?", new_user_password_path %>
     </div>
 
     <div class="actions">
       <%= f.submit "SIGN IN", class: "button--sign-in" %>
     </div>
   <% end %>
+
+  <p class="text-center"><%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path %></p>
 </div>

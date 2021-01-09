@@ -6,5 +6,8 @@
     <div class="actions">
       <%= button_to "RESEND EMAIL", new_user_confirmation_path, class: "button--sign-in", method: :get %>
     </div>
+
+    <p class="text-center">Confirmed your email? <a data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">Sign in</a></p>
   </div>
+
 </div>
