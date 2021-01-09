@@ -11,6 +11,7 @@ class Snippet < ApplicationRecord
   attr_accessor :folder_id
 
   scope :public_snippets, -> { where(public: true) }
+  scope :private_snippets, -> { where(public: false) }
 
   def folder_for_user(user)
     folders.find_by(user_id: user&.id)

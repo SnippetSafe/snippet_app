@@ -22,7 +22,7 @@ class FoldersController < ApplicationController
 
     @folders = @folders
       .order(name: :asc)
-      .paginate(page: params[:page] || 1, per_page: 24)
+      .paginate(page: params[:page] || 1, per_page: 20)
 
     respond_to do |format|
       format.html

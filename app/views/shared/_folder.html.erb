@@ -1,10 +1,8 @@
-<div id="<%= folder.client_id %>" class="folders--list-item-wrapper">    
-  <div class="folders--list-item">
-    <%= link_to folder_path(folder), class: "folders--list-item--link", title: folder.name do %>
-      <span class="folders--snippet-count"><%= folder.snippet_count %></span>
-      <img class="folders--snippet-icon" src="/icons/icons8-folder.svg" width="28">
-      <span class="folders--list-item--title"><%= folder.name %></span>
-      <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
-    <% end %>
+<div id="<%= folder.client_id %>" data-controller="navigation" data-action="click->navigation#navigate" data-navigation-url-value="<%= folder_path(folder) %>" class="card--container card--container-padding flex v-center pointer hover-grey">    
+  <img class="block" src="/icons/icons8-folder.svg" width="25">
+  <div class="margin-left">
+    <span class="folders--list-item--title"><%= folder.name %></span>
+    <span class="text-12 color-grey flex v-center margin-top--tiny"><%= folder.snippets.count %> snippets | <%= folder.snippets.private_snippets.count %> private | <%= folder.snippets.public_snippets.count %> public</span>
   </div>
+  <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
 </div>

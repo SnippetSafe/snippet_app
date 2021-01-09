@@ -76,6 +76,7 @@
 
 // TEXT
 
+.text-12 { font-size: 12px; }
 .text-14 { font-size: 14px; }
 
 // FONT
@@ -92,3 +93,13 @@
 // WIDTH
 
 .width-400 { width: 400px; }
+
+// CURSOR
+
+.pointer { cursor: pointer }
+
+// HOVER
+
+.hover-grey {
+  &:hover { background-color: $color-hover; }
+}

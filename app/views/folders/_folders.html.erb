@@ -1,3 +1,3 @@
-<% @folders.each_slice(3) do |folders| %>
-  <%= render partial: 'shared/folder_row', locals: { folders: folders } %>
+<% @folders.each do |folder| %>
+  <%= render partial: 'shared/folder', locals: { folder: folder } %>
 <% end %>
