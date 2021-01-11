@@ -34,10 +34,8 @@
     </div>
   <% end %>
 
-  <div class="card--container card--container-padding" style="text-align: center;">
-    <%= link_to(@modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'sidebar--new-snippet') do %>
-      <span>NEW SNIPPET</span>
-    <% end %>
+  <div class="flex h-center">
+    <%= link_to('NEW SNIPPET', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'button--sidebar') %>
   </div>
 
   <%= render partial: 'shared/connect', locals: { users_for_connect: @users_for_connect }%>
