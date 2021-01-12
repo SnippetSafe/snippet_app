@@ -112,7 +112,7 @@ class FoldersController < ApplicationController
       @folder = current_user.folders.find_by(id: params[:folder_id])
 
       @folder.snippets << snippet
-      
+
       render json: { message: 'Added snippet to folder' }
     rescue ActiveRecord::RecordInvalid => e
       render json: { message: e.record.errors.full_messages.join(', ') }, status: 400

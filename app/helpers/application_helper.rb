@@ -23,6 +23,8 @@ module ApplicationHelper
       'followed you'
     when 'Comment'
       'commented on your snippet'
+    when 'SnippetFolder'
+      'filed your snippet'
     end
   end
 end

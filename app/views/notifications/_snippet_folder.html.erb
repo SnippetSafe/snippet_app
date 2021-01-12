@@ -1,0 +1,9 @@
+<% follower = notification.notifiable.folder.user %>
+<% snippet = notification.notifiable.snippet %>
+<% folder = notification.notifiable.folder %>
+
+<%= render 'notifications/notification', url: user_path(follower), user: follower, notification: notification do %>
+  <span class="notification--body">
+    <strong><%= link_to snippet.description, snippet_path(snippet) %></strong> added to <%= folder.name %>
+  </span>
+<% end %>

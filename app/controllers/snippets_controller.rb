@@ -54,11 +54,17 @@ class SnippetsController < ApplicationController
       format.json do
         begin
           Snippet.transaction do
+            snippet = Snippet.find(params[:id])
+
             if snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
               snippet_folder.destroy!
             end  
         
-            SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+            snippet_folder = SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+
+            unless current_user == snippet.user
+              snippet_folder.notifications.create!(user: snippet.user)
+            end
           end
         rescue => error
           render json: { message: 'Unable to file snippet, please try again.' }, status: 400

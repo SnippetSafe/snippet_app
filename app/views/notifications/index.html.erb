@@ -1,5 +1,5 @@
 <div class="card--container">
   <% @notifications.each do |notification| %>
-    <%= render partial: "notifications/#{notification.notifiable_type.parameterize}", locals: { notification: notification } %>
+    <%= render partial: "notifications/#{notification.notifiable_type.underscore}", locals: { notification: notification } %>
   <% end %>
 </div>
