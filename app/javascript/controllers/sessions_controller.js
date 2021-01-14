@@ -16,7 +16,7 @@ export default class extends Controller {
 
   onSignInError(event) {
     const [data, status, xhr] = event.detail;
-    this.toast.display(data.message)
+    this.toast.display(data.message, 'alert')
   }
 
   get toast() {

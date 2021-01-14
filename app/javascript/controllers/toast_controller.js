@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default class extends Controller {
   static targets = ["toast", "message"];
+  static classes = ["notice", "alert"];
 
   connect() {
     this.element[this.identifier] = this
@@ -16,10 +17,10 @@ export default class extends Controller {
   }
 
   checkForNotice() {
-    if (this.hasNotice() || this.hasAlert()) {
-      const message = this.hasNotice() ? this.notice : this.alert
-
-      this.display(message)
+    if (this.hasNotice()) {
+      this.display(this.notice)
+    } else if (this.hasAlert()) {
+      this.display(this.alert, 'alert')
     }
   }
 
@@ -33,6 +34,8 @@ export default class extends Controller {
 
   display(message, type = 'notice') {
     this.messageTarget.innerHTML = message
+    this.element.classList.remove(this.noticeClass, this.alertClass)
+    this.element.classList.add(this[`${type}Class`])
     this.toastTarget.classList.remove('hidden')
     setTimeout(() => this.hideToast(), 3000)
   }

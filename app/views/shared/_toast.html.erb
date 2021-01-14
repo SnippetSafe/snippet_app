@@ -1,10 +1,12 @@
 <div
   id="toast"
   class="toast--container-notice hidden"
+  data-toast-notice-class="toast--container-notice"
+  data-toast-alert-class="toast--container-alert"
   data-controller="toast"
-  data-target="toast.toast"
+  data-toast-target="toast"
   data-toast-notice="<%= notice %>"
   data-toast-alert="<%= alert %>"
 >
-  <span data-target="toast.message"></span>
+  <span data-toast-target="message"></span>
 </div>

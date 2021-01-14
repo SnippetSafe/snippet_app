@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
           sign_in(user)
           render json: { message: 'You are now logged in!' }
         else
-          render json: { message: 'Invalid credentials.' }, status: 400
+          render json: { message: 'Invalid Email or Password.' }, status: 400
         end
       end
     end
