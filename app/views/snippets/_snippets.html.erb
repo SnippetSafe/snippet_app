@@ -3,7 +3,7 @@
     <%= render partial: 'snippets/snippet_preview', locals: { snippet: snippet } %>
   <% end %>
 <% else %>
-  <div class="margin-auto width-600 padding-top">
+  <%= render 'shared/empty_state_message' do %>
     <span class="color-grey inline-block text-center margin-top">It looks like you don't have any snippets yet. You can <%= link_to('click here', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'color-primary') %> to create one or why not <%= link_to 'follow', connect_path, class: 'color-primary' %> some people that have?</span>
-  </div>
+  <% end %>
 <% end %>
