@@ -1,5 +1,11 @@
-<div class="card--container">
-  <% @notifications.each do |notification| %>
-    <%= render partial: "notifications/#{notification.notifiable_type.underscore}", locals: { notification: notification } %>
+<% if @notifications.any? %>
+  <div class="card--container">
+    <% @notifications.each do |notification| %>
+      <%= render partial: "notifications/#{notification.notifiable_type.underscore}", locals: { notification: notification } %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render 'shared/empty_state_message' do %>
+    <span class="color-grey block text-center margin-top">It looks like you don't have any notifications yet.</span>
   <% end %>
-</div>
+<% end %>
