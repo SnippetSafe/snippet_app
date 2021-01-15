@@ -10,7 +10,8 @@ class RegistrationsController < Devise::RegistrationsController
         if user.save
           render json: { message: 'Thanks for signing up, please confirm your email to sign in.' }
         else
-          render json: { message: 'There was a problem creating your account.' }, status: 400
+          element = render_to_string partial: 'shared/errors', locals: { resource: user }, formats: [:html]
+          render json: { element: element, message: 'There was a problem creating your account.' }, status: 400
         end
       end
     end

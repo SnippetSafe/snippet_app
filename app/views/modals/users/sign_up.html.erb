@@ -3,7 +3,7 @@
   <p class="text-center">Already have an account? <a data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">Sign in</a></p>
 
   <%= form_for @user, url: user_registration_path, remote: true, html: { data: { controller: "registrations modal", modal_url_value: email_confirm_modals_users_path, type: "json", action: "ajax:success->modal#present ajax:error->registrations#onSignUpError" }, class: "form--generic-form-sign-in-up" } do |f| %>
-    <%# <%= render "devise/shared/error_messages", resource: @user %>
+    <div data-registrations-target="errors"></div>
 
     <div class="form--field">
       <%= f.label :name %>

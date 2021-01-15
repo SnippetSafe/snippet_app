@@ -12,7 +12,7 @@
   </div>
 
   <div data-controller="highlight snippets">
-    <div data-target="snippets.errors"></div>
+    <div data-snippets-target="errors"></div>
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
       <div class="tabs-details">
         <div data-target="tabs.panel">
