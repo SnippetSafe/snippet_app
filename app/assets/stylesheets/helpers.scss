@@ -69,6 +69,8 @@
 }
 .margin-auto { margin: 0 auto; }
 
+.padding-top { padding-top: 16px; }
+.padding-bottom { padding-bottom: 16px; }
 .padding-left { padding-left: 16px; }
 .padding-right { padding-right: 16px; }
 
@@ -92,7 +94,8 @@
 
 // WIDTH
 
-.width-400 { width: 400px; }
+.width-400 { max-width: 400px; }
+.width-600 { max-width: 600px; }
 
 // CURSOR
 
