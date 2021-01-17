@@ -1,0 +1,21 @@
+<div class="padding-left padding-bottom position-sticky z-3 bg-grey flex v-center space-between">
+  <div>
+    <h2 class="no-margin"><%= @folder.name %></h2>
+    <%= render partial: 'folders/counts', locals: { folder: @folder } %>
+  </div>
+  <%= link_to('ADD SNIPPET', new_modals_snippet_path(folder_id: @folder.id), data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path(folder_id: @folder.id) }, class: 'button--sidebar') %>
+</div>
+
+<% if @snippets.any? %>
+  <div class="card--container">
+    <% @snippets.each do |snippet| %>
+      <div class="list-item--wrapper" data-controller="navigation" data-navigation-url-value="<%= snippet_path(snippet) %>" data-action="click->navigation#navigate">
+        <span class="folders--list-item--title"><%= snippet.description %></span>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <%= render 'shared/empty_state_message' do %>
+    <span class="color-grey block text-center margin-top">You haven't added any snippets to this folder yet. Why not <%= link_to('create one', new_modals_snippet_path(folder_id: @folder.id), data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path(folder_id: @folder.id) }, class: 'color-primary') %>.</span>
+  <% end %>
+<% end %>

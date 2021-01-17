@@ -5,7 +5,7 @@
   data-controller="snippets"
   data-action="click->snippets#view_snippet"
   data-snippet-url="<%= snippet_path(snippet) %>"
-  class="card--container card--container-padding snippet--container-preview">
+  class="card--container card--container-padding snippet--container-preview margin-bottom">
   <div class="snippet--author-wrapper">
     <%= render partial: 'users/preview', locals: { user: snippet.user, object: snippet } %>
     <div>

@@ -1,5 +1,18 @@
 @import './variables.scss';
 
+// HOVER
+
+.hover-grey {
+  &:hover { background-color: $color-hover; }
+}
+
+// SCROLL
+
+.scroll {
+  max-height: calc(100vh - 68px);
+  overflow-y: scroll;
+}
+
 // FLEXBOX
 
 .flex { display: flex }
@@ -12,11 +25,20 @@
 
 .space-between { justify-content: space-between; }
 
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+
 // DISPLAY
 
 .block { display: block; }
 .inline-block { display: inline-block; }
 .hidden { display: none !important; }
+.selected {
+  background-color: $color-light;
+
+  &:hover { background-color: $color-light !important; }
+}
 
 // POSITION
 
@@ -28,6 +50,17 @@
     top: 16px;
     right: 16px;
   }
+  &-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+}
+
+// Z INDEX
+
+.z {
+  &-3 { z-index: 3; }
 }
 
 // MARGIN
@@ -74,7 +107,9 @@
 .padding-left { padding-left: 16px; }
 .padding-right { padding-right: 16px; }
 
+.text-left { text-align: left; }
 .text-center { text-align: center; }
+.text-right { text-align: right; }
 
 // TEXT
 
@@ -91,6 +126,9 @@
 .color-primary { color: $color-primary; }
 .color-grey { color: $color-grey; }
 
+// BACKGROUND COLOR
+
+.bg-grey { background-color: $color-grey-background; }
 
 // WIDTH
 
@@ -100,9 +138,3 @@
 // CURSOR
 
 .pointer { cursor: pointer }
-
-// HOVER
-
-.hover-grey {
-  &:hover { background-color: $color-hover; }
-}

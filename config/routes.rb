@@ -69,6 +69,8 @@ Rails.application.routes.draw do
   resources :likes, only: :create
 
   resources :folders, only: %i(index show edit create update destroy) do
+    resources :snippets, only: :index, controller: 'folders/snippets'
+
     get :popover, on: :member
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection

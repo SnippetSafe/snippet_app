@@ -6,6 +6,7 @@ class Folder < ApplicationRecord
   def popover_options_for(user)
     options = []
 
+    options << { type: :link, title: 'Go to folder', url: folder_path(self) }
     options << { type: :modal, title: 'Add snippet', url: new_modals_snippet_path(folder_id: id) }
     options << { type: :link, title: 'Rename folder', url: edit_folder_path(self) }
 

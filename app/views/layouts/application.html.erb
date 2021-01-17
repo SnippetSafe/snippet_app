@@ -30,12 +30,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js" integrity="sha512-9pGiHYK23sqK5Zm0oF45sNBAX/JqbZEP7bSDHyt+nT3GddF+VFIcYNqREt0GDpmFVZI3LZ17Zu9nMMc9iktkCw==" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body style="max-height: 100%; overflow-y: hidden;">
     <%= render partial: 'shared/topbar' %>
     <%= render partial: 'shared/toast' %>
 
     <div id="app">
-      <div style="display: flex;">
+      <div class="flex margin-top">
         <div id="sidebar">
           <%= render 'shared/sidebar' %>
         </div>

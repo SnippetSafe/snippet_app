@@ -2,30 +2,16 @@
   <meta name="turbolinks-cache-control" content="no-preview">
 <% end %>
 
-<div data-controller="infinite-scroll" data-infinite-scroll-base-url="<%= folders_path %>">
-  <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
-
-      <div class="searchbar">
-        <input autofocus
-          type="text"
-          placeholder="Search"
-          data-action="input->infinite-scroll#search"
-          data-target="infinite-scroll.input"
-        />
-        <img src="/icons/search.svg">
-      </div>
-
-    <%= link_to('NEW FOLDER', new_modals_folder_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_folder_path }, class: 'button--cta-new') %>
+<div class="flex" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
+  <div class="flex-1 scroll">
+    <div class="padding-left padding-bottom position-sticky z-3 bg-grey">
+      <h2 class="no-margin">Folders</h2>
+      <span class="text-12 color-grey flex v-center margin-top--tiny"><%= current_user.filed_snippets.count %> snippets | <%= current_user.filed_snippets.private_snippets.count %> private | <%= current_user.filed_snippets.public_snippets.count %> public</span>
+    </div>
+    <div class="card--container">
+      <%= render 'folders/folders' %>
+    </div>
   </div>
 
-  <div class="margin-top"
-    data-target="infinite-scroll.entries"
-    data-action="scroll@window->infinite-scroll#scroll"
-  >
-    <%= render 'folders/folders' %>
-  </div>
-
-  <div data-target="infinite-scroll.pagination" class="hidden">
-    <%= will_paginate @folders, container: false %>
-  </div>
+  <div class="flex-2 margin-left scroll" data-folders-target="body"></div>
 </div>

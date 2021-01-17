@@ -1,8 +1,10 @@
-<div id="<%= folder.client_id %>" data-controller="navigation" data-action="click->navigation#navigate" data-navigation-url-value="<%= folder_path(folder) %>" class="card--container card--container-padding flex v-center pointer hover-grey">    
+<div id="<%= folder.client_id %>" data-action="click->folders#selectFolder" data-folders-target="folder" data-folder-id=<%= folder.id %> class="list-item--wrapper flex v-center pointer hover-grey">    
   <img class="block" src="/icons/icons8-folder.svg" width="25">
   <div class="margin-left">
-    <span class="folders--list-item--title"><%= folder.name %></span>
-    <span class="text-12 color-grey flex v-center margin-top--tiny"><%= folder.snippets.count %> snippets | <%= folder.snippets.private_snippets.count %> private | <%= folder.snippets.public_snippets.count %> public</span>
+    <%= link_to folder_path(folder) do %>
+      <span class="folders--list-item--title"><%= folder.name %></span>
+    <% end %>
+    <%= render partial: 'folders/counts', locals: { folder: folder } %>
   </div>
   <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
 </div>
