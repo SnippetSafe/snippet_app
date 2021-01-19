@@ -3,7 +3,7 @@ import { events } from "../mixins/events";
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ['body', 'folder'];
+  static targets = ['body', 'folder', 'pagination'];
   static values = {
     folderId: String
   };
@@ -15,8 +15,8 @@ export default class extends Controller {
 
   connect() {
     this.getSnippetsForSelectedFolder()
-    console.log('ft', this.folderTargets)
     this.folderTargets[0].classList.add('selected')
+    this.stopPropagationOnLinks()
   }
 
   selectFolder(event) {
@@ -37,5 +37,11 @@ export default class extends Controller {
         this.bodyTarget.innerHTML = res.data
       })
       .catch(console.error)
+  }
+
+  stopPropagationOnLinks() {
+    this.element.querySelectorAll('a').forEach(link => {
+      link.onclick = (event) => { event.stopPropagation() }
+    })
   }
 }

@@ -7,13 +7,9 @@
 </div>
 
 <% if @snippets.any? %>
-  <div class="card--container">
-    <% @snippets.each do |snippet| %>
-      <div class="list-item--wrapper" data-controller="navigation" data-navigation-url-value="<%= snippet_path(snippet) %>" data-action="click->navigation#navigate">
-        <span class="folders--list-item--title"><%= snippet.description %></span>
-      </div>
-    <% end %>
-  </div>
+  <% @snippets.each do |snippet| %>
+    <%= render partial: 'snippets/snippet_preview', locals: { snippet: snippet } %>
+  <% end %>
 <% else %>
   <%= render 'shared/empty_state_message' do %>
     <span class="color-grey block text-center margin-top">You haven't added any snippets to this folder yet. Why not <%= link_to('create one', new_modals_snippet_path(folder_id: @folder.id), data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path(folder_id: @folder.id) }, class: 'color-primary') %>.</span>

@@ -3,16 +3,16 @@
 <% end %>
 
 
-<div data-controller="infinite-scroll snippets-list">
+<div data-controller="infinite-scroll-window snippets-list">
   <div
     id="infinite-snippets-list"
-    data-target="infinite-scroll.entries"
-    data-action="scroll@window->infinite-scroll#scroll snippet-created@window->infinite-scroll#add snippet-updated@window->snippets-list#update"
+    data-infinite-scroll-window-target="entries"
+    data-action="scroll@window->infinite-scroll-window#scroll snippet-created@window->infinite-scroll-window#add snippet-updated@window->snippets-list#update"
   >
     <%= render 'snippets/snippets' %>
   </div>
 
-  <div data-target="infinite-scroll.pagination" class="hidden">
+  <div data-infinite-scroll-window-target="pagination" class="hidden">
     <%= will_paginate @snippets, container: false %>
   </div>
 </div>

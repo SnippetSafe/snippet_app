@@ -17,23 +17,23 @@ class FoldersController < ApplicationController
     @snippets = Snippet.last(5)
     @page_title = 'Folders'
 
-    @folders = current_user.folders.first(40)
+    @folders = current_user.folders
 
-    # @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search].present?
+    @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search].present?
 
-    # @folders = @folders
-    #   .order(name: :asc)
-    #   .paginate(page: params[:page] || 1, per_page: 20)
+    @folders = @folders
+      .order(name: :asc)
+      .paginate(page: params[:page] || 1, per_page: 20)
 
-    # respond_to do |format|
-    #   format.html
-    #   format.json do
-    #     render json: {
-    #       entries: render_to_string(partial: 'folders/folders', locals: { folders: @folders }, formats: [:html]),
-    #       pagination: view_context.will_paginate(@folders)
-    #     }
-    #   end
-    # end
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          entries: render_to_string(partial: 'folders/folders', locals: { folders: @folders }, formats: [:html]),
+          pagination: view_context.will_paginate(@folders)
+        }
+      end
+    end
   end
 
   def show

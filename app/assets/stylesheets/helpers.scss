@@ -13,6 +13,11 @@
   overflow-y: scroll;
 }
 
+.no-scroll {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+
 // FLEXBOX
 
 .flex { display: flex }

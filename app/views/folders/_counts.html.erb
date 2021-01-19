@@ -1,1 +1,1 @@
-<span class="text-12 color-grey flex v-center margin-top--tiny"><%= folder.snippets.count %> snippets | <%= folder.snippets.private_snippets.count %> private | <%= folder.snippets.public_snippets.count %> public</span>
+<span class="text-12 color-grey flex v-center margin-top--tiny"><%= pluralize(folder.snippets.count, 'snippet') %> | <%= folder.snippets.public_snippets.count %> public | <%= folder.snippets.private_snippets.count %> private</span>

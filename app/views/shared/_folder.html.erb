@@ -1,9 +1,7 @@
 <div id="<%= folder.client_id %>" data-action="click->folders#selectFolder" data-folders-target="folder" data-folder-id=<%= folder.id %> class="list-item--wrapper flex v-center pointer hover-grey">    
-  <img class="block" src="/icons/icons8-folder.svg" width="25">
+  <img class="block" src="/icons/icons8-folder.svg" width="22">
   <div class="margin-left">
-    <%= link_to folder_path(folder) do %>
-      <span class="folders--list-item--title"><%= folder.name %></span>
-    <% end %>
+    <span class="folders--list-item--title"><%= folder.name %></span>
     <%= render partial: 'folders/counts', locals: { folder: folder } %>
   </div>
   <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>

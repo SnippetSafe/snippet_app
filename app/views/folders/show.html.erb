@@ -1,15 +1,15 @@
 <div
-  data-controller="infinite-scroll snippets-list"
-  data-infinite-scroll-base-url="<%= folder_path(@folder) %>"
+  data-controller="infinite-scroll-window snippets-list"
+  data-infinite-scroll-window-base-url="<%= folder_path(@folder) %>"
   data-snippets-list-id="<%= @folder.id %>">
-  <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
 
       <div class="searchbar">
         <input autofocus
           type="text"
           placeholder="Search"
-          data-action="input->infinite-scroll#search"
-          data-target="infinite-scroll.input"
+          data-action="input->infinite-scroll-window#search"
+          data-infinite-scroll-window-target="input"
         />
         <img src="/icons/search.svg">
       </div>
@@ -18,13 +18,14 @@
   </div>
 
   <div class="margin-top"
-    data-target="infinite-scroll.entries snippets-list.entries"
-    data-action="scroll@window->infinite-scroll#scroll snippet-created@window->infinite-scroll#add snippet-updated@window->snippets-list#update"
+    data-infinite-scroll-window-target="entries"
+    data-snippets-list-target="entries"
+    data-action="scroll@window->infinite-scroll-window#scroll snippet-created@window->infinite-scroll-window#add snippet-updated@window->snippets-list#update"
   >
     <%= render 'snippets/snippets' %>
   </div>
 
-  <div data-target="infinite-scroll.pagination" class="hidden">
+  <div data-infinite-scroll-window-target="pagination" class="hidden">
     <%= will_paginate @snippets, container: false %>
   </div>
 </div>

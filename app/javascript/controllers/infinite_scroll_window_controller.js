@@ -4,6 +4,9 @@ import axios from 'axios'
 export default class extends Controller {
   static targets = ['entries', 'pagination', 'input', 'form']
 
+  connect() {
+    console.log('gfd')
+  }
   initialize() {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken

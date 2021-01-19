@@ -1,25 +1,25 @@
-<div data-controller="infinite-scroll snippets-list" data-infinite-scroll-base-url="<%= connect_path %>">
+<div data-controller="infinite-scroll-window snippets-list" data-infinite-scroll-window-base-url="<%= connect_path %>">
   <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
 
     <div class="searchbar">
       <input autofocus
         type="text"
         placeholder="Search"
-        data-action="input->infinite-scroll#search"
-        data-target="infinite-scroll.input"
+        data-action="input->infinite-scroll-window#search"
+        data-infinite-scroll-window-target="input"
       />
       <img src="/icons/search.svg">
     </div>
   </div>
 
   <div class="margin-top"
-    data-target="infinite-scroll.entries"
-    data-action="scroll@window->infinite-scroll#scroll"
+    data-infinite-scroll-window-target="entries"
+    data-action="scroll@window->infinite-scroll-window#scroll"
   >
     <%= render 'users/follow_previews' %>
   </div>
 
-  <div data-target="infinite-scroll.pagination" class="hidden">
+  <div data-infinite-scroll-window-target="pagination" class="hidden">
     <%= will_paginate @users, container: false %>
   </div>
 </div>
