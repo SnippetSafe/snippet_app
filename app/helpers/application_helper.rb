@@ -27,4 +27,25 @@ module ApplicationHelper
       'filed your snippet'
     end
   end
+
+  def nav_item(path, icon)
+    active = path == request.path
+
+    color = active ? 'primary' : 'black'
+    css_class = active ? 'active' : 'inactive'
+
+    link_to(path) do
+      image_tag("/icons/#{color}/#{icon}.svg", width: 24, class: "nav-item--#{css_class}")
+    end
+  end
+
+  def profile_nav_item
+    profile_path = user_path(current_user)
+
+    css_class = request.path == profile_path ? 'active' : 'inactive'
+
+    link_to(profile_path) do
+      image_tag current_user.avatar_url, class: "profile-nav-item--#{css_class}"
+    end
+  end
 end

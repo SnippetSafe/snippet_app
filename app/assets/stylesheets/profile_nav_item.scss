@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.profile-nav-item {
+  border-radius: 50%;
+  width: 38px;
+  margin-left: 8px;
+  
+  &--active {
+    @extend .profile-nav-item;
+    
+    border: 2px solid $color-primary;
+  }
+  
+  &--inactive {
+    @extend .profile-nav-item;
+    
+    border: 2px solid $color-white;
+  }
+}

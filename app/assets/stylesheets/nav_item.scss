@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+.nav-item {
+  border-radius: 50%;
+  padding: 8px;
+  margin: 0px 8px;
+  
+  &--active {
+    @extend .nav-item;
+    
+    background-color: $color-light;
+  }
+  
+  &--inactive {
+    @extend .nav-item;
+    
+    &:hover { background-color: $color-hover; }
+  }
+}

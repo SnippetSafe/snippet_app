@@ -1,17 +1,24 @@
 <div id="header">
-  <div id="header-wrapper" style="position: relative;">
-    <div style="display: flex; align-items: center;">
-      <%= link_to 'SNIPPET SAFE', root_path %>
-      <%# <img class="logo--topbar" src="/logos/snippet_logo.png"> %>
+  <div id="header-wrapper" class="position-relative">
+    <div class="flex v-center">
+      <%= link_to root_path do %>
+        <div class="border-radius-50" style="background-color: #3AAFA9; height: 40px; width: 40px;"></div>
+      <% end %>
     </div>
 
-    <div style="display: flex; align-items: center;">
+    <div class="flex v-center">
       <% if !user_signed_in? %>
         <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
         <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
       <% else %>
-        <h3 class="margin-right"><%= @page_title || '' %></h3>
+        <%= nav_item(root_path, 'home') %>
+        <%= nav_item(notifications_path, 'bell') %>
+        <%= nav_item(folders_path, 'folder') %>
+        <%= nav_item(snippets_path, 'snippet') %>
       <% end %>
+    </div>
+    <div class="flex v-center">
+      <%= profile_nav_item %>
     </div>
   </div>
 </div>
