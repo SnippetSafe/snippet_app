@@ -1,6 +1,18 @@
 @import './variables.scss';
 
 .button {
+  &--add {
+    display: flex;
+    background-color: $color-primary;
+    padding: 6px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px lightgrey;
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+
   &--sign-in {
     color: $color-white;
     border: 1px solid $color-dark-blue;

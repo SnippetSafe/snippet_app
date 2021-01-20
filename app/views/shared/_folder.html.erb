@@ -1,5 +1,5 @@
 <div id="<%= folder.client_id %>" data-action="click->folders#selectFolder" data-folders-target="folder" data-folder-id=<%= folder.id %> class="list-item--wrapper flex v-center pointer hover-grey">    
-  <img class="block" src="/icons/icons8-folder.svg" width="22">
+  <img class="block" src="/icons/grey/folder.svg" width="24">
   <div class="margin-left">
     <span class="folders--list-item--title"><%= folder.name %></span>
     <%= render partial: 'folders/counts', locals: { folder: folder } %>
