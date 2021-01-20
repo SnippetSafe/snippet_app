@@ -36,7 +36,8 @@ strong { font-weight: 500 }
 }
 
 #app {
-  margin: 0 auto !important; 
+  margin: 0 auto !important;
+  margin-top: 16px;
 	float: none !important; 
   max-width: 1080px;
   // height: 100vh;
@@ -51,9 +52,10 @@ strong { font-weight: 500 }
 }
 
 #body {
-  width: 78%;
+  margin-top: 16px;
+  // width: 100%;
 
-  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    width: 100%;
-  }
+  // @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  //   width: 100%;
+  // }
 }

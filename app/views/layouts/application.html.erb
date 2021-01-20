@@ -35,13 +35,8 @@
     <%= render partial: 'shared/toast' %>
 
     <div id="app">
-      <div class="flex margin-top">
-        <div id="sidebar">
-          <%= render 'shared/sidebar' %>
-        </div>
-        <div id="body">
-          <%= yield %>
-        </div>
+      <div id="body">
+        <%= yield %>
       </div>
     </div>
   </body>

@@ -12,9 +12,10 @@
         <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
       <% else %>
         <%= nav_item(root_path, 'home') %>
-        <%= nav_item(notifications_path, 'bell') %>
         <%= nav_item(folders_path, 'folder') %>
         <%= nav_item(snippets_path, 'snippet') %>
+        <%= nav_item(notifications_path, 'bell') %>
+        <%= nav_item(connect_path, 'connect') %>
       <% end %>
     </div>
     <div class="flex v-center">

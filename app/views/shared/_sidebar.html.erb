@@ -1,4 +1,7 @@
 <div class="sidebar--wrapper">
+  <div class="card--container card--container-padding text-center margin-bottom">
+    <span class="bold"><%= @page_title.upcase %></span>
+  </div>
   
   <div class="flex h-center">
     <%= link_to('NEW SNIPPET', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'button--sidebar') %>
