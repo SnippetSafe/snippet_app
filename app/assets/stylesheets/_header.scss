@@ -2,13 +2,13 @@
 
 .header-spacer {
   width: 100%;
-  height: 52px;
+  height: 66px;
 }
 
 #header {
   width: 100%;
-  height: 52px;
-  max-height: 52px;
+  // height: 66px;
+  // max-height: 66px;
   background-color: $color-white;
   position: -webkit-sticky; /* Safari */
   position: fixed;
@@ -17,10 +17,17 @@
   box-shadow: 0 1px 4px lightgrey;
 }
 
-#header-wrapper {
+#topbar-nav {
   max-width: 1080px;
   margin: 0 auto !important; 
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  height: 66px;
+  max-height: 66px;
+}
+
+#topbar-secondary {
+  display: flex;
+  align-items: center;
+  height: 40px;
 }

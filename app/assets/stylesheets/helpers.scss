@@ -87,6 +87,10 @@
 .margin-bottom {
   margin-bottom: 16px;
 
+  &--small {
+    margin-bottom: 8px;
+  }
+
   &--tiny {
     margin-bottom: 4px;
   }
@@ -140,6 +144,7 @@
 
 .width-400 { max-width: 400px; }
 .width-600 { max-width: 600px; }
+.width-860 { max-width: 860px; }
 
 // CURSOR
 

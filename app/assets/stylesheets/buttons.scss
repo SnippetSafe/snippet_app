@@ -7,9 +7,18 @@
     padding: 6px;
     border-radius: 50%;
     box-shadow: 0 1px 2px lightgrey;
+    align-items: center;
+    color: $color-white;
 
     &:hover {
       background-color: $color-primary-hover;
+    }
+
+    &-text {
+      @extend .button--add;
+
+      border-radius: 20px;
+      padding: 6px 10px;
     }
   }
 

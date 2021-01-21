@@ -1,5 +1,5 @@
 <% if @notifications.any? %>
-  <div class="card--container">
+  <div class="card--container margin-auto width-860">
     <% @notifications.each do |notification| %>
       <%= render partial: "notifications/#{notification.notifiable_type.underscore}", locals: { notification: notification } %>
     <% end %>

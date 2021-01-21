@@ -43,7 +43,6 @@ module ApplicationHelper
     profile_path = user_path(current_user)
 
     css_class = request.path == profile_path ? 'active' : 'inactive'
-
     link_to(profile_path) do
       image_tag current_user.avatar_url, class: "profile-nav-item--#{css_class}"
     end

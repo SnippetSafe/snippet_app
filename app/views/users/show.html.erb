@@ -2,84 +2,86 @@
   <meta name="turbolinks-cache-control" content="no-preview">
 <% end %>
 
-<div class="card--container card--container-padding">
-  <div class="flex v-center">
-    <div class="flex flex-column">
-      <img style="border-radius: 50%;" src="<%= @user.avatar_url %>" height="120" width="120" />
-    </div>
-    <div class="margin-left">
-      <h2 class="users-show--name"><%= @user.name %></h2>
-      <div style="height: 40px;">
-        <span><%= @user.bio %></span>
+<div class="margin-auto width-860">
+  <div class="card--container card--container-padding">
+    <div class="flex v-center">
+      <div class="flex flex-column">
+        <img style="border-radius: 50%;" src="<%= @user.avatar_url %>" height="120" width="120" />
       </div>
-    </div>
-  </div>
-
-  <div class="margin-top flex space-between">
-    <% if @user == current_user %>
-      <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
-    <% else %>
-      <%= render partial: 'users/follow_button', locals: { user: @user } %>
-    <% end %>
-  </div>
-</div>
-
-<div data-controller="tabs">
-  <div class="tabs--headers-container">
-    <div></div>
-    <div class="tabs--headers-wrapper">
-      <div data-target="tabs.tab" data-tab-id="snippets" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:snippets, @tab_id) %>">
-        <span><%= @user.filed_snippets.size %> Snippets</span>
-      </div>
-      <div data-target="tabs.tab" data-tab-id="followers" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:followers, @tab_id) %>">
-        <span><%= @followers.size %> Followers</span>
-      </div>
-      <div data-target="tabs.tab" data-tab-id="following" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:following, @tab_id) %>">
-        <span><%= @following.size %> Following</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="tabs-details">
-    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:snippets, @tab_id) %>">
-      <div data-controller="infinite-scroll-window" data-infinite-scroll-window-base-url="<%= user_snippets_path(@user) %>">
-        <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
-
-            <div class="searchbar">
-              <input autofocus
-                type="text"
-                placeholder="Search"
-                data-action="input->infinite-scroll-window#search"
-                data-infinite-scroll-window-target="input"
-              />
-              <img src="/icons/search.svg">
-            </div>
-
-        </div>
-
-        <div class="margin-top"
-          data-infinite-scroll-window-target="entries"
-          data-action="scroll@window->infinite-scroll-window#scroll"
-        >
-          <%= render 'snippets/snippets' %>
-        </div>
-
-        <div data-infinite-scroll-window-target="pagination" class="hidden">
-          <%= will_paginate @snippets, container: false, params: { controller: "snippets", action: "index" } %>
+      <div class="margin-left">
+        <h2 class="users-show--name"><%= @user.name %></h2>
+        <div style="height: 40px;">
+          <span><%= @user.bio %></span>
         </div>
       </div>
     </div>
 
-    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:followers, @tab_id) %>">
-      <% @followers.each do |follower| %>
-        <%= render partial: 'follow_preview', locals: { user: follower } %>
+    <div class="margin-top flex space-between">
+      <% if @user == current_user %>
+        <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
+      <% else %>
+        <%= render partial: 'users/follow_button', locals: { user: @user } %>
       <% end %>
     </div>
+  </div>
 
-    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:following, @tab_id) %>">
-      <% @following.each do |following| %>
-        <%= render partial: 'follow_preview', locals: { user: following } %>
-      <% end %>
+  <div data-controller="tabs">
+    <div class="tabs--headers-container">
+      <div></div>
+      <div class="tabs--headers-wrapper">
+        <div data-target="tabs.tab" data-tab-id="snippets" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:snippets, @tab_id) %>">
+          <span><%= @user.filed_snippets.size %> Snippets</span>
+        </div>
+        <div data-target="tabs.tab" data-tab-id="followers" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:followers, @tab_id) %>">
+          <span><%= @followers.size %> Followers</span>
+        </div>
+        <div data-target="tabs.tab" data-tab-id="following" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:following, @tab_id) %>">
+          <span><%= @following.size %> Following</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-details">
+      <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:snippets, @tab_id) %>">
+        <div data-controller="infinite-scroll-window" data-infinite-scroll-window-base-url="<%= user_snippets_path(@user) %>">
+          <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+
+              <div class="searchbar">
+                <input autofocus
+                  type="text"
+                  placeholder="Search"
+                  data-action="input->infinite-scroll-window#search"
+                  data-infinite-scroll-window-target="input"
+                />
+                <img src="/icons/search.svg">
+              </div>
+
+          </div>
+
+          <div class="margin-top"
+            data-infinite-scroll-window-target="entries"
+            data-action="scroll@window->infinite-scroll-window#scroll"
+          >
+            <%= render 'snippets/snippets' %>
+          </div>
+
+          <div data-infinite-scroll-window-target="pagination" class="hidden">
+            <%= will_paginate @snippets, container: false, params: { controller: "snippets", action: "index" } %>
+          </div>
+        </div>
+      </div>
+
+      <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:followers, @tab_id) %>">
+        <% @followers.each do |follower| %>
+          <%= render partial: 'follow_preview', locals: { user: follower } %>
+        <% end %>
+      </div>
+
+      <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:following, @tab_id) %>">
+        <% @following.each do |following| %>
+          <%= render partial: 'follow_preview', locals: { user: following } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
