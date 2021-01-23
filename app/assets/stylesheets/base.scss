@@ -3,8 +3,9 @@
 html, body {
 	margin: 0 auto !important; 
 	float: none !important; 
-  height: 100vh;
+  height: 100%;
   position: relative;
+  // overflow: hidden;
   background-color: #F5F6FA;
   font-family: Helvetica, sans-serif;
 }
@@ -58,4 +59,21 @@ strong { font-weight: 500 }
   // @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   //   width: 100%;
   // }
+}
+
+#content {
+  max-width: $content-width;
+  height: calc(100% - #{$topbar-full-height});
+  margin: 0 auto;
+  padding-top: $topbar-margin;
+}
+
+.wrapper {
+  display: flex;
+  height: calc(100% - #{$topbar-height});
+}
+
+.container {
+  height: 100%;
+  overflow-y: scroll;
 }

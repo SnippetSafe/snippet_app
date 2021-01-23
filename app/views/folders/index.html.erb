@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="flex" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
-  <div class="flex-1 scroll" data-controller="infinite-scroll-container" data-action="scroll->infinite-scroll-container#scroll">
+  <div class="flex-1 scroll card--container card--container-padding" data-controller="infinite-scroll-container" data-action="scroll->infinite-scroll-container#scroll">
     <div class="flex v-center space-between padding-left padding-bottom position-sticky z-3 bg-grey">
       <div>
         <h2 class="no-margin"><%= pluralize(@folders.count, 'Folder') %></h2>

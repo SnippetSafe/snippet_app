@@ -14,3 +14,14 @@ $color-pink: #FFD8DE;
 
 $color-dark-blue: #003F63;
 $color-light-blue: #27658a;
+
+// TOPBAR
+$topbar-height: 66px;
+$topbar-margin: 16px;
+$topbar-full-height: calc(#{$topbar-height} + #{$topbar-margin});
+
+// CONTENT
+$content-width: 1080px;
+
+// MARGIN
+

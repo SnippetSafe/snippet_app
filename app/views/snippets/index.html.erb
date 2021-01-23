@@ -1,5 +1,5 @@
 <div class="margin-auto width-860" data-controller="infinite-scroll-window snippets-list" data-infinite-scroll-window-base-url="<%= snippets_path %>">
-  <div class="flex v-center space-between">
+  <div class="flex v-center space-between padding-bottom z-3 bg-grey">
 
       <div class="searchbar">
         <input autofocus
@@ -10,13 +10,9 @@
         />
         <img src="/icons/search.svg">
       </div>
-
-    <%= link_to(new_modals_snippet_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path }, class: 'button--add', title: "Add a new snippet")  do %>
-      <%= image_tag "/icons/white/snippet-add.svg", width: 24 %>
-    <% end %>
   </div>
 
-  <div class="margin-top"
+  <div
     data-infinite-scroll-window-target="entries"
     data-action="scroll@window->infinite-scroll-window#scroll snippet-created@window->infinite-scroll-window#add snippet-updated@window->snippets-list#update"
   >

@@ -1,29 +1,32 @@
 @import './variables.scss';
 
-.header-spacer {
+#header-spacer {
   width: 100%;
-  height: 66px;
+  height: $topbar-height;
+  background-color: $color-grey-background;
 }
 
 #header {
   width: 100%;
-  // height: 66px;
-  // max-height: 66px;
   background-color: $color-white;
   position: -webkit-sticky; /* Safari */
   position: fixed;
   top: 0;
   z-index: 2;
+  margin-bottom: $topbar-margin;
+}
+
+#header-nav-wrapper {
   box-shadow: 0 1px 4px lightgrey;
 }
 
-#topbar-nav {
+#header-nav {
   max-width: 1080px;
   margin: 0 auto !important; 
   display: flex;
   justify-content: space-between;
-  height: 66px;
-  max-height: 66px;
+  height: $topbar-height;
+  max-height: $topbar-height;
 }
 
 #topbar-secondary {

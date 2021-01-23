@@ -1,39 +1,42 @@
 <div id="header">
-  <div id="topbar-nav" class="position-relative">
-    <div class="flex v-center flex-1">
-      <%= link_to root_path do %>
-        <div class="border-radius-50" style="background-color: #3AAFA9; height: 40px; width: 40px;"></div>
-      <% end %>
-    </div>
-
-    <div class="flex v-center">
-      <% if !user_signed_in? %>
-        <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
-        <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
-      <% else %>
-        <%= nav_item(root_path, 'home') %>
-        <%= nav_item(folders_path, 'folder') %>
-        <%= nav_item(snippets_path, 'snippet') %>
-        <%= nav_item(notifications_path, 'bell') %>
-        <%= nav_item(connect_path, 'connect') %>
-      <% end %>
-    </div>
-
-    <div class="flex v-center flex-1 flex-end">
-      <% if user_signed_in? %>
-        <%= link_to(new_modals_snippet_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path }, class: 'button--add margin-right', title: "Add a new snippet")  do %>
-          <%= image_tag "/icons/white/snippet-add.svg", width: 24 %>
+  <div id="header-nav-wrapper">
+    <div id="header-nav" class="position-relative">
+      <div class="flex v-center flex-1">
+        <%= link_to root_path do %>
+          <div class="border-radius-50" style="background-color: #3AAFA9; height: 40px; width: 40px;"></div>
         <% end %>
-        <%= profile_nav_item %>
-      <% end %>
+      </div>
+
+      <div class="flex v-center">
+        <% if !user_signed_in? %>
+          <%= button_tag('SIGN IN', type: :button, class: "button--cta-blue", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
+          <%= button_tag('SIGN UP', type: :button, class: "button--cta-transparent margin-left--tiny", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
+        <% else %>
+          <%= nav_item(root_path, 'home') %>
+          <%= nav_item(folders_path, 'folder') %>
+          <%= nav_item(snippets_path, 'snippet') %>
+          <%= nav_item(notifications_path, 'bell') %>
+          <%= nav_item(connect_path, 'connect') %>
+        <% end %>
+      </div>
+
+      <div class="flex v-center flex-1 flex-end">
+        <% if user_signed_in? %>
+          <%= link_to(new_modals_snippet_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path }, class: 'button--add margin-right', title: "Add a new snippet")  do %>
+            <%= image_tag "/icons/white/snippet-add.svg", width: 24 %>
+          <% end %>
+          <%= profile_nav_item %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="flex h-center" style="margin-top: -14px; margin-bottom: -14px;">
+  <%# <div class="flex h-center" style="margin-top: -14px; margin-bottom: -14px;">
     <div class="inline-block padding-left padding-right" style="background-color: white; z-index: 50; padding-top: 4px; padding-bottom: 4px; border-radius: 20px; background-color: #DEF2F1; box-shadow: 0 2px 2px lightgrey;">
-      <h3 class="no-margin bold"><%= @page_title %></h3>
+      <h3 class="no-margin bold">page title</h3>
     </div>
-  </div>
+  </div> %>
+  <%# <div class="bg-grey" style="height: 16px;"></div> %>
 </div>
 
-<div class="header-spacer"></div>
+<div id="header-spacer"></div>

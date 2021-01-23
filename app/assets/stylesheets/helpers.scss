@@ -59,6 +59,12 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+
+    &--topbar {
+      @extend .position-sticky;
+
+      top: $topbar-full-height;
+    }
   }
 }
 
