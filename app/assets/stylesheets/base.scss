@@ -5,7 +5,6 @@ html, body {
 	float: none !important; 
   height: 100%;
   position: relative;
-  // overflow: hidden;
   background-color: #F5F6FA;
   font-family: Helvetica, sans-serif;
 }
@@ -62,18 +61,15 @@ strong { font-weight: 500 }
 }
 
 #content {
-  max-width: $content-width;
+  max-width: $small-width;
   height: calc(100% - #{$topbar-full-height});
   margin: 0 auto;
-  padding-top: $topbar-margin;
-}
+  margin-top: $topbar-margin;
+  margin-bottom: $topbar-margin;
 
-.wrapper {
-  display: flex;
-  height: calc(100% - #{$topbar-height});
-}
+  &-mid {
+    @extend #content;
 
-.container {
-  height: 100%;
-  overflow-y: scroll;
+    max-width: $mid-width;
+  }
 }

@@ -11,6 +11,7 @@ $color-grey-light: #E6ECF0;
 $color-grey-background: #F5F6FA;
 $color-hover: #F2F2F2;
 $color-pink: #FFD8DE;
+$color-red: red;
 
 $color-dark-blue: #003F63;
 $color-light-blue: #27658a;
@@ -21,7 +22,8 @@ $topbar-margin: 16px;
 $topbar-full-height: calc(#{$topbar-height} + #{$topbar-margin});
 
 // CONTENT
-$content-width: 1080px;
+$small-width: 860px;
+$mid-width: 1080px;
 
 // MARGIN
 

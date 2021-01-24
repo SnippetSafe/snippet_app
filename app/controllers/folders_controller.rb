@@ -1,4 +1,6 @@
 class FoldersController < ApplicationController
+  layout 'application_mid_width', only: :index
+
   MINIMUM_FOLDERS = 1.freeze
 
   before_action :authenticate_user!

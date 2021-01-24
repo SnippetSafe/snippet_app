@@ -2,26 +2,33 @@
   <meta name="turbolinks-cache-control" content="no-preview">
 <% end %>
 
-<div class="flex" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
-  <div class="flex-1 scroll card--container card--container-padding" data-controller="infinite-scroll-container" data-action="scroll->infinite-scroll-container#scroll">
-    <div class="flex v-center space-between padding-left padding-bottom position-sticky z-3 bg-grey">
-      <div>
-        <h2 class="no-margin"><%= pluralize(@folders.count, 'Folder') %></h2>
-        <span class="text-12 color-grey flex v-center margin-top--tiny"><%= pluralize(current_user.filed_snippets.count, 'snippet') %> | <%= current_user.filed_snippets.public_snippets.count %> public | <%= current_user.filed_snippets.private_snippets.count %> private</span>
+<div class="flex" style="height: 100%;" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
+
+  <div class="flex-1">
+    <div class="flex v-center space-between padding-bottom z-3 bg-grey">
+
+      <div class="searchbar">
+        <input
+          type="text"
+          placeholder="Search folders"
+          data-action="input->infinite-scroll-window#search"
+          data-infinite-scroll-window-target="input"
+        />
+        <img src="/icons/search.svg">
       </div>
-      <%= link_to(new_modals_folder_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_folder_path }, class: 'button--add', title: "Add a new folder")  do %>
-        <%= image_tag "/icons/white/folder-add.svg", width: 24 %>
-      <% end %>
     </div>
+    <div class="scroll" data-controller="infinite-scroll-container" data-action="scroll->infinite-scroll-container#scroll">
+      
 
-    <div class="card--container" data-infinite-scroll-container-target="entries">
-      <%= render 'folders/folders' %>
-    </div>
+      <div class="card--container" data-infinite-scroll-container-target="entries">
+        <%= render 'folders/folders' %>
+      </div>
 
-    <div data-infinite-scroll-container-target="pagination" class="hidden">
-      <%= will_paginate @folders, container: false %>
+      <div data-infinite-scroll-container-target="pagination" class="hidden">
+        <%= will_paginate @folders, container: false %>
+      </div>
     </div>
   </div>
 
-  <div class="flex-2 margin-left scroll z-3" data-action="scroll->folders#scroll" data-folders-target="body"></div>
+  <div class="flex-3 margin-left scroll z-3" data-action="scroll->folders#scroll" data-folders-target="body"></div>
 </div>
