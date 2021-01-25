@@ -22,6 +22,9 @@
 
       <div class="flex v-center flex-1 flex-end">
         <% if user_signed_in? %>
+          <%= link_to(new_modals_snippet_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path }, class: 'button--add margin-right', title: "Add a new snippet")  do %>
+            <%= image_tag "/icons/white/snippet-add.svg", width: 24 %>
+          <% end %>
           <%= render partial: 'shared/profile_nav_item.html.erb' %>
         <% end %>
       </div>
