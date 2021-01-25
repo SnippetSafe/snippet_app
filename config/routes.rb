@@ -42,6 +42,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :popovers do
+    resources :users, only: :index
+  end
+
   resources :snippets, only: %i(index show create edit update destroy) do
     resources :comments, only: :create
 

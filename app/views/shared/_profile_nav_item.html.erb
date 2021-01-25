@@ -1,0 +1,7 @@
+<% content_for :profile_nav_item do %>
+  <%= image_tag current_user.avatar_url, class: "profile-nav-item" %>
+<% end %>
+
+<%= link_to(root_path) do %>
+  <%= render partial: 'shared/popover_trigger', locals: { popover_path: popovers_users_path, content: :profile_nav_item } %>
+<% end %>

@@ -5,9 +5,13 @@
     data-popover-url="<%= popover_path %>"
     class="position-<%= defined?(position) ? position : 'relative' %>"
   >
-    <div class="more-button">
-      <%= image_tag "/icons/more.svg", width: 12 %>
-    </div>
+    <% if defined?(content) %>
+      <%= yield content %>
+    <% else %>
+      <div class="more-button">
+        <%= image_tag "/icons/more.svg", width: 12 %>
+      </div>
+    <% end %>
   </div>
 <% else %>
   <div

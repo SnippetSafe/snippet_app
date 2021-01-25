@@ -72,6 +72,14 @@ class User < ApplicationRecord
     options
   end
 
+  def popover_options
+    [
+      { type: :link, title: 'Profile', url: user_path(self) },
+      { type: :link, title: 'Settings', url: edit_user_registration_path },
+      { type: :link, title: 'Sign out', url: destroy_user_session_path, method: :delete }
+    ]
+  end
+
   def avatar_url
     if avatar.attached?
       url_for(avatar)
