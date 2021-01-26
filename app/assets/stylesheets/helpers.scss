@@ -71,6 +71,8 @@
 // Z INDEX
 
 .z {
+  &-1 { z-index: 1; }
+  &-2 { z-index: 2; }
   &-3 { z-index: 3; }
 }
 
@@ -145,6 +147,7 @@
 // BACKGROUND COLOR
 
 .bg-grey { background-color: $color-grey-background; }
+.bg-white { background-color: $color-white; }
 
 // WIDTH
 

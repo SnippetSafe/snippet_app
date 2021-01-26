@@ -3,7 +3,7 @@
     data-controller="popover"
     data-action="click->popover#display click@window->popover#hide"
     data-popover-url="<%= popover_path %>"
-    class="position-<%= defined?(position) ? position : 'relative' %>"
+    class="flex position-<%= defined?(position) ? position : 'relative' %>"
   >
     <% if defined?(content) %>
       <%= yield content %>
