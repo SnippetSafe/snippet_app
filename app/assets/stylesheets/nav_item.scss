@@ -13,6 +13,7 @@
   
   &--inactive {
     @extend .nav-item;
+    transition: 0.3s;
     
     &:hover { background-color: $color-hover; }
   }

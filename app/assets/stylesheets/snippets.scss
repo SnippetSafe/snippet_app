@@ -68,6 +68,7 @@
     display: block;
     text-decoration: none;
     color: inherit;
+    transition: 0.3s;
 
     &-preview {
       @extend .snippet--container;

@@ -3,6 +3,8 @@
 // HOVER
 
 .hover-grey {
+  transition: 0.3s;
+
   &:hover { background-color: $color-hover; }
 }
 
