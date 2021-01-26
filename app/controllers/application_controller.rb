@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_toast_message, if: -> { params[:notice].present? || params[:alert].present? }
-  before_action :assign_users_for_connect, :set_modal_url, unless: -> { devise_controller? }
 
   UNAUTHORIZED = 'You do not have access to this page'.freeze
 
@@ -19,14 +18,6 @@ class ApplicationController < ActionController::Base
 
   def set_toast_message
     flash[:notice] = params[:notice] || params[:alert]
-  end
-
-  def assign_users_for_connect
-    if user_signed_in?
-      @users_for_connect = current_user.not_following.limit(5)
-    else
-      @users_for_connect = User.order(updated_at: :desc).limit(5)
-    end
   end
 
   def set_modal_url

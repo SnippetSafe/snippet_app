@@ -32,10 +32,10 @@ class HomeController < ApplicationController
 
     @users = if user_signed_in?
       current_user.not_following
-      .paginate(page: params[:page] || 1, per_page: 8)
+      .paginate(page: params[:page] || 1, per_page: 16)
     else
       User.order(updated_at: :desc)
-      .paginate(page: params[:page] || 1, per_page: 8)
+      .paginate(page: params[:page] || 1, per_page: 16)
     end
 
     # TODO: Extract this logic to model/service
