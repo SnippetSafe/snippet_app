@@ -4,6 +4,6 @@
   <% end %>
 <% else %>
   <%= render 'shared/empty_state_message' do %>
-    <span class="color-grey block text-center margin-top">It looks like you don't have any snippets yet. You can <%= link_to('click here', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'color-primary') %> to create one or why not <%= link_to 'follow', connect_path, class: 'color-primary' %> some people that have?</span>
+    <span class="color-grey block text-center margin-top">It looks like there aren't any snippets to show. You can <%= link_to('click here', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'color-primary') %> to create one or why not <%= link_to 'follow', connect_path, class: 'color-primary' %> some people that have?</span>
   <% end %>
 <% end %>

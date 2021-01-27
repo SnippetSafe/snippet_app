@@ -1,4 +1,9 @@
-<div class="notification--wrapper">
+<div
+  class="notification--wrapper"
+  data-controller="navigation"
+  data-navigation-url-value="<%= user_path(user) %>"
+  data-action="click->navigation#navigate"
+>
   <div class="flex space-between">
     <%= render partial: 'users/preview', locals: { user: user } %>
     <div>
