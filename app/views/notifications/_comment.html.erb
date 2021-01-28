@@ -1,5 +1,19 @@
 <% commenter = notification.notifiable.user %>
 
-<%= render 'notifications/notification', url: snippet_path(notification.notifiable.snippet), user: commenter, notification: notification do %>
-  <span class="notification--body"><%= notification.notifiable.body.first(150) %></span>
+<%= render 'notifications/card', { user: commenter, icon: 'chat', url: snippet_path(notification.notifiable.snippet) } do %>
+  <div class="min-w-0 flex-1">
+    <div>
+      <div class="text-sm">
+        <%= link_to commenter.name, user_path(commenter), class: "font-medium text-gray-900" %>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">
+        Commented <%= time_ago_in_words(notification.created_at) %> ago
+      </p>
+    </div>
+    <div class="mt-2 text-sm text-gray-700">
+      <p>
+        <%= notification.notifiable.body %>
+      </p>
+    </div>
+  </div>
 <% end %>

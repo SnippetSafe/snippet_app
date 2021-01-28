@@ -1,0 +1,7 @@
+<div class="relative">
+  <%= link_to user_path(user) do %>
+    <%= image_tag user.avatar_url, class: "h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white", height: 48, width: 48 %>
+  <% end %>
+
+  <%= image_tag "/icons/grey/#{icon}.svg", class: "h-5 w-5 absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px" %>
+</div>

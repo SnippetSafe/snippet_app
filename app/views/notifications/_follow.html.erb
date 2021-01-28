@@ -1,3 +1,14 @@
 <% follower = notification.notifiable.follower %>
 
-<%= render 'notifications/notification', url: user_path(follower), user: follower, notification: notification %>
+<%= render 'notifications/card', { user: follower, icon: 'user-circle', url: user_path(follower) } do %>
+  <div class="min-w-0 flex-1">
+    <div>
+      <div class="text-sm">
+        <%= link_to follower.name, user_path(follower), class: "font-medium text-gray-900" %>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">
+        Followed you <%= time_ago_in_words(notification.created_at) %> ago
+      </p>
+    </div>
+  </div>
+<% end %>

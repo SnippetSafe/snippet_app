@@ -1,9 +1,21 @@
-<% follower = notification.notifiable.folder.user %>
+<% filer = notification.notifiable.folder.user %>
 <% snippet = notification.notifiable.snippet %>
 <% folder = notification.notifiable.folder %>
 
-<%= render 'notifications/notification', url: user_path(follower), user: follower, notification: notification do %>
-  <span class="notification--body">
-    <strong><%= link_to snippet.description, snippet_path(snippet) %></strong> added to <%= folder.name %>
-  </span>
+<%= render 'notifications/card', { user: filer, icon: 'folder', url: user_path(filer) } do %>
+  <div class="min-w-0 flex-1">
+    <div>
+      <div class="text-sm">
+        <%= link_to filer.name, user_path(filer), class: "font-medium text-gray-900" %>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">
+        Filed your snippet <%= time_ago_in_words(notification.created_at) %> ago
+      </p>
+    </div>
+    <div class="mt-2 text-sm text-gray-700">
+      <p>
+        <%= link_to snippet.description, snippet_path(snippet), class: "font-medium text-gray-800" %> was added to their <%= folder.name %> folder
+      </p>
+    </div>
+  </div>
 <% end %>
