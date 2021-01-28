@@ -1,5 +1,7 @@
+<h1 class="text-center text-2xl mb-4">Notifications</h1>
+
 <% if @notifications.any? %>
-  <%= render 'shared/cards/card' do %>
+  <%= render 'shared/cards/card_no_padding' do %>
     <ul class="divide-y divide-gray-200">
       <% @notifications.each do |notification| %>
         <%= render partial: "notifications/#{notification.notifiable_type.underscore}", locals: { notification: notification } %>
