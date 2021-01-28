@@ -1,10 +1,13 @@
 import { Controller } from 'stimulus';
 import marked from 'marked';
+import hljs from 'highlightjs'
 
 export default class extends Controller {
   static targets = ["code", "highlightedBody", "description"];
 
   connect() {
+    // not a function as using shim. Find a way to use proper library
+    console.log('hl', hljs.registerAlias)
     marked.setOptions({
       highlight: function(code, lang) {
         if (lang && lang !== '') {

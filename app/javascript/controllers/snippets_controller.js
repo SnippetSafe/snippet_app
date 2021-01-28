@@ -52,15 +52,6 @@ export default class extends Controller {
     this.errorsTarget.innerHTML = data.element;
   }
 
-  view_snippet(event) {
-    event.stopPropagation()
-    const snippetUrl = event.currentTarget.dataset.snippetUrl
-
-    // event is still propagating when using visit
-    // Turbolinks.visit(snippetUrl)
-    window.location.href = snippetUrl
-  }
-
   modal_search(event) {
     const searchTerm = event.target.value.toLowerCase();
 

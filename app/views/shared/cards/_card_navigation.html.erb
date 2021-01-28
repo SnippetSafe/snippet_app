@@ -1,0 +1,12 @@
+<div class="bg-white overflow-hidden shadow rounded-lg mb-4 cursor-pointer hover:bg-gray-50 transition"
+  <% if defined?(id) %>
+    id="<%= id %>"
+  <% end %>
+  data-controller="navigation"
+  data-navigation-url-value="<%= url %>"
+  data-action="click->navigation#navigate"
+>
+  <div class="px-4 py-5 sm:p-6">
+    <%= yield %>
+  </div>
+</div>
