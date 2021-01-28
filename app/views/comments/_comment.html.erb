@@ -1,0 +1,15 @@
+<div id="<%= comment.client_id %>" class="card--container card--container-padding margin-top">
+  <div class="relative flex items-start space-x-3">
+    <%= render partial: 'users/preview', locals: { resource: comment, user: comment.user } %>
+    <div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
+          <% if user_signed_in? && comment.created_by?(current_user) %>
+            <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_comment_path(comment) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="comments--body"><%= comment.body %></span>
+</div>

@@ -2,8 +2,8 @@
 
 <%= render 'shared/cards/card_navigation', url: snippet_path(snippet), id: snippet.client_id do %>
   <div>
-    <div class="snippet--author-wrapper">
-      <%= render partial: 'users/preview', locals: { user: snippet.user, object: snippet } %>
+    <div class="relative flex items-start space-x-3">
+      <%= render partial: 'users/preview', locals: { resource: snippet, user: snippet.user } %>
       <div>
         <div style="display: flex; flex-direction: column;">
           <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <h2 class="m-0 mt-4 mb-4"><%= snippet.description %></h2>
+    <h2 class="m-0 mt-4 mb-4 text-md"><%= snippet.description %></h2>
 
     <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet--content' } %>
   </div>

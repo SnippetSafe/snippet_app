@@ -64,23 +64,6 @@
 }
 
 .snippet {
-  &--container {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s;
-
-    &-preview {
-      @extend .snippet--container;
-
-      &:hover {
-        text-decoration: none;
-        cursor: pointer;
-        background-color: $color-hover;
-      }
-    }
-  }
-
   &--author-wrapper {
     display: flex;
     justify-content: space-between;
