@@ -1,10 +1,21 @@
 <%= render partial: 'snippets/snippet', locals: { snippet: @snippet }%>
 
-<div class="snippet-show--comments-wrapper">
-  <% @snippet.comments.each do |comment| %>
-    <%= render partial: 'comments/comment', locals: { comment: comment } %>
+
+<% if @snippet.comments.any? %>
+  <%= render partial: 'shared/hr' %>
+
+  <%= render 'shared/cards/card_no_padding' do %>
+    <div class="flow-root">
+      <ul class="divide-y divide-gray-200">
+        <% @snippet.comments.each do |comment| %>
+          <%= render partial: 'comments/comment', locals: { comment: comment } %>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</div>
+<% end %>
+
+<%= render partial: 'shared/hr' %>
 
 <% if user_signed_in? %>
   <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>

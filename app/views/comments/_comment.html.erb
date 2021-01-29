@@ -1,15 +1,26 @@
-<div id="<%= comment.client_id %>" class="card--container card--container-padding margin-top">
-  <div class="relative flex items-start space-x-3">
-    <%= render partial: 'users/preview', locals: { resource: comment, user: comment.user } %>
-    <div>
-      <div style="display: flex; flex-direction: column;">
-        <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
-          <% if user_signed_in? && comment.created_by?(current_user) %>
-            <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_comment_path(comment) } %>
-          <% end %>
+<li class="pt-4 pb-4 px-4 relative">
+  <% if user_signed_in? && comment.created_by?(current_user) %>
+    <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_comment_path(comment), position: 'top-right' } %>
+  <% end %>
+  <div class="relative">
+    <div class="relative flex items-start space-x-3">
+      <%= render partial: 'notifications/user_avatar', locals: { user: comment.user, icon: 'chat' } %>
+      <div class="min-w-0 flex-1">
+        <div>
+          <div class="text-sm">
+            <%= link_to comment.user.name, user_path(comment.user), class: "font-medium text-gray-900" %>
+          </div>
+          <p class="mt-0.5 text-sm text-gray-500">
+            Commented <%= time_ago_in_words(comment.created_at) %> ago
+          </p>
+        </div>
+        <div class="mt-2 text-sm">
+          <p>
+            <%= comment.body %>
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <span class="comments--body"><%= comment.body %></span>
-</div>
+</li>
+

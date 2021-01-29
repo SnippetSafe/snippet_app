@@ -1,18 +1,20 @@
-<div id="new-comment" class="card--container card--container-padding comments-new--container margin-top">
+<%= render 'shared/cards/card' do %>
+  <div id="new-comment">
 
-  <% if comment.errors.any? %>
-    <ul style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
-      <% comment.errors.full_messages.each do |error_message| %>
-        <li><%= error_message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+    <% if comment.errors.any? %>
+      <ul style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
+        <% comment.errors.full_messages.each do |error_message| %>
+          <li><%= error_message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-  <%= form_for [snippet, comment] do |f| %>
-    <%= f.text_area :body, class: 'comments-new--body', placeholder: 'Leave a comment' %>
+    <%= form_for [snippet, comment] do |f| %>
+      <%= f.text_area :body, class: 'w-full border rounded-md p-2 bg-gray-50 h-28 text-sm', placeholder: snippet.comments.any? ? 'Join the discussion' : 'Be the first to comment' %>
 
-    <div class="comments-new--button-wrapper">
-      <%= f.submit 'COMMENT', class: 'button--cta-new' %>
-    </div>
-  <% end %>
-</div>
+      <div class="flex justify-end mt-2">
+        <%= f.submit 'COMMENT', class: 'button--cta-new' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
