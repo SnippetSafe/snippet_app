@@ -2,29 +2,65 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+// CODE HIGHLIGHT
 pre {
   @apply text-sm;
 }
 
-// Buttons
+// BUTTONS
+.button {
+  @apply font-normal cursor-pointer inline-flex items-center px-3 py-2 border text-sm leading-4 rounded-sm shadow-sm transition;
 
-.button--cta {
-  @apply font-normal cursor-pointer hover:bg-cyan-hover inline-flex items-center px-2 bg-cyan text-white py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm;
-}
+  // CALLS TO ACTION
+  &--cta {
+    @extend .button;
 
-.button--disabled {
-  @apply font-normal inline-flex items-center px-2 bg-gray-200 text-gray-400 py-1 border border-gray-400 text-sm leading-4 rounded-md shadow-sm;
-  // @apply inline-flex items-center px-2 bg-gray-200 text-gray-400 py-1 border border-gray-400 text-sm leading-4 rounded-md shadow-sm;
-}
+    &-primary {
+      @extend .button--cta;
+    
+      @apply  hover:bg-cyan-hover bg-cyan text-white border-cyan;
+    }
+    
+    &-secondary {
+      @extend .button--cta;
+    
+      @apply bg-space-cadet text-white border-space-cadet;
+    }
+    
+    &-tertiary {
+      @extend .button--cta;
+    
+      @apply bg-white text-space-cadet border-space-cadet;
+    }
+  }
 
-.button--cancel {
-  @apply font-normal cursor-pointer inline-flex items-center px-2 py-1 border border-gray-500 text-sm leading-4 rounded-md shadow-sm text-gray-500 hover:bg-cyan-light;
-}
+  // DISABLED
+  &--disabled {
+    @extend .button;
 
-.button--follow {
-  @apply cursor-pointer font-normal inline-flex items-center px-2 py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm text-cyan hover:bg-cyan-light;
-}
+    @apply bg-gray-200 text-gray-400 border-gray-400;
+  }
 
-.button--unfollow {
-  @apply cursor-pointer font-normal inline-flex items-center px-2 bg-cyan text-white py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm;
+  // CANCEL
+  &--cancel {
+    @extend .button;
+
+    @apply border-gray-500 text-gray-500 hover:bg-cyan-light;
+  }
+
+
+  // FOLLOW
+  &--follow {
+    @extend .button;
+
+    @apply border-cyan text-cyan hover:bg-cyan-light;
+  }
+
+  // UNFOLLOW
+  &--unfollow {
+    @extend .button;
+
+    @apply bg-cyan text-white border-cyan; 
+  }
+  
 }
