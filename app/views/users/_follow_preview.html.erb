@@ -1,14 +1,19 @@
-<div
-  class="notification--wrapper"
-  data-controller="navigation"
-  data-navigation-url-value="<%= user_path(user) %>"
-  data-action="click->navigation#navigate"
->
-  <div class="flex space-between">
-    <%= render partial: 'users/preview', locals: { user: user } %>
-    <div>
-      <%= render partial: 'users/follow_button', locals: { user: user } %>
+
+
+<%= render 'notifications/card', { user: user, icon: 'user-circle', url: user_path(user) } do %>
+  <div class="flex justify-between flex-1">
+    <div class="min-w-0">
+      <div>
+        <div class="text-sm">
+          <%= link_to user.name, user_path(user), class: "font-medium text-gray-900" %>
+        </div>
+      </div>
+      <div class="mt-2 text-sm text-gray-700">
+        <p>
+          fds
+        </p>
+      </div>
     </div>
+    <%= render partial: 'users/follow_button', locals: { user: user } %>
   </div>
-  <span class="follow--description"><%= user.bio %></span>
-</div>
+<% end %>

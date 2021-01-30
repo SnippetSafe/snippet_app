@@ -7,7 +7,9 @@ export default class extends Controller {
     id: String
   };
 
-  follow() {
+  follow(event) {
+    event.stopPropagation();
+
     axios.post(this.followUrl)
       .then(res => {
         this.containerTarget.innerHTML = res.data
@@ -16,6 +18,8 @@ export default class extends Controller {
   }
 
   unfollow() {
+    event.stopPropagation();
+
     axios.post(this.unfollowUrl)
       .then(res => {
         this.containerTarget.innerHTML = res.data

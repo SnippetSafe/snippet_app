@@ -1,12 +1,10 @@
-<h1 class="text-center margin-top margin-bottom">Connect</h1>
-
 <div
   data-controller="infinite-scroll-window snippets-list"
   data-infinite-scroll-window-base-url="<%= connect_path %>"
 >
   <div class="flex v-center space-between">
 
-    <div class="searchbar">
+    <div class="searchbar mb-4">
       <input autofocus
         type="text"
         placeholder="Search"
@@ -17,14 +15,8 @@
     </div>
   </div>
 
-  <div class="margin-top"
-    data-infinite-scroll-window-target="entries"
-    data-action="scroll@window->infinite-scroll-window#scroll"
-  >
+  <%= render 'infinite_scroll/basic_list' do %>
     <%= render 'users/follow_previews' %>
-  </div>
+  <% end %>
 
-  <div data-infinite-scroll-window-target="pagination" class="hidden">
-    <%= will_paginate @users, container: false %>
-  </div>
 </div>

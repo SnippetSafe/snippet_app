@@ -4,7 +4,7 @@
 <% css_class = active ? 'active' : 'inactive' %>
 
 <%= link_to(path, class: 'position-relative') do %>
-  <%= image_tag("/icons/#{color}/#{icon}.svg", width: 24, class: "nav-item--#{css_class}") %>
+  <%= image_tag("/icons/#{color}/#{icon}.svg", class: "w-10 nav-item--#{css_class}") %>
   <% if path == notifications_path %>
     <%= notification_counter(current_user) %>
   <% end %>

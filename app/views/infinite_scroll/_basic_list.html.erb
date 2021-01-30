@@ -1,0 +1,9 @@
+<%= render 'shared/cards/card_no_padding' do %>
+  <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
+    <%= yield %>
+  </ul>
+<% end %>
+
+<div data-infinite-scroll-window-target="pagination" class="hidden">
+  <%= will_paginate @users, container: false %>
+</div>

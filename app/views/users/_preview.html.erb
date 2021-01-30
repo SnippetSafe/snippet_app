@@ -4,8 +4,10 @@
     <div class="text-sm">
       <%= link_to user.name, user_path(user), class: "font-medium text-gray-900" %>
     </div>
-    <p class="text-sm text-gray-500">
-      <%= time_ago_in_words(resource.created_at) %> ago
-    </p>
+    <% if defined?(resource) %>
+      <p class="text-sm text-gray-500">
+        <%= time_ago_in_words(resource.created_at) %> ago
+      </p>
+    <% end %>
   </div>
 </div>

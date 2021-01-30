@@ -1,11 +1,9 @@
 <% if @users.any? %>
-  <div class="card--container">
-    <% @users.each do |user| %>
-      <%= render partial: 'users/follow_preview', locals: { user: user } %>
-    <% end %>
-  </div>
+  <% @users.each do |user| %>
+    <%= render partial: 'users/follow_preview', locals: { user: user } %>
+  <% end %>
 <% else %>
   <%= render 'shared/empty_state_message' do %>
-    <span class="color-grey block text-center margin-top">We couldn't find any results to match your search.</span>
+    <span class="color-grey block text-center mb-4">We couldn't find any results to match your search.</span>
   <% end %>
 <% end %>
