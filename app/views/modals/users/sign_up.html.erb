@@ -1,8 +1,6 @@
-<div class="form--generic">
-  <h1 class="text-center">Sign up for an account</h1>
-  <p class="text-center">Already have an account? <a data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">Sign in</a></p>
+<%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
-  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { controller: "registrations modal", modal_url_value: email_confirm_modals_users_path, type: "json", action: "ajax:success->modal#present ajax:error->registrations#onSignUpError" }, class: "form--generic-form-sign-in-up" } do |f| %>
+  <%= form_for @user, url: user_registration_path, remote: true, html: { data: { controller: "registrations modal", modal_url_value: email_confirm_modals_users_path, type: "json", action: "ajax:success->modal#present ajax:error->registrations#onSignUpError" } } do |f| %>
     <div data-registrations-target="errors"></div>
 
     <div class="form--field">
@@ -28,8 +26,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "SIGN UP", class: "button--cta-primary" %>
-    </div>
+    <%= f.submit "SIGN UP", class: "button--cta-primary w-full flex justify-center" %>
   <% end %>
-</div>
+
+<% end %>

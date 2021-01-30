@@ -1,7 +1,6 @@
-<div class="form--generic">
-  <h1 class="text-center"><%= link_to 'SNIPPET SAFE', root_path %></h1>
-  <h1 class="text-center">Sign in to your account</h1>
-  <p class="text-center">Don't have an account yet? <%= link_to 'Sign up', new_user_registration_path %></p>
+<div class="form--generic mt-8">
+  <h1 class="text-center text-4xl">Sign in to your account</h1>
+  <p class="text-center mt-2">Don't have an account yet? <%= link_to 'Sign up', new_user_registration_path %></p>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form--generic-form-sign-in-up" }) do |f| %>
     <%= render "shared/errors", resource: resource %>
@@ -25,7 +24,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "SIGN IN", class: 'button--cta-primary' %>
+      <%= f.submit "SIGN IN", class: "button--cta-primary w-full flex justify-center" %>
     </div>
   <% end %>
 </div>

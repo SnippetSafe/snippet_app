@@ -1,7 +1,6 @@
-<div class="form--generic">
-  <h1 class="text-center"><%= link_to 'SNIPPET SAFE', root_path %></h1>
-  <h1 class="text-center">Sign up for an account</h1>
-  <p class="text-center">Already have an account? <%= link_to 'Sign in', new_user_session_path %></p>
+<div class="form--generic mt-8">
+  <h1 class="text-center text-4xl">Sign up for an account</h1>
+  <p class="text-center mt-2">Already have an account? <%= link_to 'Sign in', new_user_session_path %></p>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form--generic-form-sign-in-up" }) do |f| %>
     <%= render "shared/errors", resource: resource %>
@@ -26,8 +25,6 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "SIGN UP", class: 'button--cta-primary' %>
-    </div>
+    <%= f.submit "SIGN UP", class: "button--cta-primary w-full flex justify-center" %>
   <% end %>
 </div>

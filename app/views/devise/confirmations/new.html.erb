@@ -1,7 +1,6 @@
-<div class="form--generic">
-  <h1 class="text-center"><%= link_to 'SNIPPET SAFE', root_path %></h1>
-  <h1 class="text-center">Resend confirmation email</h1>
-  <p class="text-center">Please enter your email below and we'll resend you instructions on how to confirm your email address</p>
+<div class="form--generic mt-8">
+  <h1 class="text-center text-4xl">Resend confirmation</h1>
+  <p class="text-center mt-2">Please enter your email below and we'll resend you instructions on how to confirm your email address</p>
 
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form--generic-form-sign-in-up" }) do |f| %>
     <%= render "shared/errors", resource: resource %>
@@ -12,9 +11,9 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "RESEND", class: 'button--cta-primary' %>
+      <%= f.submit "RESEND", class: "button--cta-primary w-full flex justify-center" %>
     </div>
   <% end %>
 
-  <p class="text-center">Confirmed your email? <%= link_to 'Sign in', new_user_session_path %></p>
+  <p class="text-center mb-4">Confirmed your email? <%= link_to 'Sign in', new_user_session_path %></p>
 </div>
