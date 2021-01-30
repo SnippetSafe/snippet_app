@@ -1,160 +1,160 @@
-@import './variables.scss';
+// @import './variables.scss';
 
-.button {
-  &--add {
-    display: flex;
-    background-color: $color-primary;
-    padding: 6px;
-    border-radius: 50%;
-    box-shadow: 0 1px 2px lightgrey;
-    align-items: center;
-    color: $color-white;
+// .button {
+//   &--add {
+//     display: flex;
+//     background-color: $color-primary;
+//     padding: 6px;
+//     border-radius: 50%;
+//     box-shadow: 0 1px 2px lightgrey;
+//     align-items: center;
+//     color: $color-white;
 
-    &:hover {
-      background-color: $color-primary-hover;
-    }
+//     &:hover {
+//       background-color: $color-primary-hover;
+//     }
 
-    &-text {
-      @extend .button--add;
+//     &-text {
+//       @extend .button--add;
 
-      border-radius: 20px;
-      padding: 6px 10px;
-    }
-  }
+//       border-radius: 20px;
+//       padding: 6px 10px;
+//     }
+//   }
 
-  &--sign-in {
-    color: $color-white;
-    border: 1px solid $color-dark-blue;
-    background-color: $color-dark-blue;
-    width: 100%;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    cursor: pointer;
+//   &--sign-in {
+//     color: $color-white;
+//     border: 1px solid $color-dark-blue;
+//     background-color: $color-dark-blue;
+//     width: 100%;
+//     padding-top: 8px;
+//     padding-bottom: 8px;
+//     cursor: pointer;
 
-    &:hover { background-color: $color-light-blue; }
-  }
+//     &:hover { background-color: $color-light-blue; }
+//   }
 
-  &--sign-up {
-    color: $color-white;
-    width: 100%;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    cursor: pointer;
-    border: 1px solid $color-primary;
-    background-color: $color-primary;
+//   &--sign-up {
+//     color: $color-white;
+//     width: 100%;
+//     padding-top: 8px;
+//     padding-bottom: 8px;
+//     cursor: pointer;
+//     border: 1px solid $color-primary;
+//     background-color: $color-primary;
 
-    &:hover {
-      background-color: $color-primary-hover;
-    }
-  }
+//     &:hover {
+//       background-color: $color-primary-hover;
+//     }
+//   }
 
-  &--sidebar {
-    color: $color-white;
-    border-radius: 20px;
-    padding: 8px 14px;
-    font-size: 12px;
-    font-family: Helvetica, sans-serif;
-    text-decoration: none;
-    background-color: $color-primary;
-    box-shadow: 0 1px 2px lightgrey;
+//   &--sidebar {
+//     color: $color-white;
+//     border-radius: 20px;
+//     padding: 8px 14px;
+//     font-size: 12px;
+//     font-family: Helvetica, sans-serif;
+//     text-decoration: none;
+//     background-color: $color-primary;
+//     box-shadow: 0 1px 2px lightgrey;
 
-    &:hover {
-      background-color: $color-primary-hover;
-    }
-  }
+//     &:hover {
+//       background-color: $color-primary-hover;
+//     }
+//   }
 
-  &--cta {
-    color: $color-primary;
-    border-radius: 2px;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-family: Helvetica, sans-serif;
-    text-decoration: none;
-    background-color: $color-white;
+//   &--cta {
+//     color: $color-primary;
+//     border-radius: 2px;
+//     padding: 6px 10px;
+//     font-size: 12px;
+//     font-family: Helvetica, sans-serif;
+//     text-decoration: none;
+//     background-color: $color-white;
 
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
-    }
+//     &:hover {
+//       text-decoration: none;
+//       cursor: pointer;
+//     }
 
-    &-cancel {
-      @extend .button--cta;
+//     &-cancel {
+//       @extend .button--cta;
 
-      color: $color-grey;
-      border: 1px solid $color-grey;
+//       color: $color-grey;
+//       border: 1px solid $color-grey;
 
-      &:hover {
-        background-color: $color-hover;
-      }
-    }
+//       &:hover {
+//         background-color: $color-hover;
+//       }
+//     }
 
-    &-new {
-      @extend .button--cta;
+//     &-new {
+//       @extend .button--cta;
 
-      border: 1px solid $color-primary;
+//       border: 1px solid $color-primary;
 
-      &:hover {
-        background-color: $color-light;
-      }
-    }
+//       &:hover {
+//         background-color: $color-light;
+//       }
+//     }
 
-    &-follow {
-      @extend .button--cta;
+//     &-follow {
+//       @extend .button--cta;
 
-      width: 120px;
-      border: 1px solid $color-primary;
-      background-color: $color-white;
+//       width: 120px;
+//       border: 1px solid $color-primary;
+//       background-color: $color-white;
 
-      &:focus { outline: 0; }
+//       &:focus { outline: 0; }
 
-      &:hover {
-        background-color: $color-light;
-      }
-    }
+//       &:hover {
+//         background-color: $color-light;
+//       }
+//     }
 
-    &-unfollow {
-      @extend .button--cta;
+//     &-unfollow {
+//       @extend .button--cta;
 
-      width: 120px;
-      color: $color-white;
-      background-color: $color-primary;
-      border: 1px solid $color-primary;
+//       width: 120px;
+//       color: $color-white;
+//       background-color: $color-primary;
+//       border: 1px solid $color-primary;
 
-      &:focus { outline: 0; }
+//       &:focus { outline: 0; }
 
-      &:hover {
-        color: $color-primary;
-        background-color: $color-white;
-      }
-    }
+//       &:hover {
+//         color: $color-primary;
+//         background-color: $color-white;
+//       }
+//     }
 
-    &-disabled {
-      @extend .button--cta;
+//     &-disabled {
+//       @extend .button--cta;
 
-      outline: none;
-      color: $color-grey;
-      border: 1px solid $color-grey;
-      background-color: $color-grey-light;
+//       outline: none;
+//       color: $color-grey;
+//       border: 1px solid $color-grey;
+//       background-color: $color-grey-light;
 
-      &:hover {
-        cursor: default;
-      }
-    }
+//       &:hover {
+//         cursor: default;
+//       }
+//     }
 
-    &-blue {
-      @extend .button--cta;
+//     &-blue {
+//       @extend .button--cta;
       
-      color: $color-white;
-      border: 1px solid #003F63;
-      background-color: #003F63;
-    }
+//       color: $color-white;
+//       border: 1px solid #003F63;
+//       background-color: #003F63;
+//     }
 
-    &-transparent {
-      @extend .button--cta;
+//     &-transparent {
+//       @extend .button--cta;
 
-      border: 1px solid #003F63;
-      background-color: transparent;
-      color: #003F63;
-    }
-  }
-}
+//       border: 1px solid #003F63;
+//       background-color: transparent;
+//       color: #003F63;
+//     }
+//   }
+// }

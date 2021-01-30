@@ -1,8 +1,8 @@
 <%= link_to( 
-  'DELETE',
+  'Delete',
   snippet_path(@snippet),
   method: :delete,
   remote: true,
   data: { toast_message: 'Snippet deleted!', resource_id: @snippet.client_id, action: 'ajax:success->alert#deleteSuccess' },
-  class: "button--cta-new margin-left--tiny"
+  class: "button--cta ml-2"
 ) %>

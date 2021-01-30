@@ -92,12 +92,12 @@ export default class extends Controller {
 
     if (this.selectedFolderId === this.originalFolderId) {
       this.moveButtonTarget.disabled = true
-      this.moveButtonTarget.classList.remove('button--cta-new')
-      this.moveButtonTarget.classList.add('button--cta-disabled')
+      this.moveButtonTarget.classList.remove('button--cta')
+      this.moveButtonTarget.classList.add('button--disabled')
     } else {
       this.moveButtonTarget.disabled = false
-      this.moveButtonTarget.classList.remove('button--cta-disabled')
-      this.moveButtonTarget.classList.add('button--cta-new')
+      this.moveButtonTarget.classList.remove('button--disabled')
+      this.moveButtonTarget.classList.add('button--cta')
     }
   }
 

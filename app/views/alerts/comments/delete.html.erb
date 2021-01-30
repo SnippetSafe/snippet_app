@@ -1,8 +1,8 @@
 <%= link_to( 
-  'DELETE',
+  'Delete',
   comment_path(@comment),
   method: :delete,
   remote: true,
   data: { toast_message: 'Comment deleted!', resource_id: @comment.client_id, action: 'ajax:success->alert#deleteSuccess' },
-  class: "button--cta-new margin-left--tiny"
+  class: "button--cta ml-2"
 ) %>

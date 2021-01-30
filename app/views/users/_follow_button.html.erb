@@ -3,11 +3,11 @@
     <%# Don't display anything if the current user is the same as the user being viewed %>
   <% elsif user_signed_in? %>
     <% if current_user.following?(user) %>
-      <%= button_tag 'FOLLOWING', data: { action: 'click->follow#unfollow' }, class: 'button--cta-unfollow' %>
+      <%= button_tag 'Following', data: { action: 'click->follow#unfollow' }, class: "button--unfollow" %>
     <% else %>
-      <%= button_tag 'FOLLOW', data: { action: 'click->follow#follow' }, class: 'button--cta-follow' %>
+      <%= button_tag 'Follow', data: { action: 'click->follow#follow' }, class: "button--follow" %>
     <% end %>
   <% else %>
-    <%= button_tag 'FOLLOW', type: :button, class: 'button--cta-follow', data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
+    <%= button_tag 'Follow', type: :button, class: "button--follow", data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
   <% end %>
 </div>

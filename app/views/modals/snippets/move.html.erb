@@ -22,14 +22,14 @@
     <% end %>
   </div>
   <div class="move-snippet--buttons">
-    <button data-action="click->modal#close" class="button--cta-cancel">CANCEL</button>
+    <button data-action="click->modal#close" class="button--cancel">Cancel</button>
     <button
       data-action="click->snippets#file"
       data-target="snippets.moveButton"
-      class="button--cta-disabled margin-left--tiny"
+      class="button--disabled ml-2"
       disabled
     >
-      <%= @header.upcase %>
+      <%= @header %>
     </button>
   </div>
 </div>

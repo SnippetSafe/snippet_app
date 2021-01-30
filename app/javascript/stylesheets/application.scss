@@ -5,3 +5,26 @@
 pre {
   @apply text-sm;
 }
+
+// Buttons
+
+.button--cta {
+  @apply font-normal cursor-pointer hover:bg-cyan-hover inline-flex items-center px-2 bg-cyan text-white py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm;
+}
+
+.button--disabled {
+  @apply font-normal inline-flex items-center px-2 bg-gray-200 text-gray-400 py-1 border border-gray-400 text-sm leading-4 rounded-md shadow-sm;
+  // @apply inline-flex items-center px-2 bg-gray-200 text-gray-400 py-1 border border-gray-400 text-sm leading-4 rounded-md shadow-sm;
+}
+
+.button--cancel {
+  @apply font-normal cursor-pointer inline-flex items-center px-2 py-1 border border-gray-500 text-sm leading-4 rounded-md shadow-sm text-gray-500 hover:bg-cyan-light;
+}
+
+.button--follow {
+  @apply cursor-pointer font-normal inline-flex items-center px-2 py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm text-cyan hover:bg-cyan-light;
+}
+
+.button--unfollow {
+  @apply cursor-pointer font-normal inline-flex items-center px-2 bg-cyan text-white py-1 border border-cyan text-sm leading-4 rounded-md shadow-sm;
+}

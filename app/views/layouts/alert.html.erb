@@ -8,13 +8,13 @@
         </span>
       </div>
 
-      <div class="alert-body">
+      <div class="mt-5 mb-5">
         <span data-target="alert.body" id="alert-body"><%= @message %></span>
       </div>
 
-      <div class="alert-footer">
-        <button data-action="click->alert#close" class="button--cta-cancel">
-          CANCEL
+      <div class="flex justify-end">
+        <button data-action="click->alert#close" class="button--cancel">
+          Cancel
         </button>
 
         <%= yield %>
