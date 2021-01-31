@@ -1,98 +1,98 @@
-@import './variables.scss';
+// @import './variables.scss';
 
-.form {
-  &--field {
-    margin-bottom: 20px;
+// .form {
+//   &--field {
+//     margin-bottom: 20px;
   
-    label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 6px;
-      font-weight: 100;
-    }
+//     label {
+//       display: block;
+//       font-size: 14px;
+//       margin-bottom: 6px;
+//       font-weight: 100;
+//     }
   
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px 12px;
-      border-radius: 2px;
-      border: 1px solid lightgrey;
-      font-size: 14px;
-      display: block;
-      font-weight: inherit;
-    }
+//     input {
+//       width: 100%;
+//       box-sizing: border-box;
+//       padding: 8px 12px;
+//       border-radius: 2px;
+//       border: 1px solid lightgrey;
+//       font-size: 14px;
+//       display: block;
+//       font-weight: inherit;
+//     }
   
-    textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 6px;
-      border-radius: 2px;
-      border: 1px solid lightgrey;
-      font-size: 14px;
-      display: block;
-      font-family: Helvetica, sans-serif;
-      font-weight: inherit;
-    }
+//     textarea {
+//       width: 100%;
+//       box-sizing: border-box;
+//       padding: 6px;
+//       border-radius: 2px;
+//       border: 1px solid lightgrey;
+//       font-size: 14px;
+//       display: block;
+//       font-family: Helvetica, sans-serif;
+//       font-weight: inherit;
+//     }
   
-    &--no-margin-top {
-      @extend .form--field;
+//     &--no-margin-top {
+//       @extend .form--field;
   
-      margin-top: 0px;
-    }
-  }
+//       margin-top: 0px;
+//     }
+//   }
 
-  &--generic {
-    width: 400px;
-    margin: 0 auto;
+//   &--generic {
+//     width: 400px;
+//     margin: 0 auto;
 
-    input[type="checkbox"] {
-      margin: 0;
-    }
+//     input[type="checkbox"] {
+//       margin: 0;
+//     }
 
-    a {
-      font-weight: 500;
-      color: $color-primary;
-    }
+//     a {
+//       font-weight: 500;
+//       color: $color-primary;
+//     }
 
-    h1 {
-      margin-bottom: 0;
-      font-weight: normal;
-    }
+//     h1 {
+//       margin-bottom: 0;
+//       font-weight: normal;
+//     }
 
-    p {
-      font-size: 14px;
-    }
+//     p {
+//       font-size: 14px;
+//     }
 
-    &-form {
-      background-color: $color-light;
-      padding: 20px;
+//     &-form {
+//       background-color: $color-light;
+//       padding: 20px;
 
-      &-sign-in-up {
-        @extend .form--generic-form;
+//       &-sign-in-up {
+//         @extend .form--generic-form;
 
-        margin-top: 40px;
-        margin-bottom: 80px;
-      }
-    }
+//         margin-top: 40px;
+//         margin-bottom: 80px;
+//       }
+//     }
 
-    &-form-transparent {
-      background-color: transparent;
-      padding: 20px;
+//     &-form-transparent {
+//       background-color: transparent;
+//       padding: 20px;
 
-      &-sign-in-up {
-        @extend .form--generic-form;
+//       &-sign-in-up {
+//         @extend .form--generic-form;
 
-        margin-top: 40px;
-        margin-bottom: 80px;
-      }
-    }
+//         margin-top: 40px;
+//         margin-bottom: 80px;
+//       }
+//     }
 
-    &-remember-me {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 100;
-      margin-bottom: 20px;
-    }
-  }
-}
+//     &-remember-me {
+//       display: flex;
+//       justify-content: space-between;
+//       font-size: 14px;
+//       font-weight: 100;
+//       margin-bottom: 20px;
+//     }
+//   }
+// }

@@ -23,7 +23,8 @@
         </div>
       </div>
     </div>
-    <h2 class="m-0 mt-4 mb-4 text-md"><%= snippet.description %></h2>
+
+    <h5 class="m-0 mt-4 mb-4"><%= snippet.description %></h5>
 
     <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language, classes: 'snippet--content' } %>
   </div>

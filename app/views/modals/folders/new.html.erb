@@ -1,11 +1,16 @@
-<%= form_with scope: :folder, url: folders_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
+<h3 class="text-center">New Folder</h3>
 
-  <p>
-    <%= form.submit 'SAVE', class: "button--cta-new" %>
-  </p>
+<%= form_with scope: :folder, url: folders_path, local: true, class: "mt-4" do |form| %>
+
+  <%= form.text_field(
+    :name,
+    placeholder: "Name your folder",
+    data: { controller: "focus", focus_target: "focus" },
+    class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+  )
+  %>
+
+  <div class="mt-4 flex justify-end">
+    <%= form.submit 'CREATE', class: "button--cta-primary" %>
+  </div>
 <% end %>
-
