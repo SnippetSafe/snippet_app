@@ -1,25 +1,35 @@
 <%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
   <%= form_for @user, url: user_session_path, remote: true, html: { data: { controller: "sessions", type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" } } do |f| %>
-    <div class="form--field">
-      <%= f.label :email, 'Email address' %>
-      <%= f.email_field :email, autocomplete: "email", data: { sessions_target: 'email' } %>
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :email, autocomplete: "email", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", data: { sessions_target: 'email' } %>
     </div>
 
-    <div class="form--field">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-
-    <div class="form--generic-remember-me">
-      <div class="flex v-center" >
-        <%= f.check_box :remember_me, checked: true %>
-        <%= f.label :remember_me, class: "margin-left--tiny" %>
+    <%# <div>
+      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+      <div class="mt-1">
+        <input type="text" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
       </div>
-      <%= link_to "Forgot your password?", new_user_password_path %>
+    </div> %>
+
+    <div class="mt-4">
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <%= f.submit "SIGN IN", class: "button--cta-primary w-full flex justify-center" %>
+    <div class="mt-4 flex items-center justify-between">
+      <div class="flex items-center">
+        <%= f.check_box :remember_me, checked: true, class: "h-4 w-4 text-cyan focus:ring-indigo-500 border-gray-300 rounded" %>
+        <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-900" %>
+      </div>
+
+      <div class="text-sm">
+        <%= link_to "Forgot your password?", new_user_password_path, class: "font-medium text-cyan hover:text-cyan-hover" %>
+      </div>
+    </div>
+
+    <%= f.submit "SIGN IN", class: "mt-4 button--cta-primary w-full flex justify-center " %>
   <% end %>
 
 <% end %>

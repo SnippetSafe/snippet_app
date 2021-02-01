@@ -1,12 +1,12 @@
-<div class="form--generic">
+<div>
   <h1 class="text-center text-4xl"><%= header %></h1>
   <p class="text-center mt-2"><%= sub_header %></p>
 
-  <div class="bg-cyan-light p-4 mt-8 mb-10">
+  <div class="m-auto max-w-sm bg-cyan-light p-4 mt-8 mb-10 rounded-md">
     <%= yield %>
   </div>
 
   <% if defined?(footer) %>
-    <p class="text-center"><%= footer %></p>
+    <p class="text-center text-cyan hover:text-cyan-hover"><%= footer %></p>
   <% end %>
 </div>
