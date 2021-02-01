@@ -63,6 +63,7 @@ pre {
     @extend .button;
 
     @apply bg-gray-200 text-gray-400 border-gray-400;
+    cursor: auto;
   }
 
   // CANCEL

@@ -12,8 +12,8 @@
   </div>
 
   <div class="tabs-details">
-    <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:account, @tab_id) %>">
-      <%= form_for current_user, url: modify_users_path, html: { class: "margin-top", style: "width: 100%;", data: { controller: "form" }, method: :put } do |f| %>
+    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:account, @tab_id) %>">
+      <%= form_for current_user, url: modify_users_path, html: { class: "margin-top", style: "width: 100%;", data: { controller: "form", form_enabled_class: "button--cta-primary", form_disabled_class: "button--disabled" }, method: :put } do |f| %>
         <div class="edit-profile--wrapper">
           <div class="edit-profile--fields form--generic-form-transparent">
             <div class="form--field">
@@ -27,21 +27,21 @@
 
             <div class="form--field">
               <%= f.label :name %>
-              <%= f.text_field :name, data: { target: "form.field", action: "input->form#validateInput" } %>
+              <%= f.text_field :name, data: { form_target: "field", action: "input->form#validateInput" } %>
             </div>
 
             <div class="form--field">
               <%= f.label :bio %>
-              <%= f.text_area :bio, data: { target: "form.field", action: "input->form#validateInput" } %>
+              <%= f.text_area :bio, data: { form_target: "field", action: "input->form#validateInput" } %>
             </div>
 
             <div class="form--field">
               <%= f.label :location %>
-              <%= f.text_field :location, data: { target: "form.field", action: "input->form#validateInput" } %>
+              <%= f.text_field :location, data: { form_target: "field", action: "input->form#validateInput" } %>
             </div>
 
             <div class="actions">
-              <%= f.submit "UPDATE ACCOUNT", class: 'button--cta-disabled', disabled: true, data: { target: "form.submit" } %>
+              <%= f.submit "UPDATE ACCOUNT", class: 'button--disabled', disabled: true, data: { form_target: "submit" } %>
             </div>
           </div>
 

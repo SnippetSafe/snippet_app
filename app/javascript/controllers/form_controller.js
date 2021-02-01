@@ -2,6 +2,7 @@ import { Controller } from 'stimulus';
 
 export default class extends Controller {
   static targets = ["field", "submit"];
+  static classes = ["enabled", "disabled"];
 
   connect() {
     this.initialValues = this.fieldTargets.map(target => target.value)
@@ -14,7 +15,7 @@ export default class extends Controller {
     if (initialValue !== event.target.value) {
       this.enableSubmit()
     } else {
-      if (this.changedFields().length > 0) {
+      if (this.hasChangedFields()) {
         this.enableSubmit()
       } else {
         this.disableSubmit()
@@ -23,14 +24,14 @@ export default class extends Controller {
   }
 
   enableSubmit() {
-    this.submitTarget.classList.remove("button--cta-disabled")
-    this.submitTarget.classList.add("button--cta-blue")
+    this.submitTarget.classList.remove(this.disabledClass)
+    this.submitTarget.classList.add(this.enabledClass)
     this.submitTarget.disabled = false
   }
 
   disableSubmit() {
-    this.submitTarget.classList.remove("button--cta-blue")
-    this.submitTarget.classList.add("button--cta-disabled")
+    this.submitTarget.classList.remove(this.enabledClass)
+    this.submitTarget.classList.add(this.disabledClass)
     this.submitTarget.disabled = true
   }
 
@@ -41,5 +42,9 @@ export default class extends Controller {
       
       return initialValue !== target.value
     })
+  }
+
+  hasChangedFields() {
+    return this.changedFields().length > 0;
   }
 }
