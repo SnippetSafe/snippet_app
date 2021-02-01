@@ -61,9 +61,13 @@ class FoldersController < ApplicationController
   end
 
   def create
-    @folder = Folder.create!(folder_params.merge(user: current_user))
+    @folder = Folder.create(folder_params.merge(user: current_user))
 
-    flash[:notice] = 'New folder created!'
+    if @folder.save
+      flash[:notice] = 'New folder created!'
+    else
+      flash[:alert] = 'Failed to save folder'
+    end
 
     redirect_to folders_path
   end

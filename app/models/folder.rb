@@ -3,6 +3,8 @@ class Folder < ApplicationRecord
   has_many :snippet_folders, dependent: :destroy
   has_many :snippets, through: :snippet_folders
 
+  validates :name, presence: true, length: { maximum: 30 } 
+
   def popover_options_for(user)
     options = []
 
