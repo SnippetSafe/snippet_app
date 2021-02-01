@@ -16,7 +16,7 @@
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
       <div class="tabs-details">
         <div data-target="tabs.panel">
-          <%= f.text_field :description, { data: { action: "input->highlight#updateDescription" }, class: "new-snippet--description", placeholder: "Snippet description..." } %>
+          <%= f.text_field :description, { data: { controller: "focus", focus_target: "focus", action: "input->highlight#updateDescription" }, class: "new-snippet--description", placeholder: "Snippet description..." } %>
           <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, id: "code-text-area", class: "new-snippet--body" } %>
           <%= f.text_area :highlighted_body, { data: { target: "highlight.highlightedBody" }, class: "hidden" } %>
         </div>
