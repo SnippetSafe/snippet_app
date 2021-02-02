@@ -1,19 +1,14 @@
-<div class="form--generic mt-8">
-  <h1 class="text-center text-4xl">Resend confirmation</h1>
-  <p class="text-center mt-2">Please enter your email below and we'll resend you instructions on how to confirm your email address</p>
+<%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
-  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form--generic-form-sign-in-up" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "shared/errors", resource: resource %>
 
-    <div class="form--field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "RESEND", class: "button--cta-primary w-full flex justify-center" %>
-    </div>
+    <%= f.submit "RESEND", class: "mt-4 button--cta-primary w-full flex justify-center" %>
   <% end %>
 
-  <p class="text-center mb-4">Confirmed your email? <%= link_to 'Sign in', new_user_session_path %></p>
-</div>
+<% end %>

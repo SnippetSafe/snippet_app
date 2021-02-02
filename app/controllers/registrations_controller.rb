@@ -1,9 +1,24 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'application', only: %i(edit update)
+  layout :pick_layout
+
+  def new
+    @user = User.new
+    @header = 'Sign up for an account'
+    @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover")}".html_safe
+
+    super
+  end
 
   def create
     respond_to do |format|
-      format.html { super }
+      format.html do 
+        @user = User.new
+        @header = 'Sign up for an account'
+        @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover")}".html_safe
+
+        super
+      end
+
       format.json do
         user = User.new(user_params)
 
@@ -31,5 +46,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation)
+  end
+
+  APPLICATION_LAYOUTS = %w(edit update).freeze
+
+  def pick_layout
+    APPLICATION_LAYOUTS.include?(action_name) ? 'application' : 'modal_fake'
   end
 end

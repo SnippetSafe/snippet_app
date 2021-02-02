@@ -1,30 +1,29 @@
-<div class="form--generic mt-8">
-  <h1 class="text-center text-4xl">Sign up for an account</h1>
-  <p class="text-center mt-2">Already have an account? <%= link_to 'Sign in', new_user_session_path %></p>
+<%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form--generic-form-sign-in-up" }) do |f| %>
     <%= render "shared/errors", resource: resource %>
 
-    <div class="form--field">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <div>
+      <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <div class="form--field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email" %>
+    <div class="mt-4">
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :email, autocomplete: "email", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <div class="form--field">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="mt-4">
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <div class="form--field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="mt-4">
+      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <%= f.submit "SIGN UP", class: "button--cta-primary w-full flex justify-center" %>
+    <%= f.submit "SIGN UP", class: "mt-4 button--cta-primary w-full flex justify-center" %>
   <% end %>
-</div>
+
+<% end %>

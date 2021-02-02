@@ -19,5 +19,9 @@ class Modals::UsersController < ModalsController
 
   def edit_avatar; end
 
-  def email_confirm; end
+  def email_confirm;
+    @header = 'Nearly There!'
+    @sub_header = 'Please confirm your email address by clicking the link in the email we just sent you'
+    @footer = "<a data-controller='modal' data-modal-url-value='#{sign_in_modals_users_path}' data-action='click->modal#present'>Confirmed your email? Sign in</a>".html_safe
+  end
 end

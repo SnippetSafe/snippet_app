@@ -1,12 +1,7 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-  static targets = ['name', 'errors'];
-
-  connect() {
-    document.activeElement.blur();
-    this.nameTarget.focus();
-  }
+  static targets = ['errors'];
 
   onSignUpSuccess(event) {
     const [data, status, xhr] = event.detail;

@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <ul style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
+  <ul class="mb-4" style="color: #86181d; border: 1px solid lightgray; font-weight: 100; padding: 6px; list-style-position:inside; border-radius: 2px; background-color: #f9bbbb; font-size: 14px;">
     <% resource.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>

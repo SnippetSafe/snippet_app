@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     Rails.application.routes.default_url_options[:host] = 'www.snippetsafe.com'
   end
 
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :users, controllers: {
+    registrations: 'registrations',
+    sessions: 'sessions',
+    passwords: 'passwords',
+    confirmations: 'confirmations'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
   get '/connect', to: 'home#connect'

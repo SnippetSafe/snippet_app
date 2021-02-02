@@ -1,13 +1,6 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-  static targets = ['email'];
-
-  connect() {
-    document.activeElement.blur()
-    this.emailTarget.focus()
-  }
-
   onSignInSuccess(event) {
     const [data, status, xhr] = event.detail;
     const urlWithToast = encodeURI(`${location.toString()}?notice=${data.message}`)

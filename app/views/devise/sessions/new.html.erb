@@ -1,30 +1,28 @@
-<div class="form--generic mt-8">
-  <h1 class="text-center text-4xl">Sign in to your account</h1>
-  <p class="text-center mt-2">Don't have an account yet? <%= link_to 'Sign up', new_user_registration_path %></p>
+<%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form--generic-form-sign-in-up" }) do |f| %>
-    <%= render "shared/errors", resource: resource %>
-
-    <div class="form--field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :email, autocomplete: "email", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-    <div class="form--field">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="mt-4">
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
     </div>
 
-     <div class="form--generic-remember-me">
-      <div class="flex v-center" >
-        <%= f.check_box :remember_me, checked: true %>
-        <%= f.label :remember_me, class: "margin-left--tiny" %>
+    <div class="mt-4 flex items-center justify-between">
+      <div class="flex items-center">
+        <%= f.check_box :remember_me, checked: true, class: "h-4 w-4 text-cyan focus:ring-indigo-500 border-gray-300 rounded" %>
+        <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-900" %>
       </div>
-      <%= link_to "Forgot your password?", new_user_password_path %>
+
+      <div class="text-sm">
+        <%= link_to "Forgot your password?", new_user_password_path, class: "font-medium text-cyan hover:text-cyan-hover" %>
+      </div>
     </div>
 
-    <div class="actions">
-      <%= f.submit "SIGN IN", class: "button--cta-primary w-full flex justify-center" %>
-    </div>
+    <%= f.submit "SIGN IN", class: "mt-4 button--cta-primary w-full flex justify-center " %>
   <% end %>
-</div>
+
+<% end %>
