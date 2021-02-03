@@ -1,5 +1,5 @@
 <% content_for :profile_nav_item do %>
-  <%= image_tag current_user.avatar_url, class: "profile-nav-item" %>
+  <%= image_tag current_user.avatar_url, class: "profile-nav-item", data: { controller: "image", action: "update-image@window->image#update" } %>
 <% end %>
 
 <%= link_to(root_path) do %>

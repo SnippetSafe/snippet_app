@@ -1,19 +1,50 @@
-<div id="alert" class="alert-mask" data-controller="alert" data-target="alert.alert">
-  <div class="alert-wrapper">
-    <div data-target="alert.body" class="alert-container">
-      <div class="alert-header">
-        <h3 data-target="alert.header" id="alert-title"><%= @header %></h3>
-        <span data-action="click->alert#close">
-          <img class="alert-close" src="/icons/cancel.svg" width="22">
-        </span>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="fixed z-10 inset-0 overflow-y-auto" data-controller="alert" data-alert-target="alert">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75" data-action="click->alert#close"></div>
+    </div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <!--
+      Modal panel, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      <span data-action="click->alert#close" title="Close alert" class="hover:bg-cyan-hover transition cursor-pointer absolute z-12 -top-4 -right-5 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-cyan mr-2">
+        <img src="/icons/white/cancel.svg" class="h-7 w-7">
+      </span>
+
+      <div class="mt-4 text-center sm:mt-0 sm:ml-4 sm:text-left">
+        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+          <%= @header %>
+        </h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">
+            <%= @message %>
+          </p>
+        </div>
       </div>
 
-      <div class="mt-5 mb-5">
-        <span data-target="alert.body" id="alert-body"><%= @message %></span>
-      </div>
-
-      <div class="flex justify-end">
-        <button data-action="click->alert#close" class="button--cancel">
+      <div class="mt-4 flex justify-end">
+        <button type="button" data-action="click->alert#close" class="button--cancel">
           Cancel
         </button>
 
@@ -22,3 +53,4 @@
     </div>
   </div>
 </div>
+

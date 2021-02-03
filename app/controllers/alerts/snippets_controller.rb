@@ -4,7 +4,7 @@ class Alerts::SnippetsController < AlertsController
 
   def unfile
     @snippet = current_user.filed_snippets.find(params[:id])
-    @header = 'Unfile Snippet'
+    @header = 'Remove Snippet'
     @message = UNFILE_CONFIRM_TEXT
   end
 
