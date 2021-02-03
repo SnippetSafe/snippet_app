@@ -75,7 +75,7 @@ class User < ApplicationRecord
   def popover_options
     [
       { type: :link, title: 'View profile', url: user_path(self) },
-      { type: :link, title: 'Settings', url: edit_user_registration_path },
+      { type: :link, title: 'Account', url: edit_user_registration_path },
       { type: :link, title: 'Sign out', url: destroy_user_session_path, method: :delete }
     ]
   end

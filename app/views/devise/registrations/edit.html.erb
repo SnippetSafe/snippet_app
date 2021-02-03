@@ -13,67 +13,61 @@
 
   <div class="tabs-details">
     <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:account, @tab_id) %>">
-      <%= form_for current_user, url: modify_users_path, html: { class: "margin-top", style: "width: 100%;", data: { controller: "form", form_enabled_class: "button--cta-primary", form_disabled_class: "button--disabled" }, method: :put } do |f| %>
-        <div class="edit-profile--wrapper">
-          <div class="edit-profile--fields form--generic-form-transparent">
-            <div class="form--field">
-              <label>Avatar</label>
-              <div id="upload" data-controller="upload modal" data-modal-url-value='/modals/users/edit_avatar' class="edit-avatar--wrapper flex v-center">
-                <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="60" height="60" style="border-radius: 50%;">
-                <button class="margin-left" data-action="click->upload#selectNewImage">Edit avatar</button>
-                <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput", action: "change->upload#handleFileSelect open-avatar-modal@window->modal#present" } %>
-              </div>
-            </div>
+      <%= form_for current_user, url: modify_users_path, html: { data: { controller: "form", form_enabled_class: "button--cta-primary", form_disabled_class: "button--disabled" }, method: :put } do |f| %>
 
-            <div class="form--field">
-              <%= f.label :name %>
-              <%= f.text_field :name, data: { form_target: "field", action: "input->form#validateInput" } %>
-            </div>
-
-            <div class="form--field">
-              <%= f.label :bio %>
-              <%= f.text_area :bio, data: { form_target: "field", action: "input->form#validateInput" } %>
-            </div>
-
-            <div class="form--field">
-              <%= f.label :location %>
-              <%= f.text_field :location, data: { form_target: "field", action: "input->form#validateInput" } %>
-            </div>
-
-            <div class="actions">
-              <%= f.submit "UPDATE ACCOUNT", class: 'button--disabled', disabled: true, data: { form_target: "submit" } %>
-            </div>
+        <div>
+          <div id="upload" data-controller="upload modal" data-modal-url-value='/modals/users/edit_avatar' class="mt-1 edit-avatar--wrapper flex v-center">
+            <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="60" height="60" style="border-radius: 50%;">
+            <button class="ml-4 button--cta-tertiary" data-action="click->upload#selectNewImage">Edit avatar</button>
+            <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput", action: "change->upload#handleFileSelect open-avatar-modal@window->modal#present" } %>
           </div>
+        </div>
 
+        <div class="mt-4">
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :name, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", data: { form_target: "field", action: "input->form#validateInput" } %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :bio, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_area :bio, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", data: { form_target: "field", action: "input->form#validateInput" } %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :location, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :location, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", data: { form_target: "field", action: "input->form#validateInput" } %>
+        </div>
+
+        <div class="mt-4 flex justify-end">
+          <%= f.submit "UPDATE ACCOUNT", class: 'button--disabled', disabled: true, data: { form_target: "submit" } %>
         </div>
 
       <% end %>
     </div>
 
     <div data-target="tabs.panel" class="<%= tabs_details_class_for_active_tab(:security, @tab_id) %>">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , class: "form--generic-form-transparent margin-top width-400"}) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , class: ""}) do |f| %>
         <%= render "shared/errors", resource: resource %>
 
-        <div class="form--field">
-          <%= f.label :current_password %>
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
-          <span class="block margin-top--tiny color-grey text-14">We need your current password to confirm your changes</span>
+        <div>
+          <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+          <span class="block mt-1 color-grey text-14">We need your current password to confirm your changes</span>
         </div>
 
-        <div class="form--field">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="mt-4">
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
         </div>
 
-        <div class="form--field">
-          <%= f.label :password_confirmation, 'Confirm password' %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <div class="mt-4">
+          <%= f.label :password_confirmation, 'Confirm password', class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
         </div>
 
 
-        <div class="actions">
-          <%= f.submit "UPDATE PASSWORD", class: "button--cta-blue" %>
-          <%= link_to('SIGN OUT', destroy_user_session_path, method: :delete, class: "button--cta-blue") %>
+        <div class="mt-4 flex justify-end">
+          <%= f.submit "UPDATE PASSWORD", class: "button--cta-primary" %>
         </div>
       <% end %>
     </div>
