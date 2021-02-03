@@ -12,8 +12,9 @@ class CommentsController < ApplicationController
         @comment.notifications.create(user: @snippet.user)
       end
 
-      flash[:notice] = 'Comment created!'
-      redirect_to snippet_path(@snippet)
+      element = render_to_string partial: 'comments/comment', locals: { comment: @comment }
+
+      render json: { element: element }
     else
       flash[:alert] = 'Comment body can\'t be empty.'
       redirect_to snippet_path(@snippet, anchor: 'comment_body')

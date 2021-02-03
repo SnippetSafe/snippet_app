@@ -1,26 +1,19 @@
-<%= render partial: 'snippets/snippet', locals: { snippet: @snippet }%>
+<%= render partial: 'snippets/snippet', locals: { snippet: @snippet } %>
 
-
-<% if @snippet.comments.any? %>
-  <%= render partial: 'shared/hr' %>
-
+<div data-controller="comments" >
   <%= render 'shared/cards/card_no_padding' do %>
-    <div class="flow-root">
-      <ul class="divide-y divide-gray-200">
+      <ul data-comments-target="entries" class="divide-y divide-gray-200 <%= @snippet.comments.any? ? '' : 'hidden' %>">
         <% @snippet.comments.each do |comment| %>
           <%= render partial: 'comments/comment', locals: { comment: comment } %>
         <% end %>
       </ul>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
+  <% else %>
+    <div class="card--container card--container-padding text-center margin-top">
+      <span>Please <a class="color-primary normal" data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">sign in</a> to join the discussion.</span>
     </div>
   <% end %>
-<% end %>
-
-<%= render partial: 'shared/hr' %>
-
-<% if user_signed_in? %>
-  <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
-<% else %>
-  <div class="card--container card--container-padding text-center margin-top">
-    <span>Please <a class="color-primary normal" data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">sign in</a> to join the discussion.</span>
-  </div>
-<% end %>
+</div>
