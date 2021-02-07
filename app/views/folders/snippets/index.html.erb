@@ -1,13 +1,3 @@
-<div class="padding-left padding-bottom position-sticky z-1 bg-grey flex v-center space-between">
-  <div>
-    <h2 class="no-margin"><%= @folder.name %></h2>
-    <%= render partial: 'folders/counts', locals: { folder: @folder } %>
-  </div>
-  <%= link_to(new_modals_snippet_path(folder_id: @folder.id), data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_snippet_path(folder_id: @folder.id) }, class: 'button--add', title: "Add a new snippet to #{@folder.name}")  do %>
-    <%= image_tag "/icons/white/snippet-add.svg", width: 24 %>
-  <% end %>
-</div>
-
 <% if @snippets.any? %>
   <% @snippets.each do |snippet| %>
     <%= render partial: 'snippets/snippet_preview', locals: { snippet: snippet } %>

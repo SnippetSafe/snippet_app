@@ -13,13 +13,13 @@ export default class extends Controller {
     if (this.hasInputTarget) { this.inputTarget.focus() };
   }
 
-  connect() {
-    document.body.classList.add('no-scroll')
-  }
+  // connect() {
+  //   document.body.classList.add('no-scroll')
+  // }
 
-  disconnect() {
-    document.body.classList.remove('no-scroll')
-  }
+  // disconnect() {
+  //   document.body.classList.remove('no-scroll')
+  // }
 
   search = _.debounce(function(event) {
     this.isLoadingMore = true

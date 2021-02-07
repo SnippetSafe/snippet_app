@@ -2,37 +2,15 @@
   <meta name="turbolinks-cache-control" content="no-preview">
 <% end %>
 
-<div class="flex" style="height: 100%;" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
+<% content_for :folders_sidebar do %>
 
-  <div class="flex-1">
-    <div class="flex v-center space-between padding-bottom z-1 bg-grey">
+  <%= render 'shared/cards/card' do %>
+    <%= render 'folders/folders' %>
+  <% end %>
 
-      <div class="searchbar">
-        <input
-          type="text"
-          placeholder="Search folders"
-          data-action="input->infinite-scroll-window#search"
-          data-infinite-scroll-window-target="input"
-        />
-        <img src="/icons/search.svg">
-      </div>
-
-      <%= link_to(new_modals_folder_path, data: { controller: 'modal', action: 'modal#present', modal_url_value: new_modals_folder_path }, class: 'button--add', title: "Add a new folder")  do %>
-        <%= image_tag "/icons/white/folder-add.svg", width: 24 %>
-      <% end %>
-    </div>
-    <div class="scroll" data-controller="infinite-scroll-container" data-action="scroll->infinite-scroll-container#scroll">
-      
-
-      <div class="card--container" data-infinite-scroll-container-target="entries">
-        <%= render 'folders/folders' %>
-      </div>
-
-      <div data-infinite-scroll-container-target="pagination" class="hidden">
-        <%= will_paginate @folders, container: false %>
-      </div>
-    </div>
+  <div data-infinite-scroll-container-target="pagination" class="hidden">
+    <%= will_paginate @folders, container: false %>
   </div>
+<% end %>
 
-  <div class="flex-3 margin-left scroll" data-action="scroll->folders#scroll" data-folders-target="body"></div>
-</div>
+<div class="flex-3 margin-left scroll" data-action="scroll->folders#scroll" data-folders-target="body"></div>

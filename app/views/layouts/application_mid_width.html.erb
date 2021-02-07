@@ -34,8 +34,26 @@
     <%= render partial: 'shared/toast' %>
     <%= render partial: 'shared/topbar' %>
 
-    <div id="content-mid">
-        <%= yield %>
+
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+      <div class="min-h-screen bg-gray-100">
+        <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
+        <!-- On: "fixed inset-0 z-40 overflow-y-auto", Off: "undefined" -->
+
+        <div class="max-w-3xl mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8 min-h-screen" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
+          <%= render 'shared/cards/card', classes: 'xl:block xl:col-span-3 sticky position-sticky--topbar folders' do %>
+            <div class="border h-full rounded-lg overflow-y-scroll">
+              <div>
+                <%= yield(:folders_sidebar) %>
+              </div>
+            </div>
+          <% end %>
+  
+          <main class="lg:col-span-9 xl:col-span-9 mt-4">
+            <%= yield %>
+          </main>
+        </div>
+      </div>
     </div>
   </body>
 </html>

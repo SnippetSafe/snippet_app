@@ -27,3 +27,7 @@ $mid-width: 1080px;
 
 // MARGIN
 
+.folders {
+  height: calc(100vh - #{$topbar-full-height} - #{$topbar-margin});
+  // overflow-y: scroll;
+}

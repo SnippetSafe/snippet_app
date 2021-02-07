@@ -1,8 +1,16 @@
-<div id="<%= folder.client_id %>" data-action="click->folders#selectFolder" data-folders-target="folder" data-folder-id=<%= folder.id %> class="list-item--wrapper flex v-center pointer hover-grey">    
-  <img class="block" src="/icons/grey/folder.svg" width="24">
-  <div class="margin-left">
-    <span class="folders--list-item--title"><%= folder.name %></span>
-    <%= render partial: 'folders/counts', locals: { folder: folder } %>
+<%= render 'shared/grid_list_item', url: folder_path(folder), id: folder.client_id do %>
+  <div
+    id="<%= folder.client_id %>"
+    data-action="click->folders#selectFolder"
+    data-folders-target="folder"
+    data-folder-id="<%= folder.id %>"
+  >
+    <%= image_tag '/icons/grey/folder.svg', class: 'h-10 w-10 m-auto' %>
+    <div>
+      <h5 class="text-center"><%= folder.name %></h5>
+      <%= render partial: 'folders/counts', locals: { folder: folder } %>
+    </div>
+    <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
   </div>
-  <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_folder_path(folder), position: 'top-right' } %>
-</div>
+<% end %>
+
