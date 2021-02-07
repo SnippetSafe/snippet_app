@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  layout 'application_mid_width', only: :index
+  # layout 'application_mid_width', only: :index
 
   MINIMUM_FOLDERS = 1.freeze
 
@@ -25,7 +25,7 @@ class FoldersController < ApplicationController
 
     @folders = @folders
       .order(name: :asc)
-      .paginate(page: params[:page] || 1, per_page: 20)
+      .paginate(page: params[:page] || 1, per_page: 30)
 
     respond_to do |format|
       format.html

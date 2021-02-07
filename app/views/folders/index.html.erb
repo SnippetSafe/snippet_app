@@ -2,15 +2,30 @@
   <meta name="turbolinks-cache-control" content="no-preview">
 <% end %>
 
-<% content_for :folders_sidebar do %>
+<div data-controller="infinite-scroll-window folders-list" data-infinite-scroll-window-base-url="<%= folders_path %>">
+  <div class="flex v-center space-between padding-bottom z-3 bg-grey">
 
-  <%= render 'shared/cards/card' do %>
+      <div class="searchbar">
+        <input
+          type="text"
+          placeholder="Search your folders"
+          data-action="input->infinite-scroll-window#search"
+          data-infinite-scroll-window-target="input"
+        />
+        <img src="/icons/search.svg">
+      </div>
+  </div>
+
+  <div
+    id="infinite-folders-list"
+    data-infinite-scroll-window-target="entries"
+    data-action="scroll@window->infinite-scroll-window#scroll snippet-created@window->infinite-scroll-window#add snippet-updated@window->snippets-list#update"
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+  >
     <%= render 'folders/folders' %>
-  <% end %>
+  </div>
 
-  <div data-infinite-scroll-container-target="pagination" class="hidden">
+  <div data-infinite-scroll-window-target="pagination" class="hidden">
     <%= will_paginate @folders, container: false %>
   </div>
-<% end %>
-
-<div class="flex-3 margin-left scroll" data-action="scroll->folders#scroll" data-folders-target="body"></div>
+</div>
