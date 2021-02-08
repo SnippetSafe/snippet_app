@@ -1,8 +1,26 @@
-<div
-  class="connect--container"
-  data-controller="navigation"
-  data-action="click->navigation#navigate"
-  data-navigation-url-value="<%= user_path(user) %>"
->
-  <%= render partial: 'users/preview', locals: { user: user } %>
-</div>
+<li class="cursor-pointer hover:bg-gray-50 transition pt-4 pb-4 px-4"
+    data-controller="navigation"
+    data-navigation-url-value="<%= user_path(user) %>"
+    data-action="click->navigation#navigate"
+  >
+    <div class="relative">
+      <div class="relative flex items-start space-x-3">
+        <%= render partial: 'notifications/user_avatar', locals: { user: user } %>
+
+        <div class="flex justify-between flex-1">
+          <div class="min-w-0">
+            <div>
+              <div class="text-sm">
+                <%= link_to user.name, user_path(user), class: "font-medium text-gray-900" %>
+              </div>
+            </div>
+            <div class="mt-1 text-sm text-gray-700">
+              <p>
+                <%= pluralize(user.filed_snippets.count, 'snippet') %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>

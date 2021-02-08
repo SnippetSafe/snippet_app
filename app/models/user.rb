@@ -35,7 +35,7 @@ class User < ApplicationRecord
   #TODO: Add tests for this
   after_create :create_default_folder
 
-  validates :name, presence: true, length: { maximum: 50 }, format: { with: ALPHANUMERIC }
+  validates :name, presence: true, length: { maximum: 15 }, format: { with: ALPHANUMERIC }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
