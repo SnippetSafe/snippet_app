@@ -9,8 +9,6 @@ export default class extends Controller {
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
 
     this.isLoadingMore = false
-
-    if (this.hasInputTarget) { this.inputTarget.focus() };
   }
 
   search = _.debounce(function(event) {

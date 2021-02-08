@@ -3,17 +3,46 @@
 <% end %>
 
 <div data-controller="infinite-scroll-window folders-list" data-infinite-scroll-window-base-url="<%= folders_path %>">
-  <div class="flex v-center space-between padding-bottom z-3 bg-grey">
 
-      <div class="searchbar">
-        <input
-          type="text"
-          placeholder="Search your folders"
-          data-action="input->infinite-scroll-window#search"
-          data-infinite-scroll-window-target="input"
-        />
-        <img src="/icons/search.svg">
+  <%# <input
+    type="text"
+    placeholder="Search your folders"
+    data-action="input->infinite-scroll-window#search"
+    data-infinite-scroll-window-target="input"
+    class="w-full mb-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+  /> %>
+
+  <div class="flex justify-between mb-4 relative">
+    <div class="flex-1">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <!-- Heroicon name: solid/mail -->
+        <%= image_tag '/icons/grey/search.svg', class: 'text-gray-400 h-5 w-5' %>
+        <%# <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg> %>
       </div>
+      <input
+        type="text" 
+        class="focus:ring-indigo-500 focus:border-indigo-500 w-full block pl-10 sm:text-sm border-gray-300 rounded-md shadow-sm"
+        placeholder="Search your folders"
+        data-action="input->infinite-scroll-window#search"
+        data-infinite-scroll-window-target="input"
+      >
+    </div>
+    <div class="flex flex-1 items-center justify-end">
+      <%= 
+        button_tag(
+          'NEW FOLDER', 
+          class: 'button--cta-primary',
+          data: {
+            controller: 'modal',
+            action: 'modal#present',
+            modal_url_value: new_modals_folder_path
+          }
+        )
+      %>
+    </div>
   </div>
 
   <div

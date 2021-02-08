@@ -5,7 +5,7 @@
     data-folders-target="folder"
     data-folder-id="<%= folder.id %>"
   >
-    <%= image_tag '/icons/grey/folder.svg', class: 'h-10 w-10 m-auto' %>
+    <svg class="m-auto w-10 h-10 text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
     <div>
       <h5 class="text-center"><%= folder.name %></h5>
       <%= render partial: 'folders/counts', locals: { folder: folder } %>

@@ -36,4 +36,8 @@ module ApplicationHelper
       image_tag current_user.avatar_url, class: "profile-nav-item--#{css_class}"
     end
   end
+
+  def new_snippet_folder_id
+    params[:id] if controller.is_a?(FoldersController)
+  end
 end

@@ -63,19 +63,17 @@
           <aside class="xl:block xl:col-span-3">
             <div class="sticky position-sticky--topbar space-y-4">
 
-              <%= render 'shared/cards/card' do %>
-                <%= 
-                  button_tag(
-                    'NEW SNIPPET',
-                    class: 'w-full button--cta-primary flex justify-center',
-                    data: {
-                      controller: 'modal',
-                      action: 'modal#present',
-                      modal_url_value: new_modals_snippet_path
-                    }
-                  )
-                %>
-              <% end %>
+              <%= 
+                button_tag(
+                  'NEW SNIPPET',
+                  class: 'w-full button--cta-primary flex justify-center',
+                  data: {
+                    controller: 'modal',
+                    action: 'modal#present',
+                    modal_url_value: new_modals_snippet_path(folder_id: new_snippet_folder_id)
+                  }
+                )
+              %>
 
               <%= render 'shared/cards/card' do %>
                 <h4 class="text-center">Connect</h4>
