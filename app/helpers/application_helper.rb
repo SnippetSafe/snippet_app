@@ -40,4 +40,8 @@ module ApplicationHelper
   def new_snippet_folder_id
     params[:id] if controller.is_a?(FoldersController)
   end
+
+  def color_for_like_status(snippet)
+    snippet.liked_by?(current_user) ? 'text-red-500' : 'text-gray-500'
+  end
 end

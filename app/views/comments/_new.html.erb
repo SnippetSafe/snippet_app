@@ -1,4 +1,5 @@
 <%= render 'shared/cards/card' do %>
+<%# TODO: linking to this anchor isn't quite right as the fixed header causes a weird offset %>
   <div data-controller="form" data-form-enabled-class="button--cta-primary" data-form-disabled-class="button--disabled">
 
     <% if comment.errors.any? %>
@@ -10,7 +11,7 @@
     <% end %>
 
     <%= form_for [snippet, comment], remote: true, html: { data: { type: "html", action: "ajax:success->comments#onCreateSuccess ajax:error->comments#onCreateError" } }  do |f| %>
-      <%= f.text_area :body, data: { comments_target: 'body', form_target: 'field', action: 'input->form#validateInput' }, class: 'w-full border-gray-300 rounded-md p-2 bg-gray-50 h-28 text-sm', placeholder: snippet.comments.any? ? 'Join the discussion' : 'Be the first to comment' %>
+      <%= f.text_area :body, id: "new-comment", data: { comments_target: 'body', form_target: 'field', action: 'input->form#validateInput' }, class: 'w-full border-gray-300 rounded-md p-2 bg-gray-50 h-28 text-sm', placeholder: snippet.comments.any? ? 'Join the discussion' : 'Be the first to comment' %>
 
       <div class="flex justify-end mt-2">
         <%= f.submit 'COMMENT', data: { form_target: 'submit' }, class: 'button--disabled' %>

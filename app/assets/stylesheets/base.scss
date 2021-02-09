@@ -11,16 +11,16 @@ html, body {
 
 h1, h2, h3, span, p { font-weight: 100; }
 
-a {
-  text-decoration: none;
-  color: inherit;
+// a {
+//   text-decoration: none;
+//   color: inherit;
 
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: $color-primary;
-    cursor: pointer;
-  }
-}
+//   &:hover {
+//     text-decoration: underline;
+//     text-decoration-color: $color-primary;
+//     cursor: pointer;
+//   }
+// }
 
 strong { font-weight: 500 }
 
