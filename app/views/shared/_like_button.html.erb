@@ -1,8 +1,14 @@
 <div
   class="rounded-md h-full"
-  data-controller="like"
-  data-like-target="container"
-  data-like-url-value="<%= likes_path(like: { user_id: current_user.id, snippet_id: snippet.id }) %>"
+  <% if user_signed_in? %>
+    data-controller="like"
+    data-like-target="container"
+    data-like-url-value="<%= likes_path(like: { user_id: current_user&.id, snippet_id: snippet.id }) %>"
+  <% else %>
+    data-controller="modal"
+    data-modal-url-value="<%= sign_in_sign_up_modals_users_path %>"
+    data-action="click->modal#present"
+  <% end %>
 >
   <div 
     class="flex h-full items-center bg-gray-100 rounded-md px-1 mr-2 cursor-pointer hover:shadow-md transition"

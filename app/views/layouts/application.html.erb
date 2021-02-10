@@ -63,17 +63,31 @@
           <aside class="xl:block xl:col-span-3">
             <div class="sticky position-sticky--topbar space-y-4">
 
-              <%= 
-                button_tag(
-                  'NEW SNIPPET',
-                  class: 'w-full button--cta-primary flex justify-center',
-                  data: {
-                    controller: 'modal',
-                    action: 'modal#present',
-                    modal_url_value: new_modals_snippet_path(folder_id: new_snippet_folder_id)
-                  }
-                )
-              %>
+              <% if user_signed_in? %>
+                <%= 
+                  button_tag(
+                    'NEW SNIPPET',
+                    class: 'w-full button--cta-primary flex justify-center',
+                    data: {
+                      controller: 'modal',
+                      action: 'modal#present',
+                      modal_url_value: new_modals_snippet_path(folder_id: new_snippet_folder_id)
+                    }
+                  )
+                %>
+              <% else %>
+                <%= 
+                  button_tag(
+                    'NEW SNIPPET',
+                    class: 'w-full button--cta-primary flex justify-center',
+                    data: {
+                      controller: 'modal',
+                      action: 'modal#present',
+                      modal_url_value: sign_in_sign_up_modals_users_path
+                    }
+                  )
+                %>
+              <% end %>
 
               <%= render 'shared/cards/card_no_padding' do %>
                 <h4 class="text-center pt-2">
@@ -81,8 +95,14 @@
                 </h4>
 
                 <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
-                  <% User.not_followed_by(current_user).order(Arel.sql('RANDOM()')).limit(3).each do |user| %>
-                    <%= render partial: 'users/connect', locals: { user: user }%>
+                  <% if user_signed_in? %>
+                    <% User.not_followed_by(current_user).order(Arel.sql('RANDOM()')).limit(3).each do |user| %>
+                      <%= render partial: 'users/connect', locals: { user: user }%>
+                    <% end %>
+                  <% else %>
+                      <% User.order(Arel.sql('RANDOM()')).limit(3).each do |user| %>
+                        <%= render partial: 'users/connect', locals: { user: user }%>
+                      <% end %>
                   <% end %>
                 </ul>
               <% end %>

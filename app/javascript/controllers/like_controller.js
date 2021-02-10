@@ -7,13 +7,7 @@ export default class extends Controller {
     url: String
   };
 
-  connect() {
-    console.log('c')
-  }
-
   toggle(event) {
-
-    console.log('this', this.urlValue)
     event.stopPropagation();
 
     axios.post(this.urlValue)

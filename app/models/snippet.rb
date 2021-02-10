@@ -43,7 +43,7 @@ class Snippet < ApplicationRecord
   end
 
   def liked_by?(user)
-    likes.find_by_user_id(user.id).present?
+    likes.find_by_user_id(user&.id).present?
   end
 
   def language_label

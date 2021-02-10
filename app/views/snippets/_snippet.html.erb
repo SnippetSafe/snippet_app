@@ -28,7 +28,17 @@
         </div>
       </div>
     </div>
-    <h5 class="m-0 mt-4 mb-4"><%= snippet.description %></h5>
+    
+    <div class="flex mt-4 mb-2 justify-between">
+      <div>
+        <h5 class="m-0"><%= snippet.description %></h5>
+      </div>
+
+      <div class="flex">
+        <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
+        <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
+      </div>
+    </div>
 
     <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language  } %>
   </div>

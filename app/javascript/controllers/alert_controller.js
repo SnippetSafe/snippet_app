@@ -17,16 +17,7 @@ export default class extends Controller {
   }
 
   deleteSuccess(event) {
-    const resourceId = event.currentTarget.dataset.resourceId
-    const listItem = document.getElementById(resourceId)
-    
-    if (listItem.dataset.redirectAfterDelete) {
-      Turbolinks.visit('/')
-    } else {
-      listItem.remove()
-      this.toast.display(event.currentTarget.dataset.toastMessage)
-      this.close()
-    }
+    this.close()
   }
 
   unfileSuccess(event) {

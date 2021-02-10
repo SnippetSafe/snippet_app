@@ -3,6 +3,6 @@
   comment_path(@comment),
   method: :delete,
   remote: true,
-  data: { toast_message: 'Comment deleted!', resource_id: @comment.client_id, action: 'ajax:success->alert#deleteSuccess' },
+  data: { toast_message: 'Comment deleted!', resource_id: @comment.client_id, controller: 'comments', action: 'ajax:success->alert#deleteSuccess ajax:success->comments#onDeleteSuccess' },
   class: "button--cta-primary ml-2"
 ) %>
