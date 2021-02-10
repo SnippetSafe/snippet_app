@@ -40,6 +40,6 @@
       </div>
     </div>
 
-    <%= render partial: 'shared/code_highlight', locals: { code: snippet.highlighted_body, language: snippet.language  } %>
+    <%= render partial: 'shared/codemirror', locals: { code: snippet.body, language: snippet.language, read_only: true  } %>
   </div>
 <% end %>

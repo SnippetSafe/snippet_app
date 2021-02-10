@@ -50,12 +50,9 @@ class Snippet < ApplicationRecord
     "<span style='border-radius: 5px; position: absolute; top: -13px; right: 25px; border: 1px solid lightgrey; font-family: monospace; padding: 4px 28px 4px 10px; background-color: snow;'><i style='position: absolute; right: 7px;' class='devicon-ruby-plain colored'></i>#{ language.name }</span>"
   end
 
-  def highlighted
-    Pygments.highlight(
-      body,
-      lexer: language.lexer_alias,
-      options: { encoding: 'utf-8', linenos: false }
-    ).html_safe
+  # Prevent needing to do on the fly by saving to db
+  def preview
+    body.split("\n").first(15).join("\n")
   end
 
   def client_id

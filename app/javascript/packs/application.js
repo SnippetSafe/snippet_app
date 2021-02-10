@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 import 'controllers'
 
+require("codemirror")
 require("axios")
 require("lodash")
 require("marked")

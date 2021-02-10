@@ -1,12 +1,23 @@
 import { Controller } from 'stimulus';
 import { events } from "../mixins/events";
 import axios from 'axios';
+import CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript.js'
+
 
 export default class extends Controller {
   static targets = ["moveButton", "listItem", "errors"];
 
 
   initialize() {
+    
+    // console.log(CodeMirror)
+
+    // var myCodeMirror = CodeMirror(this.element, {
+    //   value: "function myScript(){return 100;}\n",
+    //   mode:  "javascript"
+    // });
+
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
     axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
   }

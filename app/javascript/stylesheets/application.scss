@@ -1,6 +1,18 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import 'codemirror/lib/codemirror.css';
+
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  @apply font-mono p-2 rounded-lg border text-sm;
+  height: auto;
+  color: black;
+  direction: ltr;
+  // overflow-y: scroll;
+}
+
+@import '../../assets/stylesheets/themes/one-light.scss';
 
 // HEADINGS
 

@@ -1,54 +1,30 @@
 <h3 class="text-center">New Snippet</h3>
 
-<div data-controller="tabs">
-  <div class="flex justify-end">
-    <div class="tabs--headers-wrapper">
-      <div data-tabs-target="tab" data-action="click->tabs#change" class="tabs--header tabs--header-active">
-        <span>Write</span>
+<div data-controller="codemirror snippets" class="mt-4">
+  <div data-snippets-target="errors"></div>
+  <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
+    <div>
+      <%= f.text_field :description, { data: { controller: "focus", focus_target: "focus" }, placeholder: "Snippet title", class: "block w-full mb-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
+      <%= f.text_area :body, { data: { codemirror_target: 'mirror' }, class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
+    </div>
+
+    <div class="create-snippet--options-wrapper">
+      <div class="flex v-center" style="cursor: pointer;"
+        data-controller="checkbox"
+        data-action="click->checkbox#toggle"
+        data-checkbox-checked-text-value="Public"
+        data-checkbox-checked-icon-value="/icons/lock-open.svg"
+        data-checkbox-unchecked-text-value="Private"
+        data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
+      >
+        <span data-checkbox-target="text">Public</span>
+        <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
+        <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
       </div>
-      <div data-tabs-target="tab" data-action="click->tabs#change" class="tabs--header">
-        <span>Preview</span>
+      <div class="flex">
+        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
+        <%= f.submit 'CREATE', class: "button--cta-primary ml-4" %>
       </div>
     </div>
-  </div>
-
-  <div data-controller="highlight snippets" class="mt-4">
-    <div data-snippets-target="errors"></div>
-    <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
-      <div class="tabs-details">
-        <div data-tabs-target="panel">
-          <%= f.text_field :description, { data: { controller: "focus", focus_target: "focus", action: "input->highlight#updateDescription" }, placeholder: "Snippet title", class: "block w-full mb-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
-          <%= f.text_area :body, { data: { action: "input->highlight#highlight" }, placeholder: "Your world beating code goes here", class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
-          <%= f.text_area :highlighted_body, { data: { target: "highlight.highlightedBody" }, class: "hidden" } %>
-        </div>
-
-        <div data-tabs-target="panel" class="hidden">
-          <div class="new-snippet--preview">
-            <h5 data-highlight-target="description" class="mt-4 mb-4"></h5>
-            <div class="code-highlight" data-highlight-target="code"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="create-snippet--options-wrapper">
-        <div class="flex v-center" style="cursor: pointer;"
-          data-controller="checkbox"
-          data-action="click->checkbox#toggle"
-          data-checkbox-checked-text-value="Public"
-          data-checkbox-checked-icon-value="/icons/lock-open.svg"
-          data-checkbox-unchecked-text-value="Private"
-          data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
-        >
-          <span data-checkbox-target="text">Public</span>
-          <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
-          <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
-        </div>
-        <div class="flex">
-          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
-          <%= f.submit 'CREATE', class: "button--cta-primary ml-4" %>
-        </div>
-      </div>
-    <% end %>
-
-  </div>
+  <% end %>
 </div>

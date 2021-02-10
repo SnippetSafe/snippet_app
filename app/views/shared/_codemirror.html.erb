@@ -1,0 +1,16 @@
+<%=
+  text_area_tag(
+    :body,
+    code,
+    {
+      data: {
+        controller: 'codemirror',
+        codemirror_code_value: code,
+        codemirror_initialized_value: false,
+        codemirror_read_only_value: read_only,
+        codemirror_target: 'mirror'
+      },
+      class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+    }
+  )
+%>
