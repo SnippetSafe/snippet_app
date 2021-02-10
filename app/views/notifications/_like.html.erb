@@ -1,0 +1,15 @@
+<% liker = notification.notifiable.user %>
+<% snippet = notification.notifiable.snippet %>
+
+<%= render 'notifications/card', { user: liker, icon: 'chat', url: user_path(liker) } do %>
+  <div class="min-w-0 flex-1">
+    <div>
+      <div class="text-sm">
+        <%= link_to liker.name, user_path(liker), class: "font-medium text-gray-900" %>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">
+        Liked <%= link_to snippet.description, snippet_path(snippet), class: "font-medium text-gray-800" %> <%= time_ago_in_words(notification.created_at) %> ago
+      </p>
+    </div>
+  </div>
+<% end %>
