@@ -35,6 +35,6 @@
       </div>
     </div>
 
-    <%= render partial: 'shared/codemirror', locals: { code: snippet.preview, language: snippet.language, read_only: true, classes: 'snippet--content' } %>
+    <%= render partial: 'shared/codemirror', locals: { code: snippet.preview, mode: snippet.language.slug, read_only: true, classes: 'snippet--content' } %>
   </div>
 <% end %>

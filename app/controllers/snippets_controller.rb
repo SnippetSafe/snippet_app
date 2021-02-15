@@ -116,9 +116,8 @@ class SnippetsController < ApplicationController
       user: current_user,
       description: snippet_params[:description],
       body: snippet_params[:body],
-      highlighted_body: snippet_params[:highlighted_body],
       public: snippet_params[:public],
-      language: snippet_params[:language],
+      language_id: snippet_params[:language_id],
     )
 
     if snippet_params[:folder_id].present?
@@ -204,9 +203,8 @@ class SnippetsController < ApplicationController
     params.require(:snippet).permit(
       :description,
       :body,
-      :highlighted_body,
       :public,
-      :language,
+      :language_id,
       :folder_id
     )
   end

@@ -4,6 +4,8 @@ class Snippet < ApplicationRecord
   belongs_to :user, required: true
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  belongs_to :language, required: true
+
   validates_presence_of :body
   validates_presence_of :description
   validate :owner_folder_presence

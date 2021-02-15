@@ -4,9 +4,12 @@ class Modals::SnippetsController < ModalsController
   def new
     @snippet = Snippet.new
     @folders = current_user.folders
+    @languages = Language.all
+    @javascript = @languages.find_by_slug('javascript')
   end
 
   def edit
+    @languages = Language.all
     @folders = current_user.folders
     @folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
   end

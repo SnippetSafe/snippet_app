@@ -1,6 +1,6 @@
 <h3 class="text-center">New Snippet</h3>
 
-<div data-controller="codemirror snippets" class="mt-4">
+<div data-controller="codemirror snippets" data-codemirror-modes-value="<%= @languages.to_json %>" class="mt-4">
   <div data-snippets-target="errors"></div>
   <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onCreateSuccess ajax:error->snippets#onCreateError" } } do |f| %>
     <div>
@@ -22,6 +22,7 @@
         <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
       </div>
       <div class="flex">
+        <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @javascript.id), {}, data: { action: 'change->codemirror#updateMode' } %>
         <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
         <%= f.submit 'CREATE', class: "button--cta-primary ml-4" %>
       </div>
