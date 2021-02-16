@@ -1,45 +1,38 @@
 <% folder = snippet.folder_for_user(current_user) %>
 
-<%= render 'shared/cards/card' do %>
-  <div
-    id="<%= snippet.client_id %>"
-    data-controller="snippets"
-    data-action="snippet-updated@window->snippets#update"
-    data-redirect-after-delete="true"
-  >
-    <div class="relative flex items-start space-x-3">
-      <%= render partial: 'users/preview', locals: { resource: snippet, user: snippet.user } %>
-      <div>
-        <div style="display: flex; flex-direction: column;">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
-            <% if snippet.private? %>
-              <img class="margin-right--tiny" data-checkbox-target="icon" title="This snippet is only visible to you" src="/icons/lock-closed.svg" width="16">
-            <% end %>
-            <% if folder %>
-              <div class="folder-tag">
-                <img src="/icons/white/folder.svg" width="12">
-                <span class="block margin-left--tiny"><%= folder.name %></span>
-              </div>
-            <% end%>
-            <% if @display_popover %>
-              <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
-            <% end %>
-          </div>
+<%= render 'shared/cards/card', id: snippet.client_id, data: { controller: "snippets", action: "snippet-updated@window->snippets#update", redirect_after_delete: true } do %>
+  <div class="relative flex items-start space-x-3">
+    <%= render partial: 'users/preview', locals: { resource: snippet, user: snippet.user } %>
+    <div>
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
+          <% if snippet.private? %>
+            <img class="margin-right--tiny" data-checkbox-target="icon" title="This snippet is only visible to you" src="/icons/lock-closed.svg" width="16">
+          <% end %>
+          <% if folder %>
+            <div class="folder-tag">
+              <img src="/icons/white/folder.svg" width="12">
+              <span class="block margin-left--tiny"><%= folder.name %></span>
+            </div>
+          <% end%>
+          <% if @display_popover %>
+            <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
+          <% end %>
         </div>
       </div>
     </div>
-    
-    <div class="flex mt-4 mb-2 justify-between">
-      <div>
-        <h5 class="m-0"><%= snippet.description %></h5>
-      </div>
-
-      <div class="flex">
-        <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
-        <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
-      </div>
+  </div>
+  
+  <div class="flex mt-4 mb-2 justify-between">
+    <div>
+      <h5 class="m-0"><%= snippet.description %></h5>
     </div>
 
-    <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode: snippet.language.slug, read_only: true  } %>
+    <div class="flex">
+      <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
+      <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
+    </div>
   </div>
+
+  <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode: snippet.language.slug, read_only: true  } %>
 <% end %>

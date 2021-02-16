@@ -172,28 +172,14 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
-    @snippet = Snippet.find(params[:id])
+    @snippet = current_user.snippets.find(params[:id])
 
-    respond_to do |format|
-      format.html do
-        if @snippet.destroy
-          flash[:notice] = 'Snippet deleted!'
-          
-          head :ok
-        else
-          # Not handling this event in browser
-          flash[:alert] = 'Unable to delete snippet'
-          head :bad_request
-        end
-      end
-
-      format.json do
-        if @snippet.destroy
-          render json: { message: 'Snippet deleted!' }
-        else
-          render json: { message: 'Unable to delete snippet' }, status: 401
-        end
-      end
+    if @snippet&.destroy
+      flash[:notice] = 'Snippet deleted!'
+      
+      render json: { resource_id: @snippet.client_id }
+    else
+      head :bad_request
     end
   end
 

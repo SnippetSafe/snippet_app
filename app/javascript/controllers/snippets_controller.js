@@ -33,7 +33,9 @@ export default class extends Controller {
   update(event) {
     const element = document.getElementById(event.detail.client_id)
 
-    if (element) { element.outerHTML = event.detail.element }
+    if (element) {
+      element.outerHTML = event.detail.element
+    }
   }
 
   onCreateSuccess(event) {
@@ -61,6 +63,23 @@ export default class extends Controller {
   onUpdateError(event) {
     const [data, status, xhr] = event.detail;
     this.errorsTarget.innerHTML = data.element;
+  }
+
+  onDeleteSuccess(event) {
+    const [data, status, xhr] = event.detail;
+    const resourceId = data.resource_id
+    const element = document.getElementById(resourceId)
+    
+    if (element.dataset.redirectAfterDelete) {
+      Turbolinks.visit('/')
+    } else {
+      element.remove()
+      this.emitEvent('close-alert')
+    }
+  }
+
+  onDeleteError() {
+    this.emitEvent('close-alert')
   }
 
   modal_search(event) {

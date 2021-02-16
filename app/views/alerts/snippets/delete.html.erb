@@ -3,6 +3,6 @@
   snippet_path(@snippet),
   method: :delete,
   remote: true,
-  data: { toast_message: 'Snippet deleted!', resource_id: @snippet.client_id, action: 'ajax:success->alert#deleteSuccess' },
+  data: { controller: "snippets", toast_message: 'Snippet deleted!', resource_id: @snippet.client_id, action: 'ajax:success->snippets#onDeleteSuccess ajax:error->snippets#onDeleteError' },
   class: "button--cta-primary ml-2"
 ) %>
