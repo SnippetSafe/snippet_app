@@ -175,8 +175,6 @@ class SnippetsController < ApplicationController
     @snippet = current_user.snippets.find(params[:id])
 
     if @snippet&.destroy
-      flash[:notice] = 'Snippet deleted!'
-      
       render json: { resource_id: @snippet.client_id }
     else
       head :bad_request
