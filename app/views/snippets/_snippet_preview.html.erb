@@ -1,5 +1,3 @@
-<% folder = snippet.folder_for_user(current_user) %>
-
 <%= render 'shared/cards/card_navigation', url: snippet_path(snippet), id: snippet.client_id do %>
   <div>
     <div class="relative flex items-start space-x-3">
@@ -10,12 +8,9 @@
             <% if snippet.private? %>
               <img class="margin-right--tiny" title="This snippet is only visible to you" data-checkbox-target="icon" src="/icons/lock-closed.svg" width="16">
             <% end %>
-            <% if folder %>
-              <div class="folder-tag">
-                <img src="/icons/white/folder.svg" width="12">
-                <span class="block margin-left--tiny"><%= folder.name %></span>
-              </div>
-            <% end%>
+            <div class="folder-tag">
+              <span class="block"><%= snippet.language.name %></span>
+            </div>
             <% if @display_popover %>
               <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
             <% end %>

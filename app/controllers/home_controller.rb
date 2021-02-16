@@ -6,12 +6,13 @@ class HomeController < ApplicationController
       @page_title = 'Feed'
       @snippets = current_user
         .snippets_for_feed
+        .includes(:language)
         .paginate(page: params[:page] || 1, per_page: 6)
     else
       # temp fix for when user not signed in
       @snippets = Snippet
         .public_snippets
-        .includes(:user)
+        .includes(:user, :language)
         .order(created_at: :desc)
         .paginate(page: params[:page] || 1, per_page: 6)
     end
