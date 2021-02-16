@@ -89,23 +89,7 @@
                 %>
               <% end %>
 
-              <%= render 'shared/cards/card_no_padding' do %>
-                <h4 class="text-center pt-2">
-                  <%= link_to 'Connect', connect_path, title: 'Search for people to connect with' %>
-                </h4>
-
-                <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
-                  <% if user_signed_in? %>
-                    <% User.not_followed_by(current_user).order(Arel.sql('RANDOM()')).limit(3).each do |user| %>
-                      <%= render partial: 'users/connect', locals: { user: user }%>
-                    <% end %>
-                  <% else %>
-                      <% User.order(Arel.sql('RANDOM()')).limit(3).each do |user| %>
-                        <%= render partial: 'users/connect', locals: { user: user }%>
-                      <% end %>
-                  <% end %>
-                </ul>
-              <% end %>
+              <%= render partial: 'shared/connect' %>
 
               <%# <%= render 'shared/cards/card' do %>
                 <%# <h4 class="text-center">Popular</h4> %>

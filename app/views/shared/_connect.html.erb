@@ -1,11 +1,13 @@
-<% if users_for_connect && users_for_connect.any? %>
-  <div class="card--container card--container-padding-horizontal margin-top" data-controller="list" data-list-url-value="<%= users_path(limit: 5) %>">
-    <h3 class="text-center no-margin-top margin-bottom">Connect</h3>
-    <% users_for_connect.each do |user| %>
-      <%= render partial: 'users/connect', locals: { user: user } %>
-    <% end %>
-    <div class="flex flex-end margin-top">
-      <%= link_to 'More...', connect_path, class: 'padding-right light' %>
-    </div>
-  </div>
+<% if @users_for_connect.any? %>
+  <%= render 'shared/cards/card_no_padding' do %>
+    <h4 class="text-center pt-2">
+      <%= link_to 'Connect', connect_path, title: 'Search for people to connect with' %>
+    </h4>
+
+    <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
+      <% @users_for_connect.each do |user| %>
+        <%= render partial: 'users/connect', locals: { user: user }%>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
