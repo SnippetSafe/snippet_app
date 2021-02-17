@@ -2,7 +2,7 @@
 <div class="min-w-0 flex-1">
   <div>
     <div class="text-sm">
-      <%= link_to user.name, user_path(user), class: "font-medium text-gray-900" %>
+      <%= link_to user.name, user_path(user), class: "font-bold text-gray-900 no-underline hover:underline" %>
     </div>
     <% if defined?(resource) %>
       <p class="text-sm text-gray-500">

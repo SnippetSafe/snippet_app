@@ -1,31 +1,33 @@
 <div data-controller="snippets">
   <div data-snippets-target="errors"></div>
 
-  <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onUpdateSuccess ajax:error->snippets#onUpdateError" } } do |f| %>
-    <div>
-      <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
-      <%= f.text_area :body, { data: { controller: 'codemirror', codemirror_target: 'mirror', codemirror_modes_value: @languages.to_json, codemirror_code_value: @snippet.body, codemirror_mode_value: @snippet.language.slug, codemirror_initialized_value: false, codemirror_read_only_value: false, }, class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
-    </div>
+  <div data-controller="codemirror snippets" data-codemirror-modes-value="<%= @languages.to_json %>" data-codemirror-code-value="<%= @snippet.body %>" data-codemirror-mode-value="<%= @snippet.language.slug %>" data-codemirror-initialized-value="false" data-codemirror-read-only-value="false" class="mt-4">
+    <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onUpdateSuccess ajax:error->snippets#onUpdateError" } } do |f| %>
+      <div>
+        <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
+        <%= f.text_area :body, { data: { codemirror_target: 'mirror' }, class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
+      </div>
 
-    <div class="create-snippet--options-wrapper">
-      <div class="flex v-center" style="cursor: pointer;"
-        data-controller="checkbox"
-        data-action="click->checkbox#toggle"
-        data-checkbox-checked-text-value="Public"
-        data-checkbox-checked-icon-value="/icons/lock-open.svg"
-        data-checkbox-unchecked-text-value="Private"
-        data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
-      >
-        <span data-checkbox-target="text">Public</span>
-        <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
-        <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
+      <div class="create-snippet--options-wrapper">
+        <div class="flex v-center" style="cursor: pointer;"
+          data-controller="checkbox"
+          data-action="click->checkbox#toggle"
+          data-checkbox-checked-text-value="Public"
+          data-checkbox-checked-icon-value="/icons/lock-open.svg"
+          data-checkbox-unchecked-text-value="Private"
+          data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
+        >
+          <span data-checkbox-target="text">Public</span>
+          <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
+          <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
+        </div>
+        <div class="flex">
+          <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), {}, data: { action: 'change->codemirror#updateMode' } %>
+          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), prompt: 'Select folder...' %>
+          <%= f.submit 'Update', class: "button--cta-primary ml-4" %>
+        </div>
       </div>
-      <div class="flex">
-        <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), {}, data: { action: 'change->codemirror#updateMode' } %>
-        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), prompt: 'Select folder...' %>
-        <%= f.submit 'Update', class: "button--cta-primary ml-4" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
 </div>
