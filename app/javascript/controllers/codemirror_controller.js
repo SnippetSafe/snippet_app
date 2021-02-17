@@ -13,7 +13,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('l', this.modesValue)
     if (this.shouldInitialize()) {
       this.initializeCodeMirror()
       this.setCodeMirrorValue()
