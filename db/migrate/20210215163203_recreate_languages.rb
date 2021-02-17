@@ -3,19 +3,14 @@ class RecreateLanguages < ActiveRecord::Migration[6.0]
     create_table :languages do |t|
       t.string :name, null: false
       t.string :slug, null: false
+      t.string :mode, null: false
       
       t.timestamps
     end
 
     Language.transaction do
-      LANGUAGES.each do |name, slug|
-        lang = Language.find_by_slug(slug)
-
-        if lang
-          lang.update!(name: name)
-        else
-          Language.create!(name: name, slug: slug)
-        end
+      LANGUAGES.each do |attrs|
+        Language.create!(attrs)
       end
     end
     

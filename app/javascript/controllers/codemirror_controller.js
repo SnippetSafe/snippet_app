@@ -24,7 +24,7 @@ export default class extends Controller {
   initializeCodeMirror() {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
       theme: 'one-light',
-      mode: 'javascript',
+      mode: "javascript",
       readOnly: this.readOnlyValue ? 'nocursor' : false
     });
 
@@ -69,6 +69,6 @@ export default class extends Controller {
   modeFromId(modeId) {
     return this.modesValue.find(mode => {
       return Number(mode.id) === Number(modeId)
-    }).slug
+    }).mode
   }
 }
