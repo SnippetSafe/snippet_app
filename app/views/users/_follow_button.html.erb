@@ -1,13 +1,17 @@
-<div data-controller="follow" data-follow-target="container" data-follow-id-value="<%= user.id %>">
+<div
+  data-controller="follow"
+  data-follow-target="container"
+  data-follow-id-value="<%= user.id %>"
+>
   <% if user_signed_in? && current_user == user %>
     <%# Don't display anything if the current user is the same as the user being viewed %>
   <% elsif user_signed_in? %>
     <% if current_user.following?(user) %>
-      <%= button_tag 'Following', data: { action: 'click->follow#unfollow' }, class: "button--unfollow" %>
+      <%= button_tag 'Following', data: { action: 'click->follow#unfollow' }, class: "button--cta-primary mt-2 flex w-full justify-center" %>
     <% else %>
-      <%= button_tag 'Follow', data: { action: 'click->follow#follow' }, class: "button--follow" %>
+      <%= button_tag 'Follow', data: { action: 'click->follow#follow' }, class: "button--cta-tertiary mt-2 flex w-full justify-center" %>
     <% end %>
   <% else %>
-    <%= button_tag 'Follow', type: :button, class: "button--follow", data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
+    <%= button_tag 'Follow', type: :button, class: "button--cta-tertiary mt-2 flex w-full justify-center", data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
   <% end %>
 </div>

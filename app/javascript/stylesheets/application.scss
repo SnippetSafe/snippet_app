@@ -66,7 +66,7 @@ pre {
     &-tertiary {
       @extend .button--cta;
     
-      @apply bg-white text-cyan border-cyan;
+      @apply bg-white text-cyan border-cyan hover:bg-cyan-light;
     }
   }
 
@@ -83,21 +83,5 @@ pre {
     @extend .button;
 
     @apply border-gray-500 text-gray-500 hover:bg-cyan-light;
-  }
-
-
-  // FOLLOW
-  &--follow {
-    @extend .button;
-
-    @apply border-cyan text-cyan hover:bg-cyan-light;
-  }
-
-  // UNFOLLOW
-  &--unfollow {
-    @extend .button;
-
-    @apply bg-cyan text-white border-cyan; 
-  }
-  
+  }  
 }

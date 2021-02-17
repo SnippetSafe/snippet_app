@@ -3,24 +3,21 @@
 <% end %>
 
 <div class="card--container card--container-padding">
-  <div class="flex v-center">
+  <div class="flex">
     <div class="flex flex-column">
       <img style="border-radius: 50%;" src="<%= @user.avatar_url %>" height="120" width="120" />
+      <% if @user == current_user %>
+        <%= button_to 'Edit Profile', edit_user_registration_path, method: :get, class: 'mt-2 button--cta-tertiary flex w-full justify-center' %>
+      <% else %>
+        <%= render partial: 'users/follow_button', locals: { user: @user } %>
+      <% end %>
     </div>
-    <div class="margin-left">
+    <div class="ml-4 mt-4">
       <h2 class="users-show--name"><%= @user.name %></h2>
       <div style="height: 40px;">
         <span><%= @user.bio %></span>
       </div>
     </div>
-  </div>
-
-  <div class="margin-top flex space-between">
-    <% if @user == current_user %>
-      <%= button_to 'EDIT PROFILE', edit_user_registration_path, method: :get, class: 'button--cta-follow' %>
-    <% else %>
-      <%= render partial: 'users/follow_button', locals: { user: @user } %>
-    <% end %>
   </div>
 </div>
 
@@ -29,10 +26,10 @@
     <div></div>
     <div class="tabs--headers-wrapper">
       <div data-target="tabs.tab" data-tab-id="snippets" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:snippets, @tab_id) %>">
-        <span><%= @user.filed_snippets.size %> Snippets</span>
+        <span><%= pluralize(@user.filed_snippets.size, 'Snippet') %></span>
       </div>
       <div data-target="tabs.tab" data-tab-id="followers" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:followers, @tab_id) %>">
-        <span><%= @followers.size %> Followers</span>
+        <span><%= pluralize(@followers.size, 'Follower') %></span>
       </div>
       <div data-target="tabs.tab" data-tab-id="following" data-action="click->tabs#change" class="tabs--header <%= tabs_class_for_active_tab(:following, @tab_id) %>">
         <span><%= @following.size %> Following</span>
@@ -70,15 +67,23 @@
       </div>
     </div>
 
-    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:followers, @tab_id) %>">
-      <% @followers.each do |follower| %>
-        <%= render partial: 'follow_preview', locals: { user: follower } %>
+    <div data-tabs-target="panel" class="mt-4 <%= tabs_details_class_for_active_tab(:followers, @tab_id) %>">
+      <%= render 'shared/cards/card_no_padding' do %>
+        <ul class="divide-y divide-gray-200">
+          <% @followers.each do |follower| %>
+            <%= render partial: 'follow_preview', locals: { user: follower } %>
+          <% end %>
+        </ul>
       <% end %>
     </div>
 
-    <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:following, @tab_id) %>">
-      <% @following.each do |following| %>
-        <%= render partial: 'follow_preview', locals: { user: following } %>
+    <div data-tabs-target="panel" class="mt-4 <%= tabs_details_class_for_active_tab(:following, @tab_id) %>">
+      <%= render 'shared/cards/card_no_padding' do %>
+        <ul class="divide-y divide-gray-200">
+          <% @following.each do |following| %>
+            <%= render partial: 'follow_preview', locals: { user: following } %>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   </div>
