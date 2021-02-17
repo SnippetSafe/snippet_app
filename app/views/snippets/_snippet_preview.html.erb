@@ -8,8 +8,8 @@
             <% if snippet.private? %>
               <img class="margin-right--tiny" title="This snippet is only visible to you" data-checkbox-target="icon" src="/icons/lock-closed.svg" width="16">
             <% end %>
-            <div class="folder-tag">
-              <span class="block"><%= snippet.language.name %></span>
+            <div class="rounded-md bg-gray-200 px-2 py-1 text-gray-500">
+              <span class="block text-xs"><%= snippet.language.name %></span>
             </div>
             <% if @display_popover %>
               <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
