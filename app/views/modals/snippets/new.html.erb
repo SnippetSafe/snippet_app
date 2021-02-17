@@ -22,8 +22,8 @@
         <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
       </div>
       <div class="flex">
-        <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @javascript.id), {}, data: { action: 'change->codemirror#updateMode' } %>
-        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), prompt: 'Select folder...' %>
+        <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @javascript.id), { prompt: 'Select language...' }, class: "block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", data: { action: 'change->codemirror#updateMode' } %>
+        <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, params[:folder_id]), { prompt: 'Select folder...' }, { class: "ml-1 block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" } %>
         <%= f.submit 'CREATE', class: "button--cta-primary ml-4" %>
       </div>
     </div>

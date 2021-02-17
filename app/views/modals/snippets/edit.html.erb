@@ -1,10 +1,12 @@
+<h3 class="text-center">Edit Snippet</h3>
+
 <div data-controller="snippets">
   <div data-snippets-target="errors"></div>
 
   <div data-controller="codemirror snippets" data-codemirror-modes-value="<%= @languages.to_json %>" data-codemirror-code-value="<%= @snippet.body %>" data-codemirror-mode-value="<%= @snippet.language.slug %>" data-codemirror-initialized-value="false" data-codemirror-read-only-value="false" class="mt-4">
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onUpdateSuccess ajax:error->snippets#onUpdateError" } } do |f| %>
       <div>
-        <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet description..." } %>
+        <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet title...", class: "block w-full mb-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
         <%= f.text_area :body, { data: { codemirror_target: 'mirror' }, class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>
       </div>
 
@@ -22,8 +24,8 @@
           <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
         </div>
         <div class="flex">
-          <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), {}, data: { action: 'change->codemirror#updateMode' } %>
-          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), prompt: 'Select folder...' %>
+          <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), { prompt: 'Select language...' }, class: "block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", data: { action: 'change->codemirror#updateMode' } %>
+          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), { prompt: 'Select folder...' }, { class: "ml-1 block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" } %>
           <%= f.submit 'Update', class: "button--cta-primary ml-4" %>
         </div>
       </div>
