@@ -44,4 +44,17 @@ module ApplicationHelper
   def color_for_like_status(snippet)
     snippet.liked_by?(current_user) ? 'text-red-500' : 'text-gray-500'
   end
+
+  def color_class_for_notification_icon(icon)
+    case icon
+    when 'heart'
+      'text-red-500'
+    when 'folder'
+      'text-yellow-500'
+    when 'user'
+      'text-pink-500'
+    when 'chat'
+      'text-purple-500'
+    end
+  end
 end

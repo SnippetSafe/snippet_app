@@ -4,6 +4,6 @@
   <% end %>
 
   <% if defined?(icon) %>
-    <%= image_tag "/icons/grey/#{icon}.svg", class: "h-5 w-5 absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px" %>
+    <%= render partial: "shared/icons/#{icon}", locals: { width: 5, height: 5, color: "#{color_class_for_notification_icon(icon)} absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px" } %>
   <% end %>
 </div>

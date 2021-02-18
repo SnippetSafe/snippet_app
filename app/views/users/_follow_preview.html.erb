@@ -1,4 +1,4 @@
-<%= render 'notifications/card', { user: user, icon: 'user-circle', url: user_path(user) } do %>
+<%= render 'connect/card', { user: user, url: user_path(user) } do %>
   <div class="flex justify-between flex-1">
     <div class="min-w-0">
       <div>
@@ -8,7 +8,7 @@
       </div>
       <div class="mt-2 text-sm text-gray-700">
         <p>
-          fds
+          <%= user.bio %>
         </p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <% liker = notification.notifiable.user %>
 <% snippet = notification.notifiable.snippet %>
 
-<%= render 'notifications/card', { user: liker, icon: 'chat', url: user_path(liker) } do %>
+<%= render 'notifications/card', { user: liker, icon: 'heart', url: user_path(liker) } do %>
   <div class="min-w-0 flex-1">
     <div>
       <div class="text-sm">
