@@ -18,18 +18,9 @@
       </div>
 
       <div class="create-snippet--options-wrapper">
-        <div class="flex v-center" style="cursor: pointer;"
-          data-controller="checkbox"
-          data-action="click->checkbox#toggle"
-          data-checkbox-checked-text-value="Public"
-          data-checkbox-checked-icon-value="/icons/lock-open.svg"
-          data-checkbox-unchecked-text-value="Private"
-          data-checkbox-unchecked-icon-value="/icons/lock-closed.svg"
-        >
-          <span data-checkbox-target="text">Public</span>
-          <img data-checkbox-target="icon" src="/icons/lock-open.svg" width="20">
-          <%= f.hidden_field :public, value: true, data: { checkbox_target: 'value' } %>
-        </div>
+
+        <%= render partial: 'shared/form/toggle', locals: { form: f, field: :public, enabled_text: 'Private', disabled_text: 'Public', enabled: !@snippet.public, flip: true } %>
+        
         <div class="flex">
           <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), { prompt: 'Select language...' }, class: "block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", data: { action: 'change->codemirror#updateMode' } %>
           <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), { prompt: 'Select folder...' }, { class: "ml-1 block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" } %>
