@@ -6,12 +6,12 @@
 
     <div>
       <%= f.label :password, "New password", class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm" %>
     </div>
 
     <div class="mt-4">
       <%= f.label :password_confirmation, "Confirm new password", class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm" %>
     </div>
 
     <%= f.submit "CHANGE PASSWORD", class: 'mt-4 button--cta-primary w-full flex justify-center' %>

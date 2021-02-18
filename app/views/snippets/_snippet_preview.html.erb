@@ -8,7 +8,7 @@
             <% if snippet.private? %>
               <%= render partial: 'shared/icons/lock_closed', locals: { height: 4, width: 4, color: 'text-yellow-500 mr-1' } %>
             <% end %>
-            <div class="rounded-md bg-gray-100 px-2 py-1 text-gray-500">
+            <div class="rounded-sm bg-gray-100 px-2 py-1 text-gray-500">
               <span class="block text-xs"><%= snippet.language.name %></span>
             </div>
             <% if @display_popover %>
@@ -32,7 +32,7 @@
     
     <div class="relative">
       <% if snippet.has_preview? %>
-        <div title="View the entire snippet" class="transition text-gray-500 hover:underline absolute border rounded-md bottom-2 right-2 z-10 bg-white text-sm px-2 py-1">
+        <div title="View the entire snippet" class="transition text-gray-500 hover:underline absolute border rounded-sm bottom-2 right-2 z-10 bg-white text-sm px-2 py-1">
           <span>More...</span>
         </div>
       <% end %>

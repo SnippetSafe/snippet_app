@@ -5,7 +5,7 @@
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  @apply font-mono p-2 rounded-lg border text-sm;
+  @apply font-mono p-2 rounded-sm border text-sm;
   height: auto;
   color: black;
   direction: ltr;

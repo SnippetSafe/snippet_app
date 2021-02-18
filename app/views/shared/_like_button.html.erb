@@ -1,5 +1,5 @@
 <div
-  class="rounded-md h-full"
+  class="rounded-sm h-full"
   <% if user_signed_in? %>
     data-controller="like"
     data-like-target="container"
@@ -11,7 +11,7 @@
   <% end %>
 >
   <div 
-    class="flex h-full items-center bg-gray-100 rounded-md px-1 mr-2 cursor-pointer hover:shadow-md transition"
+    class="flex h-full items-center bg-gray-100 rounded-sm px-1 mr-2 cursor-pointer hover:shadow-md transition"
     data-action="click->like#toggle"
   >
     <%= render partial: 'shared/icons/heart', locals: { width: 5, height: 5, color: color_for_like_status(snippet) } %>

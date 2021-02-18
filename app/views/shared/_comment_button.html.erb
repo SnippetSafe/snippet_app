@@ -1,4 +1,4 @@
-<%= link_to snippet_path(snippet, anchor: 'new-comment'), class: "no-underline flex items-center bg-gray-100 rounded-md px-1 cursor-pointer hover:shadow-md transition" do %>
+<%= link_to snippet_path(snippet, anchor: 'new-comment'), class: "no-underline flex items-center bg-gray-100 rounded-sm px-1 cursor-pointer hover:shadow-md transition" do %>
   <%= render partial: 'shared/icons/chat', locals: { width: 5, height: 5, color: 'text-gray-500 mr-1' } %>
   <span
     data-controller='counts'

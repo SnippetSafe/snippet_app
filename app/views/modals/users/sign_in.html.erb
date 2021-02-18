@@ -3,12 +3,12 @@
   <%= form_for @user, url: user_session_path, remote: true, html: { data: { controller: "sessions focus", type: "json", action: "ajax:success->sessions#onSignInSuccess ajax:error->sessions#onSignInError" } } do |f| %>
     <div>
       <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.email_field :email, autocomplete: "email", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", data: { focus_target: 'focus' }%>
+      <%= f.email_field :email, autocomplete: "email", class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm", data: { focus_target: 'focus' }%>
     </div>
 
     <div class="mt-4">
       <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      <%= f.password_field :password, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm" %>
     </div>
 
     <div class="mt-4 flex items-center justify-between">

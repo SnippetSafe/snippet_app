@@ -42,7 +42,7 @@
 
         <div class="max-w-3xl mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8 min-h-screen" data-controller="folders" data-folders-folder-id-value="<%= @folders.first.id %>">
           <%= render 'shared/cards/card', classes: 'xl:block xl:col-span-3 sticky position-sticky--topbar folders' do %>
-            <div class="border h-full rounded-lg overflow-y-scroll">
+            <div class="border h-full rounded-sm overflow-y-scroll">
               <div>
                 <%= yield(:folders_sidebar) %>
               </div>
