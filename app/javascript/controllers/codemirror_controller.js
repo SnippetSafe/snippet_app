@@ -29,7 +29,8 @@ export default class extends Controller {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
       theme: 'one-light',
       mode: "javascript",
-      readOnly: this.readOnlyValue ? 'nocursor' : false
+      readOnly: this.readOnlyValue ? 'nocursor' : false,
+      lineWrapping: true
     });
 
     this.initializedValue = true
