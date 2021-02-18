@@ -19,23 +19,6 @@ class Snippet < ApplicationRecord
     folders.find_by(user_id: user&.id)
   end
 
-  # TODO: Don't call serializers from model - just instantiate in controller
-  def serializable(current_user)
-    SnippetSerializer.new(self, scope: current_user)
-  end
-
-  def serialize(current_user)
-    serializable(current_user).to_h
-  end
-
-  def simple_serializable(current_user)
-    SimpleSnippetSerializer.new(self, scope: current_user)
-  end
-
-  def simple_serialize(current_user)
-    simple_serializable(current_user).to_h
-  end
-
   def comments_count
     comments.size
   end
@@ -48,8 +31,7 @@ class Snippet < ApplicationRecord
     likes.find_by_user_id(user&.id).present?
   end
 
-
-  # Prevent needing to do on the fly by saving to db
+  # TODO: Prevent needing to do on the fly by saving to db
   def preview
    @preview ||=  body.split("\n").first(15).join("\n")
   end

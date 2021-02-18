@@ -42,6 +42,7 @@ class FoldersController < ApplicationController
     @page_title = @folder.name
     @display_popover = true
     @snippets = @folder.snippets
+    @languages = Language.all.to_json
 
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search].present?
 

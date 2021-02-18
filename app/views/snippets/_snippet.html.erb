@@ -31,5 +31,5 @@
     </div>
   </div>
 
-  <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode: snippet.language.slug, read_only: true  } %>
+  <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode_id: snippet.language_id, read_only: true  } %>
 <% end %>

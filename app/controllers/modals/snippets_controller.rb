@@ -5,7 +5,7 @@ class Modals::SnippetsController < ModalsController
     @snippet = Snippet.new
     @folders = current_user.folders
     @languages = Language.order(name: :asc)
-    @javascript = @languages.find_by_slug('javascript')
+    @javascript = @languages.find_by_name('JavaScript')
   end
 
   def edit

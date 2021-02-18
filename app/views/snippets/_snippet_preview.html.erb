@@ -36,7 +36,7 @@
           <span>More...</span>
         </div>
       <% end %>
-      <%= render partial: 'shared/codemirror', locals: { code: snippet.preview, mode: snippet.language.slug, read_only: true, classes: 'snippet--content' } %>
+      <%= render partial: 'shared/codemirror', locals: { code: snippet.preview, mode_id: snippet.language_id, read_only: true, classes: 'snippet--content' } %>
     </div>
   </div>
 <% end %>

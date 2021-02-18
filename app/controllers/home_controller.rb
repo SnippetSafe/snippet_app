@@ -2,6 +2,8 @@ class HomeController < ApplicationController
   def index
     @display_popover = true
 
+    @languages = Language.order(name: :asc).to_json
+
     if user_signed_in?
       @page_title = 'Feed'
       @snippets = current_user

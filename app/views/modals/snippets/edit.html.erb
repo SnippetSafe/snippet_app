@@ -3,7 +3,14 @@
 <div data-controller="snippets">
   <div data-snippets-target="errors"></div>
 
-  <div data-controller="codemirror snippets" data-codemirror-modes-value="<%= @languages.to_json %>" data-codemirror-code-value="<%= @snippet.body %>" data-codemirror-mode-value="<%= @snippet.language.slug %>" data-codemirror-initialized-value="false" data-codemirror-read-only-value="false" class="mt-4">
+  <div data-controller="codemirror"
+    data-codemirror-modes-value="<%= @languages.to_json %>"
+    data-codemirror-code-value="<%= @snippet.body %>"
+    data-codemirror-mode-id-value="<%= @snippet.language_id %>"
+    data-codemirror-initialized-value="false"
+    data-codemirror-read-only-value="false"
+    class="mt-4"
+  >
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onUpdateSuccess ajax:error->snippets#onUpdateError" } } do |f| %>
       <div>
         <%= f.text_field :description, { class: "new-snippet--description", placeholder: "Snippet title...", class: "block w-full mb-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" } %>

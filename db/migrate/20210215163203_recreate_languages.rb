@@ -2,15 +2,13 @@ class RecreateLanguages < ActiveRecord::Migration[6.0]
   def up
     create_table :languages do |t|
       t.string :name, null: false
-      t.string :slug, null: false
-      t.string :mode, null: false
       
       t.timestamps
     end
 
     Language.transaction do
       LANGUAGES.each do |attrs|
-        Language.create!(attrs)
+        Language.create!(name: attrs[:name])
       end
     end
     

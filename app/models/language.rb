@@ -1,3 +1,3 @@
 class Language < ApplicationRecord
-  validates_uniqueness_of :slug, :name
+  validates_uniqueness_of :name
 end

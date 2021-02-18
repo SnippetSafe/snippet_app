@@ -1,13 +1,13 @@
 import { Controller } from 'stimulus';
 import CodeMirror from 'codemirror';
-// import 'codemirror/theme/duotone-dark.css'
+import 'codemirror/mode/meta.js'
 
 export default class extends Controller {
   static targets = ["wrapper", "mirror", "body", "description"];
   static values = {
     modes: Array,
     code: String,
-    mode: String,
+    modeId: String,
     initialized: Boolean,
     readOnly: Boolean
   }
@@ -16,7 +16,11 @@ export default class extends Controller {
     if (this.shouldInitialize()) {
       this.initializeCodeMirror()
       this.setCodeMirrorValue()
-      if (this.hasModeValue) { this.importMode(this.modeValue) }
+
+      if (this.hasModeIdValue) {
+        this.importModeFromId(this.modeIdValue)
+      }
+
       this.addEventListeners()
     }
   }
@@ -38,10 +42,37 @@ export default class extends Controller {
 
   updateMode(event) {
     const modeId = event.target.value
+    
+    this.importModeFromId(modeId)
+  }
+
+  importModeFromId(modeId) {
     const mode = this.modeFromId(modeId)
     const hasMode = Object.keys(CodeMirror.modes).includes(mode)
 
     !hasMode ? this.importMode(mode) : this.setMode(mode)
+  }
+
+  importMode(mode) {
+    const path = mode.mode
+
+    import(`codemirror/mode/${path}/${path}.js`)
+      .then(() => this.setMode(mode))
+      .catch(console.error)
+  }
+
+  setMode(mode) {
+    this.codeMirror.setOption("mode", mode.mime);
+  }
+
+  modeFromId(modeId) {
+    const dbMode = this.modesValue.find(mode => {
+      return Number(mode.id) === Number(modeId)
+    })
+
+    return CodeMirror.modeInfo.find(mode => {
+      return mode.name === dbMode.name
+    })
   }
 
   shouldInitialize() {
@@ -54,21 +85,5 @@ export default class extends Controller {
     editor.addEventListener("click", (event) => {
       event.stopPropagation()
     })
-  }
-
-  importMode(mode) {
-    import(`codemirror/mode/${mode}/${mode}.js`)
-      .then(() => this.setMode(mode))
-      .catch(console.error)
-  }
-
-  setMode(mode) {
-    this.codeMirror.setOption("mode", mode);
-  }
-
-  modeFromId(modeId) {
-    return this.modesValue.find(mode => {
-      return Number(mode.id) === Number(modeId)
-    }).mode
   }
 }

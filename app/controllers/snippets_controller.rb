@@ -6,6 +6,7 @@ class SnippetsController < ApplicationController
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
     @snippets = @user.filed_snippets.includes(:user, :folders)
+    @languages = Language.all.to_json
 
     # TODO: Extract this logic to model/service
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]
@@ -90,6 +91,7 @@ class SnippetsController < ApplicationController
 
   def show
     @page_title = "Snippet"
+    @languages = Language.all.to_json
     @snippet = Snippet.includes(comments: :user).find_by(id: params[:id])
 
     unless @snippet && @snippet.visible_to?(current_user)
@@ -127,6 +129,7 @@ class SnippetsController < ApplicationController
 
     if snippet.save
       @display_popover = true
+      @languages = Language.all.to_json
 
       partial = if request.referer == snippet_path(snippet)
         'snippets/snippet'
@@ -162,6 +165,7 @@ class SnippetsController < ApplicationController
       end
 
       @display_popover = true
+      @languages = Language.all.to_json
       element = render_to_string partial: partial, locals: { snippet: snippet }
 
       render json: { client_id: snippet.client_id, folder_id: snippet_params[:folder_id], element: element }
