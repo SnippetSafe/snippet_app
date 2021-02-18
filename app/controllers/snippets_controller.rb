@@ -154,8 +154,11 @@ class SnippetsController < ApplicationController
       folder = current_user.folders.find(snippet_params[:folder_id])
 
       Snippet.transaction do
-        current_user.snippet_folders.find_by(snippet_id: params[:id]).destroy
-        SnippetFolder.create!(snippet_id: params[:id], folder_id: snippet_params[:folder_id])
+        snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+
+        if snippet_folder.folder_id != snippet_params[:folder_id].to_i
+          snippet_folder.update!(folder_id: snippet_params[:folder_id])
+        end
       end
 
       partial = if URI(request.referer).path == snippet_path(snippet)
