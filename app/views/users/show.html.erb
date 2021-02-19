@@ -4,7 +4,7 @@
 
 <div class="card--container card--container-padding">
   <div class="flex">
-    <div class="flex flex-column">
+    <div class="flex flex-col">
       <img style="border-radius: 50%;" src="<%= @user.avatar_url %>" height="120" width="120" />
       <% if @user == current_user %>
         <%= button_to 'Edit Profile', edit_user_registration_path, method: :get, class: 'mt-2 button--cta-tertiary flex w-full justify-center' %>

@@ -1,13 +1,13 @@
 <div id="header">
   <div id="header-nav-wrapper">
     <div id="header-nav" class="position-relative">
-      <div class="flex v-center flex-1">
+      <div class="flex items-center flex-1">
         <%= link_to root_path do %>
           <div class="border-radius-50" style="background-color: #3AAFA9; height: 40px; width: 40px;"></div>
         <% end %>
       </div>
 
-      <div class="flex v-center relative">
+      <div class="flex items-center relative">
         <% if user_signed_in? %>
           <%= render partial: 'shared/nav_item', locals: { path: root_path, page_title: 'Feed', icon: 'home' } %>
           <%= render partial: 'shared/nav_item', locals: { path: folders_path, page_title: 'Folders', icon: 'folder' } %>
@@ -24,19 +24,12 @@
       </div>
 
       <% if user_signed_in? %>
-        <div class="flex v-center flex-1 flex-end">
+        <div class="flex items-center flex-1 justify-end">
           <%= render partial: 'shared/profile_nav_item.html.erb' %>
         </div>
       <% end %>
     </div>
   </div>
-
-  <%# <div class="flex h-center" style="margin-top: -14px; margin-bottom: -14px;">
-    <div class="inline-block padding-left padding-right" style="background-color: white; z-index: 50; padding-top: 4px; padding-bottom: 4px; border-radius: 20px; background-color: #DEF2F1; box-shadow: 0 2px 2px lightgrey;">
-      <h3 class="no-margin bold">page title</h3>
-    </div>
-  </div> %>
-  <%# <div class="bg-grey" style="height: 16px;"></div> %>
 </div>
 
 <div id="header-spacer"></div>

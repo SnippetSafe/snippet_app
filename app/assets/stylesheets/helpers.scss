@@ -24,22 +24,6 @@
   overflow-y: hidden;
 }
 
-// FLEXBOX
-
-.flex { display: flex }
-.inline-flex { display: inline-flex; }
-.flex-column { flex-direction: column; }
-.v-center { align-items: center; }
-.v-bottom { align-items: baseline; }
-.h-center { justify-content: center; }
-.flex-end { justify-content: flex-end; }
-
-.space-between { justify-content: space-between; }
-
-.flex-1 { flex: 1; }
-.flex-2 { flex: 2; }
-.flex-3 { flex: 3; }
-
 // DISPLAY
 
 .block { display: block; }

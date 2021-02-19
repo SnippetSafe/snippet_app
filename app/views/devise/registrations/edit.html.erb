@@ -17,7 +17,7 @@
         <%= form_for current_user, url: modify_users_path, html: { data: { controller: "form", form_enabled_class: "button--cta-primary", form_disabled_class: "button--disabled" }, method: :put } do |f| %>
 
           <div>
-            <div id="upload" data-controller="upload modal" data-modal-url-value='/modals/users/edit_avatar' class="mt-1 edit-avatar--wrapper flex v-center">
+            <div id="upload" data-controller="upload modal" data-modal-url-value='/modals/users/edit_avatar' class="mt-1 edit-avatar--wrapper flex items-center">
               <img data-target="upload.avatar" src="<%= current_user.avatar_url %>" width="60" height="60" style="border-radius: 50%;">
               <button class="ml-4 button--cta-tertiary" data-action="click->upload#selectNewImage">Edit avatar</button>
               <%= f.file_field :avatar, class: "hidden", data: { target: "upload.fileInput", action: "change->upload#handleFileSelect open-avatar-modal@window->modal#present" } %>
