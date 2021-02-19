@@ -3,9 +3,22 @@
 <% color = active ? 'text-cyan' : 'text-gray-400 hover:text-cyan transition' %>
 <% css_class = active ? 'active' : 'inactive' %>
 
-<%= link_to(path, class: 'relative px-3') do %>
+<%= link_to(path, class: 'relative px-3', data: { controller: 'tooltip', action: 'mouseenter->tooltip#display mouseleave->tooltip#hide' }) do %>
   <%= render partial: "shared/icons/#{icon}", locals: { width: 7, height: 7, color: color } %>
   <% if path == notifications_path %>
     <%= notification_counter(current_user) %>
+  <% end %>
+
+  <div 
+    class="hidden shadow-sm transition px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-6 left-1/2 -translate-x-2/4"
+    data-tooltip-target="tooltip"
+  >
+    <span><%= page_title %></span>
+  </div>
+
+  <% if active %>
+    <div data-controller="tooltip-listener" data-tooltip-listener-target="tooltip" data-action="hide-tooltip@window->tooltip-listener#hide display-tooltip@window->tooltip-listener#display" class="transition shadow-sm px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-6 left-1/2 -translate-x-2/4">
+      <span><%= page_title %></span>
+    </div>
   <% end %>
 <% end %>

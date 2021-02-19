@@ -7,13 +7,19 @@
         <% end %>
       </div>
 
-      <div class="flex v-center">
+      <div class="flex v-center relative">
         <% if user_signed_in? %>
-          <%= render partial: 'shared/nav_item', locals: { path: root_path, icon: 'home' } %>
-          <%= render partial: 'shared/nav_item', locals: { path: folders_path, icon: 'folder' } %>
-          <%= render partial: 'shared/nav_item', locals: { path: snippets_path, icon: 'snippet' } %>
-          <%= render partial: 'shared/nav_item', locals: { path: notifications_path, icon: 'bell' } %>
-          <%= render partial: 'shared/nav_item', locals: { path: connect_path, icon: 'connect' } %>
+          <%= render partial: 'shared/nav_item', locals: { path: root_path, page_title: 'Feed', icon: 'home' } %>
+          <%= render partial: 'shared/nav_item', locals: { path: folders_path, page_title: 'Folders', icon: 'folder' } %>
+          <%= render partial: 'shared/nav_item', locals: { path: snippets_path, page_title: 'Snippets', icon: 'snippet' } %>
+          <%= render partial: 'shared/nav_item', locals: { path: notifications_path, page_title: 'Notifications', icon: 'bell' } %>
+          <%= render partial: 'shared/nav_item', locals: { path: connect_path, page_title: 'Connect', icon: 'connect' } %>
+        <% end %>
+        
+        <% if @page_title %>
+          <div data-controller="tooltip-listener" data-tooltip-listener-target="tooltip" data-action="hide-tooltip@window->tooltip-listener#hide display-tooltip@window->tooltip-listener#display" class="transition shadow-sm px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-2.5 left-1/2 -translate-x-2/4">
+            <span><%= @page_title %></span>
+          </div>
         <% end %>
       </div>
 

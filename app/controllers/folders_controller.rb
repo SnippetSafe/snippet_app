@@ -1,6 +1,4 @@
 class FoldersController < ApplicationController
-  # layout 'application_mid_width', only: :index
-
   MINIMUM_FOLDERS = 1.freeze
 
   before_action :authenticate_user!
@@ -17,12 +15,9 @@ class FoldersController < ApplicationController
 
   def index
     @snippets = Snippet.last(5)
-    @page_title = 'Folders'
 
     @folders = current_user.folders
-
     @folders = @folders.where('name ILIKE ?', "%#{params[:search]}%") if params[:search].present?
-
     @folders = @folders
       .order(name: :asc)
       .paginate(page: params[:page] || 1, per_page: 30)

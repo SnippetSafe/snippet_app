@@ -5,7 +5,6 @@ class HomeController < ApplicationController
     @languages = Language.order(name: :asc).to_json
 
     if user_signed_in?
-      @page_title = 'Feed'
       @snippets = current_user
         .snippets_for_feed
         .includes(:language)
@@ -31,8 +30,6 @@ class HomeController < ApplicationController
   end
 
   def connect
-    @page_title = 'Connect'
-
     @users = if user_signed_in?
       current_user.not_following
       .paginate(page: params[:page] || 1, per_page: 16)

@@ -33,6 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
+    @page_title = 'Account'
     @tab_id = params[:tab_id] || :account
     super
   end
