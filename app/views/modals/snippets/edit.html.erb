@@ -22,9 +22,9 @@
           <%= render partial: 'shared/form/toggle', locals: { form: f, field: :public, enabled_text: 'Private', disabled_text: 'Public', enabled: !@snippet.public, flip: true } %>
         </div>
 
-        <div class="flex flex-3">
-          <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), { prompt: 'Select language...' }, class: "block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-sm", data: { action: 'change->codemirror#updateMode' } %>
-          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), { prompt: 'Select folder...' }, { class: "ml-1 block w-full pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-sm" } %>
+        <div class="flex flex-auto justify-end">
+          <%= f.select :language_id, options_from_collection_for_select(@languages, :id, :name, @snippet.language_id), { prompt: 'Select language...' }, class: "block w-40 pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-sm", data: { action: 'change->codemirror#updateMode' } %>
+          <%= f.select :folder_id, options_from_collection_for_select(@folders, :id, :name, @folder.id), { prompt: 'Select folder...' }, { class: "ml-1 block w-40 pl-3 pr-10 py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-sm" } %>
           <%= f.submit 'Update', class: "button--cta-primary ml-4" %>
         </div>
       </div>
