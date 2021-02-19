@@ -20,9 +20,7 @@
     <%= javascript_pack_tag 'snippet_app' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if content_for? :cache_control %>
-      <%= yield :cache_control %>
-    <% end %>
+    <meta name="turbolinks-cache-control" content="no-preview">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/atom-one-light.min.css">
     <%# <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/highlight.min.js"></script> %>
