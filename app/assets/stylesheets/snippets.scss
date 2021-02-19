@@ -124,12 +124,6 @@
   }
 }
 
-.create-snippet--options-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-}
-
 .create-snippet--wrapper {
   // display: flex;
   // flex-direction: column;
@@ -139,17 +133,6 @@
   margin: 16px 0px;
 }
 
-// textarea {
-//   display: inline-block;
-//   font-family: "Monaco", courier, monospace;
-//   color: #333;
-//   padding: 0;
-//   height: 100%;
-// }
-
-// textarea:focus {
-//   outline: 0;
-// }
 
 .create-snippet--input-wrapper {
   flex: 1;
