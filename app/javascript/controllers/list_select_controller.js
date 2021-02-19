@@ -18,12 +18,17 @@ export default class extends Controller {
 	connect() {
 		events(this)
 		this.buttonTarget.disabled = true
+
+		if (!isNaN(this.selectedIdValue)) {
+			const currentSelection = this.selectById(this.selectedIdValue)
+			this.reassignCheckmark(currentSelection)
+		}
 	}
 
 	selectFolder(event) {
 		const currentSelection = event.currentTarget
 		const id = currentSelection.dataset.id
-		const previousSelection = this.previouslySelected()
+		const previousSelection = this.selectById(this.selectedIdValue)
 
 		if (currentSelection === previousSelection ) { return }
 
@@ -33,21 +38,25 @@ export default class extends Controller {
 		this.toggleButton()
 	}
 
-	previouslySelected() {
+	selectById(id) {
 		return this.itemTargets.find(item => {
-			return Number(item.dataset.id) === this.selectedIdValue 
+			return Number(item.dataset.id) === id 
 		})
 	}
 
 	reassignClasses(previousSelection, currentSelection) {
-		previousSelection.classList.remove('move-snippet--item-selected')
-		previousSelection.classList.add('move-snippet--item')
+		if (previousSelection) {
+			previousSelection.classList.remove('move-snippet--item-selected')
+			previousSelection.classList.add('move-snippet--item')
+		}
+
 		currentSelection.classList.remove('move-snippet--item')
 		currentSelection.classList.add('move-snippet--item-selected')
 	}
 
 	reassignCheckmark(currentSelection) {
 		const checkmark = this.checkmarkTarget
+		checkmark.classList.remove('hidden')
 		const checkmarkClone = checkmark.cloneNode(true)
 		
 		checkmark.remove()

@@ -16,11 +16,6 @@
         class="<%= folder.id == @current_folder_id ? 'move-snippet--item-selected' : 'move-snippet--item' %>"
       >
         <span><%= folder.name %></span>
-        <% if folder.id == @current_folder_id %>
-          <div data-list-select-target="checkmark">
-            <%= render partial: 'shared/icons/check', locals: { height: 5, width: 5, color: 'text-gray-500' } %>
-          </div>
-        <% end %>
       </div>
     <% end %>
   </div>
@@ -34,5 +29,9 @@
     >
       <%= @header %>
     </button>
+  </div>
+
+  <div data-list-select-target="checkmark" class="hidden">
+    <%= render partial: 'shared/icons/check', locals: { height: 5, width: 5, color: 'text-gray-500' } %>
   </div>
 </div>
