@@ -9,7 +9,7 @@
       <%= yield content %>
     <% else %>
       <div class="more-button">
-        <%= image_tag "/icons/more.svg", width: 12 %>
+        <%= render partial: 'shared/icons/more', locals: { width: 4, height: 4, color: '' } %>
       </div>
     <% end %>
   </div>
@@ -21,7 +21,7 @@
     class="position-<%= defined?(position) ? position : 'relative' %>"
   >
     <div class="more-button">
-      <%= image_tag "/icons/more.svg", width: 12 %>
+      <%= render partial: 'shared/icons/more', locals: { width: 4, height: 4, color: '' } %>
     </div>
   </div>
 <% end %>
