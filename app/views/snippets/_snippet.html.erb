@@ -7,7 +7,7 @@
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; align-items: center;">
           <% if snippet.private? %>
-            <img class="margin-right--tiny" data-checkbox-target="icon" title="This snippet is only visible to you" src="/icons/lock-closed.svg" width="16">
+            <%= render partial: 'shared/icons/lock_closed', locals: { height: 4, width: 4, color: 'text-yellow-500 mr-1' } %>
           <% end %>
           <div class="rounded-sm bg-gray-100 px-2 py-1 text-gray-500">
             <span class="block text-xs"><%= snippet.language.name %></span>
