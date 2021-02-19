@@ -1,31 +1,34 @@
 <div
-  data-controller="snippets"
-  data-snippets-selected-folder-id="<%= @current_folder_id %>"
-  data-snippets-original-folder-id="<%= @current_folder_id %>"
-  data-snippets-confirm-path="<%= file_snippet_path(@snippet) %>"
+  data-controller="list-select"
+  data-list-select-selected-id-value="<%= @current_folder_id %>"
+  data-list-select-original-id-value="<%= @current_folder_id %>"
+  data-list-select-confirm-path-value="<%= file_snippet_path(@snippet) %>"
 >
-  <input data-action="keyup->snippets#modal_search" class="move-snippet--search" type="search" placeholder="Find a folder...">
-  <div class="move-snippet--list" data-target="snippets.list">
+  <input data-action="input->list-select#search" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm shadow-sm" type="search" placeholder="Find a folder...">
+  <div class="mt-4 border border-gray-300 rounded-sm w-full h-96 overflow-y-scroll">
     <% @folders.each do |folder| %>
       <div
-        data-action="click->snippets#select_folder"
-        data-folder-id="<%= folder.id %>"
-        data-target="snippets.listItem"
-        data-filter-key="<%= folder.name %>"
+        data-action="click->list-select#selectFolder"
+        data-list-select-id="<%= folder.id %>"
+        data-id="<%= folder.id %>"
+        data-list-select-target="item"
+        data-filter-value="<%= folder.name %>"
         class="<%= folder.id == @current_folder_id ? 'move-snippet--item-selected' : 'move-snippet--item' %>"
       >
         <span><%= folder.name %></span>
         <% if folder.id == @current_folder_id %>
-          <img id="selected-checkmark" src="/icons/checked.svg" width="14">
+          <div data-list-select-target="checkmark">
+            <%= render partial: 'shared/icons/check', locals: { height: 5, width: 5, color: 'text-gray-500' } %>
+          </div>
         <% end %>
       </div>
     <% end %>
   </div>
-  <div class="move-snippet--buttons">
+  <div class="mt-4 flex justify-end">
     <button data-action="click->modal#close" class="button--cancel">Cancel</button>
     <button
-      data-action="click->snippets#file"
-      data-target="snippets.moveButton"
+      data-action="click->list-select#file"
+      data-list-select-target="button"
       class="button--disabled ml-2"
       disabled
     >

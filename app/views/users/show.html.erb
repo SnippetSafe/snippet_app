@@ -40,18 +40,19 @@
   <div class="tabs-details">
     <div data-tabs-target="panel" class="<%= tabs_details_class_for_active_tab(:snippets, @tab_id) %>">
       <div data-controller="infinite-scroll-window" data-infinite-scroll-window-base-url="<%= user_snippets_path(@user) %>">
-        <div style="display: flex; align-items: center; justify-content: space-between;" class="margin-top">
+     
 
-            <div class="searchbar">
-              <input autofocus
-                type="text"
-                placeholder="Search"
-                data-action="input->infinite-scroll-window#search"
-                data-infinite-scroll-window-target="input"
-              />
-              <img src="/icons/search.svg">
-            </div>
-
+        <div class="mb-4 relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <%= render partial: 'shared/icons/search', locals: { width: 5, height: 5, color: 'text-gray-400' } %>
+          </div>
+          <input
+            type="text" 
+            class="focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 pl-10 sm:text-sm border-gray-300 rounded-sm shadow-sm"
+            placeholder="Search snippets"
+            data-action="input->infinite-scroll-window#search"
+            data-infinite-scroll-window-target="input"
+          >
         </div>
 
         <div class="margin-top"

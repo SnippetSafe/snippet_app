@@ -18,7 +18,7 @@ class Modals::SnippetsController < ModalsController
     @snippet = Snippet.find(params[:id])
     @current_folder_id = current_user.snippet_folders.find_by(snippet_id: params[:id])&.folder&.id
     @header = @current_folder_id ? 'Move Snippet' : 'File Snippet'
-    @folders = current_user.folders
+    @folders = current_user.folders.order(name: :asc)
   end
 
   private
