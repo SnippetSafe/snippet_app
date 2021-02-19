@@ -30,7 +30,7 @@ export default class extends Controller {
       theme: 'one-light',
       mode: "javascript",
       readOnly: this.readOnlyValue ? 'nocursor' : false,
-      lineWrapping: true
+      scrollbarStyle: "null"
     });
 
     this.initializedValue = true
