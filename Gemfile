@@ -22,10 +22,12 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'byebug'
 
-gem 'devise'
+gem "devise", github: "heartcombo/devise", branch: "master"
 gem "aws-sdk-s3", require: false
 gem 'will_paginate', '~> 3.1.0'
 gem 'redis'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

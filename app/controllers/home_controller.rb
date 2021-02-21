@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @page_title = 'Home'
     @display_popover = true
 
     @languages = Language.order(name: :asc).to_json

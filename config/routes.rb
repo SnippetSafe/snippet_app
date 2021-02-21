@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     registrations: 'registrations',
     sessions: 'sessions',
     passwords: 'passwords',
-    confirmations: 'confirmations'
+    confirmations: 'confirmations',
+    omniauth_callbacks: 'omniauth_callbacks'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'

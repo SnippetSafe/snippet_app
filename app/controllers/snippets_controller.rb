@@ -2,6 +2,7 @@ class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
   def index
+    @page_title = 'Stanley / Snippet'
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
     @snippets = @user.filed_snippets.includes(:user, :folders)
