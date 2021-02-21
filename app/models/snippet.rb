@@ -56,6 +56,14 @@ class Snippet < ApplicationRecord
     end
   end
 
+  def comments?
+    comments_count > 0
+  end
+
+  def likes?
+    likes_count > 0
+  end
+
   private
 
   def owner_folder_presence

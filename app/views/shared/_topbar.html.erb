@@ -16,7 +16,7 @@
           <%= render partial: 'shared/nav_item', locals: { path: connect_path, page_title: 'Connect', icon: 'connect' } %>
         <% end %>
         
-        <% if @page_title %>
+        <% if false #@page_title %>
           <div data-controller="tooltip-listener" data-tooltip-listener-target="tooltip" data-action="hide-tooltip@window->tooltip-listener#hide display-tooltip@window->tooltip-listener#display" class="transition shadow-sm px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-2.5 left-1/2 -translate-x-2/4">
             <span><%= @page_title %></span>
           </div>

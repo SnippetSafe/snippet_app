@@ -1,12 +1,14 @@
-<%= link_to snippet_path(snippet, anchor: 'new-comment'), class: "no-underline flex items-center bg-gray-100 rounded-sm px-1 cursor-pointer hover:shadow-md transition" do %>
-  <%= render partial: 'shared/icons/chat', locals: { width: 5, height: 5, color: 'text-gray-500 mr-1' } %>
+<%= link_to snippet_path(snippet, anchor: 'new-comment'), class: "no-underline flex items-center cursor-pointer transition" do %>
+  <%= render partial: 'shared/icons/chat', locals: { width: 5, height: 5, color: 'text-gray-500' } %>
   <span
     data-controller='counts'
     data-counts-count-value="<%= snippet.comments_count %>"
     data-action='comment-created@window->counts#increment comment-deleted@window->counts#decrement'
     data-counts-target="count"
-    class="inline-block text-sm text-gray-500"
+    class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"
   >
-    <%= snippet.comments_count %>
+    <% if snippet.comments? %> 
+      <%= snippet.comments_count %>
+    <% end %>
   </span>
 <% end %>

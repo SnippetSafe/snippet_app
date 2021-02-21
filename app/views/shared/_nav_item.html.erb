@@ -8,15 +8,17 @@
   <% if path == notifications_path %>
     <%= notification_counter(current_user) %>
   <% end %>
+  
+  <% if false #temp don't display %>
+    <div 
+      class="hidden shadow-sm transition px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-6 left-1/2 -translate-x-2/4"
+      data-tooltip-target="tooltip"
+    >
+      <span><%= page_title %></span>
+    </div>
+  <% end %>
 
-  <div 
-    class="hidden shadow-sm transition px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-6 left-1/2 -translate-x-2/4"
-    data-tooltip-target="tooltip"
-  >
-    <span><%= page_title %></span>
-  </div>
-
-  <% if active %>
+  <% if false #active %>
     <div data-controller="tooltip-listener" data-tooltip-listener-target="tooltip" data-action="hide-tooltip@window->tooltip-listener#hide display-tooltip@window->tooltip-listener#display" class="transition shadow-sm px-2 absolute text-sm bg-white text-cyan transform rounded-sm m-auto -bottom-6 left-1/2 -translate-x-2/4">
       <span><%= page_title %></span>
     </div>
