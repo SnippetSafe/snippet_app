@@ -2,8 +2,8 @@
   <div id="header-nav-wrapper">
     <div id="header-nav" class="position-relative">
       <div class="flex items-center flex-1">
-        <%= link_to root_path do %>
-          <div class="border-radius-50" style="background-color: #3AAFA9; height: 40px; width: 40px;"></div>
+        <%= link_to root_path, class: 'flex-1' do %>
+          <%= render partial: 'shared/icons/logo_full', locals: { height: 12 } %>
         <% end %>
       </div>
 
