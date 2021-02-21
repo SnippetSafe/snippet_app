@@ -38,7 +38,7 @@ class User < ApplicationRecord
   #TODO: Add tests for this
   after_create :create_default_folder
 
-  validates :name, presence: true, length: { maximum: 15 }, format: { with: ALPHANUMERIC }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 15 }, format: { with: ALPHANUMERIC }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
 
@@ -144,32 +144,44 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
+    is_new_user = false
+  
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      is_new_user = true
+
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.nickname   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails, 
-      # uncomment the line below to skip the confirmation emails.
-      user.skip_confirmation!
+      user.name = unique_name(parsed_name(auth.info.nickname)) # github display name
+      user.skip_confirmation! # github already validates emails
     end
-
-    byebug
-
-    if user.persisted?
+    
+    if is_new_user && user.persisted?
       user.attach_avatar_from_omniauth(auth.info.image)
     end
 
-    byebug
-
     user
+  end
+
+  def self.parsed_name(name)
+    name.gsub('-', '')
+  end
+
+  def self.unique_name(test_name)
+    # As we are using this within a create block User.all is scoped
+    # to the arguments passed to the where clause. 
+    existing_user = User.unscoped.find_by(name: test_name)
+
+    if existing_user
+      unique_name("#{test_name}#{rand(1000)}")
+    else
+      test_name
+    end
   end
 
   def attach_avatar_from_omniauth(avatar_url)
     begin
       image = open(avatar_url)
-
-      avatar.attach(io: image, filename: 'whocares')
+      avatar.attach(io: image, filename: "#{id}_avatar")
     rescue
     end
   end
