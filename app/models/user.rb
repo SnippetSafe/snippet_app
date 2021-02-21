@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
@@ -142,7 +144,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.nickname   # assuming the user model has a name
@@ -151,9 +153,29 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       user.skip_confirmation!
     end
+
+    byebug
+
+    if user.persisted?
+      user.attach_avatar_from_omniauth(auth.info.image)
+    end
+
+    byebug
+
+    user
+  end
+
+  def attach_avatar_from_omniauth(avatar_url)
+    begin
+      image = open(avatar_url)
+
+      avatar.attach(io: image, filename: 'whocares')
+    rescue
+    end
   end
 
   private
+
 
   def create_default_folder
     folders.create!(name: DEFAULT_FOLDER_NAME)
