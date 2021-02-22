@@ -12,11 +12,6 @@
           }
         )
       %>
-    <% else %>
-      <div class="flex justify-center">
-        <%= button_tag('LOG IN', type: :button, class: "flex-1 flex justify-center button--cta-tertiary", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
-        <%= button_tag('SIGN UP', type: :button, class: "flex-1 flex justify-center button--cta-primary ml-2", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
-      </div>
     <% end %>
 
     <%= render partial: 'shared/connect' %>
