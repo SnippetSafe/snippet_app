@@ -75,7 +75,7 @@ Rails.application.configure do
     # }
   
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.default_url_options = { :host => 'snippet-safe-staging.herokuapp.com/' }
+    config.action_mailer.default_url_options = { :host => 'snippet-safe-staging.herokuapp.com' }
     config.action_mailer.perform_deliveries = true
     
     ActionMailer::Base.smtp_settings = {
