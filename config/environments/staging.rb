@@ -83,7 +83,7 @@ Rails.application.configure do
       :port => 587,
       :authentication => :plain,
       :user_name => 'apikey',
-      :password => Rails.application.credentials.dig(Rails.env.to_sym, :sendgrid, :password),
+      :password => Rails.application.credentials.dig(Rails.env.to_sym, :sendgrid, :api_key),
       :domain => 'heroku.com'
     }
     
