@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  #TODO: works for development
-  if Rails.env.development?
-    Rails.application.routes.default_url_options[:host] = "localhost:3000"
-  else
-    Rails.application.routes.default_url_options[:host] = 'www.snippetsafe.com'
+
+  Rails.application.routes.default_url_options[:host] =  if Rails.env.development?
+    "localhost:3000"
+  elsif Rails.env.staging?
+    'www.snippet-safe-staging.herokuapp.com'
+  elsif Rails.env.production?
+    'www.snippetsafe.com'
   end
 
   devise_for :users, controllers: {
