@@ -33,60 +33,16 @@
     <%= render partial: 'shared/toast' %>
     <%= render partial: 'shared/topbar' %>
 
-            <!--
-      This example requires Tailwind CSS v2.0+ 
-      
-      This example requires some changes to your config:
-      
-      ```
-      // tailwind.config.js
-      module.exports = {
-        // ...
-        plugins: [
-          // ...
-          require('@tailwindcss/forms'),
-        ]
-      }
-      ```
-    -->
-    <div class="max-w-6xl mx-auto py-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto py-4 md:px-4 lg:px-8">
       <div class="min-h-screen bg-gray-100">
         <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
         <!-- On: "fixed inset-0 z-40 overflow-y-auto", Off: "undefined" -->
 
-        <div class="max-w-3xl mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8">
           <main class="lg:col-span-9 xl:col-span-9">
             <%= yield %>
           </main>
-          <aside class="xl:block xl:col-span-3">
-            <div class="sticky position-sticky--topbar space-y-4">
-              <% if user_signed_in? %>
-                <%= 
-                  button_tag(
-                    'NEW SNIPPET',
-                    class: 'w-full button--cta-primary flex justify-center',
-                    data: {
-                      controller: 'modal',
-                      action: 'modal#present',
-                      modal_url_value: new_modals_snippet_path(folder_id: new_snippet_folder_id)
-                    }
-                  )
-                %>
-              <% else %>
-                <div class="flex justify-center">
-                  <%= button_tag('LOG IN', type: :button, class: "flex-1 flex justify-center button--cta-tertiary", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
-                  <%= button_tag('SIGN UP', type: :button, class: "flex-1 flex justify-center button--cta-primary ml-2", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
-                </div>
-              <% end %>
-
-              <%= render partial: 'shared/connect' %>
-
-              <%# <%= render 'shared/cards/card' do %>
-                <%# <h4 class="text-center">Popular</h4> %>
-              <%# <% end %>
-
-            </div>
-          </aside>
+          <%= render partial: 'shared/sidebar' %>
         </div>
       </div>
     </div>

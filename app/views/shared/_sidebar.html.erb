@@ -1,11 +1,24 @@
-<div class="sidebar--wrapper">
-  <div class="card--container card--container-padding text-center margin-bottom">
-    <span class="bold"><%= @page_title.upcase %></span>
-  </div>
-  
-  <div class="flex justify-center">
-    <%= link_to('NEW SNIPPET', @modal_url, data: { controller: 'modal', action: 'modal#present', modal_url_value: @modal_url }, class: 'button--sidebar') %>
-  </div>
+<aside class="hidden lg:block xl:col-span-3 md:col-span-3">
+  <div class="sticky position-sticky--topbar space-y-4">
+    <% if user_signed_in? %>
+      <%= 
+        button_tag(
+          'NEW SNIPPET',
+          class: 'w-full button--cta-primary flex justify-center',
+          data: {
+            controller: 'modal',
+            action: 'modal#present',
+            modal_url_value: new_modals_snippet_path(folder_id: new_snippet_folder_id)
+          }
+        )
+      %>
+    <% end %>
 
-  <%= render partial: 'shared/connect', locals: { users_for_connect: @users_for_connect }%>
-</div>
+    <%= render partial: 'shared/connect' %>
+
+    <div>
+      <p class="text-center text-xs text-gray-500">by <%= link_to '@lewisyoul', 'https://twitter.com/lewisyoul', target: '_blank', class: 'hover:underline' %></p>
+    </div>
+
+  </div>
+</aside>
