@@ -259,10 +259,13 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, 'c9ba150c81465d914e7c', '9ef7c9d7a3d348911dc1108c71c3769c835c5374', scope: 'user'
+  github_client_id = Rails.application.credentials.dig(Rails.env.to_sym, :github, :client_id)
+  github_client_secret = Rails.application.credentials.dig(Rails.env.to_sym, :github, :client_secret)
+
+  config.omniauth :github, github_client_id, github_client_secret, scope: 'user'
 
   OmniAuth.config.before_request_phase do |env|
-      env['HTTP_REFERER'] = nil
+    env['HTTP_REFERER'] = nil
   end
 
   # ==> Warden configuration
