@@ -33,12 +33,12 @@
     <%= render partial: 'shared/toast' %>
     <%= render partial: 'shared/topbar' %>
 
-    <div class="max-w-6xl mx-auto py-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto py-4 md:px-4 lg:px-8">
       <div class="min-h-screen bg-gray-100">
         <!-- When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars -->
         <!-- On: "fixed inset-0 z-40 overflow-y-auto", Off: "undefined" -->
 
-        <div class="max-w-3xl mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="mx-auto lg:max-w-7xl lg:grid lg:grid-cols-12 lg:gap-8">
           <main class="lg:col-span-9 xl:col-span-9">
             <%= yield %>
           </main>
