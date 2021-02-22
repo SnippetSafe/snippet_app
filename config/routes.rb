@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] =  if Rails.env.development?
     "localhost:3000"
   elsif Rails.env.staging?
-    'www.snippet-safe-staging.herokuapp.com'
+    'snippet-safe-staging.herokuapp.com'
   elsif Rails.env.production?
     'www.snippetsafe.com'
   end
