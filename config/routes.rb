@@ -15,8 +15,17 @@ Rails.application.routes.draw do
     confirmations: 'confirmations',
     omniauth_callbacks: 'omniauth_callbacks'
   }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'home#index'
+
+  devise_scope :user do
+    authenticated do
+      root 'home#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'unauthenticated/home#index', as: :unauthenticated_root
+    end
+  end
+
   get '/connect', to: 'home#connect'
 
   namespace :modals do
