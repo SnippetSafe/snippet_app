@@ -1,6 +1,7 @@
 import { Controller } from 'stimulus';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/meta.js'
+// import 'codemirror/theme/lucario.css'
 
 export default class extends Controller {
   static targets = ["wrapper", "mirror", "body", "description"];

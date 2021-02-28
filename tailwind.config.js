@@ -16,6 +16,9 @@ module.exports = {
         'plum': {
           DEFAULT: '#8F3985'
         },
+        'code': {
+          DEFAULT: '#282C34'
+        }
       }
     },
   },

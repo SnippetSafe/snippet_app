@@ -27,10 +27,7 @@
         <nav class="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
           <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
             <div class="flex items-center justify-between w-full md:w-auto">
-              <a href="#">
-                <span class="sr-only">Workflow</span>
-                <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
-              </a>
+              <%= render partial: 'shared/icons/logo', locals: { width: 10, height: 10, color: 'text-cyan'} %>
               <div class="-mr-2 flex items-center md:hidden">
                 <button type="button" class="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                   <span class="sr-only">Open main menu</span>
@@ -43,19 +40,12 @@
             </div>
           </div>
           <div class="hidden md:flex md:space-x-10">
-            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Product</a>
-
-            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Features</a>
-
-            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a>
-
-            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Company</a>
+            
           </div>
           <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             <span class="inline-flex rounded-md shadow">
-              <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500">
-                Log in
-              </a>
+              <%= button_to 'Log In', new_user_session_path, class: 'button--cta-tertiary mr-2' %>
+              <%= button_to 'Sign Up', new_user_registration_path, class: 'button--cta-primary' %>  
             </span>
           </div>
         </nav>
@@ -109,7 +99,7 @@
             <span class="block text-cyan">everyone is building</span>
           </h1>
           <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+            Create, file and share code snippets, and keep track of snippets others create.
           </p>
         </div>
       </div>
@@ -120,7 +110,7 @@
         <div class="flex-1 w-full bg-gray-800"></div>
       </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <img class="relative rounded-lg shadow-lg" src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg" alt="App screenshot">
+        <img class="relative rounded-lg shadow-lg" src="/example.png" alt="App screenshot">
       </div>
     </div>
   </div>
