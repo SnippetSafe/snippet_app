@@ -5,11 +5,12 @@
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  @apply font-mono p-2 rounded-md border text-sm;
+  @apply font-mono p-2 text-sm rounded-br-md rounded-bl-md;
   height: auto;
   color: black;
   direction: ltr;
   // overflow-y: scroll;
+  padding-left: 14px;
 }
 
 @import '../../assets/stylesheets/themes/one-light.scss';
