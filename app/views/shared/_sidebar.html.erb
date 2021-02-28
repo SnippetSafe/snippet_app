@@ -16,9 +16,33 @@
 
     <%= render partial: 'shared/connect' %>
 
-    <div>
-      <p class="text-center text-xs text-gray-500">by <%= link_to '@lewisyoul', 'https://twitter.com/lewisyoul', target: '_blank', class: 'hover:underline' %></p>
-    </div>
+    <%= render 'shared/cards/card_no_padding' do %>
+      <h4 class="text-center pt-2">Popular</h4>
+
+      <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
+        <% @popular_snippets.each do |snippet| %>
+          <li
+            class="cursor-pointer hover:bg-gray-50 group transition pt-4 pb-4 px-4"
+            data-controller="navigation"
+            data-navigation-url-value="<%= snippet_path(snippet) %>"
+            data-action="click->navigation#navigate"
+          >
+            <div class="flex justify-between">
+              <div class="flex">
+                <%= render partial: 'shared/icons/heart', locals: { width: 5, height: 5, color: 'text-red-500' } %>
+                <% if snippet.likes? %>
+                  <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
+                <% end %>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                <%= snippet.language.name %>
+              </span>
+            </div>
+            <p class="mt-2 font-normal group-hover:underline"><%= snippet.description %></p>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
 
   </div>
 </aside>

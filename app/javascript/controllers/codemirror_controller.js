@@ -1,6 +1,7 @@
 import { Controller } from 'stimulus';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/meta.js'
+// import 'codemirror/theme/lucario.css'
 
 export default class extends Controller {
   static targets = ["wrapper", "mirror", "body", "description"];
@@ -27,7 +28,7 @@ export default class extends Controller {
 
   initializeCodeMirror() {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
-      theme: 'one-light',
+      theme: 'one-dark',
       mode: "javascript",
       readOnly: this.readOnlyValue ? 'nocursor' : false,
       scrollbarStyle: "null"

@@ -1,4 +1,4 @@
-<div class="bg-white overflow-hidden shadow rounded-sm mb-4 cursor-pointer hover:shadow-md transition"
+<div class="bg-white overflow-hidden shadow rounded-md mb-4 cursor-pointer hover:shadow-md transition"
   <% if defined?(id) %>
     id="<%= id %>"
   <% end %>
@@ -6,7 +6,7 @@
   data-navigation-url-value="<%= url %>"
   data-action="click->navigation#navigate"
 >
-  <div class="px-4 py-5 sm:p-4">
+  <div class="<%= defined?(classes) ? classes : '' %>">
     <%= yield %>
   </div>
 </div>

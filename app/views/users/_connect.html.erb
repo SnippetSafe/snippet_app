@@ -1,8 +1,9 @@
-<li class="cursor-pointer hover:bg-gray-50 transition pt-4 pb-4 px-4"
-    data-controller="navigation"
-    data-navigation-url-value="<%= user_path(user) %>"
-    data-action="click->navigation#navigate"
-  >
+<li
+  class="group cursor-pointer hover:bg-gray-50 transition pt-4 pb-4 px-4"
+  data-controller="navigation"
+  data-navigation-url-value="<%= user_path(user) %>"
+  data-action="click->navigation#navigate"
+>
     <div class="relative">
       <div class="relative flex items-start space-x-3">
         <%= render partial: 'notifications/user_avatar', locals: { user: user } %>

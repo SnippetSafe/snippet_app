@@ -1,3 +1,13 @@
-<div class="bg-white shadow rounded-sm mb-4 <%= defined?(classes) ? classes : '' %>">
+<div 
+  class="bg-white shadow rounded-md mb-4 <%= defined?(classes) ? classes : '' %>"
+  <% if defined?(id) %>
+    id="<%= id %>"
+  <% end %>
+  <% if defined?(data) %>
+    <% data.each do |key, value| %>
+      data-<%= key.to_s.dasherize %>="<%= value %>"
+    <% end %>
+  <% end %>
+>
   <%= yield %>
 </div>
