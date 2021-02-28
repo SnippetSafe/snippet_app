@@ -10,9 +10,9 @@
             <% if snippet.private? %>
               <%= render partial: 'shared/icons/lock_closed', locals: { height: 4, width: 4, color: 'text-yellow-500 mr-1' } %>
             <% end %>
-            <div class="rounded-sm bg-gray-100 px-2 py-1 text-gray-500">
-              <span class="block text-xs"><%= snippet.language.name %></span>
-            </div>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+              <%= snippet.language.name %>
+            </span>
             <% if @display_popover %>
               <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
             <% end %>
