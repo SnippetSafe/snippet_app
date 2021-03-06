@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
     resources :snippets, only: %i(new edit) do
       get :move, on: :member
+      get :picture, on: :member
     end
 
     resources :folders, only: :new

@@ -1,0 +1,13 @@
+<h3 class="text-center mb-4">Capture Image</h3>
+
+<h5 class="mb-2"><%= @snippet.description %></h5>
+<div data-controller="picture">
+	<div data-picture-target="code" class="bg-cyan p-20">
+		<%= render partial: 'shared/codemirror', locals: { code: @snippet.body, mode_id: @snippet.language_id, read_only: false, capture: true  } %>
+	</div>
+
+	<div class="flex justify-end mt-4">
+		<%= button_tag('Tweet', class: 'button--disabled mr-2') %>
+		<%= button_tag('Download', class: 'button--cta-tertiary', data: { action: 'click->picture#capture' }) %>
+	</div>
+</div>

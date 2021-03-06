@@ -21,6 +21,11 @@ class Modals::SnippetsController < ModalsController
     @folders = current_user.folders.order(name: :asc)
   end
 
+  def picture
+    @snippet = Snippet.find(params[:id])
+    @languages = Language.order(name: :asc)
+  end
+
   private
 
   def set_snippet

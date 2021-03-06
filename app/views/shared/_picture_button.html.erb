@@ -1,0 +1,10 @@
+<%= button_tag(
+    class: "ml-2 no-underline flex items-center cursor-pointer transition",
+		data: {
+			controller: 'modal',
+			action: 'modal#present',
+			modal_url_value: picture_modals_snippet_path(snippet: snippet)
+		}
+	) do %>
+  <%= render partial: 'shared/icons/camera', locals: { classes: 'w-5 h-5 text-gray-500' } %>
+<% end %>

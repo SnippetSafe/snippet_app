@@ -10,7 +10,8 @@ export default class extends Controller {
     code: String,
     modeId: String,
     initialized: Boolean,
-    readOnly: Boolean
+    readOnly: Boolean,
+    isCapture: Boolean,
   }
 
   connect() {
@@ -35,6 +36,11 @@ export default class extends Controller {
     });
 
     this.initializedValue = true
+
+    if (this.isCaptureValue) {
+      document.querySelector(".CodeMirror")
+        .classList.add('rounded-tr-md', 'rounded-tl-md', 'shadow-2xl')
+    }
   }
 
   setCodeMirrorValue() {

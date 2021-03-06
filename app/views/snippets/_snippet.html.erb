@@ -29,9 +29,10 @@
       <div class="flex">
         <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
         <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
+        <%= render partial: 'shared/picture_button', locals: { snippet: snippet } %>
       </div>
     </div>
   </div>
 
-  <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode_id: snippet.language_id, read_only: true  } %>
+  <%= render partial: 'shared/codemirror', locals: { code: snippet.body, mode_id: snippet.language_id, read_only: true, capture: false  } %>
 <% end %>
