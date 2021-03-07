@@ -4,7 +4,7 @@
 <% css_class = active ? 'active' : 'inactive' %>
 
 <%= link_to(path, class: 'relative px-3', data: { controller: 'tooltip', action: 'mouseenter->tooltip#display mouseleave->tooltip#hide' }) do %>
-  <%= render partial: "shared/icons/#{icon}", locals: { width: 7, height: 7, color: color } %>
+  <%= render partial: "shared/icons/#{icon}", locals: { width: 7, height: 7, color: "m-auto #{color}" } %>
   <% if path == notifications_path %>
     <%= notification_counter(current_user) %>
   <% end %>

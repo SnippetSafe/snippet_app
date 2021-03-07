@@ -1,0 +1,29 @@
+<div class="md:hidden flex items-center justify-end mr-4" data-controller="navbar">
+	<div data-action="click->navbar#toggle">
+		<%= render partial: 'shared/icons/menu.html.erb', locals: { classes: 'w-6 h-6 text-cyan' } %>
+	</div>
+	<div class="absolute hidden md:hidden top-14 bg-white rounded-sm shadow-xl" id="mobile-menu" data-navbar-target="container">
+		<div class="space-y-3 py-3">
+			<%= link_to folders_path, class: 'flex items-center px-4' do %>
+				<%= render partial: 'shared/icons/home', locals: { width: 5 , height: 5, color: "#{request.path == root_path ? 'text-cyan' : 'text-gray-400'} mr-2" } %>
+				<span>Feed</span>
+			<% end %>
+			<%= link_to folders_path, class: 'flex items-center px-4' do %>
+				<%= render partial: 'shared/icons/folder', locals: { width: 5 , height: 5, color: "#{request.path == folders_path ? 'text-cyan' : 'text-gray-400'} mr-2" } %>
+				<span>Folders</span>
+			<% end %>
+			<%= link_to snippets_path, class: 'flex items-center px-4' do %>
+				<%= render partial: 'shared/icons/snippet', locals: { width: 5 , height: 5, color: "#{request.path == snippets_path ? 'text-cyan' : 'text-gray-400'} mr-2" } %>
+				<span>Snippets</span>
+			<% end %>
+			<%= link_to notifications_path, class: 'flex items-center px-4' do %>
+				<%= render partial: 'shared/icons/bell', locals: { width: 5 , height: 5, color: "#{request.path == notifications_path ? 'text-cyan' : 'text-gray-400'} mr-2" } %>
+				<span>Notifications</span>
+			<% end %>
+			<%= link_to connect_path, class: 'flex items-center px-4' do %>
+				<%= render partial: 'shared/icons/connect', locals: { width: 5 , height: 5, color: "#{request.path == connect_path ? 'text-cyan' : 'text-gray-400'} mr-2" } %>
+				<span>Connect</span>
+			<% end %>
+		</div>
+	</div>
+</div>

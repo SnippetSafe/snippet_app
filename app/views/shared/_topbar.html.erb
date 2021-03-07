@@ -7,7 +7,7 @@
         <% end %>
       </div>
 
-      <div class="flex items-center relative">
+      <div class="hidden md:flex items-center relative">
         <% if user_signed_in? %>
           <%= render partial: 'shared/nav_item', locals: { path: root_path, page_title: 'Feed', icon: 'home' } %>
           <%= render partial: 'shared/nav_item', locals: { path: folders_path, page_title: 'Folders', icon: 'folder' } %>
@@ -24,9 +24,10 @@
       </div>
 
       <% if user_signed_in? %>
-        <div class="flex items-center flex-1 justify-end">
+        <div class="hidden md:flex items-center flex-1 justify-end">
           <%= render partial: 'shared/profile_nav_item.html.erb' %>
         </div>
+        <%= render partial: 'shared/mobile_menu' %>
       <% else %>
         <div class="flex flex-1 justify-end items-center">
           <%= button_tag('LOG IN', type: :button, class: "flex justify-center button--cta-tertiary", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
