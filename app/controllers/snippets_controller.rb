@@ -2,7 +2,7 @@ class SnippetsController < ApplicationController
   before_action :authenticate_user!, except: :show
 
   def index
-    @page_title = 'Stanley / Snippet'
+    @page_title = 'Snippet'
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
     @snippets = @user.filed_snippets.includes(:user, :folders)
@@ -11,9 +11,9 @@ class SnippetsController < ApplicationController
     # TODO: Extract this logic to model/service
     @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]
 
-    @snippets = @snippets
-      .order(created_at: :desc)
-      .paginate(page: params[:page] || 1, per_page: 6)
+    @snippets = @snippets.order(created_at: :desc)
+    
+    @pagy, @snippets = pagy(@snippets, items: 6)
 
     respond_to do |format|
       format.html do
@@ -22,7 +22,7 @@ class SnippetsController < ApplicationController
       format.json do
         render json: {
           entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
-          pagination: view_context.will_paginate(@snippets)
+          pagination: view_context.pagy_nav(@pagy)
         }
       end
     end

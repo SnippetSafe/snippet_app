@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def tabs_class_for_active_tab(tab_id, param_tab_id)
     "tabs--header-active" if tab_id.to_sym == param_tab_id.to_sym
   end

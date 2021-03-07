@@ -1,53 +1,56 @@
 class HomeController < ApplicationController
+  SNIPPETS_PER_PAGE = 6.freeze
+  CONNECT_USERS_PER_PAGE = 16.freeze
+
   def index
     @page_title = 'Home'
     @display_popover = true
 
     @languages = Language.order(name: :asc).to_json
 
-    if user_signed_in?
+    snippets = if user_signed_in?
       @snippets = current_user
         .snippets_for_feed
         .includes(:language)
-        .paginate(page: params[:page] || 1, per_page: 6)
     else
       # temp fix for when user not signed in
-      @snippets = Snippet
+      Snippet
         .public_snippets
         .includes(:user, :language)
         .order(created_at: :desc)
-        .paginate(page: params[:page] || 1, per_page: 6)
     end
+
+    @pagy, @snippets = pagy(snippets, items: SNIPPETS_PER_PAGE)
 
     respond_to do |format|
       format.html
       format.json do
         render json: {
           entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
-          pagination: view_context.will_paginate(@snippets)
+          pagination: view_context.pagy_nav(@pagy)
         }
       end
     end
   end
 
   def connect
-    @users = if user_signed_in?
+    users = if user_signed_in?
       current_user.not_following
-      .paginate(page: params[:page] || 1, per_page: 16)
     else
       User.order(updated_at: :desc)
-      .paginate(page: params[:page] || 1, per_page: 16)
     end
 
     # TODO: Extract this logic to model/service
-    @users = @users.where('name ILIKE ?', "%#{params[:search]}%") if params[:search]
+    users = users.where('name ILIKE ?', "%#{params[:search]}%") if params[:search]
+
+    @pagy, @users = pagy(users, items: CONNECT_USERS_PER_PAGE)
 
     respond_to do |format|
       format.html
       format.json do
         render json: {
           entries: render_to_string(partial: 'users/follow_previews', formats: [:html]),
-          pagination: view_context.will_paginate(@users)
+          pagination: view_context.pagy_nav(@pagy)
         }
       end
     end

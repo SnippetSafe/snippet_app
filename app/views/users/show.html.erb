@@ -59,7 +59,7 @@
         </div>
 
         <div data-infinite-scroll-window-target="pagination" class="hidden">
-          <%= will_paginate @snippets, container: false, params: { controller: "snippets", action: "index" } %>
+          <%== pagy_nav(@pagy) %>
         </div>
       </div>
     </div>

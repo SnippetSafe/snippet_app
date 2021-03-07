@@ -6,27 +6,48 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
-    @page_title = "#{@user.name}"
-    @serialized_user = @user.serialize.to_json
-    @is_following = current_user ? current_user.following?(@user) : false
-    @followers = @user.followers
-    @following = @user.following
-    @display_popover = true
-    @languages = Language.all.to_json
+    respond_to do |format|
+      format.html do
+        @user = User.find_by(id: params[:id])
+        @page_title = "#{@user.name}"
+        @serialized_user = @user.serialize.to_json
+        @is_following = current_user ? current_user.following?(@user) : false
+        @followers = @user.followers
+        @following = @user.following
+        @display_popover = true
+        @languages = Language.all.to_json
+    
+        # need to change current implementation to hit specific user snippets endpoint so can optionally show private ones
+        snippets = if @user == current_user
+          @user.filed_snippets
+            .order(created_at: :desc)
+        else
+          @user.filed_snippets.public_snippets
+            .order(created_at: :desc)
+        end
+    
+        @pagy, @snippets = pagy(snippets, items: 6)
+    
+        @tab_id = params[:tab_id] || :snippets
+      end
 
-    # need to change current implementation to hit specific user snippets endpoint so can optionally show private ones
-    if @user == current_user
-      @snippets = @user.filed_snippets
-        .order(created_at: :desc)
-        .paginate(page: 1, per_page: 6)
-    else
-      @snippets = @user.filed_snippets.public_snippets
-        .order(created_at: :desc)
-        .paginate(page: 1, per_page: 6)
+      format.json do
+        @user = User.find_by(id: params[:id])
+        @snippets = @user.filed_snippets.includes(:user, :folders)
+        @languages = Language.all.to_json
+
+        # TODO: Extract this logic to model/service
+        @snippets = @snippets.where('description ILIKE ?', "%#{params[:search]}%") if params[:search]
+
+        @snippets = @snippets.order(created_at: :desc)
+        
+        @pagy, @snippets = pagy(@snippets, items: 6)
+        render json: {
+          entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
+          pagination: view_context.pagy_nav(@pagy)
+        }
+      end
     end
-
-    @tab_id = params[:tab_id] || :snippets
   end
 
   def hovercard

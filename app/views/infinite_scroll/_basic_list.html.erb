@@ -5,5 +5,5 @@
 <% end %>
 
 <div data-infinite-scroll-window-target="pagination" class="hidden">
-  <%= will_paginate @users, container: false %>
+  <%== pagy_nav(@pagy) %>
 </div>

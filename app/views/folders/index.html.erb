@@ -46,6 +46,6 @@
   </div>
 
   <div data-infinite-scroll-window-target="pagination" class="hidden">
-    <%= will_paginate @folders, container: false %>
+    <%== pagy_nav(@pagy) %>
   </div>
 </div>

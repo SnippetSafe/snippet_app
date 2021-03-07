@@ -22,9 +22,10 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'byebug'
 
+gem 'pagy', '~> 3.5'
+
 gem "devise", github: "heartcombo/devise", branch: "master"
 gem "aws-sdk-s3", require: false
-gem 'will_paginate', '~> 3.1.0'
 gem 'redis'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
