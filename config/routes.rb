@@ -97,4 +97,6 @@ Rails.application.routes.draw do
     put :file_snippet, on: :collection
     put :unfile_snippet, on: :collection
   end
+
+  resources :tweets, only: :create
 end

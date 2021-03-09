@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="flex justify-end mt-4">
-		<%= button_tag('Tweet', class: 'button--disabled mr-2') %>
-		<%= button_tag('Download', class: 'button--cta-tertiary', data: { action: 'click->picture#capture' }) %>
+		<%= button_tag('Tweet', class: 'button--cta-tertiary mr-2', data: { action: 'click->picture#tweet' }) %>
+		<%= button_tag('Download', class: 'button--cta-tertiary', data: { action: 'click->picture#download' }) %>
 	</div>
 </div>

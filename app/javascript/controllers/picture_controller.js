@@ -1,34 +1,71 @@
 import { Controller } from 'stimulus';
 import domtoimage from 'dom-to-image';
+import axios from 'axios'
 
 export default class extends Controller {
 	static targets = ['code']
 
-	capture() {
-		const scale = 2;
-		const node = this.codeTarget
-		const options = {
-			height: node.offsetHeight * scale,
-			width: node.offsetWidth * scale,
-			style: {
-				transform: "scale(" + scale + ")",
-				transformOrigin: "top left",
-				width: node.offsetWidth + "px",
-				height: node.offsetHeight + "px"
-			}
-		}
+  initialize() {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content
+    axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+  }
 
-		domtoimage.toJpeg(node, options)
-			.then(this.downloadImage)
-			.catch(console.error)
+	toDataUrl() {
+		return domtoimage.toPng(this.codeTarget, this.imageConfig)
 	}
+
+  toBlob() {
+    return domtoimage.toBlob(this.codeTarget, this.imageConfig)
+  }
+
+  tweet() {
+    this.toBlob()
+      .then(this.tweetImage)
+      .catch(console.error)
+  }
+
+  download() {
+    this.toDataUrl()
+      .then(this.downloadImage)
+      .catch(console.error)
+  }
+
+  tweetImage(blob) {
+    let fd = new FormData();
+    fd.append('fname', 'tweet.png');
+    fd.append('data', blob);
+
+    const headers = { 'Content-Type': `multipart/form-data` }
+
+    axios.post(`/tweets`, fd, { headers })
+      .then(res => {
+        console.log('tweeted!')
+        // create the twet intent with the created media url in it
+      })
+      .catch(console.error)
+  }
 
 	downloadImage(dataUrl) {
 		let link = document.createElement('a')
 
-		link.setAttribute('download', 'snippetsafe.jpeg');
+		link.setAttribute('download', 'snippetsafe.png');
 		link.setAttribute('href', dataUrl);
 		link.click();
 		link.remove()
 	}
+
+  get imageConfig() {
+    const scale = 2;
+
+		return {
+			height: this.codeTarget.offsetHeight * scale,
+			width: this.codeTarget.offsetWidth * scale,
+			style: {
+				transform: "scale(" + scale + ")",
+				transformOrigin: "top left",
+				width: this.codeTarget.offsetWidth + "px",
+				height: this.codeTarget.offsetHeight + "px"
+			}
+		}
+  }
 }
