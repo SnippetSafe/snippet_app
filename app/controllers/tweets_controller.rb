@@ -1,6 +1,8 @@
 class TweetsController < ApplicationController
   def create
-    twitter_client.tweet_media(params[:data].path)
+    tweet = twitter_client.tweet_media(params[:data].path)
+
+    render json: { media_url: tweet.media.first.display_url }
   end
 
   private

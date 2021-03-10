@@ -15,10 +15,12 @@ module Clients
   
     def client
       @client ||= ::Twitter::REST::Client.new do |config|
-        config.consumer_key        = "0bEb97Ev9jfb0SdZAc3bnvuzq"
-        config.consumer_secret     = "x5cpKgPzcdhXXHPKDKOuo5JAIOhMDr3Y22SZiYwHrHvV9dUzuW"
-        config.access_token        = "1354061940260294656-OA3CosQ2hUd90llhxLubtdNASYfgaW"
-        config.access_token_secret = "k8MZ8tCtvIJQs56FNjRzkbDHzY7BIkoOh5IVqAK4fnt4A"
+        credentials = Rails.application.credentials.dig(Rails.env.to_sym, :twitter)
+
+        config.consumer_key = credentials.dig(:consumer_key)
+        config.consumer_secret = credentials.dig(:consumer_secret)
+        config.access_token = credentials.dig(:access_token)
+        config.access_token_secret = credentials.dig(:access_token_secret)
       end
     end
 

@@ -31,16 +31,17 @@ export default class extends Controller {
   }
 
   tweetImage(blob) {
-    let fd = new FormData();
-    fd.append('fname', 'tweet.png');
-    fd.append('data', blob);
+    let formData = new FormData();
+    formData.append('fname', 'tweet.png');
+    formData.append('data', blob);
 
     const headers = { 'Content-Type': `multipart/form-data` }
 
-    axios.post(`/tweets`, fd, { headers })
+    axios.post(`/tweets`, formData, { headers })
       .then(res => {
-        console.log('tweeted!')
-        // create the twet intent with the created media url in it
+        const imageUrl = res.data.media_url
+
+        window.open(`https://twitter.com/intent/tweet?text=${imageUrl}`)
       })
       .catch(console.error)
   }
