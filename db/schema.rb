@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_152520) do
+ActiveRecord::Schema.define(version: 2021_03_13_161848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_152520) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "mime_types", default: ["text/plain"], null: false
+    t.jsonb "extensions", default: ["txt"], null: false
   end
 
   create_table "likes", force: :cascade do |t|

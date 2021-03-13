@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="flex mt-4 mb-2 justify-between">
+      <div class="flex mt-4 mb-3 justify-between">
         <div>
           <h5 class="m-0"><%= snippet.description %></h5>
         </div>
@@ -28,6 +28,7 @@
         <div class="flex">
           <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
           <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
+          <%= render partial: 'shared/picture_button', locals: { snippet: snippet } %>
         </div>
       </div>
     </div>

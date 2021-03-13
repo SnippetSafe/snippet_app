@@ -4,6 +4,11 @@ import axios from 'axios'
 
 export default class extends Controller {
 	static targets = ['code']
+  static values = {
+    code: String,
+    extension: String,
+    mimeType: String
+  }
 
   initialize() {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content
@@ -28,6 +33,27 @@ export default class extends Controller {
     this.toDataUrl()
       .then(this.downloadImage)
       .catch(console.error)
+  }
+
+  downloadRaw() {
+    const fileName = `snippet.${this.extensionValue}`
+    const blob = new Blob([this.codeValue], { type: this.mimeTypeValue });
+    let anchorElement = document.createElement('a');
+
+    anchorElement.download = fileName;
+    anchorElement.href = URL.createObjectURL(blob);
+    anchorElement.dataset.downloadurl = [
+      this.mimeTypeValue,
+      anchorElement.download,
+      anchorElement.href
+    ].join(':');
+    anchorElement.style.display = "none";
+
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+    document.body.removeChild(anchorElement);
+
+    setTimeout(function() { URL.revokeObjectURL(anchorElement.href); }, 1500);
   }
 
   tweetImage(blob) {

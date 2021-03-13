@@ -11,7 +11,7 @@
   <% end %>
 >
   <div 
-    class="flex h-full items-center mr-2"
+    class="flex h-full items-center mr-2 group border border-gray-300 rounded-md px-2 py-1 hover:border-red-500"
     data-action="click->like#toggle"
   >
     <%= render partial: 'shared/icons/heart', locals: { width: 5, height: 5, color: color_for_like_status(snippet) } %>

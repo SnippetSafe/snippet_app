@@ -1,7 +1,12 @@
-<h3 class="text-center mb-4">Capture Image</h3>
+<h3 class="text-center mb-4">Share Snippet</h3>
 
 <h5 class="mb-2"><%= @snippet.description %></h5>
-<div data-controller="picture">
+<div
+  data-controller="picture"
+  data-picture-code-value="<%= @snippet.body %>"
+  data-picture-extension-value="<%= @snippet.language.extension %>"
+  data-picture-mime-type-value="<%= @snippet.language.mime_type %>"
+>
 	<div data-picture-target="code" class="bg-cyan px-16 py-20">
 		<%= render partial: 'shared/codemirror', locals: { code: @snippet.body, mode_id: @snippet.language_id, read_only: false, capture: true  } %>
 	</div>
@@ -12,9 +17,14 @@
       <span class="font-normal">Tweet</span>
     <% end %>
 
-    <%= button_tag class: 'button--cta-tertiary', data: { action: 'click->picture#download' } do %>
+    <%= button_tag class: 'button--cta-tertiary mr-2', data: { action: 'click->picture#download' } do %>
       <%= render partial: 'shared/icons/download', locals: { classes: 'h-5 w-5 mr-1' } %>
-      <span class="font-normal">Download</span>
+      <span class="font-normal">PNG</span>
+    <% end %>
+
+    <%= button_tag class: 'button--cta-tertiary', data: { action: 'click->picture#downloadRaw' } do %>
+      <%= render partial: 'shared/icons/download_document', locals: { classes: 'h-5 w-5 mr-1' } %>
+      <span class="font-normal">Raw</span>
     <% end %>
 	</div>
 </div>

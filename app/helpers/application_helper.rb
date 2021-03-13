@@ -44,7 +44,7 @@ module ApplicationHelper
   end
 
   def color_for_like_status(snippet)
-    snippet.liked_by?(current_user) ? 'text-red-500' : 'text-gray-500'
+    snippet.liked_by?(current_user) ? 'text-red-500' : 'text-gray-500 group-hover:text-red-500'
   end
 
   def color_class_for_notification_icon(icon)
