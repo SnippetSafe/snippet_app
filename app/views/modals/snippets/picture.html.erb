@@ -7,7 +7,14 @@
 	</div>
 
 	<div class="flex justify-end mt-4">
-		<%= button_tag('Tweet', class: 'button--cta-tertiary mr-2', data: { action: 'click->picture#tweet' }) %>
-		<%= button_tag('Download', class: 'button--cta-tertiary', data: { action: 'click->picture#download' }) %>
+    <%= button_tag class: 'button--cta-tertiary mr-2', data: { action: 'click->picture#tweet' } do %>
+      <%= render partial: 'shared/icons/twitter', locals: { classes: 'h-5 w-5 mr-1' } %>
+      <span class="font-normal">Tweet</span>
+    <% end %>
+
+    <%= button_tag class: 'button--cta-tertiary', data: { action: 'click->picture#download' } do %>
+      <%= render partial: 'shared/icons/download', locals: { classes: 'h-5 w-5 mr-1' } %>
+      <span class="font-normal">Download</span>
+    <% end %>
 	</div>
 </div>
