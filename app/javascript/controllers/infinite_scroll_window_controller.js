@@ -58,7 +58,7 @@ export default class extends Controller {
     const html = document.documentElement
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
 
-    return (window.pageYOffset >= (height - window.innerHeight - 200))
+    return (window.pageYOffset >= (height - window.innerHeight - 600))
   }
 
   get nextPageAnchor() {
