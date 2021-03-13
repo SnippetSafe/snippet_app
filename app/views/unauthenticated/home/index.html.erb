@@ -195,6 +195,23 @@
       </div>
     </div>
   </div>
-
-
 </div>
+
+<footer class="bg-cyan">
+  <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <div class="mt-8 flex justify-center space-x-6">
+      <%= link_to 'https://twitter.com/lewisyoul', target: '_blank', class: "text-white hover:text-gray-200" do %>
+        <span class="sr-only">Twitter</span>
+        <%= render partial: 'shared/icons/twitter', locals: { classes: 'h-6 w-6' } %>
+      <% end %>
+
+      <%= link_to 'https://github.com/SnippetSafe/snippet_app', target: '_blank', class: "text-white hover:text-gray-200" do %>
+        <span class="sr-only">GitHub</span>
+        <%= render partial: 'shared/icons/github', locals: { classes: 'h-6 w-6' } %>
+      <% end %>
+    </div>
+    <p class="mt-8 text-center text-base text-white">
+      &copy; <%= @year %> snippetsafe.com. All rights reserved.
+    </p>
+  </div>
+</footer>
