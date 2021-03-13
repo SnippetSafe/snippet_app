@@ -1,0 +1,18 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="158.99999999999997 79 84.00000000000003 104" width="100" height="100">
+	<defs>
+		<path d="M160 80L220 80L220 100L160 100L160 80Z" id="a7dSAlYCNy"></path>
+		<path d="M181.08 120L240 120L240 140L181.08 140L181.08 120Z" id="hASAxdwr9"></path>
+		<path d="M160 160L220 160L220 180L160 180L160 160Z" id="d4KpUcG1Lz"></path>
+	</defs>
+	<g>
+		<g>
+			<use xlink:href="#a7dSAlYCNy" opacity="1" fill="#3AAFA9" fill-opacity="1"></use>
+		</g>
+		<g>
+			<use xlink:href="#hASAxdwr9" opacity="1" fill="#3AAFA9" fill-opacity="1"></use>
+		</g>
+		<g>
+			<use xlink:href="#d4KpUcG1Lz" opacity="1" fill="#3AAFA9" fill-opacity="1"></use>
+		</g>
+  </g>
+</svg>
