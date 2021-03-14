@@ -4,7 +4,6 @@ export default class extends Controller {
 	static targets = ['container']
 
 	toggle() {
-		console.log('togglin')
 		this.containerTarget.classList.toggle('hidden')
 	}
 }

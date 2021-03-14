@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 @import 'codemirror/lib/codemirror.css';
 
+* { -webkit-tap-highlight-color: transparent; }
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   @apply font-mono p-2 text-sm rounded-br-md rounded-bl-md;
