@@ -1,7 +1,5 @@
-<% folder = snippet.folder_for_user(current_user) %>
-
 <%= render 'shared/cards/card_no_padding', id: snippet.client_id, data: { controller: "snippets", action: "snippet-updated@window->snippets#update", redirect_after_delete: true } do %>
-  <div class="px-4 py-5 sm:pb-0">
+  <div class="px-4 pt-4 sm:pb-0">
     <div class="relative flex items-start space-x-3">
       <%= render partial: 'users/preview', locals: { resource: snippet, user: snippet.user } %>
       <div>
@@ -21,12 +19,12 @@
       </div>
     </div>
   
-    <div class="flex mt-4 mb-3 justify-between">
+    <div class="flex flex-col md:flex-row mt-4 mb-3 justify-between">
       <div class="flex items-center">
         <h5 class="m-0"><%= snippet.description %></h5>
       </div>
 
-      <div class="flex">
+      <div class="flex justify-end mt-2 md:mt-0">
         <%= render partial: 'shared/like_button', locals: { snippet: snippet } %>
         <%= render partial: 'shared/comment_button', locals: { snippet: snippet } %>
         <%= render partial: 'shared/picture_button', locals: { snippet: snippet } %>
