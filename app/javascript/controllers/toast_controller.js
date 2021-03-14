@@ -2,8 +2,7 @@ import { Controller } from 'stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-  static targets = ["toast", "message"];
-  static classes = ["notice", "alert"];
+  static targets = ["toast", "message", "noticeIcon", "alertIcon"];
 
   connect() {
     this.element[this.identifier] = this
@@ -34,14 +33,34 @@ export default class extends Controller {
 
   display(message, type = 'notice') {
     this.messageTarget.innerHTML = message
-    this.element.classList.remove(this.noticeClass, this.alertClass)
-    this.element.classList.add(this[`${type}Class`])
+    this.displayIconForToastType(type)
+    this.showToast()
+  }
+  
+  showToast() {
     this.toastTarget.classList.remove('hidden')
-    setTimeout(() => this.hideToast(), 3000)
+
+    this.setToastTimeout()
   }
 
   hideToast() {
     this.toastTarget.classList.add('hidden')
+  }
+
+  displayIconForToastType(type) {
+    this.iconTargets.forEach(this.hideIcon)
+
+    this[`${type}IconTarget`].classList.remove('hidden')
+  }
+
+  hideIcon(iconTarget) {
+    iconTarget.classList.add('hidden')
+  }
+
+  setToastTimeout() {
+    const toastTimeoutInMilliseconds = 10000
+
+    setTimeout(() => this.hideToast(), toastTimeoutInMilliseconds)
   }
   
   get notice() {
@@ -50,5 +69,9 @@ export default class extends Controller {
   
   get alert() {
     return this.data.get('alert')
+  }
+
+  get iconTargets() {
+    return [this.noticeIconTarget, this.alertIconTarget]
   }
 }
