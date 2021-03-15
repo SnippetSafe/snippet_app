@@ -1,12 +1,19 @@
-<div>
-  <h1 class="text-center text-4xl"><%= header %></h1>
-  <p class="text-center mt-2"><%= sub_header %></p>
-
-  <div class="m-auto max-w-sm bg-cyan-light p-4 mt-8 mb-10 rounded-sm">
-    <%= yield %>
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <%= link_to unauthenticated_root_path do %>
+      <img class="mx-auto h-12 w-auto mb-4" src="/logos/logo_square.png" alt="Workflow">
+    <% end %>
+    <h1 class="text-center text-4xl"><%= header %></h1>
+    <p class="text-center mt-2"><%= sub_header %></p>
   </div>
 
-  <% if defined?(footer) %>
-    <p class="text-center text-cyan hover:text-cyan-hover"><%= footer %></p>
-  <% end %>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-cyan-light py-8 px-4 sm:rounded-lg sm:px-10">
+      <%= yield %>
+    </div>
+
+    <% if defined?(footer) %>
+      <p class="text-center text-cyan hover:text-cyan-hover mt-8 font-medium"><%= footer %></p>
+    <% end %>
+  </div>
 </div>

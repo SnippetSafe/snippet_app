@@ -1,10 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout :pick_layout
+  layout 'basic'
 
   def new
     @user = User.new
     @header = 'Sign up for an account'
-    @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover")}".html_safe
+    @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover font-medium")}".html_safe
 
     super
   end
@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
       format.html do 
         @user = User.new
         @header = 'Sign up for an account'
-        @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover")}".html_safe
+        @sub_header = "Already have an account? #{view_context.link_to('Sign in', new_user_session_path, class: "text-cyan hover:text-cyan-hover font-medium")}".html_safe
 
         super
       end
@@ -47,11 +47,5 @@ class RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation)
-  end
-
-  APPLICATION_LAYOUTS = %w(edit update).freeze
-
-  def pick_layout
-    APPLICATION_LAYOUTS.include?(action_name) ? 'application' : 'modal_fake'
   end
 end

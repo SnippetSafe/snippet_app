@@ -1,5 +1,5 @@
 class PasswordsController < Devise::PasswordsController
-  layout 'modal_fake'
+  layout 'basic'
 
   def new
     @header = 'Forgot your password?'

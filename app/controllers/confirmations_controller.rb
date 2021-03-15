@@ -1,5 +1,5 @@
 class ConfirmationsController < Devise::ConfirmationsController
-  layout 'modal_fake'
+  layout 'basic'
 
   before_action :set_content
 

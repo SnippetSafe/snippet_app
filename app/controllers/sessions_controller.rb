@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  layout 'modal_fake'
+  layout 'basic'
 
   before_action :set_content, only: :new
 
@@ -27,7 +27,7 @@ class SessionsController < Devise::SessionsController
 
   def set_content
     @header = "Sign in to your account"
-    @sub_header = "Don't have an account yet? #{view_context.link_to('Sign up', new_user_registration_path, class: "text-cyan hover:text-cyan-hover")}".html_safe
+    @sub_header = "Don't have an account yet? #{view_context.link_to('Sign up', new_user_registration_path, class: "text-cyan hover:text-cyan-hover font-medium")}".html_safe
     @footer = view_context.link_to("Didn't receive confirmation instructions?", new_user_confirmation_path).html_safe
   end
 end
