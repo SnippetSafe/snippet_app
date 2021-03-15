@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_202025) do
+ActiveRecord::Schema.define(version: 2021_03_15_204751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_202025) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "bio", default: "This user hasn't updated their bio yet."
+    t.string "bio", default: "404 - bio not found"
     t.string "location", default: ""
     t.string "confirmation_token"
     t.datetime "confirmed_at"

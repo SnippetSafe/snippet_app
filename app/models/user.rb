@@ -5,7 +5,6 @@ class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
-  BIO_MISSING_TEXT = "This user hasn't updated their bio yet."
   ALPHANUMERIC = /\A[a-zA-Z0-9]*\z/.freeze
 
   friendly_id :name, use: :slugged
