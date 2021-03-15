@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @user = User.find_by(id: params[:id])
+        @user = User.find_by(slug: params[:id])
         @page_title = "#{@user.name}"
         @serialized_user = @user.serialize.to_json
         @is_following = current_user ? current_user.following?(@user) : false
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       end
 
       format.json do
-        @user = User.find_by(id: params[:id])
+        @user = User.find_by(slug: params[:id])
         @snippets = @user.filed_snippets.includes(:user, :folders, :language)
         @languages = Language.all.to_json
 
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(slug: params[:id])
 
     current_user.follow(@user)
     
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(slug: params[:id])
 
     current_user.unfollow(@user)
 

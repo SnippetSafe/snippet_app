@@ -1,12 +1,14 @@
 require 'open-uri'
 
 class User < ApplicationRecord
+  extend FriendlyId
   include Rails.application.routes.url_helpers
 
   DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
   BIO_MISSING_TEXT = "This user hasn't updated their bio yet."
   ALPHANUMERIC = /\A[a-zA-Z0-9]*\z/.freeze
 
+  friendly_id :name, use: :slugged
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
@@ -187,7 +189,6 @@ class User < ApplicationRecord
   end
 
   private
-
 
   def create_default_folder
     folders.create!(name: DEFAULT_FOLDER_NAME)

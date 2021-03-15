@@ -30,6 +30,7 @@ gem 'redis'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'twitter'
+gem 'friendly_id', '~> 5.4.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
