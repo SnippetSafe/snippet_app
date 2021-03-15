@@ -5,7 +5,7 @@ class SnippetsController < ApplicationController
     @page_title = 'Snippet'
     @user = User.find_by(id: params[:user_id]) || current_user
     @display_popover = true
-    @snippets = @user.filed_snippets.includes(:user, :folders, :language)
+    @snippets = @user.filed_snippets.includes(:folders, :language, { user: { avatar_attachment: :blob } })
     @languages = Language.all.to_json
 
     # TODO: Extract this logic to model/service

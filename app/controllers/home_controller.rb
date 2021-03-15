@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     snippets = if user_signed_in?
       @snippets = current_user
         .snippets_for_feed
-        .includes(:language)
+        .includes(:language, :likes, user: { avatar_attachment: :blob })
     else
       # temp fix for when user not signed in
       Snippet

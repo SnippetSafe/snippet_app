@@ -19,10 +19,10 @@ class UsersController < ApplicationController
     
         # need to change current implementation to hit specific user snippets endpoint so can optionally show private ones
         snippets = if @user == current_user
-          @user.filed_snippets
+          @user.filed_snippets.includes(:language)
             .order(created_at: :desc)
         else
-          @user.filed_snippets.public_snippets
+          @user.filed_snippets.public_snippets.includes(:language)
             .order(created_at: :desc)
         end
     
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
       format.json do
         @user = User.find_by(id: params[:id])
-        @snippets = @user.filed_snippets.includes(:user, :folders)
+        @snippets = @user.filed_snippets.includes(:user, :folders, :language)
         @languages = Language.all.to_json
 
         # TODO: Extract this logic to model/service
