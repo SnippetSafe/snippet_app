@@ -4,7 +4,7 @@ class User < ApplicationRecord
   extend FriendlyId
   include Rails.application.routes.url_helpers
 
-  DEFAULT_FOLDER_NAME = 'My First Folder'.freeze
+  DEFAULT_FOLDER_NAME = 'My Snippets'.freeze
   ALPHANUMERIC = /\A[a-zA-Z0-9]*\z/.freeze
 
   friendly_id :name, use: :slugged

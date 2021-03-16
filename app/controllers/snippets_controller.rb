@@ -29,7 +29,7 @@ class SnippetsController < ApplicationController
   end
 
   def popover
-    @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.friendly.find(params[:id])
 
     @popover_options = current_user.popover_options_for(@snippet)
 
@@ -38,7 +38,8 @@ class SnippetsController < ApplicationController
 
   # Does this belong on SnippetFoldersController?
   def unfile
-    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+    snippet = current_user.filed_snippets.friendly.find(params[:id])
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: snippet.id)
 
     if snippet_folder && snippet_folder.destroy
       flash[:notice] = "Snippet removed from collection!"
@@ -55,13 +56,13 @@ class SnippetsController < ApplicationController
       format.json do
         begin
           Snippet.transaction do
-            snippet = Snippet.find(params[:id])
+            snippet = Snippet.friendly.find(params[:id])
 
-            if snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+            if snippet_folder = current_user.snippet_folders.find_by(snippet_id: snippet.id)
               snippet_folder.destroy!
             end  
         
-            snippet_folder = SnippetFolder.create!(snippet_id: params[:id], folder_id: params[:folder_id])
+            snippet_folder = SnippetFolder.create!(snippet_id: snippet.id, folder_id: params[:folder_id])
 
             unless current_user == snippet.user
               snippet_folder.notifications.create!(user: snippet.user)
@@ -78,7 +79,8 @@ class SnippetsController < ApplicationController
   end
 
   def current_folder
-    snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+    snippet = Snippet.friendly.find(params[:id])
+    snippet_folder = current_user.snippet_folders.find_by(snippet_id: snippet.id)
 
     res = { folders: current_user.folders.map { |folder| FolderSerializer.new(folder).to_h } }
 
@@ -92,7 +94,7 @@ class SnippetsController < ApplicationController
   def show
     @page_title = "Snippet"
     @languages = Language.all.to_json
-    @snippet = Snippet.includes(comments: :user).find_by(id: params[:id])
+    @snippet = Snippet.includes(comments: :user).find_by(slug: params[:id])
 
     unless @snippet && @snippet.visible_to?(current_user)
       flash[:alert] = "You are not authorized to view that snippet"
@@ -148,13 +150,13 @@ class SnippetsController < ApplicationController
 
   #TODO: Use a different controller action for moving a snippet between folders
   def update
-    snippet = current_user.filed_snippets.find_by(id: params[:id])
+    snippet = current_user.filed_snippets.find_by(slug: params[:id])
 
     if snippet.update(snippet_params.except(:folder_id))
       folder = current_user.folders.find(snippet_params[:folder_id])
 
       Snippet.transaction do
-        snippet_folder = current_user.snippet_folders.find_by(snippet_id: params[:id])
+        snippet_folder = current_user.snippet_folders.find_by(snippet_id: snippet.id)
 
         if snippet_folder.folder_id != snippet_params[:folder_id].to_i
           snippet_folder.update!(folder_id: snippet_params[:folder_id])
@@ -179,7 +181,7 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
-    @snippet = current_user.snippets.find(params[:id])
+    @snippet = current_user.snippets.friendly.find(params[:id])
 
     if @snippet&.destroy
       render json: { resource_id: @snippet.client_id }

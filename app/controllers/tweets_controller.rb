@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     tweet = twitter_client.tweet_media(params[:data].path)
 

@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find_by(slug: params[:id])
+    @user = User.find_by(id: params[:id])
 
     current_user.follow(@user)
     
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    @user = User.find_by(slug: params[:id])
+    @user = User.find_by(id: params[:id])
 
     current_user.unfollow(@user)
 

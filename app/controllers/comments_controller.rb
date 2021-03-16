@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: :destroy
 
   def create
-    @snippet = Snippet.find(params[:snippet_id])
+    @snippet = Snippet.friendly.find(params[:snippet_id])
     @comment = @snippet.comments.new(comment_params)
 
     if @comment.save
