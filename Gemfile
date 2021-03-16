@@ -44,8 +44,8 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 4.1.0'
 end
 
 group :development do
