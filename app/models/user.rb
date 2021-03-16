@@ -93,7 +93,7 @@ class User < ApplicationRecord
   end
 
   def mark_notifications_as_read
-    notifications.unread.each { |notification| notification.mark_as_read }
+    notifications.unread.each(&:mark_as_read)
   end
 
   def follow(user)

@@ -44,5 +44,16 @@
       </ul>
     <% end %>
 
+    <div class="px-4 py-2">
+      <div class="justify-center flex items-center">
+        <span class="text-gray-500 mr-2">Feedback?</span>
+        <%= link_to 'https://twitter.com/messages/compose?recipient_id=1365682148', target: '_blank', class: 'mr-1' do %>
+          <%= render partial: 'shared/icons/twitter', locals: { classes: 'h-5 w-5 text-gray-400 hover:text-gray-500' } %>
+        <% end %>
+        <%= link_to 'mailto:lewis@snippetsafe.com', target: '_blank' do %>
+          <%= render partial: 'shared/icons/mail', locals: { classes: 'h-5 w-5 text-gray-400 hover:text-gray-500' } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </aside>
