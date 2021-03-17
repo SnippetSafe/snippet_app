@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_toast_message, if: -> { params[:notice].present? || params[:alert].present? }
-  before_action :assign_users_for_connect, :assign_popular_snippets
+  before_action :assign_users_for_connect, :assign_popular_snippets, :assign_themes
 
   UNAUTHORIZED = 'You do not have access to this page'.freeze
 
@@ -29,6 +29,74 @@ class ApplicationController < ActionController::Base
     else
       sign_in_sign_up_modals_users_path
     end
+  end
+
+  def assign_themes
+    @themes = [
+      'one-dark',
+      '3024-day',
+      '3024-night',
+      'abcdef',
+      'ambiance',
+      'ayu-dark',
+      'ayu-mirage',
+      'base16-dark',
+      'base16-light',
+      'bespin',
+      'blackboard',
+      'cobalt',
+      'colorforth',
+      'darcula',
+      'dracula',
+      'duotone-dark',
+      'duotone-light',
+      'eclipse',
+      'elegant',
+      'erlang-dark',
+      'gruvbox-dark',
+      'hopscotch',
+      'icecoder',
+      'idea',
+      'isotope',
+      'lesser-dark',
+      'liquibyte',
+      'lucario',
+      'material',
+      'material-darker',
+      'material-palenight',
+      'material-ocean',
+      'mbo',
+      'mdn-like',
+      'midnight',
+      'monokai',
+      'moxer',
+      'neat',
+      'neo',
+      'night',
+      'nord',
+      'oceanic-next',
+      'panda-syntax',
+      'paraiso-dark',
+      'paraiso-light',
+      'pastel-on-dark',
+      'railscasts',
+      'rubyblue',
+      'seti',
+      'shadowfox',
+      'solarized dark',
+      'solarized light',
+      'the-matrix',
+      'tomorrow-night-bright',
+      'tomorrow-night-eighties',
+      'ttcn',
+      'twilight',
+      'vibrant-ink',
+      'xq-dark',
+      'xq-light',
+      'yeti',
+      'yonce',
+      'zenburn'
+    ]
   end
 
   def assign_users_for_connect

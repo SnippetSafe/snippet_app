@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/meta.js'
-// import 'codemirror/theme/lucario.css'
+import 'codemirror/theme/lucario.css'
 
 export default class extends Controller {
   static targets = ["wrapper", "mirror", "body", "description"];
@@ -25,6 +25,19 @@ export default class extends Controller {
 
       this.addEventListeners()
     }
+  }
+
+  updateTheme(event) {
+    const theme = event.detail
+    console.log(theme)
+
+    import(`codemirror/theme/${theme}.css`)
+      .then(() => this.setTheme(theme))
+      .catch(console.error)
+  }
+
+  setTheme(theme) {
+    this.codeMirror.setOption("theme", theme);
   }
 
   initializeCodeMirror() {

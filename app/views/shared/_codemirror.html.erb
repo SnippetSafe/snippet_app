@@ -5,6 +5,7 @@
     {
       data: {
         controller: 'codemirror',
+        action: 'change-theme@window->codemirror#updateTheme',
         codemirror_code_value: code,
         codemirror_mode_id_value: mode_id,
         codemirror_modes_value: @languages,
@@ -12,6 +13,7 @@
         codemirror_read_only_value: read_only,
         codemirror_target: 'mirror',
         codemirror_is_capture_value: capture
+        codemirror_theme_value: user_signed_in? ? current_user.theme : 'one-dark'
       },
       class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm"
     }

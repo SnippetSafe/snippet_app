@@ -55,5 +55,11 @@
         <% end %>
       </div>
     </div>
+
+    <% if user_signed_in? %>
+      <%= render 'shared/cards/card_no_padding' do %>
+        <%= select_tag "theme", options_for_select(@themes, current_user.theme), data: { controller: 'select', action: 'change->select#change' } %>
+      <% end %>
+    <% end %>
   </div>
 </aside>
