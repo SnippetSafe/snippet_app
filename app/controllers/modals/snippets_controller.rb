@@ -11,7 +11,7 @@ class Modals::SnippetsController < ModalsController
   def edit
     @languages = Language.order(name: :asc)
     @folders = current_user.folders
-    @folder = current_user.snippet_folders.find_by(snippet_id: params[:id]).folder
+    @folder = current_user.snippet_folders.find_by(snippet_id: @snippet.id).folder
   end
 
   def move
