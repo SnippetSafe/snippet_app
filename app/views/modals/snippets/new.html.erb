@@ -3,6 +3,7 @@
 <div
   data-controller="codemirror snippets"
   data-codemirror-modes-value="<%= @languages.to_json %>"
+  data-codemirror-theme-value="<%= theme_for_logged_in_status.to_json %>"
   class="mt-4"
 >
   <div data-snippets-target="errors"></div>
