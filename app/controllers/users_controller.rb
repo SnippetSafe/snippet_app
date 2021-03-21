@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :assign_users_for_connect, only: :update_theme
+
   def index
     users = User.limit(5)
 
@@ -60,7 +62,7 @@ class UsersController < ApplicationController
   def update_theme
     theme = Theme.find(params[:theme_id])
 
-    if current_user.update(theme_id: params[:theme_id])
+    if current_user.update(theme: theme)
       render json: { theme: theme }
     else
       head :bad_request

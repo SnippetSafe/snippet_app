@@ -44,6 +44,13 @@
       </ul>
     <% end %>
 
+    <% if user_signed_in? %>
+      <%= render 'shared/cards/card_no_padding' do %>
+        <h4 class="text-center pt-2">Theme</h4>
+        <%= select_tag "theme", options_from_collection_for_select(Theme.order(name: :asc), :id, :name, current_user.theme_id), class: "block w-40 pl-3 pr-10 py-1 text-base border-none w-full focus:outline-none focus:ring-transparent sm:text-sm rounded-md pb-2", data: { controller: 'select', action: 'change->select#change', select_url_value: update_theme_user_path(current_user) } %>
+      <% end %>
+    <% end %>
+
     <div class="px-4 py-2">
       <div class="justify-center flex items-center">
         <span class="text-gray-500 mr-2">Feedback?</span>
@@ -55,11 +62,5 @@
         <% end %>
       </div>
     </div>
-
-    <% if user_signed_in? %>
-      <%= render 'shared/cards/card_no_padding' do %>
-        <%= select_tag "theme", options_from_collection_for_select(Theme.order(name: :asc), :id, :name, current_user.theme_id), remote: true, data: { controller: 'select', action: 'change->select#change', select_url_value: update_theme_user_path(current_user) } %>
-      <% end %>
-    <% end %>
   </div>
 </aside>
