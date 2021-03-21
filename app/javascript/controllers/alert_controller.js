@@ -9,7 +9,7 @@ export default class extends Controller {
     event.preventDefault();
     event.stopPropagation();
 
-    axios.get(this.urlValue)
+    axios.get(this.urlValue, { headers: { 'accept': 'text/html' } })
       .then(res => {
         document.body.insertAdjacentHTML('afterbegin', res.data);
       })
