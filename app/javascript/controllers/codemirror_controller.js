@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/meta.js'
-import 'codemirror/theme/lucario.css'
 
 export default class extends Controller {
   static targets = ["wrapper", "mirror", "body", "description"];
@@ -12,11 +11,13 @@ export default class extends Controller {
     initialized: Boolean,
     readOnly: Boolean,
     isCapture: Boolean,
+    theme: Object
   }
 
   connect() {
     if (this.shouldInitialize()) {
       this.initializeCodeMirror()
+      this.setTheme(this.themeValue)
       this.setCodeMirrorValue()
 
       if (this.hasModeIdValue) {
@@ -29,20 +30,21 @@ export default class extends Controller {
 
   updateTheme(event) {
     const theme = event.detail
-    console.log(theme)
-
-    import(`codemirror/theme/${theme}.css`)
-      .then(() => this.setTheme(theme))
-      .catch(console.error)
+    this.setTheme(theme)
   }
 
   setTheme(theme) {
-    this.codeMirror.setOption("theme", theme);
+    if (theme.custom) {
+      this.codeMirror.setOption("theme", theme.slug)
+    } else {
+      import(`codemirror/theme/${theme.slug}.css`)
+        .then(() => this.codeMirror.setOption("theme", theme.slug))
+        .catch(console.error)
+    }
   }
 
   initializeCodeMirror() {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
-      theme: 'one-dark',
       mode: "javascript",
       readOnly: this.readOnlyValue ? 'nocursor' : false,
       scrollbarStyle: "null"

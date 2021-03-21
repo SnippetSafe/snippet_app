@@ -4,7 +4,7 @@ class User < ApplicationRecord
   extend FriendlyId
   include Rails.application.routes.url_helpers
 
-  store :settings, accessors: %i(theme)
+  # store :settings, accessors: %i(theme)
 
   DEFAULT_FOLDER_NAME = 'My Snippets'.freeze
   ALPHANUMERIC = /\A[a-zA-Z0-9]*\z/.freeze
@@ -37,6 +37,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :languages, through: :snippets
+  belongs_to :theme, optional: false
 
   #TODO: Add tests for this
   after_create :create_default_folder

@@ -58,7 +58,7 @@
 
     <% if user_signed_in? %>
       <%= render 'shared/cards/card_no_padding' do %>
-        <%= select_tag "theme", options_for_select(@themes, current_user.theme), data: { controller: 'select', action: 'change->select#change' } %>
+        <%= select_tag "theme", options_from_collection_for_select(Theme.order(name: :asc), :id, :name, current_user.theme_id), remote: true, data: { controller: 'select', action: 'change->select#change', select_url_value: update_theme_user_path(current_user) } %>
       <% end %>
     <% end %>
   </div>

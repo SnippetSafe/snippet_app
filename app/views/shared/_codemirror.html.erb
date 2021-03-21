@@ -12,8 +12,8 @@
         codemirror_initialized_value: false,
         codemirror_read_only_value: read_only,
         codemirror_target: 'mirror',
-        codemirror_is_capture_value: capture
-        codemirror_theme_value: user_signed_in? ? current_user.theme : 'one-dark'
+        codemirror_is_capture_value: capture,
+        codemirror_theme_value: theme_for_logged_in_status
       },
       class: "font-mono h-80 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-sm"
     }

@@ -110,6 +110,6 @@ class ApplicationController < ActionController::Base
   end
 
   def assign_popular_snippets
-    @popular_snippets = Snippet.popular.limit(3)
+    @popular_snippets = Snippet.popular.includes(:language).limit(3)
   end
 end

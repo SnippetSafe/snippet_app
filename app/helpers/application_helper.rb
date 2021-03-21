@@ -30,6 +30,14 @@ module ApplicationHelper
     end
   end
 
+  def theme_for_logged_in_status
+    @theme_for_logged_in_status ||= if user_signed_in?
+      current_user.theme
+    else
+      Theme.find_by_slug('one-dark')
+    end
+  end
+
   def profile_nav_item
     profile_path = user_path(current_user)
 

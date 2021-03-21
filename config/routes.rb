@@ -86,6 +86,7 @@ Rails.application.routes.draw do
     post :follow, on: :member
     post :unfollow, on: :member
     get :hovercard, on: :member
+    put :update_theme, on: :member
   end
 
   resources :likes, only: :create

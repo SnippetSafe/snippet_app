@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_194710) do
+ActiveRecord::Schema.define(version: 2021_03_21_113104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,14 @@ ActiveRecord::Schema.define(version: 2021_03_16_194710) do
     t.index ["user_id"], name: "index_snippets_on_user_id"
   end
 
+  create_table "themes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.boolean "custom", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -144,11 +152,12 @@ ActiveRecord::Schema.define(version: 2021_03_16_194710) do
     t.string "provider"
     t.string "uid"
     t.string "slug"
-    t.jsonb "settings", default: {"theme"=>"one-dark"}
+    t.bigint "theme_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
+    t.index ["theme_id"], name: "index_users_on_theme_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -159,4 +168,5 @@ ActiveRecord::Schema.define(version: 2021_03_16_194710) do
   add_foreign_key "notifications", "users"
   add_foreign_key "snippet_folders", "folders"
   add_foreign_key "snippet_folders", "snippets"
+  add_foreign_key "users", "themes"
 end

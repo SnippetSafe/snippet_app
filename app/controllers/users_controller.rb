@@ -57,6 +57,16 @@ class UsersController < ApplicationController
     render layout: false
   end
 
+  def update_theme
+    theme = Theme.find(params[:theme_id])
+
+    if current_user.update(theme_id: params[:theme_id])
+      render json: { theme: theme }
+    else
+      head :bad_request
+    end
+  end
+
   def modify
     respond_to do |format|
       format.html do
