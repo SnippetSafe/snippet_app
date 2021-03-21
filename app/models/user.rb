@@ -131,6 +131,10 @@ class User < ApplicationRecord
     snippets.size
   end
 
+  def languages_count
+    snippets.count('DISTINCT language_id')
+  end
+
   def serialize
     UserSerializer.new(self).to_h
   end
