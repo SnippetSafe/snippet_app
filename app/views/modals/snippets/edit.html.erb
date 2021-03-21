@@ -9,6 +9,7 @@
     data-codemirror-mode-id-value="<%= @snippet.language_id %>"
     data-codemirror-initialized-value="false"
     data-codemirror-read-only-value="false"
+    data-codemirror-theme-value="<%= theme_for_logged_in_status.to_json %>"
     class="mt-4"
   >
     <%= form_for @snippet, remote: true, html: { data: { type: "html", action: "ajax:success->snippets#onUpdateSuccess ajax:error->snippets#onUpdateError" } } do |f| %>
