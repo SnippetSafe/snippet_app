@@ -1,7 +1,7 @@
 
 module.exports = {
   purge: [
-    './app/**/*.html.erb',
+    // './app/**/*.html.erb',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
