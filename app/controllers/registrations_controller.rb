@@ -1,6 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'basic'
-  layout 'application', only: :edit
+  layout :select_layout
 
   def new
     @user = User.new
@@ -48,5 +47,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation)
+  end
+
+  def select_layout
+    action_name == 'edit' ? 'application' : 'basic'
   end
 end
