@@ -17,7 +17,6 @@ export default class extends Controller {
   connect() {
     if (this.shouldInitialize()) {
       this.initializeCodeMirror()
-      this.setTheme(this.themeValue)
       this.setCodeMirrorValue()
 
       if (this.hasModeIdValue) {
@@ -34,17 +33,12 @@ export default class extends Controller {
   }
 
   setTheme(theme) {
-    if (theme.custom) {
-      this.codeMirror.setOption("theme", theme.slug)
-    } else {
-      import(`codemirror/theme/${theme.slug}.css`)
-        .then(() => this.codeMirror.setOption("theme", theme.slug))
-        .catch(console.error)
-    }
+    this.codeMirror.setOption("theme", theme.slug)
   }
 
   initializeCodeMirror() {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
+      theme: this.themeValue.slug,
       mode: "javascript",
       readOnly: this.readOnlyValue ? 'nocursor' : false,
       scrollbarStyle: "null"
