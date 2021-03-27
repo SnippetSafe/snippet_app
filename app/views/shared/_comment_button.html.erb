@@ -1,5 +1,5 @@
 <%= link_to snippet_path(snippet, anchor: 'new-comment'), class: "no-underline flex items-center cursor-pointer transition group border border-gray-300 rounded-md px-2 py-1 hover:border-purple-500" do %>
-  <%= render partial: 'shared/icons/chat', locals: { width: 5, height: 5, color: 'text-gray-500 group-hover:text-purple-500' } %>
+  <%= render partial: 'shared/icons/chat', locals: { classes: "w-5 h-5 text-gray-500 group-hover:text-purple-500" } %>
   <span
     data-controller='counts'
     data-counts-count-value="<%= snippet.comments_count %>"

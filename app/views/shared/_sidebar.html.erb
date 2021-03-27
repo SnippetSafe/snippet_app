@@ -40,7 +40,7 @@
           >
             <div class="flex justify-between">
               <div class="flex">
-                <%= render partial: 'shared/icons/heart', locals: { width: 5, height: 5, color: 'text-red-500' } %>
+                <%= render partial: 'shared/icons/heart', locals: { classes: 'w-5 h-5 text-red-500' } %>
                 <% if snippet.likes? %>
                   <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
                 <% end %>

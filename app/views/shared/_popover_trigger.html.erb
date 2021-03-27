@@ -9,7 +9,7 @@
       <%= yield content %>
     <% else %>
       <div class="more-button">
-        <%= render partial: 'shared/icons/more', locals: { width: 4, height: 4, color: '' } %>
+        <%= render partial: 'shared/icons/more', locals: { classes: 'w-4 h4' } %>
       </div>
     <% end %>
   </div>
@@ -21,7 +21,7 @@
     class="position-<%= defined?(position) ? position : 'relative' %>"
   >
     <div class="more-button">
-      <%= render partial: 'shared/icons/more', locals: { width: 4, height: 4, color: '' } %>
+      <%= render partial: 'shared/icons/more', locals: { classes: 'w-4 h4' } %>
     </div>
   </div>
 <% end %>

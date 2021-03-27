@@ -1,10 +1,9 @@
 <% active = path == request.path %>
 
 <% color = active ? 'text-cyan' : 'text-gray-400 hover:text-cyan transition' %>
-<% css_class = active ? 'active' : 'inactive' %>
 
 <%= link_to(path, class: 'relative px-3', data: { controller: 'tooltip', action: 'mouseenter->tooltip#display mouseleave->tooltip#hide' }) do %>
-  <%= render partial: "shared/icons/#{icon}", locals: { width: 7, height: 7, color: "m-auto #{color}" } %>
+  <%= render partial: "shared/icons/#{icon}", locals: { classes: "m-auto #{color} w-7 h-7" } %>
   <% if path == notifications_path %>
     <%= notification_counter(current_user) %>
   <% end %>
