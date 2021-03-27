@@ -5,7 +5,7 @@
     data-folders-target="folder"
     data-folder-id="<%= folder.id %>"
   >
-    <%= render partial: 'shared/icons/folder', locals: { color: 'text-gray-200 m-auto', width: 10, height: 10 } %>
+    <%= render partial: 'shared/icons/folder', locals: { classes: 'w-10 h-10 text-gray-200 m-auto' } %>
     <div>
       <h5 class="text-center"><%= folder.name %></h5>
       <%= render partial: 'folders/counts', locals: { folder: folder } %>

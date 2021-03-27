@@ -10,7 +10,7 @@ class FoldersController < ApplicationController
     
     @popover_options = @folder.popover_options_for(current_user)
 
-    render partial: 'shared/popover', layout: false
+    render partial: 'shared/popover', layout: false, formats: [:html]
   end
 
   def index
