@@ -7,7 +7,11 @@
   data-picture-extension-value="<%= @snippet.language.extension %>"
   data-picture-mime-type-value="<%= @snippet.language.mime_type %>"
 >
-	<div data-picture-target="code" class="bg-cyan px-16 py-20">
+	<div data-picture-target="code" class="relative px-16 py-20 bg-gradient-to-br from-green-400 to-blue-500">
+    <div class="absolute bottom-0 right-0 flex items-center pb-2 px-3">
+      <%= render partial: 'shared/icons/logo', locals: { classes: 'text-cyan h-7 w-7 pr-2' } %>
+      <span class="text-white">snippetsafe.com</span>
+    </div>
 		<%= render partial: 'shared/codemirror', locals: { code: @snippet.body, mode_id: @snippet.language_id, read_only: false, capture: true  } %>
 	</div>
 
