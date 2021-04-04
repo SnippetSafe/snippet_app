@@ -8,7 +8,6 @@ class Modals::UsersController < ModalsController
     @user = User.new
     @header = "Sign in to your account"
     @sub_header = "Don't have an account yet? #{view_context.link_to('Sign up', '', class: "text-cyan hover:text-cyan-hover font-medium", data: { controller: 'modal', modal_url_value: sign_up_modals_users_path, action: 'click->modal#present' })}".html_safe
-    @footer = view_context.link_to("Didn't receive confirmation instructions?", new_user_confirmation_path).html_safe
   end
 
   def sign_up

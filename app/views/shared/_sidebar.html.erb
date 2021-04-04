@@ -1,15 +1,6 @@
 <aside class="hidden lg:block xl:col-span-3 md:col-span-3">
   <div class="sticky position-sticky--topbar space-y-4">
     <% if user_signed_in? %>
-      <%= render 'shared/cards/card_no_padding' do %>
-        <div class="pt-2 pb-2">
-          <%= link_to user_path(current_user), class: 'group' do %>
-            <%= image_tag current_user.avatar_url, class: 'w-16 h-16 rounded-full m-auto'%>
-            <h4 class="ml-2 mr-2 text-center mt-1 group-hover:underline"><%= current_user.name %></h4>
-          <% end %>
-          <p class="ml-2 mr-2 text-center text-sm"><%= pluralize(current_user.snippets_count, 'snippet') %> in <%= pluralize(current_user.languages_count, 'language') %></p>
-        </div>
-      <% end %>
       <div>
         <%= 
           button_tag(
