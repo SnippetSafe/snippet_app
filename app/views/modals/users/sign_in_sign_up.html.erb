@@ -1,8 +1,8 @@
 <%= render 'shared/user_admin', { header: @header, sub_header: @sub_header, footer: @footer } do %>
 
   <div>
-    <button data-controller="modal" data-modal-url-value="<%= sign_up_modals_users_path %>" data-action="click->modal#present" class="mb-4 button--cta-primary w-full flex justify-center">SIGN UP</button>
-    <button data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present" class="button--cta-tertiary w-full flex justify-center">SIGN IN</button>
+    <%= button_to('LOG IN', new_user_session_path, method: :get, class: "button--cta-tertiary w-full flex justify-center") %>
+    <%= button_to('SIGN UP', new_user_registration_path, method: :get, class: "mb-4 button--cta-primary w-full flex justify-center") %>
   </div>
 
 <% end %>

@@ -13,7 +13,7 @@
     <%= render partial: 'comments/new', locals: { snippet: @snippet, comment: @comment } %>
   <% else %>
     <div class="card--container card--container-padding text-center margin-top">
-      <span>Please <a class="color-primary normal" data-controller="modal" data-modal-url-value="<%= sign_in_modals_users_path %>" data-action="click->modal#present">sign in</a> to join the discussion.</span>
+      <span>Please <%= link_to('sign in', new_user_session_path, class: "color-primary normal") %> to join the discussion.</span>
     </div>
   <% end %>
 </div>

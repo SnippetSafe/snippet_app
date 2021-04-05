@@ -1,22 +1,27 @@
-<div
-  class="relative cursor-pointer transition"
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
+  <div
+    class="relative cursor-pointer transition"
     data-controller="like"
     data-like-target="container"
     data-like-url-value="<%= likes_path(like: { user_id: current_user&.id, snippet_id: snippet.id }) %>"
-  <% else %>
-    data-controller="modal"
-    data-modal-url-value="<%= sign_in_sign_up_modals_users_path %>"
-    data-action="click->modal#present"
-  <% end %>
->
-  <div 
-    class="flex h-full items-center mr-2 group border border-gray-300 rounded-md px-2 py-1 hover:border-red-500"
-    data-action="click->like#toggle"
   >
-    <%= render partial: 'shared/icons/heart', locals: { classes: "w-5 h-5 #{color_for_like_status(snippet)}" } %>
-    <% if snippet.likes? %>
-      <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
-    <% end %>
+    <div 
+      class="flex h-full items-center mr-2 group border border-gray-300 rounded-md px-2 py-1 hover:border-red-500"
+      data-action="click->like#toggle"
+    >
+      <%= render partial: 'shared/icons/heart', locals: { classes: "w-5 h-5 #{color_for_like_status(snippet)}" } %>
+      <% if snippet.likes? %>
+        <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <%= link_to(new_user_registration_path, class: "relative cursor-pointer transition") do %>
+    <div class="flex h-full items-center mr-2 group border border-gray-300 rounded-md px-2 py-1 hover:border-red-500">
+      <%= render partial: 'shared/icons/heart', locals: { classes: "w-5 h-5 #{color_for_like_status(snippet)}" } %>
+      <% if snippet.likes? %>
+        <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

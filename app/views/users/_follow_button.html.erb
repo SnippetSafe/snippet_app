@@ -12,6 +12,6 @@
       <%= button_tag 'Follow', data: { action: 'click->follow#follow' }, class: "button--cta-tertiary mt-2 flex w-full justify-center" %>
     <% end %>
   <% else %>
-    <%= button_tag 'Follow', type: :button, class: "button--cta-tertiary mt-2 flex w-full justify-center", data: { controller: 'modal', modal_url_value: sign_in_sign_up_modals_users_path, action: "click->modal#present" } %>
+    <%= button_to 'Follow', new_user_registration_path, method: :get, class: "button--cta-tertiary mt-2 flex w-full justify-center" %>
   <% end %>
 </div>

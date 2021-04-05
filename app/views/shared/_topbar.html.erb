@@ -30,8 +30,8 @@
         <%= render partial: 'shared/mobile_menu' %>
       <% else %>
         <div class="flex flex-1 justify-end items-center">
-          <%= button_tag('LOG IN', type: :button, class: "flex justify-center button--cta-tertiary", data: { controller: "modal", modal_url_value: sign_in_modals_users_path, action: "click->modal#present" }) %>
-          <%= button_tag('SIGN UP', type: :button, class: "flex justify-center button--cta-primary ml-2", data: { controller: "modal", modal_url_value: sign_up_modals_users_path, action: "click->modal#present" }) %>  
+          <%= button_to('LOG IN', new_user_session_path, method: :get, class: "flex justify-center button--cta-tertiary") %>
+          <%= button_to('SIGN UP', new_user_registration_path, method: :get, class: "flex justify-center button--cta-primary ml-2") %>
         </div>
       <% end %>
     </div>

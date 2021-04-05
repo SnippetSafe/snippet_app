@@ -14,14 +14,9 @@
     <% end %>
   </div>
 <% else %>
-  <div
-    data-controller="modal"
-    data-modal-url-value="<%= sign_in_sign_up_modals_users_path %>"
-    data-action="click->modal#present"
-    class="position-<%= defined?(position) ? position : 'relative' %>"
-  >
+  <%= link_to(new_user_registration_path, class: "position-#{defined?(position) ? position : 'relative'}") do %>
     <div class="more-button">
       <%= render partial: 'shared/icons/more', locals: { classes: 'w-4 h4' } %>
     </div>
-  </div>
+  <% end %>
 <% end %>
