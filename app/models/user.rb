@@ -160,7 +160,6 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = unique_name(parsed_name(auth.info.nickname)) # github display name
-      user.skip_confirmation! # github already validates emails
     end
     
     if is_new_user && user.persisted?
