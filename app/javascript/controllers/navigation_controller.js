@@ -1,3 +1,4 @@
+import * as Turbo from "@hotwired/turbo"
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
@@ -10,7 +11,7 @@ export default class extends Controller {
   }
 
   navigate() {
-    Turbolinks.visit(this.urlValue)
+    Turbo.visit(this.urlValue)
   }
 
   stopPropagationOnLinks() {

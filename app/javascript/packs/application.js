@@ -3,13 +3,13 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 import 'controllers'
+import * as Turbo from "@hotwired/turbo"
 
 require("codemirror")
 require("axios")
 require("lodash")
 require("marked")
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
@@ -21,3 +21,5 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("stylesheets/application.scss")
+
+import "controllers"

@@ -1,10 +1,11 @@
+import * as Turbo from "@hotwired/turbo"
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
   onSignInSuccess(event) {
     const [data, status, xhr] = event.detail;
     const urlWithToast = encodeURI(`${location.toString()}?notice=${data.message}`)
-    Turbolinks.visit(urlWithToast)
+    Turbo.visit(urlWithToast)
   }
 
   onSignInError(event) {

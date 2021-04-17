@@ -1,3 +1,4 @@
+import * as Turbo from "@hotwired/turbo"
 import { Controller } from 'stimulus';
 import { events } from "../mixins/events";
 
@@ -49,7 +50,7 @@ export default class extends Controller {
     const element = document.getElementById(resourceId)
     
     if (element.dataset.redirectAfterDelete) {
-      Turbolinks.visit('/')
+      Turbo.visit('/')
     } else {
       element.remove()
       this.emitEvent('close-alert')
