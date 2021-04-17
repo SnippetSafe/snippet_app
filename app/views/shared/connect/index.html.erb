@@ -1,15 +1,9 @@
 <turbo-frame id="connect">
   <% if @users_for_connect.any? %>
-    <%= render 'shared/cards/card_no_padding' do %>
-      <h4 class="text-center pt-2">
-        <%= link_to 'Connect', connect_path, title: 'Search for people to connect with', class: 'hover:underline' %>
-      </h4>
-
-      <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
-        <% @users_for_connect.each do |user| %>
-          <%= render partial: 'users/connect', locals: { user: user }%>
-        <% end %>
-      </ul>
-    <% end %>
+    <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
+      <% @users_for_connect.each do |user| %>
+        <%= render partial: 'users/connect', locals: { user: user }%>
+      <% end %>
+    </ul>
   <% end %>
 </turbo-frame>
