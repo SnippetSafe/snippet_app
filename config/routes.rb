@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :shared do
     resources :connect, only: :index
     resources :popular, only: :index
+    resources :snippets, only: :index
   end
 
   namespace :modals do

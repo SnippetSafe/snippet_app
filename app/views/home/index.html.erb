@@ -1,14 +1,3 @@
-<div data-controller="infinite-scroll-window snippets-list">
-
-  <div
-    id="infinite-snippets-list"
-    data-infinite-scroll-window-target="entries"
-    data-action="scroll@window->infinite-scroll-window#scroll snippet-created@window->infinite-scroll-window#add snippet-updated@window->snippets-list#update"
-  >
-    <%= render 'snippets/snippets' %>
-  </div>
-
-  <div data-infinite-scroll-window-target="pagination" class="hidden">
-    <%== pagy_nav(@pagy) %>
-  </div>
-</div>
+<%= turbo_frame_tag "snippets_1", src: shared_snippets_path(page: 1) do %>
+  <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+<% end %>

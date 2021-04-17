@@ -16,8 +16,13 @@
       </div>
     <% end %>
 
-    <%= turbo_frame_tag "connect", src: shared_connect_index_path %>
-    <%= turbo_frame_tag "popular", src: shared_popular_index_path %>
+    <%= turbo_frame_tag "connect", src: shared_connect_index_path do %>
+      <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+    <% end %>
+
+    <%= turbo_frame_tag "popular", src: shared_popular_index_path do %>
+      <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+    <% end %>
 
     <% if user_signed_in? %>
       <%= render 'shared/cards/card_no_padding' do %>

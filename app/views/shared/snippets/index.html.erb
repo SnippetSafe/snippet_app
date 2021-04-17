@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "snippets_#{@page}" do %>
+  <%= render partial: 'snippets/snippets' %>
+  <%= turbo_frame_tag "snippets_#{@next_page}", loading: :lazy, src: shared_snippets_path(page: @next_page) do %>
+    <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+  <% end %>
+<% end %>
