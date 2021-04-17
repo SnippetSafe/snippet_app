@@ -10,7 +10,7 @@ class Shared::SnippetsController < ApplicationController
     
     @snippets = @snippets.offset(offset).limit(PER_PAGE)
 
-    @next_page = @page + 1 if @snippets.any?
+    @next_page = @page + 1 if @snippets.size == PER_PAGE
   end
 
   private
