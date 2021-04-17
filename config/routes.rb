@@ -28,6 +28,11 @@ Rails.application.routes.draw do
 
   get '/connect', to: 'home#connect'
 
+  namespace :shared do
+    resources :connect, only: :index
+    resources :popular, only: :index
+  end
+
   namespace :modals do
     resources :users do
       get :sign_in_sign_up, on: :collection

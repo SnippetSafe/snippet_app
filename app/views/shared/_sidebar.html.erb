@@ -5,7 +5,7 @@
         <%= 
           button_tag(
             'NEW SNIPPET',
-            class: 'w-full button--cta-primary flex justify-center',
+            class: 'w-full button--cta-primary flex justify-center mb-4',
             data: {
               controller: 'modal',
               action: 'modal#present',
@@ -16,35 +16,8 @@
       </div>
     <% end %>
 
-    <%= render partial: 'shared/connect' %>
-
-    <%= render 'shared/cards/card_no_padding' do %>
-      <h4 class="text-center pt-2">Popular</h4>
-
-      <ul class="divide-y divide-gray-200" data-infinite-scroll-window-target="entries" data-action="scroll@window->infinite-scroll-window#scroll">
-        <% @popular_snippets.each do |snippet| %>
-          <li
-            class="cursor-pointer hover:bg-gray-50 group transition pt-4 pb-4 px-4"
-            data-controller="navigation"
-            data-navigation-url-value="<%= snippet_path(snippet) %>"
-            data-action="click->navigation#navigate"
-          >
-            <div class="flex justify-between">
-              <div class="flex">
-                <%= render partial: 'shared/icons/heart', locals: { classes: 'w-5 h-5 text-red-500' } %>
-                <% if snippet.likes? %>
-                  <span class="inline-block text-sm text-gray-500 ml-1 -mb-0.5"><%= snippet.likes_count %></span>
-                <% end %>
-              </div>
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                <%= snippet.language.name %>
-              </span>
-            </div>
-            <p class="mt-2 font-normal group-hover:underline"><%= snippet.description %></p>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= turbo_frame_tag "connect", src: shared_connect_index_path %>
+    <%= turbo_frame_tag "popular", src: shared_popular_index_path %>
 
     <% if user_signed_in? %>
       <%= render 'shared/cards/card_no_padding' do %>

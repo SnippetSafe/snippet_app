@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :assign_users_for_connect, only: :update_theme
-
   def index
     users = User.limit(5)
 
