@@ -4,7 +4,6 @@ class SnippetsController < ApplicationController
   def index
     @page_title = 'Snippet'
     @user = User.find_by(id: params[:user_id]) || current_user
-    @display_popover = true
     @snippets = @user.filed_snippets.includes(:folders, :language, { user: { avatar_attachment: :blob } })
     @languages = Language.all.to_json
 
@@ -101,7 +100,6 @@ class SnippetsController < ApplicationController
       redirect_to root_path
     end
 
-    @display_popover = true
     @comment = Comment.new
   end
 
@@ -116,35 +114,23 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    snippet = Snippet.new(
-      user: current_user,
-      description: snippet_params[:description],
-      body: snippet_params[:body],
-      public: snippet_params[:public],
-      language_id: snippet_params[:language_id],
-    )
-
-    if snippet_params[:folder_id].present?
-      folder = current_user.folders.find(snippet_params[:folder_id])
-      snippet.folders << folder
-    end
-
-    if snippet.save
-      @display_popover = true
-      @languages = Language.all.to_json
-
-      partial = if request.referer == snippet_path(snippet)
-        'snippets/snippet'
-      else
-        'snippets/snippet_preview'
+    respond_to do |format|
+      format.turbo_stream do
+        @snippet = Snippet.new(
+          user: current_user,
+          description: snippet_params[:description],
+          body: snippet_params[:body],
+          public: snippet_params[:public],
+          language_id: snippet_params[:language_id],
+        )
+    
+        if snippet_params[:folder_id].present?
+          folder = current_user.folders.find(snippet_params[:folder_id])
+          @snippet.folders << folder
+        end
+    
+        @snippet.save
       end
-
-      element = render_to_string partial: partial, locals: { snippet: snippet }
-
-      render json: { client_id: snippet.client_id, element: element }
-    else
-      element = render_to_string partial: 'shared/errors', locals: { resource: snippet }
-      render json: { element: element }, status: :bad_request
     end
   end
 
@@ -169,7 +155,6 @@ class SnippetsController < ApplicationController
         'snippets/snippet_preview'
       end
 
-      @display_popover = true
       @languages = Language.all.to_json
       element = render_to_string partial: partial, locals: { snippet: snippet }
 

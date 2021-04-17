@@ -11,9 +11,7 @@
             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
               <%= snippet.language.name %>
             </span>
-            <% if @display_popover %>
-              <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
-            <% end %>
+            <%= render partial: 'shared/popover_trigger', locals: { popover_path: popover_snippet_path(snippet) } %>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+<div id="new_snippets"></div>
+
 <%= turbo_frame_tag "snippets_1", src: shared_snippets_path(page: 1) do %>
   <% if @next_page %>
     <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>

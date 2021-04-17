@@ -3,33 +3,9 @@ class HomeController < ApplicationController
   CONNECT_USERS_PER_PAGE = 16.freeze
 
   def index
-    @page_title = 'Home'
-    @display_popover = true
-
-    @languages = Language.order(name: :asc).to_json
-
-    snippets = if user_signed_in?
-      @snippets = current_user
-        .snippets_for_feed
-        .includes(:language, :likes, user: { avatar_attachment: :blob })
-    else
-      # temp fix for when user not signed in
-      Snippet
-        .public_snippets
-        .includes(:user, :language)
-        .order(created_at: :desc)
-    end
-
-    @pagy, @snippets = pagy(snippets, items: SNIPPETS_PER_PAGE)
 
     respond_to do |format|
-      format.html
-      format.json do
-        render json: {
-          entries: render_to_string(partial: 'snippets/snippets', formats: [:html]),
-          pagination: view_context.pagy_nav(@pagy)
-        }
-      end
+      format.html { @next_page = true }
     end
   end
 

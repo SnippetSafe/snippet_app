@@ -35,7 +35,6 @@ class FoldersController < ApplicationController
 
   def show
     @page_title = @folder.name
-    @display_popover = true
     @snippets = @folder.snippets
     @languages = Language.all.to_json
 

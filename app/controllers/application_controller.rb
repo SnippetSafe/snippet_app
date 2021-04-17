@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
 
-  respond_to :html, :json
+  respond_to :html, :json, :turbo_stream
   serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_toast_message, if: -> { params[:notice].present? || params[:alert].present? }

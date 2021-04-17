@@ -1,0 +1,11 @@
+<% if @snippet.valid? %>
+  <%= turbo_stream.prepend "new_snippets" do %>
+    <%= render partial: 'snippets/snippet_preview', locals: { snippet: @snippet } %>
+  <% end %>
+
+  <%= turbo_stream.remove "modal" %>
+<% else %>
+  <%= turbo_stream.update "snippet_create_errors" do %>
+    <%= render partial: 'shared/errors', locals: { resource: @snippet } %>
+  <% end %>
+<% end %>

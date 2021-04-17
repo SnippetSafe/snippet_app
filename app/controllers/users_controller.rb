@@ -14,7 +14,6 @@ class UsersController < ApplicationController
         @is_following = current_user ? current_user.following?(@user) : false
         @followers = @user.followers
         @following = @user.following
-        @display_popover = true
         @languages = Language.all.to_json
     
         # need to change current implementation to hit specific user snippets endpoint so can optionally show private ones
