@@ -96,7 +96,7 @@ class UsersController < ApplicationController
 
     current_user.follow(@user)
     
-    render partial: 'users/follow_button', locals: { user: @user }
+    render partial: 'users/follow_button', locals: { user: @user }, formats: [:html]
   end
 
   def unfollow
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
 
     current_user.unfollow(@user)
 
-    render partial: 'users/follow_button', locals: { user: @user }
+    render partial: 'users/follow_button', locals: { user: @user }, formats: [:html]
   end
 
   private
