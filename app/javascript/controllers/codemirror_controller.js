@@ -40,7 +40,7 @@ export default class extends Controller {
     this.codeMirror = CodeMirror.fromTextArea(this.mirrorTarget, {
       theme: this.themeValue.slug,
       mode: "javascript",
-      readOnly: this.readOnlyValue ? 'nocursor' : false,
+      readOnly: this.readOnlyValue,
       scrollbarStyle: "null"
     });
 
