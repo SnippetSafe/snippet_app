@@ -41,7 +41,8 @@ export default class extends Controller {
       theme: this.themeValue.slug,
       mode: "javascript",
       readOnly: this.readOnlyValue,
-      scrollbarStyle: "null"
+      scrollbarStyle: "null",
+      viewportMargin: Infinity
     });
 
     this.initializedValue = true
