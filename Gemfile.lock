@@ -175,7 +175,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     naught (1.1.0)
-    nio4r (2.5.2)
+    nio4r (2.5.8)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.4)
@@ -201,7 +201,7 @@ GEM
     pagy (3.11.0)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (4.3.3)
+    puma (4.3.9)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-protection (2.1.0)
@@ -345,7 +345,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pagy (~> 3.5)
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.2, >= 6.0.2.2)
   redis
   rspec-rails (~> 4.1.0)
